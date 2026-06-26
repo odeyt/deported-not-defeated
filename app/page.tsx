@@ -168,51 +168,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Portrait feature — Mexico */}
-      <section className="py-20 px-4 bg-navy-800">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl">
-            <Image
-              src="/images/portrait-mexico.png"
-              alt="Deported but not defeated — My story isn't over. It's just a new chapter."
-              width={600}
-              height={600}
-              className="w-full object-cover"
-              quality={90}
-            />
-          </div>
-          <div className="w-full md:w-1/2 text-white">
-            <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-4">
-              Real People. Real Strength.
-            </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-              My Story Isn&apos;t Over.<br />
-              <span className="text-brand-red">It&apos;s Just a New Chapter.</span>
-            </h2>
-            <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              Thousands of people have been deported from the USA. Many landed in a country they barely know, with no money, no contacts, and no plan.
-            </p>
-            <p className="text-gray-300 text-lg leading-relaxed mb-8">
-              This platform exists to change that. Practical resources. Verified directories. Real support. No shame. No politics.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/laos"
-                className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
-              >
-                Explore Laos Guide <ArrowRight size={16} />
-              </Link>
-              <Link
-                href="/about"
-                className="border border-white/30 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors"
-              >
-                Our Mission
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 4 Countries grid */}
       <section className="py-20 px-4 bg-gray-950">
         <div className="max-w-6xl mx-auto">
@@ -259,6 +214,51 @@ export default function HomePage() {
                 </span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portrait feature — Mexico */}
+      <section className="py-20 px-4 bg-navy-800">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/images/portrait-mexico.png"
+              alt="Deported but not defeated — My story isn't over. It's just a new chapter."
+              width={600}
+              height={600}
+              className="w-full object-cover"
+              quality={90}
+            />
+          </div>
+          <div className="w-full md:w-1/2 text-white">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-4">
+              Real People. Real Strength.
+            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+              My Story Isn&apos;t Over.<br />
+              <span className="text-brand-red">It&apos;s Just a New Chapter.</span>
+            </h2>
+            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              Thousands of people have been deported from the USA. Many landed in a country they barely know, with no money, no contacts, and no plan.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              This platform exists to change that. Practical resources. Verified directories. Real support. No shame. No politics.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/laos"
+                className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
+              >
+                Explore Laos Guide <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/about"
+                className="border border-white/30 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors"
+              >
+                Our Mission
+              </Link>
+            </div>
           </div>
         </div>
       </section>
