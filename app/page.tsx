@@ -89,66 +89,70 @@ const sections = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO — full banner image */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* HERO — full banner image, no cropping */}
+      <section className="relative w-full bg-gray-950">
         <Image
           src="/images/hero-banner.png"
           alt="Deported But Not Defeated — My Story. My Strength. My Future."
-          fill
+          width={1920}
+          height={800}
           priority
-          className="object-cover object-center"
+          className="w-full h-auto block"
           quality={90}
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/55" />
 
-        <div className="relative z-10 text-white text-center px-4 max-w-5xl mx-auto">
-          <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-4">
-            One Setback. Countless Comebacks. Unbreakable Spirit.
-          </p>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
-            Deported,{" "}
-            <span className="text-brand-red">Not</span>{" "}
-            Defeated.
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-4 leading-relaxed">
-            A practical guide and support directory for people rebuilding life after deportation.
-          </p>
-          <p className="text-gray-300 mb-10 text-lg italic">
-            &ldquo;Your story is not over. Start again with dignity, direction, and support.&rdquo;
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/laos"
-              className="bg-brand-red hover:bg-brand-red-dark text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg"
-            >
-              Start with Laos
-            </Link>
-            <Link
-              href="/laos/directory"
-              className="bg-white/15 hover:bg-white/25 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors border border-white/30 backdrop-blur-sm"
-            >
-              Find Help Near You
-            </Link>
-            <Link
-              href="/laos/first-30-days"
-              className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-8 py-4 rounded-xl font-bold text-lg transition-colors border border-yellow-400/40 backdrop-blur-sm"
-            >
-              Download Restart Checklist
-            </Link>
+        {/* Centered overlay content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+          <div className="text-white text-center max-w-4xl mx-auto w-full">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-xs md:text-sm mb-3">
+              One Setback. Countless Comebacks. Unbreakable Spirit.
+            </p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-5 leading-tight drop-shadow-2xl">
+              Deported,{" "}
+              <span className="text-brand-red">Not</span>{" "}
+              Defeated.
+            </h1>
+            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-3 leading-relaxed">
+              A practical guide and support directory for people rebuilding life after deportation.
+            </p>
+            <p className="text-gray-300 mb-8 text-base italic">
+              &ldquo;Your story is not over. Start again with dignity, direction, and support.&rdquo;
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/laos"
+                className="bg-brand-red hover:bg-brand-red-dark text-white px-7 py-3 rounded-xl font-bold text-base transition-colors shadow-lg"
+              >
+                Start with Laos
+              </Link>
+              <Link
+                href="/laos/directory"
+                className="bg-white/15 hover:bg-white/25 text-white px-7 py-3 rounded-xl font-bold text-base transition-colors border border-white/30 backdrop-blur-sm"
+              >
+                Find Help Near You
+              </Link>
+              <Link
+                href="/laos/first-30-days"
+                className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-7 py-3 rounded-xl font-bold text-base transition-colors border border-yellow-400/40 backdrop-blur-sm"
+              >
+                Download Restart Checklist
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Bottom stats bar */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-t border-white/10">
-          <div className="max-w-5xl mx-auto px-4 py-4 grid grid-cols-3 gap-4 text-center">
+          <div className="max-w-5xl mx-auto px-4 py-3 grid grid-cols-3 gap-4 text-center">
             {[
               ["Starting with", "Laos"],
               ["Categories", "17+"],
               ["Resources", "Free"],
             ].map(([label, value]) => (
               <div key={label}>
-                <p className="text-2xl font-bold text-white">{value}</p>
+                <p className="text-xl font-bold text-white">{value}</p>
                 <p className="text-xs text-gray-400 uppercase tracking-wider mt-0.5">{label}</p>
               </div>
             ))}
