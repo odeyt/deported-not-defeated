@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import NewsletterForm from "@/components/NewsletterForm";
 import {
   Home,
@@ -88,48 +89,59 @@ const sections = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-navy-800 text-white">
-        <div className="max-w-5xl mx-auto px-4 py-24 text-center">
-          <p className="text-brand-red font-semibold uppercase tracking-widest text-sm mb-4">
-            One Setback. Countless Comebacks.
+      {/* HERO — full banner image */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <Image
+          src="/images/hero-banner.png"
+          alt="Deported But Not Defeated — My Story. My Strength. My Future."
+          fill
+          priority
+          className="object-cover object-center"
+          quality={90}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        <div className="relative z-10 text-white text-center px-4 max-w-5xl mx-auto">
+          <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-4">
+            One Setback. Countless Comebacks. Unbreakable Spirit.
           </p>
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
             Deported,{" "}
             <span className="text-brand-red">Not</span>{" "}
             Defeated.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-4 leading-relaxed">
             A practical guide and support directory for people rebuilding life after deportation.
           </p>
-          <p className="text-gray-400 mb-10 text-lg">
-            Your story is not over. Start again with dignity, direction, and support.
+          <p className="text-gray-300 mb-10 text-lg italic">
+            &ldquo;Your story is not over. Start again with dignity, direction, and support.&rdquo;
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/laos"
-              className="bg-brand-red hover:bg-brand-red-dark text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors"
+              className="bg-brand-red hover:bg-brand-red-dark text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg"
             >
               Start with Laos
             </Link>
             <Link
               href="/laos/directory"
-              className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors border border-white/20"
+              className="bg-white/15 hover:bg-white/25 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors border border-white/30 backdrop-blur-sm"
             >
               Find Help Near You
             </Link>
             <Link
               href="/laos/first-30-days"
-              className="bg-brand-gold/20 hover:bg-brand-gold/30 text-yellow-300 px-8 py-4 rounded-xl font-semibold text-lg transition-colors border border-yellow-400/30"
+              className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-8 py-4 rounded-xl font-bold text-lg transition-colors border border-yellow-400/40 backdrop-blur-sm"
             >
               Download Restart Checklist
             </Link>
           </div>
         </div>
 
-        {/* Stats bar */}
-        <div className="border-t border-navy-700 bg-navy-700/40">
-          <div className="max-w-5xl mx-auto px-4 py-6 grid grid-cols-3 gap-4 text-center">
+        {/* Bottom stats bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-t border-white/10">
+          <div className="max-w-5xl mx-auto px-4 py-4 grid grid-cols-3 gap-4 text-center">
             {[
               ["Starting with", "Laos"],
               ["Categories", "17+"],
@@ -137,7 +149,7 @@ export default function HomePage() {
             ].map(([label, value]) => (
               <div key={label}>
                 <p className="text-2xl font-bold text-white">{value}</p>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mt-1">{label}</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider mt-0.5">{label}</p>
               </div>
             ))}
           </div>
@@ -156,51 +168,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Country focus */}
-      <section className="py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-brand-red font-semibold uppercase tracking-widest text-sm mb-2">
-              Currently Available
-            </p>
-            <h2 className="text-4xl font-bold text-navy-800 mb-4">Starting With Laos</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              We built this guide for people deported to Laos first. More countries coming soon.
-              Everything here is specific, local, and practical.
-            </p>
+      {/* Portrait feature — Mexico */}
+      <section className="py-20 px-4 bg-navy-800">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/images/portrait-mexico.png"
+              alt="Deported but not defeated — My story isn't over. It's just a new chapter."
+              width={600}
+              height={600}
+              className="w-full object-cover"
+              quality={90}
+            />
           </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm flex flex-col md:flex-row items-center gap-8">
-            <div className="text-6xl">🇱🇦</div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-navy-800 mb-2">Laos</h3>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Whether you landed in Vientiane, Luang Prabang, Pakse, or Savannakhet — we have
-                resources for you. Housing, jobs, healthcare, legal help, and a searchable
-                business directory.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {["Vientiane", "Luang Prabang", "Pakse", "Savannakhet"].map((city) => (
-                  <span
-                    key={city}
-                    className="flex items-center gap-1 bg-gray-100 text-gray-700 text-sm px-3 py-1 rounded-full"
-                  >
-                    <MapPin size={12} /> {city}
-                  </span>
-                ))}
-              </div>
+          <div className="w-full md:w-1/2 text-white">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-4">
+              Real People. Real Strength.
+            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+              My Story Isn&apos;t Over.<br />
+              <span className="text-brand-red">It&apos;s Just a New Chapter.</span>
+            </h2>
+            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              Thousands of people have been deported from the USA. Many landed in a country they barely know, with no money, no contacts, and no plan.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              This platform exists to change that. Practical resources. Verified directories. Real support. No shame. No politics.
+            </p>
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="/laos"
-                className="inline-flex items-center gap-2 bg-navy-800 hover:bg-navy-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
               >
                 Explore Laos Guide <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/about"
+                className="border border-white/30 hover:bg-white/10 text-white px-6 py-3 rounded-xl font-bold transition-colors"
+              >
+                Our Mission
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section grid */}
+      {/* 4 Countries grid */}
+      <section className="py-20 px-4 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-3">
+              Expanding Across Countries
+            </p>
+            <h2 className="text-4xl font-extrabold text-white mb-4">
+              Built for Every Returnee
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              Starting with Laos. Expanding to Cambodia, Vietnam, Philippines, Mexico and beyond. One platform. Every country.
+            </p>
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-10">
+            <Image
+              src="/images/portraits-countries.png"
+              alt="Deported But Not Defeated — Laos, Cambodia, Vietnam, Philippines"
+              width={1200}
+              height={800}
+              className="w-full object-cover"
+              quality={90}
+            />
+          </div>
+
+          {/* Country cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { flag: "🇱🇦", name: "Laos", href: "/laos", status: "Live", color: "bg-green-500" },
+              { flag: "🇰🇭", name: "Cambodia", href: "#", status: "Coming Soon", color: "bg-gray-500" },
+              { flag: "🇻🇳", name: "Vietnam", href: "#", status: "Coming Soon", color: "bg-gray-500" },
+              { flag: "🇵🇭", name: "Philippines", href: "#", status: "Coming Soon", color: "bg-gray-500" },
+            ].map((c) => (
+              <Link
+                key={c.name}
+                href={c.href}
+                className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-5 text-center transition-all group"
+              >
+                <div className="text-4xl mb-3">{c.flag}</div>
+                <p className="font-bold text-white mb-2">{c.name}</p>
+                <span className={`text-xs text-white px-2 py-1 rounded-full ${c.color}`}>
+                  {c.status}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resources section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
