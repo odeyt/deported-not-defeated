@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-navy-50 { background-color: #f0f4ff; }
+  .bg-navy-100 { background-color: #e0e9ff; }
+  .bg-navy-600 { background-color: #162d58; }
+  .bg-navy-700 { background-color: #0f2040; }
+  .bg-navy-800 { background-color: #0a1628; }
+  .text-navy-600 { color: #162d58; }
+  .text-navy-700 { color: #0f2040; }
+  .text-brand-red { color: #c0392b; }
+  .bg-brand-red { background-color: #c0392b; }
+  .bg-brand-red-dark { background-color: #922b21; }
+  .hover\:bg-brand-red-dark:hover { background-color: #922b21; }
+  .border-navy-500 { border-color: #1e3a6e; }
+  .border-navy-600 { border-color: #162d58; }
+  .border-navy-700 { border-color: #0f2040; }
+  .focus\:border-navy-500:focus { border-color: #1e3a6e; }
+  .bg-brand-gold\/20 { background-color: rgba(243,156,18,0.2); }
+}
