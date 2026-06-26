@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Laos Survival Guide for Deportees",
@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/laos/first-30-days",
-    title: "Your First 30 Days",
-    desc: "The most critical checklist. Step by step from day one. Phone, housing, money, safety.",
-    emoji: "📋",
-    urgent: true,
-  },
-  {
-    href: "/laos/directory",
-    title: "Business Directory",
-    desc: "Search verified local businesses — housing, lawyers, clinics, banks, and more.",
-    emoji: "📍",
-  },
-  {
-    href: "/laos/housing",
-    title: "Find Housing",
-    desc: "Guesthouses, apartments, and long-term rentals that work for returnees.",
-    emoji: "🏠",
-  },
-  {
-    href: "/laos/jobs",
-    title: "Find Work",
-    desc: "Jobs, freelance gigs, and small business ideas in Laos.",
-    emoji: "💼",
-  },
-  {
-    href: "/laos/legal-help",
-    title: "Legal & Documents",
-    desc: "Visas, passports, ID documents, embassy contacts, and legal representation.",
-    emoji: "⚖️",
-  },
-  {
-    href: "/laos/healthcare",
-    title: "Healthcare",
-    desc: "Hospitals, clinics, pharmacies, and mental health resources.",
-    emoji: "🏥",
-  },
-  {
-    href: "/laos/banking-money",
-    title: "Banking & Money",
-    desc: "How to open an account, receive money from the USA, and manage finances.",
-    emoji: "💰",
-  },
-  {
-    href: "/laos/phone-internet",
-    title: "Phone & Internet",
-    desc: "Get a SIM card, set up data, and stay connected from day one.",
-    emoji: "📱",
-  },
-  {
-    href: "/laos/transportation",
-    title: "Transportation",
-    desc: "Motorcycles, tuk-tuks, buses, and how to get around Laos.",
-    emoji: "🛵",
-  },
-  {
-    href: "/laos/resources",
-    title: "All Resources",
-    desc: "Affiliate tools, checklists, articles, and everything else in one place.",
-    emoji: "📚",
-  },
+  { href: "/laos/first-30-days", title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.", pos: "0% 0%", urgent: true },
+  { href: "/laos/directory", title: "Business Directory", desc: "Find verified local businesses that can support you and help you rebuild.", pos: "33.3% 0%" },
+  { href: "/laos/housing", title: "Find Housing", desc: "Search for safe, affordable housing options and long-term rentals in your area.", pos: "66.6% 0%" },
+  { href: "/laos/jobs", title: "Find Work", desc: "Access job listings, training programs, and resources to help you get back to work.", pos: "100% 0%" },
+  { href: "/laos/legal-help", title: "Legal & Documents", desc: "Get help with visas, IDs, legal rights, and important documents.", pos: "0% 50%" },
+  { href: "/laos/healthcare", title: "Healthcare", desc: "Find clinics, mental health support, and medical services you can trust.", pos: "33.3% 50%" },
+  { href: "/laos/banking-money", title: "Banking & Money", desc: "Open accounts, send or receive money, and manage your finances with confidence.", pos: "66.6% 50%" },
+  { href: "/laos/phone-internet", title: "Phone & Internet", desc: "Get a SIM card, affordable plans, and stay connected with family.", pos: "100% 50%" },
+  { href: "/laos/transportation", title: "Transportation", desc: "Learn about transport options, routes, and how to get around easily.", pos: "0% 100%" },
+  { href: "/laos/resources", title: "All Resources", desc: "Checklists, guides, articles, and tools to help you rebuild your life with hope and dignity.", pos: "33.3% 100%" },
 ];
 
 export default function LaosPage() {
@@ -77,19 +26,14 @@ export default function LaosPage() {
     <>
       <section className="bg-navy-800 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-5xl">🇱🇦</span>
-          </div>
+          <span className="text-5xl block mb-4">🇱🇦</span>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4">Laos Survival Guide</h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-6">
             Everything you need to rebuild your life in Laos — step by step, with dignity.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {["Vientiane", "Luang Prabang", "Pakse", "Savannakhet"].map((city) => (
-              <span
-                key={city}
-                className="flex items-center gap-1 bg-white/10 text-gray-300 text-sm px-3 py-1 rounded-full"
-              >
+              <span key={city} className="flex items-center gap-1 bg-white/10 text-gray-300 text-sm px-3 py-1 rounded-full">
                 <MapPin size={12} /> {city}
               </span>
             ))}
@@ -97,31 +41,32 @@ export default function LaosPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <section className="py-16 px-4 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
                 key={g.href}
                 href={g.href}
-                className={`group bg-white border rounded-xl p-6 hover:shadow-md transition-all flex flex-col gap-3 ${
-                  g.urgent ? "border-brand-red ring-1 ring-brand-red" : "border-gray-200"
-                }`}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
-                <div className="text-4xl">{g.emoji}</div>
-                <div>
+                <div
+                  className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/sections-grid.jpg')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
                   {g.urgent && (
-                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider">
-                      Start Here →
-                    </span>
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">Start Here →</span>
                   )}
-                  <h2 className="font-bold text-navy-800 text-lg group-hover:text-brand-red transition-colors">
+                  <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
                     {g.title}
                   </h2>
-                  <p className="text-gray-600 text-sm mt-1 leading-relaxed">{g.desc}</p>
-                </div>
-                <div className="mt-auto flex items-center gap-1 text-brand-red text-sm font-medium">
-                  Read more <ArrowRight size={14} />
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{g.desc}</p>
                 </div>
               </Link>
             ))}
