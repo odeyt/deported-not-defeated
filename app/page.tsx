@@ -264,35 +264,54 @@ export default function HomePage() {
       </section>
 
       {/* Resources section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-16 px-4 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-navy-800 mb-4">Everything You Need to Rebuild</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
+            <h2 className="text-4xl font-bold text-white mb-4">Everything You Need to Rebuild</h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
               This guide is here to help you rebuild with dignity. Each section is designed around
               what you actually need, in the order you need it.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {sections.map((s) => {
-              const Icon = s.icon;
-              return (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md hover:border-gray-300 transition-all"
-                >
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${s.color}`}>
-                    <Icon size={20} />
-                  </div>
-                  <h3 className="font-bold text-navy-800 mb-2 group-hover:text-brand-red transition-colors">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.", href: "/laos/first-30-days", pos: "0% 0%", urgent: true },
+              { title: "Business Directory", desc: "Find verified local businesses that can support you and help you rebuild.", href: "/laos/directory", pos: "33.3% 0%" },
+              { title: "Find Housing", desc: "Search for safe, affordable housing options and long-term rentals in your area.", href: "/laos/housing", pos: "66.6% 0%" },
+              { title: "Find Work", desc: "Access job listings, training programs, and resources to help you get back to work.", href: "/laos/jobs", pos: "100% 0%" },
+              { title: "Legal & Documents", desc: "Get help with visas, IDs, legal rights, and important documents.", href: "/laos/legal-help", pos: "0% 50%" },
+              { title: "Healthcare", desc: "Find clinics, mental health support, and medical services you can trust.", href: "/laos/healthcare", pos: "33.3% 50%" },
+              { title: "Banking & Money", desc: "Open accounts, send or receive money, and manage your finances with confidence.", href: "/laos/banking-money", pos: "66.6% 50%" },
+              { title: "Phone & Internet", desc: "Get a SIM card, affordable plans, and stay connected with family.", href: "/laos/phone-internet", pos: "100% 50%" },
+              { title: "Transportation", desc: "Learn about transport options, routes, and how to get around easily.", href: "/laos/transportation", pos: "0% 100%" },
+              { title: "All Resources", desc: "Checklists, guides, articles, and tools to help you rebuild your life with hope and dignity.", href: "/laos/resources", pos: "33.3% 100%" },
+            ].map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${s.urgent ? "ring-2 ring-brand-red" : ""}`}
+              >
+                <div
+                  className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/sections-grid.jpg')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: s.pos,
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  {s.urgent && (
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">Start Here →</span>
+                  )}
+                  <h3 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
                     {s.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
-                </Link>
-              );
-            })}
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{s.desc}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
