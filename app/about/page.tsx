@@ -60,25 +60,26 @@ export default function AboutPage() {
 
           <div className="bg-white border border-gray-200 rounded-xl p-8">
             <h2 className="text-2xl font-bold text-navy-800 mb-6">Our Values</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
                 { title: "Courage", desc: "It takes strength to start over.", pos: "0% 0%" },
-                { title: "Faith", desc: "In yourself. In your future.", pos: "100% 0%" },
-                { title: "Education", desc: "Knowledge opens every door.", pos: "0% 50%" },
-                { title: "Opportunity", desc: "It exists. We help you find it.", pos: "100% 50%" },
-                { title: "Success", desc: "On your own terms.", pos: "0% 100%" },
+                { title: "Faith", desc: "In yourself. In your future.", pos: "50% 0%" },
+                { title: "Education", desc: "Knowledge opens every door.", pos: "100% 0%" },
+                { title: "Opportunity", desc: "It exists. We help you find it.", pos: "0% 100%" },
+                { title: "Success", desc: "On your own terms.", pos: "50% 100%" },
                 { title: "Dignity", desc: "You deserve respect.", pos: "100% 100%" },
               ].map((v) => (
-                <div key={v.title} className="rounded-xl overflow-hidden border border-gray-100 shadow-sm">
+                <div key={v.title} className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow">
                   <div
-                    className="w-full h-40"
+                    className="w-full h-44"
                     style={{
                       backgroundImage: "url('/images/courage.png')",
-                      backgroundSize: "200% 300%",
+                      backgroundSize: "300% 200%",
                       backgroundPosition: v.pos,
+                      backgroundRepeat: "no-repeat",
                     }}
                   />
-                  <div className="p-4 bg-white text-center">
+                  <div className="px-4 py-3 bg-white text-center">
                     <p className="font-bold text-navy-800 text-sm">{v.title}</p>
                     <p className="text-gray-500 text-xs mt-1">{v.desc}</p>
                   </div>
