@@ -299,21 +299,25 @@ export default function HomePage() {
 
       {/* Values */}
       <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-navy-800 mb-12">Built on Five Principles</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-            {[
-              ["💪", "Courage"],
-              ["🙏", "Faith"],
-              ["📚", "Education"],
-              ["🌟", "Opportunity"],
-              ["🏆", "Success"],
-            ].map(([emoji, label]) => (
-              <div key={label} className="flex flex-col items-center gap-3">
-                <div className="text-4xl">{emoji}</div>
-                <p className="font-semibold text-navy-700">{label}</p>
-              </div>
-            ))}
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-navy-800 mb-10">Built on Five Principles</h2>
+          <div className="relative rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/principles.jpg"
+              alt="Courage, Faith, Education, Opportunity, Success"
+              width={1200}
+              height={400}
+              className="w-full object-cover"
+              quality={90}
+            />
+            {/* Labels overlay */}
+            <div className="absolute bottom-0 left-0 right-0 grid grid-cols-5">
+              {["Courage", "Faith", "Education", "Opportunity", "Success"].map((label) => (
+                <div key={label} className="bg-black/60 backdrop-blur-sm py-3 text-center">
+                  <p className="text-white font-bold text-sm md:text-base tracking-wide">{label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
