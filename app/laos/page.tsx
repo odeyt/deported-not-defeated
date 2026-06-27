@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Laos Survival Guide for Deportees",
@@ -73,6 +74,25 @@ export default function LaosPage() {
           </div>
         </div>
       </section>
+      {/* Lead magnet CTA */}
+      <section className="bg-brand-red py-12 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-red-200 font-bold uppercase tracking-widest text-xs mb-3">Free Download</p>
+          <h2 className="text-3xl font-extrabold text-white mb-3">Get the Laos Restart Checklist</h2>
+          <p className="text-red-100 mb-6">
+            Your first 30 days, step by step. Phone, housing, money, work. Save it to your phone — no WiFi needed once downloaded.
+          </p>
+          <a
+            href="/api/checklist"
+            download
+            className="inline-block bg-white text-brand-red hover:bg-red-50 px-8 py-3 rounded-xl font-bold transition-colors shadow-lg"
+          >
+            Download Free PDF →
+          </a>
+        </div>
+      </section>
+
+      <NewsletterForm />
     </>
   );
 }

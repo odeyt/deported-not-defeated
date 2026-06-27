@@ -3,6 +3,23 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-navy-800 text-gray-300 mt-20">
+      {/* Checklist download strip */}
+      <div className="bg-navy-900 border-b border-white/10 py-6 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p className="text-white font-bold">Free Download: Laos Restart Checklist</p>
+            <p className="text-gray-400 text-sm">Your first 30 days, step by step. Save to your phone.</p>
+          </div>
+          <a
+            href="/api/checklist"
+            download
+            className="shrink-0 bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors whitespace-nowrap"
+          >
+            Download Free PDF →
+          </a>
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div className="col-span-2 md:col-span-1">
           <p className="font-bold text-white text-lg mb-2">
