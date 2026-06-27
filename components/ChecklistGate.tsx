@@ -24,9 +24,14 @@ export default function ChecklistGate({ className, children }: Props) {
         .from("newsletter_subscribers")
         .insert({ email, name: name || null });
     } catch {}
-    // Trigger download regardless (even if already subscribed)
+    // Trigger download via hidden anchor (avoids browser permission block)
     setStatus("done");
-    window.location.href = "/api/checklist";
+    const link = document.createElement("a");
+    link.href = "/api/checklist";
+    link.download = "laos-restart-checklist.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     setTimeout(() => {
       setOpen(false);
       setStatus("idle");
