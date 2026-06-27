@@ -31,11 +31,11 @@ export async function POST(req: NextRequest) {
     errors.push("supabase");
   }
 
-  // 2. Admin notification — send to personal email only (reliable inbox)
+  // 2. Admin notification
   try {
     const { data, error } = await resend.emails.send({
       from: FROM,
-      to: "thammo01@outlook.com",
+      to: ["admin@deportednotdefeated.com", "thammo01@outlook.com"],
       subject: `New subscriber: ${name || email}`,
       html: `
         <div style="font-family:sans-serif;max-width:500px;margin:0 auto;padding:24px">
