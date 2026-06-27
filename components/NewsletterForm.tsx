@@ -45,8 +45,15 @@ export default function NewsletterForm() {
         </p>
 
         {status === "success" ? (
-          <div className="bg-green-800 border border-green-600 text-green-100 rounded-xl p-6 text-lg">
-            {message}
+          <div className="bg-green-800 border border-green-600 text-green-100 rounded-xl p-6">
+            <p className="text-lg font-semibold mb-3">{message}</p>
+            <a
+              href="/api/checklist"
+              download
+              className="inline-block bg-white text-green-900 hover:bg-green-100 px-6 py-2.5 rounded-xl font-bold text-sm transition-colors"
+            >
+              Download Your Free PDF Checklist →
+            </a>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">

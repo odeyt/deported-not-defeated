@@ -133,12 +133,13 @@ export default function HomePage() {
               >
                 Find Help Near You
               </Link>
-              <Link
-                href="/laos/first-30-days"
+              <a
+                href="/api/checklist"
+                download
                 className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-7 py-3 rounded-xl font-bold text-base transition-colors border border-yellow-400/40 backdrop-blur-sm"
               >
-                Download Restart Checklist
-              </Link>
+                Download Free Checklist
+              </a>
             </div>
           </div>
         </div>

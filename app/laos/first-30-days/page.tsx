@@ -107,7 +107,23 @@ export default function First30DaysPage() {
             ))}
           </div>
 
-          <div className="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+          {/* Download CTA */}
+          <div className="mt-12 bg-navy-800 rounded-2xl p-8 text-center">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-xs mb-3">Free Download</p>
+            <h3 className="text-2xl font-bold text-white mb-3">Save This Checklist as a PDF</h3>
+            <p className="text-gray-300 text-sm mb-6">
+              Download the full checklist to your phone. No WiFi needed once saved.
+            </p>
+            <a
+              href="/api/checklist"
+              download
+              className="inline-block bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-bold transition-colors shadow-lg"
+            >
+              Download Free PDF →
+            </a>
+          </div>
+
+          <div className="mt-8 bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
             <h3 className="text-2xl font-bold text-navy-800 mb-3">Next Steps</h3>
             <p className="text-gray-600 mb-6">
               Once you are stable, explore housing, work, and legal help.
