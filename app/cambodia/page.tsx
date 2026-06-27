@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  { href: "/cambodia/first-30-days", title: "Your First 30 Days", desc: "Step-by-step survival checklist for your first 30 days back in Cambodia.", urgent: true },
-  { href: "/cambodia/housing-phnom-penh", title: "Find Housing", desc: "Affordable guesthouses, rooms, and apartments in Phnom Penh and beyond." },
-  { href: "/cambodia/sim-card-cambodia", title: "Get a SIM Card", desc: "Best phone carriers, data plans, and how to stay connected fast." },
-  { href: "/cambodia/receive-money-usa-to-cambodia", title: "Receive Money", desc: "How family can send money from the USA to Cambodia — fastest options." },
-  { href: "/cambodia/find-work-cambodia", title: "Find Work", desc: "Job options, English teaching, hospitality, and NGO opportunities." },
-  { href: "/cambodia/cost-of-living-phnom-penh", title: "Cost of Living", desc: "Real monthly budget breakdown for Phnom Penh — from survival to stable." },
-  { href: "/cambodia/emergency-numbers-cambodia", title: "Emergency Numbers", desc: "Police, ambulance, fire, US Embassy, and crisis contacts in Cambodia." },
-  { href: "/cambodia/hospitals-phnom-penh", title: "Best Hospitals", desc: "Public and private hospitals in Phnom Penh with phone numbers." },
-  { href: "/cambodia/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation." },
-  { href: "/resources", title: "All Resources", desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild." },
+  { href: "/cambodia/first-30-days", title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.", pos: "0% 0%", urgent: true },
+  { href: "/cambodia/housing-phnom-penh", title: "Find Housing", desc: "Search for safe, affordable housing options and long-term rentals in Phnom Penh.", pos: "33.3% 0%" },
+  { href: "/cambodia/find-work-cambodia", title: "Find Work", desc: "Access job listings, training programs, and resources to help you get back to work.", pos: "66.6% 0%" },
+  { href: "/cambodia/sim-card-cambodia", title: "Phone & Internet", desc: "Get a SIM card, affordable data plans, and stay connected with family.", pos: "100% 0%" },
+  { href: "/cambodia/receive-money-usa-to-cambodia", title: "Banking & Money", desc: "Open accounts, send or receive money, and manage your finances with confidence.", pos: "0% 50%" },
+  { href: "/cambodia/cost-of-living-phnom-penh", title: "Cost of Living", desc: "Real monthly budget breakdown for Phnom Penh — from survival to stable.", pos: "33.3% 50%" },
+  { href: "/cambodia/hospitals-phnom-penh", title: "Healthcare", desc: "Find clinics, mental health support, and medical services you can trust.", pos: "66.6% 50%" },
+  { href: "/cambodia/emergency-numbers-cambodia", title: "Emergency Numbers", desc: "Police, ambulance, fire, US Embassy, and crisis contacts in Cambodia.", pos: "100% 50%" },
+  { href: "/cambodia/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation.", pos: "0% 100%" },
+  { href: "/resources", title: "All Resources", desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.", pos: "33.3% 100%" },
 ];
 
 export default function CambodiaPage() {
@@ -45,11 +45,29 @@ export default function CambodiaPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
-              <Link key={g.href} href={g.href}
-                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all bg-navy-800 p-5 flex flex-col justify-between min-h-32 ${g.urgent ? "ring-2 ring-brand-red" : ""}`}>
-                {g.urgent && <span className="text-xs font-bold text-brand-red uppercase tracking-wider mb-1">Start Here →</span>}
-                <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">{g.title}</h2>
-                <p className="text-gray-400 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+              <Link
+                key={g.href}
+                href={g.href}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
+              >
+                <div
+                  className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/sections-grid.jpg')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  {g.urgent && (
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">Start Here →</span>
+                  )}
+                  <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
+                    {g.title}
+                  </h2>
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+                </div>
               </Link>
             ))}
           </div>
