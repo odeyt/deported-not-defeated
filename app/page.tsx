@@ -90,7 +90,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO — full banner image, no cropping */}
-      <section className="relative w-full bg-gray-950">
+      <section className="relative w-full bg-gray-950 min-h-[420px] md:min-h-0">
         <Image
           src="/images/hero-banner.png"
           alt="Deported But Not Defeated — My Story. My Strength. My Future."
@@ -101,10 +101,10 @@ export default function HomePage() {
           quality={90}
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/60" />
 
         {/* Centered overlay content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-16">
           <div className="text-white text-center max-w-4xl mx-auto w-full">
             <p className="text-brand-red font-bold uppercase tracking-widest text-xs md:text-sm mb-3">
               One Setback. Countless Comebacks. Unbreakable Spirit.

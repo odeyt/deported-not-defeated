@@ -10,15 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default async function ResourcesPage() {
-  const supabase = await createClient();
-  const { data } = await supabase
-    .from("affiliate_links")
-    .select("*")
-    .eq("active", true)
-    .order("featured", { ascending: false })
-    .order("category");
-
-  const links: AffiliateLink[] = data ?? [];
+  let links: AffiliateLink[] = [];
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("affiliate_links")
+      .select("*")
+      .eq("active", true)
+      .order("featured", { ascending: false })
+      .order("category");
+    links = data ?? [];
+  } catch {
+    // Supabase unavailable — render page with empty links
+  }
 
   const grouped = links.reduce<Record<string, AffiliateLink[]>>((acc, link) => {
     if (!acc[link.category]) acc[link.category] = [];
