@@ -10,15 +10,19 @@ export const metadata: Metadata = {
 };
 
 export default async function DirectoryPage() {
-  const supabase = await createClient();
-  const { data } = await supabase
-    .from("directory_listings")
-    .select("*")
-    .eq("country_code", "LA")
-    .order("featured", { ascending: false })
-    .order("business_name");
-
-  const listings: DirectoryListing[] = data ?? [];
+  let listings: DirectoryListing[] = [];
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase
+      .from("directory_listings")
+      .select("*")
+      .eq("country_code", "LA")
+      .order("featured", { ascending: false })
+      .order("business_name");
+    listings = data ?? [];
+  } catch {
+    // Supabase unavailable — render page with empty listings
+  }
 
   return (
     <>
