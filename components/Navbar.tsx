@@ -2,10 +2,21 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+
+const countries = [
+  { label: "🇱🇦 Laos", href: "/laos" },
+  { label: "🇰🇭 Cambodia", href: "/cambodia" },
+  { label: "🇻🇳 Vietnam", href: "/vietnam" },
+  { label: "🇵🇭 Philippines", href: "/philippines" },
+  { label: "🇲🇽 Mexico", href: "/mexico" },
+  { label: "🇸🇻 El Salvador", href: "/el-salvador" },
+  { label: "🇬🇹 Guatemala", href: "/guatemala" },
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [countriesOpen, setCountriesOpen] = useState(false);
 
   return (
     <nav className="bg-navy-800 text-white sticky top-0 z-50 shadow-lg">
@@ -17,12 +28,31 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="/laos" className="hover:text-brand-red transition-colors">
-            Laos Guide
-          </Link>
-          <Link href="/laos/directory" className="hover:text-brand-red transition-colors">
-            Directory
-          </Link>
+          {/* Countries dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setCountriesOpen(!countriesOpen)}
+              onBlur={() => setTimeout(() => setCountriesOpen(false), 150)}
+              className="flex items-center gap-1 hover:text-brand-red transition-colors"
+            >
+              Countries <ChevronDown size={14} />
+            </button>
+            {countriesOpen && (
+              <div className="absolute top-full left-0 mt-1 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-44 py-2 z-50">
+                {countries.map((c) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    className="block px-4 py-2 text-sm hover:bg-white/5 hover:text-brand-red transition-colors"
+                    onClick={() => setCountriesOpen(false)}
+                  >
+                    {c.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           <Link href="/resources" className="hover:text-brand-red transition-colors">
             Resources
           </Link>
@@ -34,7 +64,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/laos/first-30-days"
-            className="bg-brand-red hover:bg-brand-red-dark px-4 py-2 rounded-lg transition-colors"
+            className="bg-brand-red hover:bg-red-700 px-4 py-2 rounded-lg transition-colors"
           >
             Get Started
           </Link>
@@ -50,18 +80,28 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-navy-700 border-t border-navy-600 px-4 pb-4 flex flex-col gap-3 text-sm font-medium">
+        <div className="md:hidden bg-navy-800 border-t border-white/10 px-4 pb-4 flex flex-col gap-1 text-sm font-medium">
+          <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Country Guides</p>
+          {countries.map((c) => (
+            <Link
+              key={c.href}
+              href={c.href}
+              className="py-2 hover:text-brand-red transition-colors border-b border-white/5"
+              onClick={() => setOpen(false)}
+            >
+              {c.label}
+            </Link>
+          ))}
+          <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Site</p>
           {[
-            ["Laos Guide", "/laos"],
-            ["Directory",  "/laos/directory"],
-            ["Resources",  "/resources"],
-            ["About",      "/about"],
-            ["Contact",    "/contact"],
+            ["Resources", "/resources"],
+            ["About", "/about"],
+            ["Contact", "/contact"],
           ].map(([label, href]) => (
             <Link
               key={href}
               href={href}
-              className="py-2 hover:text-brand-red transition-colors border-b border-navy-600"
+              className="py-2 hover:text-brand-red transition-colors border-b border-white/5"
               onClick={() => setOpen(false)}
             >
               {label}
@@ -69,7 +109,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/laos/first-30-days"
-            className="bg-brand-red hover:bg-brand-red-dark px-4 py-2 rounded-lg text-center transition-colors mt-2"
+            className="bg-brand-red hover:bg-red-700 px-4 py-2 rounded-lg text-center transition-colors mt-3"
             onClick={() => setOpen(false)}
           >
             Get Started
