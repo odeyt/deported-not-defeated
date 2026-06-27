@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="bg-navy-900 border-b border-white/10 py-6 px-4">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <p className="text-white font-bold">Free Download: Laos Restart Checklist</p>
+            <p className="text-white font-bold">Free Download: Deportee Restart Checklist</p>
             <p className="text-gray-400 text-sm">Your first 30 days, step by step. Save to your phone.</p>
           </div>
           <ChecklistGate className="shrink-0 bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors whitespace-nowrap">
@@ -29,16 +29,17 @@ export default function Footer() {
 
         <div>
           <p className="font-semibold text-white mb-3 text-sm uppercase tracking-wider">
-            Laos
+            Country Guides
           </p>
           <ul className="space-y-2 text-sm">
             {[
-              ["Country Guide", "/laos"],
-              ["First 30 Days", "/laos/first-30-days"],
-              ["Directory", "/laos/directory"],
-              ["Housing", "/laos/housing"],
-              ["Jobs", "/laos/jobs"],
-              ["Legal Help", "/laos/legal-help"],
+              ["🇱🇦 Laos", "/laos"],
+              ["🇰🇭 Cambodia", "/cambodia"],
+              ["🇻🇳 Vietnam", "/vietnam"],
+              ["🇵🇭 Philippines", "/philippines"],
+              ["🇲🇽 Mexico", "/mexico"],
+              ["🇸🇻 El Salvador", "/el-salvador"],
+              ["🇬🇹 Guatemala", "/guatemala"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link href={href} className="hover:text-white transition-colors">
@@ -55,11 +56,11 @@ export default function Footer() {
           </p>
           <ul className="space-y-2 text-sm">
             {[
-              ["Healthcare", "/laos/healthcare"],
-              ["Banking & Money", "/laos/banking-money"],
-              ["Phone & Internet", "/laos/phone-internet"],
-              ["Transportation", "/laos/transportation"],
-              ["All Resources", "/laos/resources"],
+              ["Money Transfers", "/resources/money-transfer"],
+              ["Phone & eSIM", "/resources/phone-internet"],
+              ["VPN & Privacy", "/resources/vpn-privacy"],
+              ["Health Insurance", "/resources/health-insurance"],
+              ["All Resources", "/resources"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link href={href} className="hover:text-white transition-colors">

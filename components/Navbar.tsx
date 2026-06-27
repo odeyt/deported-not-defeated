@@ -63,7 +63,7 @@ export default function Navbar() {
             Contact
           </Link>
           <Link
-            href="/laos/first-30-days"
+            href="/resources"
             className="bg-brand-red hover:bg-red-700 px-4 py-2 rounded-lg transition-colors"
           >
             Get Started
@@ -108,7 +108,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/laos/first-30-days"
+            href="/resources"
             className="bg-brand-red hover:bg-red-700 px-4 py-2 rounded-lg text-center transition-colors mt-3"
             onClick={() => setOpen(false)}
           >
