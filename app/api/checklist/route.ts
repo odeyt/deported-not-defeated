@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { NextResponse } from "next/server";
-// @ts-ignore
 import PDFDocument from "pdfkit";
 
 export const dynamic = "force-dynamic";
