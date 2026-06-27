@@ -4,7 +4,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = "Deported Not Defeated <noreply@deportednotdefeated.com>";
-const ADMIN_EMAIL = "info@deportednotdefeated.com";
+const ADMIN_EMAILS = ["admin@deportednotdefeated.com", "thammo01@outlook.com"];
 
 export async function POST(req: NextRequest) {
   const { email, name } = await req.json();
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   // Admin notification
   await resend.emails.send({
     from: FROM,
-    to: ADMIN_EMAIL,
+    to: ADMIN_EMAILS,
     subject: `New subscriber: ${name || email}`,
     html: `
       <div style="font-family:sans-serif;max-width:500px;margin:0 auto">
