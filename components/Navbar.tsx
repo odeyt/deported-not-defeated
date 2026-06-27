@@ -23,7 +23,7 @@ export default function Navbar() {
           <Link href="/laos/directory" className="hover:text-brand-red transition-colors">
             Directory
           </Link>
-          <Link href="/laos/resources" className="hover:text-brand-red transition-colors">
+          <Link href="/resources" className="hover:text-brand-red transition-colors">
             Resources
           </Link>
           <Link href="/about" className="hover:text-brand-red transition-colors">
@@ -53,10 +53,10 @@ export default function Navbar() {
         <div className="md:hidden bg-navy-700 border-t border-navy-600 px-4 pb-4 flex flex-col gap-3 text-sm font-medium">
           {[
             ["Laos Guide", "/laos"],
-            ["Directory", "/laos/directory"],
-            ["Resources", "/laos/resources"],
-            ["About", "/about"],
-            ["Contact", "/contact"],
+            ["Directory",  "/laos/directory"],
+            ["Resources",  "/resources"],
+            ["About",      "/about"],
+            ["Contact",    "/contact"],
           ].map(([label, href]) => (
             <Link
               key={href}
