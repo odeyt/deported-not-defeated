@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ChecklistGate from "@/components/ChecklistGate";
 
 export default function Footer() {
   return (
@@ -10,13 +11,9 @@ export default function Footer() {
             <p className="text-white font-bold">Free Download: Laos Restart Checklist</p>
             <p className="text-gray-400 text-sm">Your first 30 days, step by step. Save to your phone.</p>
           </div>
-          <a
-            href="/api/checklist"
-            download
-            className="shrink-0 bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors whitespace-nowrap"
-          >
+          <ChecklistGate className="shrink-0 bg-brand-red hover:bg-brand-red-dark text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-colors whitespace-nowrap">
             Download Free PDF →
-          </a>
+          </ChecklistGate>
         </div>
       </div>
 
