@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { AffiliateLink } from "@/lib/types";
-import { ExternalLink } from "lucide-react";
 import NewsletterForm from "@/components/NewsletterForm";
+import AffiliateCard from "@/components/AffiliateCard";
 
 export const metadata: Metadata = {
   title: "Resources & Recommended Tools for Laos",
@@ -58,22 +58,7 @@ export default async function ResourcesPage() {
                   <h2 className="text-2xl font-bold text-navy-800 mb-5">{category}</h2>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {items.map((link) => (
-                      <a
-                        key={link.id}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow group"
-                      >
-                        <div className="flex items-start justify-between mb-2">
-                          <p className="font-bold text-navy-800 group-hover:text-brand-red transition-colors">{link.title}</p>
-                          <ExternalLink size={14} className="text-gray-400 shrink-0 mt-1" />
-                        </div>
-                        <p className="text-gray-600 text-sm leading-relaxed">{link.description}</p>
-                        {link.featured && (
-                          <span className="inline-block mt-3 text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">Recommended</span>
-                        )}
-                      </a>
+                      <AffiliateCard key={link.id} link={link} />
                     ))}
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/components/Analytics";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ export default function NewsletterForm() {
       if (res.ok) {
         setStatus("success");
         setMessage("You're subscribed! Check your email for the download link.");
+        trackEvent("newsletter_signup", { method: "footer_form" });
         setEmail("");
         setName("");
       } else {

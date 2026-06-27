@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   title: {
@@ -11,6 +12,9 @@ export const metadata: Metadata = {
   description:
     "Practical guides, directories, and resources for people rebuilding life after deportation, starting with Laos.",
   keywords: ["deportation", "deported", "Laos", "rebuilding life", "immigrant resources"],
+  verification: {
+    google: "bwxhDrsp543XbhFozXrAC42p9tz4cpuZaGWBoWy-Tn4",
+  },
   openGraph: {
     title: "Deported Not Defeated",
     description:
@@ -26,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <Analytics />
         <Navbar />
         <main>{children}</main>
         <Footer />

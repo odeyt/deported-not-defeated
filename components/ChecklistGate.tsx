@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
+import { trackEvent } from "@/components/Analytics";
 
 interface Props {
   className?: string;
@@ -26,6 +27,7 @@ export default function ChecklistGate({ className, children }: Props) {
     } catch {}
     // Trigger download via hidden anchor (avoids browser permission block)
     setStatus("done");
+    trackEvent("checklist_download", { method: "email_gate" });
     const link = document.createElement("a");
     link.href = "/api/checklist";
     link.download = "laos-restart-checklist.pdf";
