@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import NewsletterForm from "@/components/NewsletterForm";
+import ChecklistGate from "@/components/ChecklistGate";
 import {
   Home,
   Briefcase,
@@ -133,13 +134,9 @@ export default function HomePage() {
               >
                 Find Help Near You
               </Link>
-              <a
-                href="/api/checklist"
-                download
-                className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-7 py-3 rounded-xl font-bold text-base transition-colors border border-yellow-400/40 backdrop-blur-sm"
-              >
+              <ChecklistGate className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 px-7 py-3 rounded-xl font-bold text-base transition-colors border border-yellow-400/40 backdrop-blur-sm">
                 Download Free Checklist
-              </a>
+              </ChecklistGate>
             </div>
           </div>
         </div>

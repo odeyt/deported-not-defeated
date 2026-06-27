@@ -173,9 +173,9 @@ export async function GET() {
   resources.forEach(([label, value], i) => {
     const ry = y + 22 + i * 18;
     doc.fillColor(rgb(RED)).font("Helvetica-Bold").fontSize(8)
-       .text(label.toUpperCase() + ":", 40, ry, { continued: true, width: 70 });
+       .text(label.toUpperCase() + ":", 40, ry, { width: 75, lineBreak: false });
     doc.fillColor(rgb(WHITE)).font("Helvetica").fontSize(8)
-       .text("  " + value, { continued: false, width: W - 130 });
+       .text(value, 120, ry, { width: W - 160, lineBreak: false });
   });
 
   // FOOTER

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import NewsletterForm from "@/components/NewsletterForm";
+import ChecklistGate from "@/components/ChecklistGate";
 
 export const metadata: Metadata = {
   title: "Laos Survival Guide for Deportees",
@@ -82,13 +83,9 @@ export default function LaosPage() {
           <p className="text-red-100 mb-6">
             Your first 30 days, step by step. Phone, housing, money, work. Save it to your phone — no WiFi needed once downloaded.
           </p>
-          <a
-            href="/api/checklist"
-            download
-            className="inline-block bg-white text-brand-red hover:bg-red-50 px-8 py-3 rounded-xl font-bold transition-colors shadow-lg"
-          >
+          <ChecklistGate className="inline-block bg-white text-brand-red hover:bg-red-50 px-8 py-3 rounded-xl font-bold transition-colors shadow-lg">
             Download Free PDF →
-          </a>
+          </ChecklistGate>
         </div>
       </section>
 

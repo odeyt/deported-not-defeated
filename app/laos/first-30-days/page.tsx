@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import NewsletterForm from "@/components/NewsletterForm";
+import ChecklistGate from "@/components/ChecklistGate";
 
 export const metadata: Metadata = {
   title: "First 30 Days in Laos Checklist",
@@ -114,13 +115,9 @@ export default function First30DaysPage() {
             <p className="text-gray-300 text-sm mb-6">
               Download the full checklist to your phone. No WiFi needed once saved.
             </p>
-            <a
-              href="/api/checklist"
-              download
-              className="inline-block bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-bold transition-colors shadow-lg"
-            >
+            <ChecklistGate className="inline-block bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-bold transition-colors shadow-lg">
               Download Free PDF →
-            </a>
+            </ChecklistGate>
           </div>
 
           <div className="mt-8 bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
