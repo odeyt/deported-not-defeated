@@ -5,20 +5,71 @@ import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Mexico Survival Guide for Deportees",
-  description: "Complete guide to rebuilding your life in Mexico after deportation. Housing, work, legal help, healthcare, money transfer, and more.",
+  description: "Complete guide to rebuilding your life in Mexico after deportation. Housing, work, CURP, healthcare, banking, and more.",
 };
 
 const guides = [
-  { href: "/mexico/first-30-days", title: "Your First 30 Days", desc: "Step-by-step survival checklist for your first 30 days back in Mexico.", urgent: true },
-  { href: "/mexico/housing-mexico-city", title: "Find Housing", desc: "Affordable housing in Mexico City, Guadalajara, Tijuana, and Monterrey." },
-  { href: "/mexico/sim-card-mexico", title: "Get a SIM Card", desc: "Telcel, AT&T Mexico, Movistar — best plans and where to buy." },
-  { href: "/mexico/receive-money-usa-to-mexico", title: "Receive Money", desc: "How family can send money from the USA to Mexico — Remitly, OXXO, Wise." },
-  { href: "/mexico/find-work-mexico", title: "Find Work", desc: "Tourism, restaurants, trades, tech sector, and cross-border opportunities." },
-  { href: "/mexico/cost-of-living-mexico-city", title: "Cost of Living", desc: "Real monthly budget for Mexico City — from $600 to $1,500/month." },
-  { href: "/mexico/emergency-numbers-mexico", title: "Emergency Numbers", desc: "911, US Embassy, hospitals, and crisis contacts across Mexico." },
-  { href: "/mexico/hospitals-mexico-city", title: "Best Hospitals", desc: "Public IMSS clinics, ABC Medical Center, Médica Sur — with phone numbers." },
-  { href: "/mexico/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation." },
-  { href: "/resources", title: "All Resources", desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild." },
+  {
+    href: "/mexico/first-30-days",
+    title: "Your First 30 Days",
+    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
+    img: "https://images.unsplash.com/photo-1518659526054-190340b32735?w=600&h=600&fit=crop&auto=format",
+    urgent: true,
+  },
+  {
+    href: "/mexico/housing-mexico-city",
+    title: "Find Housing",
+    desc: "Search for safe, affordable housing options and long-term rentals in Mexico City.",
+    img: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/find-work-mexico",
+    title: "Find Work",
+    desc: "Access job listings, bilingual opportunities, and resources to help you get back to work.",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/sim-card-mexico",
+    title: "Phone & Internet",
+    desc: "Get a Telcel or AT&T SIM card, affordable data plans, and stay connected with family.",
+    img: "https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/receive-money-usa-to-mexico",
+    title: "Banking & Money",
+    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
+    img: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/cost-of-living-mexico-city",
+    title: "Cost of Living",
+    desc: "Real monthly budget for Mexico City — from $500 to $1,200 USD/month.",
+    img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/hospitals-mexico-city",
+    title: "Healthcare",
+    desc: "Find clinics, IMSS hospitals, mental health support, and medical services you can trust.",
+    img: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/emergency-numbers-mexico",
+    title: "Emergency Numbers",
+    desc: "Police 911, SAPTEL crisis line, US Embassy, and crisis contacts in Mexico.",
+    img: "https://images.unsplash.com/photo-1562159278-1253a58da141?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/mexico/start-over-after-deportation",
+    title: "Start Over Guide",
+    desc: "Practical steps for rebuilding your life with dignity after deportation.",
+    img: "https://images.unsplash.com/photo-1512813498716-3f492648cff5?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/resources",
+    title: "All Resources",
+    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
+  },
 ];
 
 export default function MexicoPage() {
@@ -45,11 +96,25 @@ export default function MexicoPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
-              <Link key={g.href} href={g.href}
-                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all bg-navy-800 p-5 flex flex-col justify-between min-h-32 ${g.urgent ? "ring-2 ring-brand-red" : ""}`}>
-                {g.urgent && <span className="text-xs font-bold text-brand-red uppercase tracking-wider mb-1">Start Here →</span>}
-                <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">{g.title}</h2>
-                <p className="text-gray-400 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+              <Link
+                key={g.href}
+                href={g.href}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${g.img}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  {g.urgent && (
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">Start Here →</span>
+                  )}
+                  <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
+                    {g.title}
+                  </h2>
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -59,7 +124,7 @@ export default function MexicoPage() {
       <section className="bg-brand-red py-12 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-white mb-3">You Are Not Alone</h2>
-          <p className="text-red-100 mb-6">Subscribe for guides and resources specific to deportees in Mexico and Latin America.</p>
+          <p className="text-red-100 mb-6">Subscribe for guides, resources, and updates specific to deportees in Mexico.</p>
         </div>
       </section>
 

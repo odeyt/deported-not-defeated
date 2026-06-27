@@ -5,20 +5,71 @@ import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Guatemala Survival Guide for Deportees",
-  description: "Complete guide to rebuilding your life in Guatemala after deportation. Housing, work, legal help, healthcare, money transfer, and more.",
+  description: "Complete guide to rebuilding your life in Guatemala after deportation. Housing, work, DPI, healthcare, banking, and more.",
 };
 
 const guides = [
-  { href: "/guatemala/first-30-days", title: "Your First 30 Days", desc: "Step-by-step survival checklist for your first 30 days back in Guatemala.", urgent: true },
-  { href: "/guatemala/housing-guatemala-city", title: "Find Housing", desc: "Affordable housing in Guatemala City, Antigua, Xela, and beyond." },
-  { href: "/guatemala/sim-card-guatemala", title: "Get a SIM Card", desc: "Tigo, Claro — best data plans and how to get connected fast." },
-  { href: "/guatemala/receive-money-usa-to-guatemala", title: "Receive Money", desc: "How family can send money from the USA — Remitly, Western Union, Bi." },
-  { href: "/guatemala/find-work-guatemala", title: "Find Work", desc: "Agriculture, tourism, call centers, textiles, and trade opportunities." },
-  { href: "/guatemala/cost-of-living-guatemala-city", title: "Cost of Living", desc: "Real monthly budget for Guatemala City — from Q3,000 to Q6,000/month." },
-  { href: "/guatemala/emergency-numbers-guatemala", title: "Emergency Numbers", desc: "110, 122, 1551, US Embassy, hospitals, and crisis contacts." },
-  { href: "/guatemala/hospitals-guatemala-city", title: "Best Hospitals", desc: "Hospital San Juan de Dios, Hospital Herrera Llerandi — with phone numbers." },
-  { href: "/guatemala/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation." },
-  { href: "/resources", title: "All Resources", desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild." },
+  {
+    href: "/guatemala/first-30-days",
+    title: "Your First 30 Days",
+    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
+    img: "https://images.unsplash.com/photo-1548765342-6a9d8d4f68cd?w=600&h=600&fit=crop&auto=format",
+    urgent: true,
+  },
+  {
+    href: "/guatemala/housing-guatemala-city",
+    title: "Find Housing",
+    desc: "Search for safe, affordable housing options and long-term rentals in Guatemala City.",
+    img: "https://images.unsplash.com/photo-1598897516650-4bd29aaebdc0?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/find-work-guatemala",
+    title: "Find Work",
+    desc: "Access job listings, call center opportunities, and resources to help you get back to work.",
+    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/sim-card-guatemala",
+    title: "Phone & Internet",
+    desc: "Get a Tigo or Claro SIM card, affordable data plans, and stay connected with family.",
+    img: "https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/receive-money-usa-to-guatemala",
+    title: "Banking & Money",
+    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
+    img: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/cost-of-living-guatemala-city",
+    title: "Cost of Living",
+    desc: "Real monthly budget for Guatemala City — from Q3,000 to Q8,000/month.",
+    img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/hospitals-guatemala-city",
+    title: "Healthcare",
+    desc: "Find clinics, mental health support, and medical services you can trust.",
+    img: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/emergency-numbers-guatemala",
+    title: "Emergency Numbers",
+    desc: "PNC 110, Ambulance 122, US Embassy, CONRED, and crisis contacts in Guatemala.",
+    img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/guatemala/start-over-after-deportation",
+    title: "Start Over Guide",
+    desc: "Practical steps for rebuilding your life with dignity after deportation.",
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/resources",
+    title: "All Resources",
+    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
+  },
 ];
 
 export default function GuatemalaPage() {
@@ -32,7 +83,7 @@ export default function GuatemalaPage() {
             Everything you need to rebuild your life in Guatemala — step by step, with dignity.
           </p>
           <div className="flex flex-wrap justify-center gap-2">
-            {["Guatemala City", "Antigua", "Quetzaltenango", "Flores"].map((city) => (
+            {["Guatemala City", "Antigua", "Quetzaltenango", "Cobán"].map((city) => (
               <span key={city} className="flex items-center gap-1 bg-white/10 text-gray-300 text-sm px-3 py-1 rounded-full">
                 <MapPin size={12} /> {city}
               </span>
@@ -45,11 +96,25 @@ export default function GuatemalaPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
-              <Link key={g.href} href={g.href}
-                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all bg-navy-800 p-5 flex flex-col justify-between min-h-32 ${g.urgent ? "ring-2 ring-brand-red" : ""}`}>
-                {g.urgent && <span className="text-xs font-bold text-brand-red uppercase tracking-wider mb-1">Start Here →</span>}
-                <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">{g.title}</h2>
-                <p className="text-gray-400 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+              <Link
+                key={g.href}
+                href={g.href}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${g.img}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  {g.urgent && (
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">Start Here →</span>
+                  )}
+                  <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
+                    {g.title}
+                  </h2>
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{g.desc}</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -59,7 +124,7 @@ export default function GuatemalaPage() {
       <section className="bg-brand-red py-12 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-extrabold text-white mb-3">You Are Not Alone</h2>
-          <p className="text-red-100 mb-6">Subscribe for guides and resources specific to deportees in Guatemala and Central America.</p>
+          <p className="text-red-100 mb-6">Subscribe for guides, resources, and updates specific to deportees in Guatemala.</p>
         </div>
       </section>
 
