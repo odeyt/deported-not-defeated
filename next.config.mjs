@@ -8,9 +8,6 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["pdfkit"],
   },
-  outputFileTracingIncludes: {
-    "/api/checklist": ["./node_modules/pdfkit/js/data/**/*"],
-  },
 };
 
 export default nextConfig;
