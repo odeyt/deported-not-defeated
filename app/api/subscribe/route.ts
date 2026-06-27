@@ -14,13 +14,18 @@ export async function POST(req: NextRequest) {
 
   const errors: string[] = [];
 
-  // 1. Save to Supabase
+  // 1. Save to Supabase (ignore duplicate — still send emails)
   try {
     const supabase = await createClient();
     const { error } = await supabase
       .from("newsletter_subscribers")
       .insert({ email, name: name || null });
-    if (error) console.error("[subscribe] Supabase error:", error.message);
+    if (error && error.code !== "23505") {
+      console.error("[subscribe] Supabase error:", error.message);
+      errors.push("supabase");
+    } else if (error?.code === "23505") {
+      console.log("[subscribe] Already subscribed, continuing to send email.");
+    }
   } catch (e) {
     console.error("[subscribe] Supabase exception:", e);
     errors.push("supabase");
