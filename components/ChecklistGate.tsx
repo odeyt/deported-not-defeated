@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { X } from "lucide-react";
 
 interface Props {
@@ -19,10 +18,11 @@ export default function ChecklistGate({ className, children }: Props) {
     e.preventDefault();
     setStatus("loading");
     try {
-      const supabase = createClient();
-      await supabase
-        .from("newsletter_subscribers")
-        .insert({ email, name: name || null });
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name }),
+      });
     } catch {}
     // Trigger download via hidden anchor (avoids browser permission block)
     setStatus("done");

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -12,26 +11,26 @@ export default function NewsletterForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
-
     setStatus("loading");
-    const supabase = createClient();
-    const { error } = await supabase
-      .from("newsletter_subscribers")
-      .insert({ email, name: name || null });
 
-    if (error) {
-      if (error.code === "23505") {
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name }),
+      });
+      if (res.ok) {
         setStatus("success");
-        setMessage("You are already subscribed. Thank you!");
+        setMessage("You're subscribed! Check your email for the download link.");
+        setEmail("");
+        setName("");
       } else {
         setStatus("error");
         setMessage("Something went wrong. Please try again.");
       }
-    } else {
-      setStatus("success");
-      setMessage("You're subscribed! Check your email for the Laos Restart Checklist.");
-      setEmail("");
-      setName("");
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
     }
   }
 

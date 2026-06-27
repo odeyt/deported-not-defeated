@@ -121,6 +121,13 @@ export async function GET() {
        40, 120, { width: W - 80, align: "center" }
      );
 
+  // NOTE STRIP
+  doc.rect(0, 142, W, 28).fill(rgb({ r: 241, g: 245, b: 249 }));
+  doc.fillColor(rgb(NAVY)).font("Helvetica-Bold").fontSize(7.5)
+     .text("IMPORTANT:", 40, 150, { continued: true, width: 60 });
+  doc.font("Helvetica").fillColor(rgb(GRAY))
+     .text("  This checklist applies after you have self-deported or been released from the Laos Immigration Welcome Center, Lak 19, Ban Dong Makkai.", { continued: false, width: W - 100, lineBreak: false });
+
   // CHECKLIST SECTIONS
   const COL_W = (W - 60) / 2;
   const colX = [30, 30 + COL_W + 10];
@@ -130,11 +137,12 @@ export async function GET() {
   const block2H = 22 + weeks[2].items.length * 20 + 8;
   const block3H = 22 + weeks[3].items.length * 20 + 8;
 
+  const START_Y = 182;
   const weekPositions = [
-    { x: colX[0], y: 152 },
-    { x: colX[1], y: 152 },
-    { x: colX[0], y: 152 + block0H + 8 },
-    { x: colX[1], y: 152 + block1H + 8 },
+    { x: colX[0], y: START_Y },
+    { x: colX[1], y: START_Y },
+    { x: colX[0], y: START_Y + block0H + 8 },
+    { x: colX[1], y: START_Y + block1H + 8 },
   ];
   const blockHeights = [block0H, block1H, block2H, block3H];
 
@@ -159,8 +167,8 @@ export async function GET() {
     doc.rect(x, y, COL_W, blockH).lineWidth(0.5).stroke(rgb({ r: 209, g: 213, b: 219 }));
   }
 
-  const col0Bottom = 152 + block0H + 8 + block2H + 8;
-  const col1Bottom = 152 + block1H + 8 + block3H + 8;
+  const col0Bottom = START_Y + block0H + 8 + block2H + 8;
+  const col1Bottom = START_Y + block1H + 8 + block3H + 8;
   let y = Math.max(col0Bottom, col1Bottom) + 8;
 
   // QUICK REFERENCE BOX
