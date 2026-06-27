@@ -122,11 +122,15 @@ export async function GET() {
      );
 
   // NOTE STRIP
-  doc.rect(0, 142, W, 28).fill(rgb({ r: 241, g: 245, b: 249 }));
-  doc.fillColor(rgb(NAVY)).font("Helvetica-Bold").fontSize(7.5)
-     .text("IMPORTANT:", 40, 150, { continued: true, width: 60 });
-  doc.font("Helvetica").fillColor(rgb(GRAY))
-     .text("  This checklist applies after you have self-deported or been released from the Laos Immigration Welcome Center, Lak 19, Ban Dong Makkai.", { continued: false, width: W - 100, lineBreak: false });
+  doc.rect(0, 142, W, 46).fill(rgb({ r: 239, g: 246, b: 255 }));
+  doc.rect(0, 142, 4, 46).fill(rgb({ r: 29, g: 78, b: 216 }));
+  doc.fillColor(rgb({ r: 30, g: 58, b: 95 })).font("Helvetica-Bold").fontSize(7.5)
+     .text("WHO THIS CHECKLIST IS FOR:", 14, 148, { width: W - 24 });
+  doc.font("Helvetica").fillColor(rgb({ r: 55, g: 65, b: 81 })).fontSize(7.5)
+     .text(
+       "This checklist is for (1) self-deportees who have voluntarily returned and are currently in Laos, and (2) individuals who have been released from the Laos Immigration Welcome Center, Lak 19, Ban Dong Makkai. If you are still detained, please ask staff for assistance first.",
+       14, 159, { width: W - 28 }
+     );
 
   // CHECKLIST SECTIONS
   const COL_W = (W - 60) / 2;
@@ -137,7 +141,7 @@ export async function GET() {
   const block2H = 22 + weeks[2].items.length * 20 + 8;
   const block3H = 22 + weeks[3].items.length * 20 + 8;
 
-  const START_Y = 182;
+  const START_Y = 196;
   const weekPositions = [
     { x: colX[0], y: START_Y },
     { x: colX[1], y: START_Y },
