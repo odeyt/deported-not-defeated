@@ -18,29 +18,29 @@ function rgb(c: { r: number; g: number; b: number }) {
 
 const weeks = [
   {
-    title: "DAYS 1–3: LAND SAFE",
+    title: "DAYS 1-3: LAND SAFE",
     accent: RED,
     items: [
       "Find a guesthouse or safe place to sleep tonight",
-      "Eat something — locate a market or restaurant nearby",
-      "Get a Lao SIM card (Unitel recommended) — costs $5–10",
+      "Eat something -- locate a market or restaurant nearby",
+      "Get a Lao SIM card (Unitel recommended) -- costs $5-10",
       "Connect to WiFi and message family that you are safe",
       "Find the nearest hospital or clinic location",
-      "Count your money — know exactly what you have",
+      "Count your money -- know exactly what you have",
       "Do not panic. You made it here. That is step one.",
     ],
   },
   {
-    title: "DAYS 4–7: GET CONNECTED",
+    title: "DAYS 4-7: GET CONNECTED",
     accent: { r: 194, g: 65, b: 12 },
     items: [
       "Buy a monthly data plan for your SIM card",
       "Download WhatsApp, Google Maps, Google Translate",
       "Locate the nearest bank or Western Union agent",
       "If you have family in Laos, contact them now",
-      "Find a local who speaks English — a guide or helper",
+      "Find a local who speaks English -- a guide or helper",
       "Identify your nearest embassy or consulate",
-      "Make a rough weekly budget — even an estimate helps",
+      "Make a rough weekly budget -- even an estimate helps",
     ],
   },
   {
@@ -48,7 +48,7 @@ const weeks = [
     accent: { r: 161, g: 98, b: 7 },
     items: [
       "Visit embassy if you need a new passport or ID",
-      "Understand your visa status — how long can you stay?",
+      "Understand your visa status -- how long can you stay?",
       "Ask about residency options for Lao nationals",
       "Open a basic bank account (BCEL or LDB)",
       "Set up money transfers from USA: Wise, Remitly, or Western Union",
@@ -57,27 +57,27 @@ const weeks = [
     ],
   },
   {
-    title: "WEEKS 3–4: START REBUILDING",
+    title: "WEEKS 3-4: START REBUILDING",
     accent: { r: 21, g: 128, b: 61 },
     items: [
-      "Look for short-term income — English tutoring, delivery, translation",
+      "Look for short-term income -- English tutoring, delivery, translation",
       "Visit the local job board or ask at markets and guesthouses",
       "Connect with expat and returnee communities online",
-      "Find a reliable food source — market, family, or meal prep",
+      "Find a reliable food source -- market, family, or meal prep",
       "Schedule a checkup at a local clinic",
-      "If struggling emotionally, find someone to talk to — it is okay",
+      "If struggling emotionally, find someone to talk to -- it is okay",
       "Write your 3-month goal. One sentence is enough.",
     ],
   },
 ];
 
 const resources = [
-  ["Phone",     "Unitel SIM — best coverage. Buy at Talat Sao Mall."],
+  ["Phone",     "Unitel SIM -- best coverage. Buy at Talat Sao Mall."],
   ["Money",     "Western Union at BCEL Bank. Bring passport + sender ref."],
-  ["Legal",     "US Embassy: +856 21 487000 (Mon–Fri 8am–5pm)"],
+  ["Legal",     "US Embassy: +856 21 487000 (Mon-Fri 8am-5pm)"],
   ["Health",    "Wattana Clinic: +856 21 413502 (English spoken)"],
   ["Emergency", "Police 191  |  Ambulance 195  |  Fire 190"],
-  ["Community", "Caritas Laos: +856 21 413789 — free support services"],
+  ["Community", "Caritas Laos: +856 21 413789 -- free support services"],
 ];
 
 export async function GET() {
@@ -87,7 +87,7 @@ export async function GET() {
     size: "A4",
     margins: { top: 0, bottom: 0, left: 0, right: 0 },
     info: {
-      Title: "Laos Restart Checklist — First 30 Days After Deportation",
+      Title: "Laos Restart Checklist -- First 30 Days After Deportation",
       Author: "Deported Not Defeated",
       Subject: "Practical survival guide for deportees arriving in Laos",
     },
@@ -98,27 +98,22 @@ export async function GET() {
   const W = 595.28;  // A4 width pts
   const H = 841.89; // A4 height pts
 
-  // ── HEADER BAND ────────────────────────────────────────────
+  // HEADER BAND
   doc.rect(0, 0, W, 110).fill(rgb(NAVY));
 
-  // Brand name
   doc.fillColor(rgb(WHITE)).font("Helvetica-Bold").fontSize(11)
-     .text("DEPORTED  ", 40, 22, { continued: true })
-     .fillColor(rgb(RED)).text("NOT  ", { continued: true })
-     .fillColor(rgb(WHITE)).text("DEFEATED", { continued: false });
+     .text("DEPORTED  NOT  DEFEATED", 40, 22);
 
-  // URL
   doc.fillColor(rgb(GOLD)).font("Helvetica").fontSize(8)
      .text("deportednotdefeated.com", 40, 36);
 
-  // Main title
   doc.fillColor(rgb(WHITE)).font("Helvetica-Bold").fontSize(22)
      .text("LAOS RESTART CHECKLIST", 40, 56);
 
   doc.fillColor(rgb(RED)).font("Helvetica-Bold").fontSize(13)
      .text("FIRST 30 DAYS AFTER DEPORTATION", 40, 82);
 
-  // ── RED QUOTE STRIP ────────────────────────────────────────
+  // RED QUOTE STRIP
   doc.rect(0, 110, W, 32).fill(rgb(RED));
   doc.fillColor(rgb(WHITE)).font("Helvetica-Oblique").fontSize(9.5)
      .text(
@@ -126,60 +121,49 @@ export async function GET() {
        40, 120, { width: W - 80, align: "center" }
      );
 
-  // ── CHECKLIST SECTIONS ─────────────────────────────────────
-  let y = 152;
-  const COL_W = (W - 60) / 2;  // two columns
-  let col = 0;
-  let colX = [30, 30 + COL_W + 10];
+  // CHECKLIST SECTIONS
+  const COL_W = (W - 60) / 2;
+  const colX = [30, 30 + COL_W + 10];
 
-  for (let wi = 0; wi < weeks.length; wi++) {
-    const week = weeks[wi];
-    const x = colX[col];
-    const blockH = 22 + week.items.length * 20 + 8;
-
-    // Section header
-    doc.rect(x, y, COL_W, 22).fill(rgb(week.accent));
-    doc.fillColor(rgb(WHITE)).font("Helvetica-Bold").fontSize(8)
-       .text(week.title, x + 8, y + 7, { width: COL_W - 16 });
-
-    // Items
-    doc.rect(x, y + 22, COL_W, blockH - 22).fill(rgb(LGRAY));
-
-    week.items.forEach((item, i) => {
-      const iy = y + 22 + 4 + i * 20;
-      // Checkbox square
-      doc.rect(x + 8, iy + 3, 10, 10).lineWidth(1).stroke(rgb(GRAY));
-      // Item text
-      doc.fillColor(rgb(NAVY)).font("Helvetica").fontSize(7.5)
-         .text(item, x + 23, iy + 3, { width: COL_W - 30, height: 14, ellipsis: false });
-    });
-
-    // Border
-    doc.rect(x, y, COL_W, blockH).lineWidth(0.5).stroke(rgb({ r: 209, g: 213, b: 219 }));
-
-    y += blockH + 8;
-    col = 1 - col;
-    if (col === 0) {
-      // both columns done — reset y for next pair
-    }
-  }
-
-  // Adjust y to below both columns
-  y = Math.max(
-    152 + (weeks[0].items.length + 22 + 8) + (weeks[2].items.length + 22 + 8) + 16,
-    152 + (weeks[1].items.length + 22 + 8) + (weeks[3].items.length + 22 + 8) + 16
-  );
-
-  // Recalculate properly
   const block0H = 22 + weeks[0].items.length * 20 + 8;
   const block1H = 22 + weeks[1].items.length * 20 + 8;
   const block2H = 22 + weeks[2].items.length * 20 + 8;
   const block3H = 22 + weeks[3].items.length * 20 + 8;
+
+  const weekPositions = [
+    { x: colX[0], y: 152 },
+    { x: colX[1], y: 152 },
+    { x: colX[0], y: 152 + block0H + 8 },
+    { x: colX[1], y: 152 + block1H + 8 },
+  ];
+  const blockHeights = [block0H, block1H, block2H, block3H];
+
+  for (let wi = 0; wi < weeks.length; wi++) {
+    const week = weeks[wi];
+    const { x, y } = weekPositions[wi];
+    const blockH = blockHeights[wi];
+
+    doc.rect(x, y, COL_W, 22).fill(rgb(week.accent));
+    doc.fillColor(rgb(WHITE)).font("Helvetica-Bold").fontSize(8)
+       .text(week.title, x + 8, y + 7, { width: COL_W - 16 });
+
+    doc.rect(x, y + 22, COL_W, blockH - 22).fill(rgb(LGRAY));
+
+    week.items.forEach((item, i) => {
+      const iy = y + 22 + 4 + i * 20;
+      doc.rect(x + 8, iy + 3, 10, 10).lineWidth(1).stroke(rgb(GRAY));
+      doc.fillColor(rgb(NAVY)).font("Helvetica").fontSize(7.5)
+         .text(item, x + 23, iy + 3, { width: COL_W - 30, height: 14, ellipsis: false });
+    });
+
+    doc.rect(x, y, COL_W, blockH).lineWidth(0.5).stroke(rgb({ r: 209, g: 213, b: 219 }));
+  }
+
   const col0Bottom = 152 + block0H + 8 + block2H + 8;
   const col1Bottom = 152 + block1H + 8 + block3H + 8;
-  y = Math.max(col0Bottom, col1Bottom) + 8;
+  let y = Math.max(col0Bottom, col1Bottom) + 8;
 
-  // ── QUICK REFERENCE BOX ────────────────────────────────────
+  // QUICK REFERENCE BOX
   const refH = 18 + resources.length * 18 + 8;
   doc.rect(30, y, W - 60, refH).fill(rgb(NAVY));
 
@@ -194,9 +178,7 @@ export async function GET() {
        .text("  " + value, { continued: false, width: W - 130 });
   });
 
-  y += refH + 10;
-
-  // ── FOOTER ─────────────────────────────────────────────────
+  // FOOTER
   doc.rect(0, H - 38, W, 38).fill(rgb(NAVY));
 
   doc.fillColor(rgb(GRAY)).font("Helvetica").fontSize(7.5)
