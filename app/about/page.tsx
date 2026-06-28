@@ -62,12 +62,12 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-navy-800 mb-6">Our Values</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
-                { title: "Courage",     desc: "It takes strength to start over.",  href: "/laos/first-30-days",             img: "/images/courage-value.jpg" },
-                { title: "Faith",       desc: "In yourself. In your future.",       href: "/about",                          img: "/images/faith-value.jpg" },
-                { title: "Education",   desc: "Knowledge opens every door.",        href: "/resources",                      img: "/images/education-value.jpg" },
-                { title: "Opportunity", desc: "It exists. We help you find it.",    href: "/resources",                      img: "/images/opportunity-value.jpg" },
-                { title: "Success",     desc: "On your own terms.",                 href: "/laos/start-over-after-deportation", img: "/images/success-value.jpg" },
-                { title: "Dignity",     desc: "You deserve respect.",               href: "/contact",                        img: "/images/dignity-value.jpg" },
+                { title: "Courage",     desc: "It takes strength to start over.",      href: "/laos/first-30-days",                img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop&auto=format" },
+                { title: "Faith",       desc: "In yourself. In your future.",          href: "/about",                             img: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=400&fit=crop&auto=format" },
+                { title: "Education",   desc: "Knowledge opens every door.",           href: "/resources",                         img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&h=400&fit=crop&auto=format" },
+                { title: "Opportunity", desc: "It exists. We help you find it.",       href: "/resources",                         img: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?w=600&h=400&fit=crop&auto=format" },
+                { title: "Success",     desc: "On your own terms.",                    href: "/laos/start-over-after-deportation", img: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop&auto=format" },
+                { title: "Dignity",     desc: "You deserve respect.",                  href: "/contact",                           img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop&auto=format" },
               ].map((v) => (
                 <Link key={v.title} href={v.href} className="group rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow block">
                   <div
