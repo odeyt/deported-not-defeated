@@ -190,65 +190,72 @@ export default function HomePage() {
           </div>
 
           {/* Clickable country portrait grid — all 7 countries */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 mb-4">
             {/* Laos — top-left of portraits-countries.png */}
-            <Link href="/laos" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/laos" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 0%" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇱🇦</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Laos</p>
               </div>
             </Link>
             {/* Cambodia — top-right of portraits-countries.png */}
-            <Link href="/cambodia" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/cambodia" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 0%" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇰🇭</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Cambodia</p>
               </div>
             </Link>
             {/* Vietnam — bottom-left of portraits-countries.png */}
-            <Link href="/vietnam" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/vietnam" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 100%" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇻🇳</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Vietnam</p>
               </div>
             </Link>
             {/* Philippines — bottom-right of portraits-countries.png */}
-            <Link href="/philippines" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/philippines" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 100%" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇵🇭</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Philippines</p>
               </div>
             </Link>
             {/* Mexico — dedicated portrait */}
-            <Link href="/mexico" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/mexico" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-mexico.png')" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇲🇽</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Mexico</p>
               </div>
             </Link>
             {/* El Salvador */}
-            <Link href="/el-salvador" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/el-salvador" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-el-salvador.png')" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇸🇻</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">El Salvador</p>
               </div>
             </Link>
             {/* Guatemala */}
-            <Link href="/guatemala" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+            <Link href="/guatemala" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-guatemla.png')" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 30%, black 100%)" }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, black 0%, transparent 30%, transparent 60%, black 100%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇬🇹</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Guatemala</p>
