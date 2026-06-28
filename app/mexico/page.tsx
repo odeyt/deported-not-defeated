@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/mexico/first-30-days",
-    title: "Your First 30 Days",
-    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-    img: "https://images.unsplash.com/photo-1518659526054-190340b32735?w=600&h=600&fit=crop&auto=format",
-    urgent: true,
-  },
-  {
-    href: "/mexico/housing-mexico-city",
-    title: "Find Housing",
-    desc: "Search for safe, affordable housing options and long-term rentals in Mexico City.",
-    img: "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/find-work-mexico",
-    title: "Find Work",
-    desc: "Access job listings, bilingual opportunities, and resources to help you get back to work.",
-    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/sim-card-mexico",
-    title: "Phone & Internet",
-    desc: "Get a Telcel or AT&T SIM card, affordable data plans, and stay connected with family.",
-    img: "https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/receive-money-usa-to-mexico",
-    title: "Banking & Money",
-    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
-    img: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/cost-of-living-mexico-city",
-    title: "Cost of Living",
-    desc: "Real monthly budget for Mexico City — from $500 to $1,200 USD/month.",
-    img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/hospitals-mexico-city",
-    title: "Healthcare",
-    desc: "Find clinics, IMSS hospitals, mental health support, and medical services you can trust.",
-    img: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/emergency-numbers-mexico",
-    title: "Emergency Numbers",
-    desc: "Police 911, SAPTEL crisis line, US Embassy, and crisis contacts in Mexico.",
-    img: "https://images.unsplash.com/photo-1562159278-1253a58da141?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/mexico/start-over-after-deportation",
-    title: "Start Over Guide",
-    desc: "Practical steps for rebuilding your life with dignity after deportation.",
-    img: "https://images.unsplash.com/photo-1512813498716-3f492648cff5?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/resources",
-    title: "All Resources",
-    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
-  },
+  { href: "/mexico/first-30-days",            title: "Your First 30 Days",  desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",              pos: "0% 0%",    urgent: true },
+  { href: "/mexico/housing-mexico-city",       title: "Find Housing",        desc: "Search for safe, affordable housing options and long-term rentals in Mexico City.",               pos: "33.3% 0%"  },
+  { href: "/mexico/find-work-mexico",          title: "Find Work",           desc: "Access job listings, bilingual opportunities, and resources to help you get back to work.",        pos: "66.6% 0%"  },
+  { href: "/mexico/sim-card-mexico",           title: "Phone & Internet",    desc: "Get a Telcel or AT&T SIM card, affordable data plans, and stay connected with family.",           pos: "100% 0%"   },
+  { href: "/mexico/receive-money-usa-to-mexico", title: "Banking & Money",   desc: "Open accounts, send or receive money, and manage your finances with confidence.",                 pos: "0% 50%"    },
+  { href: "/mexico/cost-of-living-mexico-city",  title: "Cost of Living",    desc: "Real monthly budget for Mexico City — from $500 to $1,200 USD/month.",                           pos: "33.3% 50%" },
+  { href: "/mexico/hospitals-mexico-city",     title: "Healthcare",          desc: "Find clinics, IMSS hospitals, mental health support, and medical services you can trust.",        pos: "66.6% 50%" },
+  { href: "/mexico/emergency-numbers-mexico",  title: "Emergency Numbers",   desc: "Police 911, SAPTEL crisis line, US Embassy, and crisis contacts in Mexico.",                     pos: "100% 50%"  },
+  { href: "/mexico/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation.",                       pos: "0% 100%"   },
+  { href: "/resources",                        title: "All Resources",       desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",                      pos: "33.3% 100%"},
 ];
 
 export default function MexicoPage() {
@@ -97,13 +46,17 @@ export default function MexicoPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
-                key={g.href}
+                key={g.title}
                 href={g.href}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${g.img}')` }}
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/mexico.png')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
