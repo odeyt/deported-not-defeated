@@ -6,88 +6,14 @@ import ChecklistGate from "@/components/ChecklistGate";
 import DeportationCounter from "@/components/DeportationCounter";
 import AIReportCTA from "@/components/AIReportCTA";
 import {
-  Home,
-  Briefcase,
-  Scale,
-  Heart,
-  DollarSign,
-  Smartphone,
-  Star,
-  Users,
   MapPin,
   ArrowRight,
-  CheckCircle,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Deported Not Defeated | Rebuilding Life After Deportation",
 };
 
-const sections = [
-  {
-    icon: CheckCircle,
-    title: "First 30 Days",
-    desc: "A step-by-step survival checklist for your first month. Phone, housing, food, money.",
-    href: "/laos/first-30-days",
-    color: "bg-blue-50 text-blue-700",
-  },
-  {
-    icon: Home,
-    title: "Find Housing",
-    desc: "Guesthouses, apartments, and long-term rentals in Vientiane and beyond.",
-    href: "/laos/housing",
-    color: "bg-green-50 text-green-700",
-  },
-  {
-    icon: Briefcase,
-    title: "Find Work",
-    desc: "Jobs, freelance, and business opportunities for returnees.",
-    href: "/laos/jobs",
-    color: "bg-orange-50 text-orange-700",
-  },
-  {
-    icon: Scale,
-    title: "Legal & Documents",
-    desc: "Visas, passports, lawyers, and embassy contacts you need to know.",
-    href: "/laos/legal-help",
-    color: "bg-purple-50 text-purple-700",
-  },
-  {
-    icon: Heart,
-    title: "Healthcare",
-    desc: "Hospitals, clinics, mental health support, and emergency care.",
-    href: "/laos/healthcare",
-    color: "bg-red-50 text-red-700",
-  },
-  {
-    icon: DollarSign,
-    title: "Money & Banking",
-    desc: "How to receive money from the USA, open accounts, and transfer funds.",
-    href: "/laos/banking-money",
-    color: "bg-yellow-50 text-yellow-700",
-  },
-  {
-    icon: Smartphone,
-    title: "Phone & Internet",
-    desc: "Get a SIM card, data plan, and stay connected from day one.",
-    href: "/laos/phone-internet",
-    color: "bg-teal-50 text-teal-700",
-  },
-  {
-    icon: Star,
-    title: "Recommended Tools",
-    desc: "Vetted tools for eSIM, VPN, money transfer, travel insurance, and more.",
-    href: "/laos/resources",
-    color: "bg-indigo-50 text-indigo-700",
-  },
-  {
-    icon: Users,
-    title: "Real Stories",
-    desc: "People who were deported and rebuilt. Their journeys, in their own words.",
-    href: "/about",
-    color: "bg-pink-50 text-pink-700",
-  },
-];
 
 export default function HomePage() {
   return (
@@ -179,13 +105,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-brand-red font-bold uppercase tracking-widest text-sm mb-3">
-              Expanding Across Countries
+              45+ Countries Covered
             </p>
             <h2 className="text-4xl font-extrabold text-white mb-4">
               Built for Every Returnee
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">
-              Starting with Laos. Expanding to Cambodia, Vietnam, Philippines, Mexico and beyond. One platform. Every country.
+              From Southeast Asia to Central America, the Caribbean, Africa, and Europe — one platform built for every deportee, everywhere.
             </p>
           </div>
 
@@ -287,57 +213,57 @@ export default function HomePage() {
             {[
               {
                 title: "Your First 30 Days",
-                desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-                href: "/laos/first-30-days",
+                desc: "Choose your country and get a step-by-step survival checklist for your first month.",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&h=600&fit=crop&auto=format",
                 urgent: true,
               },
               {
                 title: "Business Directory",
-                desc: "Find verified local businesses that can support you and help you rebuild.",
-                href: "/laos/directory",
+                desc: "Find local businesses, agencies, and organizations that can support your rebuild.",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Find Housing",
-                desc: "Search for safe, affordable housing options and long-term rentals in your area.",
-                href: "/laos/housing",
+                desc: "Search for safe, affordable housing options and long-term rentals in your country.",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Find Work",
                 desc: "Access job listings, training programs, and resources to help you get back to work.",
-                href: "/laos/jobs",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Legal & Documents",
                 desc: "Get help with visas, IDs, legal rights, and important documents.",
-                href: "/laos/legal-help",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Healthcare",
                 desc: "Find clinics, mental health support, and medical services you can trust.",
-                href: "/laos/healthcare",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Banking & Money",
-                desc: "Open accounts, send or receive money, and manage your finances with confidence.",
+                desc: "Compare money transfer services, open accounts, and receive money from the USA.",
                 href: "/resources/money-transfer",
                 img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Phone & Internet",
-                desc: "Get a SIM card, affordable plans, and stay connected with family.",
-                href: "/resources/phone-internet",
+                desc: "Get a SIM card, affordable plans, and stay connected with family from day one.",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=600&fit=crop&auto=format",
               },
               {
                 title: "Transportation",
-                desc: "Learn about transport options, routes, and how to get around easily.",
-                href: "/laos/transportation",
+                desc: "Learn about local transport options, routes, and how to get around safely.",
+                href: "/country-guides",
                 img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=600&fit=crop&auto=format",
               },
               {
@@ -378,10 +304,10 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-navy-800 mb-10">Built on Five Principles</h2>
           <div className="flex rounded-2xl overflow-hidden shadow-lg gap-1 bg-gray-200">
             {[
-              { label: "Courage",     img: "/images/value-courage.jpg",     href: "/laos/first-30-days" },
+              { label: "Courage",     img: "/images/value-courage.jpg",     href: "/country-guides" },
               { label: "Faith",       img: "/images/value-faith.jpg",       href: "/about" },
               { label: "Education",   img: "/images/value-education.jpg",   href: "/resources" },
-              { label: "Opportunity", img: "/images/value-opportunity.jpg", href: "/laos/jobs" },
+              { label: "Opportunity", img: "/images/value-opportunity.jpg", href: "/country-guides" },
               { label: "Success",     img: "/images/value-success.jpg",     href: "/stories" },
             ].map((p) => (
               <Link

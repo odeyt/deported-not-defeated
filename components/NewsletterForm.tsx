@@ -39,10 +39,9 @@ export default function NewsletterForm() {
   return (
     <section className="bg-navy-800 text-white py-16 px-4">
       <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-3">Get the Laos Restart Checklist</h2>
+        <h2 className="text-3xl font-bold mb-3">Get Your Free Deportee Survival Guide</h2>
         <p className="text-gray-300 mb-8">
-          A free, practical guide to your first 30 days. Housing, phone, money, work — step by
-          step. No spam. Ever.
+          A free, practical guide to your first 30 days after deportation. Housing, phone, money, work — step by step. No spam. Ever.
         </p>
 
         {status === "success" ? (
