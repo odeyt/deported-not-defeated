@@ -92,13 +92,8 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* Disclosure */}
-      <div className="max-w-5xl mx-auto px-4 pt-8">
-        <AffiliateDisclosure />
-      </div>
-
       {/* Sections */}
-      <div className="max-w-5xl mx-auto px-4 pb-16 space-y-16">
+      <div className="max-w-5xl mx-auto px-4 pb-8 space-y-16">
         {SECTIONS.map((s) => {
           const partners = byCategory(s.slug);
           if (!partners.length) return null;
@@ -129,6 +124,11 @@ export default async function ResourcesPage() {
             </section>
           );
         })}
+      </div>
+
+      {/* Disclosure — bottom of page */}
+      <div className="max-w-5xl mx-auto px-4 pb-16">
+        <AffiliateDisclosure />
       </div>
     </>
   );
