@@ -62,28 +62,28 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-navy-800 mb-6">Our Values</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
-                { title: "Courage", desc: "It takes strength to start over.", pos: "0% 0%" },
-                { title: "Faith", desc: "In yourself. In your future.", pos: "50% 0%" },
-                { title: "Education", desc: "Knowledge opens every door.", pos: "100% 0%" },
-                { title: "Opportunity", desc: "It exists. We help you find it.", pos: "0% 100%" },
-                { title: "Success", desc: "On your own terms.", pos: "50% 100%" },
-                { title: "Dignity", desc: "You deserve respect.", pos: "100% 100%" },
+                { title: "Courage", desc: "It takes strength to start over.", pos: "0% 0%", href: "/laos/first-30-days" },
+                { title: "Faith", desc: "In yourself. In your future.", pos: "50% 0%", href: "/about" },
+                { title: "Education", desc: "Knowledge opens every door.", pos: "100% 0%", href: "/resources" },
+                { title: "Opportunity", desc: "It exists. We help you find it.", pos: "0% 100%", href: "/resources" },
+                { title: "Success", desc: "On your own terms.", pos: "50% 100%", href: "/laos/start-over-after-deportation" },
+                { title: "Dignity", desc: "You deserve respect.", pos: "100% 100%", href: "/contact" },
               ].map((v) => (
-                <div key={v.title} className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow">
+                <Link key={v.title} href={v.href} className="group rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow block">
                   <div
-                    className="w-full h-44"
+                    className="w-full h-44 transition-transform duration-500 group-hover:scale-105"
                     style={{
-                      backgroundImage: "url('/images/courage.png')",
+                      backgroundImage: "url('/images/courage.jpg')",
                       backgroundSize: "300% 200%",
                       backgroundPosition: v.pos,
                       backgroundRepeat: "no-repeat",
                     }}
                   />
                   <div className="px-4 py-3 bg-white text-center">
-                    <p className="font-bold text-navy-800 text-sm">{v.title}</p>
+                    <p className="font-bold text-navy-800 text-sm group-hover:text-brand-red transition-colors">{v.title}</p>
                     <p className="text-gray-500 text-xs mt-1">{v.desc}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
