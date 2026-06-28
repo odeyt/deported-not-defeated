@@ -259,11 +259,11 @@ const ESIMS = [
   {
     name: "NumeroMoney",
     category: "eSIM + Money App",
-    description: "eSIM data plans plus an international money app in one. Great for Latin America. Use referral code RE_29X3K at checkout — your friend gets €3 off and you earn €3 credit.",
+    description: "eSIM data plans plus an international money transfer app in one. Great for Latin America and international travelers.",
     bestFor: "Travelers visiting Latin America who want data and an easy money transfer app.",
     priceLevel: "Budget" as const,
     href: "https://numero.app?ref=RE_29X3K",
-    ctaLabel: "Get eSIM – Code RE_29X3K",
+    ctaLabel: "Get eSIM",
     gradient: "from-teal-400 to-cyan-600",
     icon: "💳",
     sponsored: true,
