@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Impact.com requires value= attribute (non-standard) — must use createElement to bypass TypeScript */}
         {React.createElement("meta", {
           name: "impact-site-verification",
-          value: "c1092dc1-29a5-427b-9033-cad5d30b1041",
+          value: "d90164b1-8cdc-4be8-be96-4b0c3053d33b",
         } as React.HTMLAttributes<HTMLMetaElement>)}
       </head>
       <body>
