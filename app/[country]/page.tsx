@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { allCountries, countriesBySlug } from "@/data/countries/index";
+import CountryCareerSection from "@/components/career/CountryCareerSection";
+import { countryCareerData } from "@/data/careerData";
 
 interface Props {
   params: { country: string };
@@ -178,7 +180,16 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 4. AI Case Assessment CTA */}
+      {/* 4. Career & Education Section */}
+      {countryCareerData[data.slug] && (
+        <CountryCareerSection
+          countryName={data.countryName}
+          countrySlug={data.slug}
+          data={countryCareerData[data.slug]}
+        />
+      )}
+
+      {/* 5. AI Case Assessment CTA */}
       <section className="bg-brand-red py-12 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-3">
@@ -197,7 +208,7 @@ export default function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* 5. FAQ */}
+      {/* 6. FAQ */}
       {data.faqs.length > 0 && (
         <section className="bg-gray-900 py-12 px-4">
           <div className="max-w-4xl mx-auto">
@@ -224,7 +235,7 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 6. Related Countries */}
+      {/* 7. Related Countries */}
       {data.relatedCountries.length > 0 && (
         <section className="bg-gray-950 py-12 px-4">
           <div className="max-w-4xl mx-auto">
@@ -249,7 +260,7 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 7. Legal Disclaimer */}
+      {/* 8. Legal Disclaimer */}
       <section className="bg-gray-900 py-8 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-amber-900/30 border border-amber-600/30 rounded-xl p-5">

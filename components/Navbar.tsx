@@ -44,6 +44,9 @@ export default function Navbar() {
           <Link href="/resources" className="hover:text-brand-red transition-colors">
             Resources
           </Link>
+          <Link href="/career-education" className="hover:text-brand-red transition-colors">
+            Career & Education
+          </Link>
           <Link href="/legal-resources" className="hover:text-brand-red transition-colors">
             Legal Resources
           </Link>
@@ -86,6 +89,7 @@ export default function Navbar() {
           <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Site</p>
           {[
             ["Resources", "/resources"],
+            ["Career & Education", "/career-education"],
             ["Legal Resources", "/legal-resources"],
             ["Free Report", "/ai-report"],
             ["About", "/about"],
