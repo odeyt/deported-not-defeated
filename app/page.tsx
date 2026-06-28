@@ -232,29 +232,19 @@ export default function HomePage() {
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Mexico</p>
               </div>
             </Link>
-            {/* El Salvador — Unsplash placeholder until AI portrait is uploaded */}
+            {/* El Salvador */}
             <Link href="/el-salvador" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=600&h=800&fit=crop&auto=format')" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <p className="text-white font-black text-xl tracking-widest uppercase drop-shadow-lg">Deported</p>
-                <p className="text-xs text-white/80 tracking-widest uppercase">— but not —</p>
-                <p className="text-brand-red font-black text-xl tracking-widest uppercase drop-shadow-lg">Defeated</p>
-              </div>
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-el-salvador.png')" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇸🇻</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">El Salvador</p>
               </div>
             </Link>
-            {/* Guatemala — Unsplash placeholder until AI portrait is uploaded */}
+            {/* Guatemala */}
             <Link href="/guatemala" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=600&h=800&fit=crop&auto=format')" }} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <p className="text-white font-black text-xl tracking-widest uppercase drop-shadow-lg">Deported</p>
-                <p className="text-xs text-white/80 tracking-widest uppercase">— but not —</p>
-                <p className="text-brand-red font-black text-xl tracking-widest uppercase drop-shadow-lg">Defeated</p>
-              </div>
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-guatemla.png')" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
                 <span className="text-2xl">🇬🇹</span>
                 <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Guatemala</p>
