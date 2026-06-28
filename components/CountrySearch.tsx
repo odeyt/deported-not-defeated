@@ -75,33 +75,43 @@ export default function CountrySearch({ countries }: CountrySearchProps) {
                   <Link
                     key={country.slug}
                     href={`/${country.slug}`}
-                    className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square bg-gray-900"
+                    className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square bg-gray-900 ring-1 ring-white/10 hover:ring-white/25"
                   >
-                    {/* Real national flag as full-card background */}
+                    {/* SVG flag — infinitely sharp at any size */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`https://flagcdn.com/w320/${country.countryCode.toLowerCase()}.png`}
+                      src={`https://flagcdn.com/${country.countryCode.toLowerCase()}.svg`}
                       alt={`${country.countryName} national flag`}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
-                    {/* Gradient overlay for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
+                    {/* Bottom-heavy gradient for text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    {/* Glossy shine — top-left highlight */}
+                    <div
+                      className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 55%)",
+                      }}
+                    />
+                    {/* Subtle inner border shine */}
+                    <div className="absolute inset-0 rounded-2xl ring-inset ring-1 ring-white/10 pointer-events-none" />
                     {/* Bottom text */}
                     <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-0.5">
+                      <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-0.5 drop-shadow">
                         {country.region}
                       </span>
-                      <h3 className="font-bold text-white text-sm md:text-base leading-tight group-hover:text-red-300 transition-colors">
+                      <h3 className="font-bold text-white text-sm md:text-base leading-tight group-hover:text-red-300 transition-colors drop-shadow">
                         {country.countryName}
                       </h3>
-                      <p className="text-gray-400 text-xs mt-0.5 hidden md:block">
+                      <p className="text-gray-300 text-xs mt-0.5 hidden md:block drop-shadow">
                         {country.capital}
                       </p>
                     </div>
                     {/* Hover badge */}
                     <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded-lg">
+                      <span className="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded-lg shadow-lg">
                         View Guide →
                       </span>
                     </div>
