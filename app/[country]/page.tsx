@@ -4,6 +4,8 @@ import Link from "next/link";
 import { allCountries, countriesBySlug } from "@/data/countries/index";
 import CountryCareerSection from "@/components/career/CountryCareerSection";
 import { countryCareerData } from "@/data/careerData";
+import CountryVisitSection from "@/components/travel/CountryVisitSection";
+import { countryVisitData } from "@/data/familyVisitData";
 
 interface Props {
   params: { country: string };
@@ -186,6 +188,15 @@ export default function CountryPage({ params }: Props) {
           countryName={data.countryName}
           countrySlug={data.slug}
           data={countryCareerData[data.slug]}
+        />
+      )}
+
+      {/* 4b. Family Visit Travel Section */}
+      {countryVisitData[data.slug] && (
+        <CountryVisitSection
+          countryName={data.countryName}
+          countrySlug={data.slug}
+          data={countryVisitData[data.slug]}
         />
       )}
 
