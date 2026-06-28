@@ -126,10 +126,10 @@ export default function HomePage() {
                 href="/laos"
                 className="bg-brand-red hover:bg-brand-red-dark text-white px-7 py-3 rounded-xl font-bold text-base transition-colors shadow-lg"
               >
-                Start with Laos
+                Choose Your Country
               </Link>
               <Link
-                href="/laos/directory"
+                href="/resources"
                 className="bg-white/15 hover:bg-white/25 text-white px-7 py-3 rounded-xl font-bold text-base transition-colors border border-white/30 backdrop-blur-sm"
               >
                 Find Help Near You
@@ -145,7 +145,7 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-5xl mx-auto px-4 py-3 grid grid-cols-3 gap-4 text-center">
             {[
-              ["Starting with", "Laos"],
+              ["Countries", "7"],
               ["Categories", "17+"],
               ["Resources", "Free"],
             ].map(([label, value]) => (
@@ -200,9 +200,9 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { flag: "🇱🇦", name: "Laos", href: "/laos", status: "Live", color: "bg-green-500" },
-              { flag: "🇰🇭", name: "Cambodia", href: "#", status: "Coming Soon", color: "bg-gray-500" },
-              { flag: "🇻🇳", name: "Vietnam", href: "#", status: "Coming Soon", color: "bg-gray-500" },
-              { flag: "🇵🇭", name: "Philippines", href: "#", status: "Coming Soon", color: "bg-gray-500" },
+              { flag: "🇰🇭", name: "Cambodia", href: "/cambodia", status: "Live", color: "bg-green-500" },
+              { flag: "🇻🇳", name: "Vietnam", href: "/vietnam", status: "Live", color: "bg-green-500" },
+              { flag: "🇵🇭", name: "Philippines", href: "/philippines", status: "Live", color: "bg-green-500" },
             ].map((c) => (
               <Link
                 key={c.name}
@@ -252,7 +252,7 @@ export default function HomePage() {
                 href="/laos"
                 className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
               >
-                Explore Laos Guide <ArrowRight size={16} />
+                Explore Country Guides <ArrowRight size={16} />
               </Link>
               <Link
                 href="/about"
@@ -278,16 +278,67 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.", href: "/laos/first-30-days", pos: "0% 0%", urgent: true },
-              { title: "Business Directory", desc: "Find verified local businesses that can support you and help you rebuild.", href: "/laos/directory", pos: "33.3% 0%" },
-              { title: "Find Housing", desc: "Search for safe, affordable housing options and long-term rentals in your area.", href: "/laos/housing", pos: "66.6% 0%" },
-              { title: "Find Work", desc: "Access job listings, training programs, and resources to help you get back to work.", href: "/laos/jobs", pos: "100% 0%" },
-              { title: "Legal & Documents", desc: "Get help with visas, IDs, legal rights, and important documents.", href: "/laos/legal-help", pos: "0% 50%" },
-              { title: "Healthcare", desc: "Find clinics, mental health support, and medical services you can trust.", href: "/laos/healthcare", pos: "33.3% 50%" },
-              { title: "Banking & Money", desc: "Open accounts, send or receive money, and manage your finances with confidence.", href: "/laos/banking-money", pos: "66.6% 50%" },
-              { title: "Phone & Internet", desc: "Get a SIM card, affordable plans, and stay connected with family.", href: "/laos/phone-internet", pos: "100% 50%" },
-              { title: "Transportation", desc: "Learn about transport options, routes, and how to get around easily.", href: "/laos/transportation", pos: "0% 100%" },
-              { title: "All Resources", desc: "Checklists, guides, articles, and tools to help you rebuild your life with hope and dignity.", href: "/laos/resources", pos: "33.3% 100%" },
+              {
+                title: "Your First 30 Days",
+                desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
+                href: "/laos/first-30-days",
+                img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&h=600&fit=crop&auto=format",
+                urgent: true,
+              },
+              {
+                title: "Business Directory",
+                desc: "Find verified local businesses that can support you and help you rebuild.",
+                href: "/laos/directory",
+                img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Find Housing",
+                desc: "Search for safe, affordable housing options and long-term rentals in your area.",
+                href: "/laos/housing",
+                img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Find Work",
+                desc: "Access job listings, training programs, and resources to help you get back to work.",
+                href: "/laos/jobs",
+                img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Legal & Documents",
+                desc: "Get help with visas, IDs, legal rights, and important documents.",
+                href: "/laos/legal-help",
+                img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Healthcare",
+                desc: "Find clinics, mental health support, and medical services you can trust.",
+                href: "/laos/healthcare",
+                img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Banking & Money",
+                desc: "Open accounts, send or receive money, and manage your finances with confidence.",
+                href: "/resources/money-transfer",
+                img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Phone & Internet",
+                desc: "Get a SIM card, affordable plans, and stay connected with family.",
+                href: "/resources/phone-internet",
+                img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "Transportation",
+                desc: "Learn about transport options, routes, and how to get around easily.",
+                href: "/laos/transportation",
+                img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=600&fit=crop&auto=format",
+              },
+              {
+                title: "All Resources",
+                desc: "Checklists, guides, articles, and tools to help you rebuild your life with hope and dignity.",
+                href: "/resources",
+                img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
+              },
             ].map((s) => (
               <Link
                 key={s.href}
@@ -295,12 +346,8 @@ export default function HomePage() {
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${s.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    backgroundImage: "url('/images/sections-grid.jpg')",
-                    backgroundSize: "400% 300%",
-                    backgroundPosition: s.pos,
-                  }}
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${s.img}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
