@@ -87,14 +87,6 @@ export default async function PartnerPage({ params }: Props) {
             </div>
           )}
 
-          {/* Typical potential */}
-          {partner.typical_potential && (
-            <div className="flex items-center gap-3 bg-navy-50 border border-navy-100 rounded-xl p-4">
-              <span className="text-xs font-bold text-navy-800 uppercase tracking-wider">Earning Potential</span>
-              <span className="text-navy-800 font-semibold text-sm">{partner.typical_potential}</span>
-              <span className="text-gray-400 text-xs">(for affiliate commissions if approved)</span>
-            </div>
-          )}
 
           {/* CTA */}
           <div className="bg-navy-800 rounded-2xl p-8 text-center">
