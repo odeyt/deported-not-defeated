@@ -56,6 +56,9 @@ export default function Navbar() {
           <Link href="/resources" className="hover:text-brand-red transition-colors">
             Resources
           </Link>
+          <Link href="/legal-resources" className="hover:text-brand-red transition-colors">
+            Legal Resources
+          </Link>
           <Link href="/about" className="hover:text-brand-red transition-colors">
             About
           </Link>
@@ -95,6 +98,7 @@ export default function Navbar() {
           <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Site</p>
           {[
             ["Resources", "/resources"],
+            ["Legal Resources", "/legal-resources"],
             ["About", "/about"],
             ["Contact", "/contact"],
           ].map(([label, href]) => (
