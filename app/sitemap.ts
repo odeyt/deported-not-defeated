@@ -5,7 +5,6 @@ const BASE = "https://deportednotdefeated.com";
 
 function countryPages(country: string, capital: string): MetadataRoute.Sitemap {
   return [
-    { url: `${BASE}/${country}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/${country}/first-30-days`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/${country}/housing-${capital}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/${country}/sim-card-${country}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
@@ -33,8 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     })),
 
-    // Laos
-    { url: `${BASE}/laos`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    // Laos sub-pages (laos landing page is included via allCountries.map above)
     { url: `${BASE}/laos/first-30-days`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE}/laos/directory`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/laos/housing`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
@@ -74,19 +72,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Resources
     { url: `${BASE}/resources`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE}/resources/money-transfer`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/resources/money-transfer/compare`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/resources/money-transfer/wise`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/remitly`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/worldremit`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/moneygram`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/western-union`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/ria`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/xe`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/xoom`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/instarem`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/ofx`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/payoneer`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources/money-transfer/paysend`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/resources/phone-internet`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/resources/vpn-privacy`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/resources/health-insurance`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE}/resources/wise`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/remitly`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/worldremit`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/moneygram`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/airalo`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/holafly`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/nordvpn`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/surfshark`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/safetywing`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/resources/genki`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
 
     // Static pages
     { url: `${BASE}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },

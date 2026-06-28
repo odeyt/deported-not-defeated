@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     template: "%s | Deported Not Defeated",
   },
   description:
-    "Practical guides, directories, and resources for people rebuilding life after deportation, starting with Laos.",
-  keywords: ["deportation", "deported", "Laos", "rebuilding life", "immigrant resources"],
+    "Practical guides, directories, and resources for people rebuilding life after deportation. 45+ countries covered.",
+  keywords: ["deportation", "deported", "rebuilding life", "immigrant resources", "deportee guide"],
   verification: {
     google: "bwxhDrsp543XbhFozXrAC42p9tz4cpuZaGWBoWy-Tn4",
   },
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Analytics />
         <Navbar />
-        <main>{children}</main>
+        {children}
         <Footer />
         <FloatingReportButton />
       </body>

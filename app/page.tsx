@@ -125,7 +125,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/laos"
+                href="/country-guides"
                 className="bg-brand-red hover:bg-brand-red-dark text-white px-7 py-3 rounded-xl font-bold text-base transition-colors shadow-lg"
               >
                 Choose Your Country
@@ -147,8 +147,8 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-5xl mx-auto px-4 py-3 grid grid-cols-3 gap-4 text-center">
             {[
-              ["Countries", "7"],
-              ["Categories", "17+"],
+              ["Countries", "45+"],
+              ["Categories", "10"],
               ["Resources", "Free"],
             ].map(([label, value]) => (
               <div key={label}>
@@ -256,7 +256,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/laos"
+                href="/country-guides"
                 className="bg-brand-red hover:bg-brand-red-dark text-white px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
               >
                 Explore Country Guides <ArrowRight size={16} />
