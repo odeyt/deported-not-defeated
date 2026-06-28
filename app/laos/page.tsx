@@ -55,7 +55,7 @@ export default function LaosPage() {
                 <div
                   className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    backgroundImage: "url('/images/sections-grid.jpg')",
+                    backgroundImage: "url('/images/laos-grid.jpg')",
                     backgroundSize: "400% 300%",
                     backgroundPosition: g.pos,
                   }}
