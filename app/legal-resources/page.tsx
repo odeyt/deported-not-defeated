@@ -184,13 +184,8 @@ export default function LegalResourcesPage() {
           <div className="grid md:grid-cols-3 gap-5">
             {lawFirms.map((f) => (
               <div key={f.name} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow">
-                <div className="flex items-start justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center">
-                    <Scale size={18} className="text-brand-red" />
-                  </div>
-                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${f.tag === "Sponsored" ? "bg-blue-50 text-blue-700 border border-blue-100" : "bg-purple-50 text-purple-700 border border-purple-100"}`}>
-                    {f.tag}
-                  </span>
+                <div className="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center">
+                  <Scale size={18} className="text-brand-red" />
                 </div>
                 <div>
                   <h3 className="font-bold text-navy-800 text-lg">{f.name}</h3>
