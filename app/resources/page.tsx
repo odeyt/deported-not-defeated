@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { AffiliatePartner } from "@/lib/types";
 import AffiliateCard from "@/components/AffiliateCard";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
+import { ArrowUpRight, Banknote, Wifi, ShieldCheck, HeartPulse } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Recommended Services | Deported Not Defeated",
@@ -13,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 const SECTIONS = [
-  { slug: "money-transfer",   label: "Send Money",          icon: "💸", href: "/resources/money-transfer" },
-  { slug: "phone-internet",   label: "Stay Connected",       icon: "📱", href: "/resources/phone-internet" },
-  { slug: "vpn-privacy",      label: "Protect Your Privacy", icon: "🔒", href: "/resources/vpn-privacy" },
-  { slug: "health-insurance", label: "Health Insurance",     icon: "🏥", href: "/resources/health-insurance" },
+  { slug: "money-transfer",   label: "Send Money",           Icon: Banknote,    href: "/resources/money-transfer",   desc: "Wire transfers, remittance apps, and how to receive money from the USA." },
+  { slug: "phone-internet",   label: "Stay Connected",        Icon: Wifi,        href: "/resources/phone-internet",   desc: "eSIM cards, local SIM plans, and affordable data options abroad." },
+  { slug: "vpn-privacy",      label: "Protect Your Privacy",  Icon: ShieldCheck, href: "/resources/vpn-privacy",      desc: "VPN services to keep your browsing secure and private." },
+  { slug: "health-insurance", label: "Health Insurance",      Icon: HeartPulse,  href: "/resources/health-insurance", desc: "International health coverage for people living outside the USA." },
 ];
 
 async function getPartnersByCategory(categorySlug: string) {
@@ -49,28 +50,42 @@ export default async function ResourcesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy-800 text-white py-16 px-4">
+      <section className="bg-navy-800 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-brand-red font-bold uppercase tracking-widest text-xs mb-3">Resource Hub</p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Recommended Services</h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
             Trusted tools that may help you rebuild your life after deportation.
-            All options here are listed based on usefulness — always compare and check current terms.
+            Listed based on usefulness — always compare and check current terms.
           </p>
-        </div>
-      </section>
-
-      {/* Category nav */}
-      <section className="bg-white border-b border-gray-200 sticky top-16 z-40">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+          {/* Category cards in hero */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
             {SECTIONS.map((s) => (
               <Link
                 key={s.slug}
                 href={s.href}
-                className="whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-navy-800 transition-colors shrink-0"
+                className="group bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-xl p-4 text-center transition-all"
               >
-                <span>{s.icon}</span> {s.label}
+                <s.Icon size={22} className="mx-auto mb-2 text-brand-red group-hover:scale-110 transition-transform" />
+                <p className="text-white text-xs font-semibold leading-tight">{s.label}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky category nav */}
+      <section className="bg-white border-b border-gray-200 sticky top-16 z-40 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex gap-1 overflow-x-auto py-2 scrollbar-hide">
+            {SECTIONS.map((s) => (
+              <Link
+                key={s.slug}
+                href={s.href}
+                className="whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-navy-800 transition-colors shrink-0"
+              >
+                <s.Icon size={14} className="text-brand-red" />
+                {s.label}
               </Link>
             ))}
           </div>
@@ -89,16 +104,21 @@ export default async function ResourcesPage() {
           if (!partners.length) return null;
           return (
             <section key={s.slug} id={s.slug}>
-              <div className="flex items-end justify-between mb-6 pt-8 border-t border-gray-100">
-                <div>
-                  <span className="text-3xl mr-3">{s.icon}</span>
-                  <h2 className="inline text-2xl font-extrabold text-navy-800">{s.label}</h2>
+              <div className="flex items-start justify-between mb-6 pt-8 border-t border-gray-100">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center shrink-0">
+                    <s.Icon size={18} className="text-brand-red" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-extrabold text-navy-800 leading-tight">{s.label}</h2>
+                    <p className="text-gray-500 text-sm mt-0.5">{s.desc}</p>
+                  </div>
                 </div>
                 <Link
                   href={s.href}
-                  className="text-brand-red font-bold text-sm hover:underline shrink-0"
+                  className="flex items-center gap-1 text-brand-red font-bold text-sm hover:underline shrink-0 mt-1"
                 >
-                  See all →
+                  See all <ArrowUpRight size={14} />
                 </Link>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
