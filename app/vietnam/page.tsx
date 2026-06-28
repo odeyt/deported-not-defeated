@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/vietnam/first-30-days",
-    title: "Your First 30 Days",
-    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-    img: "https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=600&h=600&fit=crop&auto=format",
-    urgent: true,
-  },
-  {
-    href: "/vietnam/housing-ho-chi-minh-city",
-    title: "Find Housing",
-    desc: "Search for safe, affordable housing options and long-term rentals in Ho Chi Minh City.",
-    img: "https://images.unsplash.com/photo-1583417267826-aebc4d1542e1?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/find-work-vietnam",
-    title: "Find Work",
-    desc: "Access job listings, training programs, and resources to help you get back to work.",
-    img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/sim-card-vietnam",
-    title: "Phone & Internet",
-    desc: "Get a SIM card, affordable data plans, and stay connected with family.",
-    img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/receive-money-usa-to-vietnam",
-    title: "Banking & Money",
-    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
-    img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/cost-of-living-ho-chi-minh-city",
-    title: "Cost of Living",
-    desc: "Real monthly budget for Ho Chi Minh City — from $400 to $900/month.",
-    img: "https://images.unsplash.com/photo-1567596388756-f6d710c8fc07?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/hospitals-ho-chi-minh-city",
-    title: "Healthcare",
-    desc: "Find clinics, mental health support, and medical services you can trust.",
-    img: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/emergency-numbers-vietnam",
-    title: "Emergency Numbers",
-    desc: "Police 113, Ambulance 115, Fire 114, US Embassy, and crisis contacts.",
-    img: "https://images.unsplash.com/photo-1587745416684-47953f16f02f?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/vietnam/start-over-after-deportation",
-    title: "Start Over Guide",
-    desc: "Practical steps for rebuilding your life with dignity after deportation.",
-    img: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/resources",
-    title: "All Resources",
-    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
-  },
+  { href: "/vietnam/first-30-days",              title: "Your First 30 Days",  desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",          pos: "0% 0%",     urgent: true },
+  { href: "/resources",                           title: "Business Directory",  desc: "Find verified local businesses that can support you and help you rebuild.",                   pos: "33.3% 0%"  },
+  { href: "/vietnam/housing-ho-chi-minh-city",   title: "Find Housing",        desc: "Search for safe, affordable housing options and long-term rentals in Ho Chi Minh City.",      pos: "66.6% 0%"  },
+  { href: "/vietnam/find-work-vietnam",           title: "Find Work",           desc: "Access job listings, training programs, and resources to help you get back to work.",         pos: "100% 0%"   },
+  { href: "/vietnam/start-over-after-deportation",title: "Legal & Documents",  desc: "Get help with visas, IDs, legal rights, and important documents.",                           pos: "0% 50%"    },
+  { href: "/vietnam/hospitals-ho-chi-minh-city", title: "Healthcare",          desc: "Find clinics, mental health support, and medical services you can trust.",                    pos: "33.3% 50%" },
+  { href: "/vietnam/receive-money-usa-to-vietnam",title: "Banking & Money",    desc: "Open accounts, send or receive money, and manage your finances with confidence.",             pos: "66.6% 50%" },
+  { href: "/vietnam/sim-card-vietnam",            title: "Phone & Internet",   desc: "Get a SIM card, affordable data plans, and stay connected with family.",                      pos: "100% 50%"  },
+  { href: "/vietnam/cost-of-living-ho-chi-minh-city", title: "Transportation", desc: "Getting around Ho Chi Minh City — motorbikes, Grab, buses, and more.",                      pos: "0% 100%"   },
+  { href: "/resources",                           title: "All Resources",       desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",                   pos: "33.3% 100%"},
 ];
 
 export default function VietnamPage() {
@@ -97,13 +46,17 @@ export default function VietnamPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
-                key={g.href}
+                key={g.title}
                 href={g.href}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${g.img}')` }}
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/VIETNAM.png')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
