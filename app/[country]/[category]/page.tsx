@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { allCountries, countriesBySlug } from "@/data/countries/index";
 import type { CountryData } from "@/data/countries/schema";
+import { AlertTriangle, ExternalLink } from "lucide-react";
+import {
+  moneyTransferProviders,
+  countryMoneyTransferRecommendations,
+} from "@/data/moneyTransferProviders";
 
 interface Props {
   params: { country: string; category: string };
@@ -142,32 +147,43 @@ function DirectoryContent({ items }: { items: string[] }) {
   );
 }
 
-function AffiliateCards() {
-  const cards = [
-    { name: "Wise",        desc: "Send money internationally with low fees",     icon: "💸", href: "#" },
-    { name: "Remitly",     desc: "Fast, reliable money transfers worldwide",       icon: "💰", href: "#" },
-    { name: "WorldRemit",  desc: "Send to 130+ countries quickly",                icon: "🌍", href: "#" },
-    { name: "Airalo",      desc: "Affordable eSIM data for your device",          icon: "📱", href: "#" },
-    { name: "NordVPN",     desc: "Secure internet access from anywhere",          icon: "🔒", href: "#" },
-    { name: "SafetyWing",  desc: "International health insurance coverage",       icon: "🏥", href: "#" },
-  ];
+const DEFAULT_MONEY_SLUGS = ["wise", "remitly", "moneygram", "western-union", "worldremit", "ria"];
+
+function MoneyTransferCards({ slugs }: { slugs: string[] }) {
+  const providers = moneyTransferProviders.filter((p) => slugs.includes(p.slug));
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-      {cards.map((r) => (
-        <a
-          key={r.name}
-          href={r.href}
-          className="bg-gray-800 border border-white/10 rounded-xl p-4 flex items-start gap-3 hover:border-white/20 transition-colors"
-        >
-          <span className="text-2xl">{r.icon}</span>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {providers.map((p) => (
+        <div key={p.slug} className="bg-gray-800 border border-white/10 rounded-xl p-4 flex flex-col gap-3 hover:border-white/20 transition-colors">
           <div>
-            <p className="text-white font-semibold text-sm">{r.name}</p>
-            <p className="text-gray-400 text-xs">{r.desc}</p>
+            <p className="text-white font-semibold text-sm">{p.name}</p>
+            <p className="text-gray-400 text-xs">{p.bestFor}</p>
           </div>
-        </a>
+          <p className="text-gray-300 text-xs leading-relaxed">{p.shortDescription}</p>
+          <div className="flex gap-2 mt-auto flex-wrap">
+            {p.cashPickup === "Yes" && (
+              <span className="text-xs bg-green-900/40 text-green-300 border border-green-700/30 rounded-full px-2 py-0.5">Cash Pickup</span>
+            )}
+            {p.bankRequired !== "No" && (
+              <span className="text-xs bg-blue-900/40 text-blue-300 border border-blue-700/30 rounded-full px-2 py-0.5">Bank Deposit</span>
+            )}
+          </div>
+          <a
+            href={p.affiliateUrl}
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            className="inline-flex items-center gap-1 text-xs text-brand-red hover:text-red-400 font-semibold transition-colors"
+          >
+            <ExternalLink size={11} /> Visit Official Website
+          </a>
+        </div>
       ))}
     </div>
   );
+}
+
+function AffiliateCards() {
+  return <MoneyTransferCards slugs={DEFAULT_MONEY_SLUGS} />;
 }
 
 function CategoryContent({
@@ -245,14 +261,101 @@ function CategoryContent({
         </div>
       );
 
-    case "banking-money":
+    case "banking-money": {
+      const rec = countryMoneyTransferRecommendations[data.slug];
       return (
-        <div className="space-y-4">
-          <ContentCard title="Banking & Receiving Money">
-            <BulletList items={data.moneyTransfer} />
-          </ContentCard>
+        <div className="space-y-6">
+          {/* Disclosure */}
+          <div className="bg-amber-900/30 border border-amber-600/30 rounded-xl p-4">
+            <p className="text-amber-200 text-xs leading-relaxed">
+              <strong>Disclosure:</strong> Some links may be affiliate links. We may earn a commission if you use them, at no extra cost to you. We do not provide money transfer services and do not process funds.
+            </p>
+          </div>
+
+          {/* Country-specific context */}
+          {rec ? (
+            <>
+              <ContentCard title={rec.headline}>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">{rec.context}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                  <div className="bg-gray-700/50 rounded-lg p-3">
+                    <p className="text-gray-400 text-xs mb-1 font-semibold uppercase tracking-wide">Best Cash Pickup</p>
+                    <p className="text-gray-200 text-xs">{rec.bestCashPickup}</p>
+                  </div>
+                  <div className="bg-gray-700/50 rounded-lg p-3">
+                    <p className="text-gray-400 text-xs mb-1 font-semibold uppercase tracking-wide">Best Bank Deposit</p>
+                    <p className="text-gray-200 text-xs">{rec.bestBankDeposit}</p>
+                  </div>
+                  <div className="bg-gray-700/50 rounded-lg p-3">
+                    <p className="text-gray-400 text-xs mb-1 font-semibold uppercase tracking-wide">Best for Families</p>
+                    <p className="text-gray-200 text-xs">{rec.bestForFamilies}</p>
+                  </div>
+                </div>
+              </ContentCard>
+
+              <ContentCard title="Things to Check Before Sending">
+                <ul className="space-y-2">
+                  {rec.thingsToCheck.map((item, i) => (
+                    <li key={i} className="flex gap-2 items-start text-sm text-gray-300">
+                      <span className="text-brand-red mt-0.5 shrink-0">▸</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </ContentCard>
+
+              <div>
+                <h3 className="text-white font-semibold text-base mb-3">Recommended Options for {data.countryName}</h3>
+                <MoneyTransferCards slugs={rec.recommendedSlugs} />
+              </div>
+            </>
+          ) : (
+            <>
+              <ContentCard title="Banking & Receiving Money">
+                <BulletList items={data.moneyTransfer} />
+              </ContentCard>
+              <div>
+                <h3 className="text-white font-semibold text-base mb-3">Common Transfer Services</h3>
+                <AffiliateCards />
+              </div>
+            </>
+          )}
+
+          {/* General money info from country data */}
+          {rec && data.moneyTransfer.length > 0 && (
+            <ContentCard title="Local Banking Context">
+              <BulletList items={data.moneyTransfer} />
+            </ContentCard>
+          )}
+
+          {/* Financial safety disclaimer */}
+          <div className="bg-blue-900/20 border border-blue-600/30 rounded-xl p-4">
+            <p className="text-blue-200 text-xs leading-relaxed">
+              <strong>Financial Safety:</strong> Availability, fees, exchange rates, delivery times, and payout methods vary by country and provider. Always confirm directly with the licensed provider before sending money.
+            </p>
+          </div>
+
+          {/* Anti-scam */}
+          <div className="bg-red-900/20 border border-red-600/30 rounded-xl p-4 flex gap-3 items-start">
+            <AlertTriangle size={14} className="text-red-400 shrink-0 mt-0.5" />
+            <p className="text-red-200 text-xs leading-relaxed">
+              <strong>Anti-Scam Warning:</strong> Never send money to someone you do not know personally. Beware of romance scams, fake immigration help, job scams, and urgent family emergency scams.
+            </p>
+          </div>
+
+          {/* Compare link */}
+          <div className="bg-gray-800 border border-white/10 rounded-xl p-4 text-center">
+            <p className="text-white font-semibold text-sm mb-2">Compare all money transfer options</p>
+            <Link
+              href="/resources/money-transfer/compare"
+              className="inline-flex items-center gap-1 bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors"
+            >
+              <ExternalLink size={12} /> Compare Providers
+            </Link>
+          </div>
         </div>
       );
+    }
 
     case "phone-internet":
       return (
