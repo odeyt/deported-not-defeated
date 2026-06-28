@@ -14,7 +14,8 @@ const stories = [
     flag: "🇲🇽",
     quote: "I came back with nothing. Now I run a small café in my hometown. It took two years, but I made it.",
     outcome: "Small business owner",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&auto=format",
+    // Hispanic/Latino man
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Sophea K.",
@@ -22,7 +23,8 @@ const stories = [
     flag: "🇰🇭",
     quote: "I didn't speak Khmer well. My kids are in the USA. I had to start completely from zero. But I found a job, then a better one.",
     outcome: "Employed in logistics",
-    img: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=120&h=120&fit=crop&auto=format",
+    // Southeast Asian man
+    img: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Jose L.",
@@ -30,7 +32,8 @@ const stories = [
     flag: "🇸🇻",
     quote: "The first month was the hardest. Once I found stable housing and got my documents sorted, everything slowly got better.",
     outcome: "Construction foreman",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&auto=format",
+    // Latino/Central American man
+    img: "https://images.unsplash.com/photo-1615109398623-88346a601842?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Bouakham T.",
@@ -38,7 +41,8 @@ const stories = [
     flag: "🇱🇦",
     quote: "I leaned on family at first, then found work teaching English. It's not the life I had, but it's mine.",
     outcome: "English teacher",
-    img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&h=120&fit=crop&auto=format",
+    // Southeast Asian / Laotian man
+    img: "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Maria G.",
@@ -46,7 +50,8 @@ const stories = [
     flag: "🇬🇹",
     quote: "I used every resource I could find online. The guides helped me know what to do first. I wasn't alone.",
     outcome: "Healthcare worker",
-    img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=120&h=120&fit=crop&auto=format",
+    // Latina / indigenous Guatemalan woman
+    img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Ranh P.",
@@ -54,7 +59,8 @@ const stories = [
     flag: "🇻🇳",
     quote: "Starting over at 45 is terrifying. But I had skills. I just needed to figure out how to use them here.",
     outcome: "Freelance electrician",
-    img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop&auto=format",
+    // Vietnamese / East Asian man, mid-40s
+    img: "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
 ];
 
