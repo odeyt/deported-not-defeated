@@ -14,6 +14,7 @@ const stories = [
     flag: "🇲🇽",
     quote: "I came back with nothing. Now I run a small café in my hometown. It took two years, but I made it.",
     outcome: "Small business owner",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&auto=format",
   },
   {
     name: "Sophea K.",
@@ -21,6 +22,7 @@ const stories = [
     flag: "🇰🇭",
     quote: "I didn't speak Khmer well. My kids are in the USA. I had to start completely from zero. But I found a job, then a better one.",
     outcome: "Employed in logistics",
+    img: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=120&h=120&fit=crop&auto=format",
   },
   {
     name: "Jose L.",
@@ -28,6 +30,7 @@ const stories = [
     flag: "🇸🇻",
     quote: "The first month was the hardest. Once I found stable housing and got my documents sorted, everything slowly got better.",
     outcome: "Construction foreman",
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&auto=format",
   },
   {
     name: "Bouakham T.",
@@ -35,6 +38,7 @@ const stories = [
     flag: "🇱🇦",
     quote: "I leaned on family at first, then found work teaching English. It's not the life I had, but it's mine.",
     outcome: "English teacher",
+    img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=120&h=120&fit=crop&auto=format",
   },
   {
     name: "Maria G.",
@@ -42,6 +46,7 @@ const stories = [
     flag: "🇬🇹",
     quote: "I used every resource I could find online. The guides helped me know what to do first. I wasn't alone.",
     outcome: "Healthcare worker",
+    img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=120&h=120&fit=crop&auto=format",
   },
   {
     name: "Ranh P.",
@@ -49,6 +54,7 @@ const stories = [
     flag: "🇻🇳",
     quote: "Starting over at 45 is terrifying. But I had skills. I just needed to figure out how to use them here.",
     outcome: "Freelance electrician",
+    img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop&auto=format",
   },
 ];
 
@@ -70,10 +76,17 @@ export default function StoriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {stories.map((s) => (
               <div key={s.name} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{s.flag}</span>
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={s.img}
+                    alt={s.name}
+                    className="w-14 h-14 rounded-full object-cover flex-shrink-0 border-2 border-gray-100 shadow-sm"
+                  />
                   <div>
-                    <p className="font-bold text-navy-800">{s.name}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-bold text-navy-800">{s.name}</p>
+                      <span className="text-base">{s.flag}</span>
+                    </div>
                     <p className="text-sm text-gray-500">{s.country} · {s.outcome}</p>
                   </div>
                 </div>
