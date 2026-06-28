@@ -53,7 +53,7 @@ export default function MexicoPage() {
                 <div
                   className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    backgroundImage: "url('/images/mexico.png')",
+                    backgroundImage: "url('/images/MEXICO.png')",
                     backgroundSize: "400% 300%",
                     backgroundPosition: g.pos,
                   }}

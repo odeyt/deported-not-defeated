@@ -53,7 +53,7 @@ export default function GuatemalaPage() {
                 <div
                   className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
                   style={{
-                    backgroundImage: "url('/images/guatamala.png')",
+                    backgroundImage: "url('/images/GUATAMALA.png')",
                     backgroundSize: "400% 300%",
                     backgroundPosition: g.pos,
                   }}
