@@ -9,16 +9,67 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  { href: "/cambodia/first-30-days", title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.", pos: "0% 0%", urgent: true },
-  { href: "/cambodia/housing-phnom-penh", title: "Find Housing", desc: "Search for safe, affordable housing options and long-term rentals in Phnom Penh.", pos: "33.3% 0%" },
-  { href: "/cambodia/find-work-cambodia", title: "Find Work", desc: "Access job listings, training programs, and resources to help you get back to work.", pos: "66.6% 0%" },
-  { href: "/cambodia/sim-card-cambodia", title: "Phone & Internet", desc: "Get a SIM card, affordable data plans, and stay connected with family.", pos: "100% 0%" },
-  { href: "/cambodia/receive-money-usa-to-cambodia", title: "Banking & Money", desc: "Open accounts, send or receive money, and manage your finances with confidence.", pos: "0% 50%" },
-  { href: "/cambodia/cost-of-living-phnom-penh", title: "Cost of Living", desc: "Real monthly budget breakdown for Phnom Penh — from survival to stable.", pos: "33.3% 50%" },
-  { href: "/cambodia/hospitals-phnom-penh", title: "Healthcare", desc: "Find clinics, mental health support, and medical services you can trust.", pos: "66.6% 50%" },
-  { href: "/cambodia/emergency-numbers-cambodia", title: "Emergency Numbers", desc: "Police, ambulance, fire, US Embassy, and crisis contacts in Cambodia.", pos: "100% 50%" },
-  { href: "/cambodia/start-over-after-deportation", title: "Start Over Guide", desc: "Practical steps for rebuilding your life with dignity after deportation.", pos: "0% 100%" },
-  { href: "/resources", title: "All Resources", desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.", pos: "33.3% 100%" },
+  {
+    href: "/cambodia/first-30-days",
+    title: "Your First 30 Days",
+    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
+    img: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&h=600&fit=crop&auto=format",
+    urgent: true,
+  },
+  {
+    href: "/cambodia/housing-phnom-penh",
+    title: "Find Housing",
+    desc: "Search for safe, affordable housing options and long-term rentals in Phnom Penh.",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/find-work-cambodia",
+    title: "Find Work",
+    desc: "Access job listings, training programs, and resources to help you get back to work.",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/sim-card-cambodia",
+    title: "Phone & Internet",
+    desc: "Get a Smart or Metfone SIM card, affordable data plans, and stay connected with family.",
+    img: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/receive-money-usa-to-cambodia",
+    title: "Banking & Money",
+    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
+    img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/cost-of-living-phnom-penh",
+    title: "Cost of Living",
+    desc: "Real monthly budget for Phnom Penh — from survival to stable.",
+    img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/hospitals-phnom-penh",
+    title: "Healthcare",
+    desc: "Find clinics, mental health support, and medical services you can trust.",
+    img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/emergency-numbers-cambodia",
+    title: "Emergency Numbers",
+    desc: "Police 117, Ambulance 119, US Embassy, and crisis contacts in Cambodia.",
+    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/cambodia/start-over-after-deportation",
+    title: "Start Over Guide",
+    desc: "Practical steps for rebuilding your life with dignity after deportation.",
+    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&auto=format",
+  },
+  {
+    href: "/resources",
+    title: "All Resources",
+    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
+  },
 ];
 
 export default function CambodiaPage() {
@@ -51,12 +102,8 @@ export default function CambodiaPage() {
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    backgroundImage: "url('/images/sections-grid.jpg')",
-                    backgroundSize: "400% 300%",
-                    backgroundPosition: g.pos,
-                  }}
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${g.img}')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
