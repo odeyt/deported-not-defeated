@@ -32,7 +32,7 @@ export default function AboutPage() {
               Deportation is one of the most disorienting experiences a person can face. You are removed from a place you called home, separated from family, and dropped into a country that may feel foreign — even if it is where you were born.
             </p>
             <p className="text-gray-600 leading-relaxed mb-4">
-              Deported Not Defeated exists to change that experience. We provide practical, honest, and human-centered resources to help people rebuild — starting with Laos, and expanding to other countries.
+              Deported Not Defeated exists to change that experience. We provide practical, honest, and human-centered resources to help people rebuild — across Laos, Cambodia, Vietnam, Philippines, Mexico, El Salvador, Guatemala, and growing.
             </p>
             <p className="text-gray-600 leading-relaxed">
               No shame. No politics. Just practical help for real people starting over.
@@ -43,12 +43,12 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-navy-800 mb-4">What We Offer</h2>
             <ul className="space-y-3 text-gray-600">
               {[
-                "Country-specific survival guides, starting with Laos",
-                "Searchable directory of verified local businesses and services",
-                "Practical articles on housing, work, legal help, healthcare, and more",
-                "Vetted affiliate tools for eSIM, money transfer, VPN, and insurance",
+                "Country-specific survival guides for Laos, Cambodia, Vietnam, Philippines, Mexico, El Salvador, and Guatemala",
+                "Step-by-step first 30 days checklists tailored to each country",
+                "Practical guides on housing, work, legal help, healthcare, banking, and more",
+                "Vetted tools for eSIM, money transfer, VPN, and international health insurance",
+                "A free downloadable restart checklist you can save to your phone",
                 "A newsletter with real resources, not noise",
-                "A growing community of people who understand",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="text-brand-red font-bold mt-0.5">→</span>
