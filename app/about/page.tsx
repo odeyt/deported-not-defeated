@@ -62,22 +62,47 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-navy-800 mb-6">Our Values</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {[
-                { title: "Courage", desc: "It takes strength to start over.", pos: "0% 0%", href: "/laos/first-30-days" },
-                { title: "Faith", desc: "In yourself. In your future.", pos: "50% 0%", href: "/about" },
-                { title: "Education", desc: "Knowledge opens every door.", pos: "100% 0%", href: "/resources" },
-                { title: "Opportunity", desc: "It exists. We help you find it.", pos: "0% 100%", href: "/resources" },
-                { title: "Success", desc: "On your own terms.", pos: "50% 100%", href: "/laos/start-over-after-deportation" },
-                { title: "Dignity", desc: "You deserve respect.", pos: "100% 100%", href: "/contact" },
+                {
+                  title: "Courage",
+                  desc: "It takes strength to start over.",
+                  href: "/laos/first-30-days",
+                  img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop&auto=format",
+                },
+                {
+                  title: "Faith",
+                  desc: "In yourself. In your future.",
+                  href: "/about",
+                  img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&auto=format",
+                },
+                {
+                  title: "Education",
+                  desc: "Knowledge opens every door.",
+                  href: "/resources",
+                  img: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&h=400&fit=crop&auto=format",
+                },
+                {
+                  title: "Opportunity",
+                  desc: "It exists. We help you find it.",
+                  href: "/resources",
+                  img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&h=400&fit=crop&auto=format",
+                },
+                {
+                  title: "Success",
+                  desc: "On your own terms.",
+                  href: "/laos/start-over-after-deportation",
+                  img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&auto=format",
+                },
+                {
+                  title: "Dignity",
+                  desc: "You deserve respect.",
+                  href: "/contact",
+                  img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop&auto=format",
+                },
               ].map((v) => (
                 <Link key={v.title} href={v.href} className="group rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow block">
                   <div
-                    className="w-full h-44 transition-transform duration-500 group-hover:scale-105"
-                    style={{
-                      backgroundImage: "url('/images/courage.jpg')",
-                      backgroundSize: "300% 200%",
-                      backgroundPosition: v.pos,
-                      backgroundRepeat: "no-repeat",
-                    }}
+                    className="w-full h-44 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url('${v.img}')` }}
                   />
                   <div className="px-4 py-3 bg-white text-center">
                     <p className="font-bold text-navy-800 text-sm group-hover:text-brand-red transition-colors">{v.title}</p>
