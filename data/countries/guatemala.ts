@@ -141,6 +141,24 @@ const guatemala: CountryData = {
     "indigenous deportee Guatemala",
   ],
   relatedCountries: ["el-salvador", "honduras", "mexico"],
+  firstThirtyDays: [
+    "Arrive at La Aurora International Airport in Guatemala City — Guatemalan immigration processes returning nationals",
+    "Get a Claro or Tigo Guatemala SIM card at the airport or any authorized vendor — requires your DPI or passport",
+    "Contact family in your departamento immediately — extended family networks in rural areas are the primary support system",
+    "Visit the RENAP (Registro Nacional de las Personas) office to obtain or reactivate your DPI (Documento Personal de Identificación)",
+    "Your DPI is the master ID required for banking, employment, and all government services — priority number one",
+    "Open a bank account at Banco Industrial, G&T Continental, or Banrural using your DPI",
+    "Register with MINTRAB (Ministerio de Trabajo) for free employment placement assistance",
+    "Contact IGSS (Instituto Guatemalteco de Seguridad Social) to understand healthcare and social security options",
+  ],
+  businessDirectory: [
+    "RENAP (Registro Nacional de las Personas) — DPI issuance and identity document services nationwide",
+    "IGSS (Instituto Guatemalteco de Seguridad Social) — social security healthcare and benefits registration",
+    "MINTRAB (Ministerio de Trabajo) offices — free employment placement and labor rights information",
+    "Banco Industrial and Banrural branches — banking accessible with DPI documentation",
+    "Claro Guatemala and Tigo Guatemala stores — SIM cards and mobile data plans",
+    "Asociación Pop No'j — mental health and legal support for returning deportees",
+  ],
 };
 
 export default guatemala;

@@ -142,6 +142,24 @@ const nepal: CountryData = {
     "TPO Nepal mental health",
   ],
   relatedCountries: ["india", "bangladesh", "myanmar"],
+  firstThirtyDays: [
+    "Arrive at Tribhuvan International Airport in Kathmandu — Department of Immigration processes returning Nepali nationals",
+    "Get an Ncell or NTC (Nepal Telecom) SIM card at the airport or any carrier store — requires your citizenship certificate or passport",
+    "Contact family networks in your ghar (home village) or district — Nepali family ties by caste and region are strong",
+    "Visit the District Administration Office (DAO) to obtain or renew your Nagarikta (citizenship certificate) — the foundational document",
+    "Open a bank account at Nepal Bank Limited, Rastriya Banijya Bank, or NIC Asia using your citizenship certificate",
+    "Set up an eSewa or Khalti mobile wallet for receiving transfers from family abroad — widely used across Nepal",
+    "Register with the Department of Labour for employment placement and foreign employment protection services",
+    "Contact TPO Nepal (Transcultural Psychosocial Organization) for mental health and psychosocial support",
+  ],
+  businessDirectory: [
+    "District Administration Office (DAO) — Nagarikta (citizenship certificate) issuance and renewal",
+    "Rastriya Banijya Bank and NIC Asia branches — banking with citizenship certificate documentation",
+    "Ncell and NTC (Nepal Telecom) stores — SIM cards and mobile data plans",
+    "eSewa and Khalti — mobile wallets for remittances and digital payments",
+    "Department of Labour — employment placement and foreign employment services",
+    "TPO Nepal — mental health and psychosocial support for deportees and returnees",
+  ],
 };
 
 export default nepal;

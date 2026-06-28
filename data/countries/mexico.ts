@@ -142,6 +142,24 @@ const mexico: CountryData = {
     "Mexican citizenship by birth",
   ],
   relatedCountries: ["guatemala", "el-salvador", "honduras"],
+  firstThirtyDays: [
+    "Cross into Mexico at the border port — Mexican migration officials will process your entry; get your FMM or document stamp",
+    "Get a Telcel or AT&T México SIM card at any OXXO convenience store or carrier store — no ID required for prepaid",
+    "Visit a Casa del Migrante or Al Otro Lado shelter near the border for transitional housing and food",
+    "Request your acta de nacimiento (birth certificate) online at gob.mx/actas — free for returning Mexicans",
+    "Apply for your CURP at any módulo CURP or online at gob.mx — needed for banking, schools, and government services",
+    "Get your INE voter ID card at your local INE office — this is your primary national photo ID",
+    "Open a bank account at BBVA, Banamex, or Banorte using your CURP and INE card",
+    "Register with Servicio Nacional de Empleo (SNE) for free job placement services",
+  ],
+  businessDirectory: [
+    "Casa del Migrante network — transitional shelter for recently deported individuals in Tijuana, Ciudad Juárez, and other cities",
+    "Al Otro Lado — legal aid and services for deportees, based in Tijuana",
+    "INE (Instituto Nacional Electoral) offices — voter ID (credencial) issuance nationwide",
+    "CURP módulos — registration for government identity number at any DIF or government office",
+    "Servicio Nacional de Empleo (SNE) — free government job placement across Mexico",
+    "BBVA México and Banamex branches — account opening with CURP and INE",
+  ],
 };
 
 export default mexico;

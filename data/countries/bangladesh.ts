@@ -142,6 +142,24 @@ const bangladesh: CountryData = {
     "BLAST legal aid Bangladesh",
   ],
   relatedCountries: ["india", "pakistan", "myanmar"],
+  firstThirtyDays: [
+    "Arrive at Hazrat Shahjalal International Airport in Dhaka — Bangladesh immigration processes returning nationals",
+    "Get a Grameenphone, Robi, or Banglalink SIM at the airport or any outlet — SIM registration requires NID (National ID) or passport via biometric",
+    "Contact family networks in your gram (home village) or upazila — Bangladeshi family and community ties by village are vital",
+    "Visit your upazila or union parishad to obtain or renew your NID (National Identity Card) — core document for all services",
+    "Set up a bKash or Nagad mobile wallet immediately — fastest way to receive remittances from family in the U.S.",
+    "Open a bank account at Sonali Bank, Janata Bank, or Dutch-Bangla Bank using your NID",
+    "Register with the Bureau of Manpower, Employment and Training (BMET) for employment assistance",
+    "Contact BLAST (Bangladesh Legal Aid and Services Trust) for free legal assistance if needed",
+  ],
+  businessDirectory: [
+    "National Identity Registration Wing (NIRW) — NID card issuance and election registration",
+    "Bureau of Manpower, Employment and Training (BMET) — employment placement and overseas work support",
+    "Sonali Bank and Dutch-Bangla Bank branches — banking with NID documentation",
+    "Grameenphone and Robi stores — SIM cards and mobile data plans",
+    "bKash and Nagad — mobile wallets widely used for remittances and digital payments",
+    "BLAST (Bangladesh Legal Aid and Services Trust) — free legal assistance for low-income citizens",
+  ],
 };
 
 export default bangladesh;

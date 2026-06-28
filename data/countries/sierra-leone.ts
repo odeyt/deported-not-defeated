@@ -142,6 +142,24 @@ const sierraLeone: CountryData = {
     "Sierra Leone diaspora deportee",
   ],
   relatedCountries: ["liberia", "ghana", "cameroon"],
+  firstThirtyDays: [
+    "Arrive at Lungi International Airport (Freetown) — Sierra Leone immigration processes returning nationals",
+    "Take the ferry or hovercraft from Lungi to Freetown — the airport is located across the estuary from the capital",
+    "Get an Africell or Orange Sierra Leone SIM at any vendor — requires your national ID or passport",
+    "Contact family networks in Freetown or your home district — Krio, Mende, Temne, and other ethnic community ties are vital",
+    "Visit the National Civil Registration Authority (NCRA) to obtain your National ID card",
+    "Open a bank account at Sierra Leone Commercial Bank (SLCB), Rokel Commercial Bank, or EcoBank using your national ID",
+    "Set up Africell Money or Orange Money mobile wallet for receiving remittances from family in the U.S.",
+    "Register with the Ministry of Labour and Social Security for employment placement programs",
+  ],
+  businessDirectory: [
+    "National Civil Registration Authority (NCRA) — national ID card issuance and registration",
+    "Sierra Leone Commercial Bank (SLCB) and EcoBank branches — banking with national ID",
+    "Africell and Orange Sierra Leone stores — SIM cards and mobile data plans",
+    "Africell Money and Orange Money — mobile wallets for remittances and digital payments",
+    "Ministry of Labour and Social Security — employment placement and skills training",
+    "IOM Sierra Leone — reintegration assistance and transitional support for returning migrants",
+  ],
 };
 
 export default sierraLeone;

@@ -26,22 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-2xl font-bold text-white mb-4">{children}</h2>;
-}
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2 list-none">
-      {items.map((item, i) => (
-        <li key={i} className="text-gray-300 text-sm leading-relaxed flex gap-2">
-          <span className="text-brand-red mt-0.5 flex-shrink-0">▸</span>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+const CATEGORIES = [
+  { slug: "first-30-days",   title: "Your First 30 Days", icon: "📋", desc: "Checklist for your first month after arrival", urgent: true },
+  { slug: "directory",       title: "Business Directory", icon: "🏢", desc: "Local businesses, services, and organizations" },
+  { slug: "find-housing",    title: "Find Housing",       icon: "🏠", desc: "Short-term and long-term housing options" },
+  { slug: "find-work",       title: "Find Work",          icon: "💼", desc: "Jobs, income, and employment resources" },
+  { slug: "legal-documents", title: "Legal & Documents",  icon: "⚖️", desc: "IDs, passports, visas, and legal rights" },
+  { slug: "healthcare",      title: "Healthcare",         icon: "🏥", desc: "Hospitals, clinics, and mental health support" },
+  { slug: "banking-money",   title: "Banking & Money",    icon: "💰", desc: "Accounts, transfers, and managing finances" },
+  { slug: "phone-internet",  title: "Phone & Internet",   icon: "📱", desc: "SIM cards, data plans, and connectivity" },
+  { slug: "transportation",  title: "Transportation",     icon: "🚌", desc: "Getting around and local transit" },
+  { slug: "resources",       title: "All Resources",      icon: "📚", desc: "Tools, services, and affiliate resources" },
+];
 
 export default function CountryPage({ params }: Props) {
   const data = countriesBySlug[params.country];
@@ -70,11 +66,56 @@ export default function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* 2. Quick Facts */}
+      {/* 2. Category Card Grid */}
+      <section className="bg-gray-900 py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-white mb-2 text-center">Choose Your Guide</h2>
+          <p className="text-gray-400 text-sm text-center mb-8">
+            Select a topic to get detailed, {data.countryName}-specific information.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.slug}
+                href={`/${data.slug}/${cat.slug}`}
+                className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${cat.urgent ? "ring-2 ring-brand-red" : ""}`}
+              >
+                {/* Gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-navy-800 to-gray-900 transition-transform duration-500 group-hover:scale-105" />
+                {/* Large emoji */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span
+                    className="text-5xl md:text-6xl"
+                    style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.7))" }}
+                  >
+                    {cat.icon}
+                  </span>
+                </div>
+                {/* Bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                {/* Text */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                  {cat.urgent && (
+                    <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-1">
+                      Start Here →
+                    </span>
+                  )}
+                  <h2 className="font-bold text-white text-sm md:text-base leading-tight mb-1 group-hover:text-red-300 transition-colors">
+                    {cat.title}
+                  </h2>
+                  <p className="text-gray-300 text-xs leading-relaxed hidden md:block">{cat.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Quick Facts */}
       {data.quickFacts.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
+        <section className="bg-gray-950 py-12 px-4">
           <div className="max-w-4xl mx-auto">
-            <SectionHeading>Quick Facts</SectionHeading>
+            <h2 className="text-2xl font-bold text-white mb-4">Quick Facts</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {data.quickFacts.map((fact) => (
                 <div
@@ -92,188 +133,7 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 3. Returning Home */}
-      {data.returningHome.length > 0 && (
-        <section className="bg-gray-950 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Returning Home: First Steps</SectionHeading>
-            <BulletList items={data.returningHome} />
-          </div>
-        </section>
-      )}
-
-      {/* 4. Travel Documents */}
-      {data.travelDocuments.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Travel Documents &amp; ID</SectionHeading>
-            <BulletList items={data.travelDocuments} />
-          </div>
-        </section>
-      )}
-
-      {/* 5. Embassy Info */}
-      <section className="bg-gray-950 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading>U.S. Embassy Information</SectionHeading>
-          <p className="text-gray-300 text-sm leading-relaxed">{data.embassyInfo}</p>
-        </div>
-      </section>
-
-      {/* 6. Housing */}
-      {data.housing.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Housing</SectionHeading>
-            <BulletList items={data.housing} />
-          </div>
-        </section>
-      )}
-
-      {/* 7. Jobs */}
-      {data.jobs.length > 0 && (
-        <section className="bg-gray-950 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Jobs &amp; Employment</SectionHeading>
-            <BulletList items={data.jobs} />
-          </div>
-        </section>
-      )}
-
-      {/* 8. Healthcare */}
-      {data.healthcare.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Healthcare</SectionHeading>
-            <BulletList items={data.healthcare} />
-          </div>
-        </section>
-      )}
-
-      {/* 9. Mental Health */}
-      {data.mentalHealth.length > 0 && (
-        <section className="bg-gray-950 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Mental Health</SectionHeading>
-            <BulletList items={data.mentalHealth} />
-          </div>
-        </section>
-      )}
-
-      {/* 10. Money Transfer */}
-      {data.moneyTransfer.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Receiving Money from the U.S.</SectionHeading>
-            <BulletList items={data.moneyTransfer} />
-          </div>
-        </section>
-      )}
-
-      {/* 11. Phone & Internet */}
-      {data.phoneInternet.length > 0 && (
-        <section className="bg-gray-950 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Phone &amp; Internet</SectionHeading>
-            <BulletList items={data.phoneInternet} />
-          </div>
-        </section>
-      )}
-
-      {/* 12. Transportation */}
-      {data.transportation.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Transportation</SectionHeading>
-            <BulletList items={data.transportation} />
-          </div>
-        </section>
-      )}
-
-      {/* 13. Legal Resources */}
-      {data.legalResources.length > 0 && (
-        <section className="bg-gray-950 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>Legal Resources</SectionHeading>
-            <BulletList items={data.legalResources} />
-          </div>
-        </section>
-      )}
-
-      {/* 14. U.S. Reentry Education */}
-      {data.reentryInfo.length > 0 && (
-        <section className="bg-gray-900 py-12 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeading>U.S. Reentry Education</SectionHeading>
-            <BulletList items={data.reentryInfo} />
-          </div>
-        </section>
-      )}
-
-      {/* 15. Affiliate Resources */}
-      <section className="bg-gray-950 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading>Recommended Resources</SectionHeading>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-            {[
-              {
-                name: "Wise",
-                desc: "Send money internationally with low fees",
-                href: "#",
-                icon: "💸",
-              },
-              {
-                name: "Remitly",
-                desc: "Fast, reliable money transfers worldwide",
-                href: "#",
-                icon: "💰",
-              },
-              {
-                name: "WorldRemit",
-                desc: "Send to 130+ countries quickly",
-                href: "#",
-                icon: "🌍",
-              },
-              {
-                name: "Airalo",
-                desc: "Affordable eSIM data for your device",
-                href: "#",
-                icon: "📱",
-              },
-              {
-                name: "NordVPN",
-                desc: "Secure internet access from anywhere",
-                href: "#",
-                icon: "🔒",
-              },
-              {
-                name: "SafetyWing",
-                desc: "International health insurance coverage",
-                href: "#",
-                icon: "🏥",
-              },
-            ].map((r) => (
-              <a
-                key={r.name}
-                href={r.href}
-                className="bg-gray-800 border border-white/10 rounded-xl p-4 flex items-start gap-3 hover:border-white/20 transition-colors"
-              >
-                <span className="text-2xl">{r.icon}</span>
-                <div>
-                  <p className="text-white font-semibold text-sm">{r.name}</p>
-                  <p className="text-gray-400 text-xs">{r.desc}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-          <p className="text-gray-500 text-xs">
-            Disclosure: Some links may be affiliate links. We only recommend services we believe
-            are useful for deportees.
-          </p>
-        </div>
-      </section>
-
-      {/* 16. AI Case Assessment CTA */}
+      {/* 4. AI Case Assessment CTA */}
       <section className="bg-brand-red py-12 px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-3">
@@ -292,11 +152,11 @@ export default function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* 17. FAQ */}
+      {/* 5. FAQ */}
       {data.faqs.length > 0 && (
         <section className="bg-gray-900 py-12 px-4">
           <div className="max-w-4xl mx-auto">
-            <SectionHeading>Frequently Asked Questions</SectionHeading>
+            <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
             <div className="space-y-3">
               {data.faqs.map((faq, i) => (
                 <details
@@ -319,11 +179,11 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 18. Related Countries */}
+      {/* 6. Related Countries */}
       {data.relatedCountries.length > 0 && (
         <section className="bg-gray-950 py-12 px-4">
           <div className="max-w-4xl mx-auto">
-            <SectionHeading>Related Country Guides</SectionHeading>
+            <h2 className="text-2xl font-bold text-white mb-4">Related Country Guides</h2>
             <div className="flex flex-wrap gap-3">
               {data.relatedCountries.map((slug) => {
                 const related = countriesBySlug[slug];
@@ -344,7 +204,7 @@ export default function CountryPage({ params }: Props) {
         </section>
       )}
 
-      {/* 19. Legal Disclaimer */}
+      {/* 7. Legal Disclaimer */}
       <section className="bg-gray-900 py-8 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-amber-900/30 border border-amber-600/30 rounded-xl p-5">
@@ -352,8 +212,8 @@ export default function CountryPage({ params }: Props) {
               <strong className="font-semibold">Legal Disclaimer:</strong> The information on
               this page is provided for general informational purposes only and does not constitute
               legal advice. Laws, policies, and conditions change frequently. Nothing on this page
-              creates an attorney-client relationship. We use language like "may," "might," and
-              "could" intentionally — individual circumstances vary greatly and eligibility for any
+              creates an attorney-client relationship. We use language like &quot;may,&quot; &quot;might,&quot; and
+              &quot;could&quot; intentionally — individual circumstances vary greatly and eligibility for any
               program or service depends on specific facts. Always consult a licensed attorney for
               legal advice specific to your situation. Deported Not Defeated is not a law firm.
             </p>

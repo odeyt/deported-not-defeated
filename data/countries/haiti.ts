@@ -142,6 +142,24 @@ const haiti: CountryData = {
     "IOM Haiti reintegration",
   ],
   relatedCountries: ["dominican-republic", "cuba", "jamaica"],
+  firstThirtyDays: [
+    "Arrive at Toussaint Louverture International Airport in Port-au-Prince — Haitian immigration processes returning nationals",
+    "Get a Digicel Haiti or Natcom SIM card at the airport or any vendor — prepaid SIMs require no ID for basic activation",
+    "Contact family networks immediately — family in your département is the most reliable support system given instability",
+    "Visit the Office National d'Identification (ONI) to obtain or reactivate your CIN (Carte d'Identification Nationale)",
+    "Contact IOM (International Organization for Migration) Haiti for deportee reintegration assistance and transitional support",
+    "Open a mobile money account with Digicel's MonCash or Natcom's NatCash — easier than a full bank account initially",
+    "Seek support from Partners in Health (PIH/Zanmi Lasante) for health services in Artibonite or Central departments",
+    "Contact local churches and community organizations — faith-based networks are critical support systems in Haiti",
+  ],
+  businessDirectory: [
+    "ONI (Office National d'Identification) — CIN national ID card issuance",
+    "IOM (International Organization for Migration) Haiti — deportee reintegration support and transitional assistance",
+    "MonCash (Digicel) and NatCash (Natcom) — mobile money wallets for receiving and sending money",
+    "Partners in Health (Zanmi Lasante) — healthcare services in underserved areas",
+    "Digicel Haiti and Natcom stores — SIM cards and mobile plans",
+    "Ministry of Social Affairs (MAST) — social welfare and emergency assistance programs",
+  ],
 };
 
 export default haiti;

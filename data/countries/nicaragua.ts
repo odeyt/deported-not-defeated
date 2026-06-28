@@ -141,6 +141,24 @@ const nicaragua: CountryData = {
     "Claro SIM card Nicaragua",
   ],
   relatedCountries: ["honduras", "el-salvador", "costa-rica"],
+  firstThirtyDays: [
+    "Arrive at Augusto C. Sandino International Airport in Managua — Nicaraguan immigration processes returning nationals",
+    "Get a Claro or Movistar Nicaragua SIM card at the airport or any authorized vendor — requires your cédula or passport",
+    "Contact family networks immediately — Nicaraguan extended family is the most reliable first support system",
+    "Visit the Consejo Supremo Electoral (CSE) to obtain or renew your cédula de identidad (national ID)",
+    "Your cédula is required for banking, employment, and government services — get it as soon as possible",
+    "Open a bank account at Banpro, BAC Nicaragua, or BanAmérica using your cédula",
+    "Register with the Ministerio del Trabajo (MITRAB) for employment placement and labor rights information",
+    "Contact the Ministerio de la Familia (MIFAN) if you need social welfare or family reunification assistance",
+  ],
+  businessDirectory: [
+    "Consejo Supremo Electoral (CSE) — cédula de identidad issuance and registration",
+    "MITRAB (Ministerio del Trabajo) — employment placement and labor rights services",
+    "MIFAN (Ministerio de la Familia) — social welfare and family assistance programs",
+    "Banpro and BAC Nicaragua branches — banking with cédula documentation",
+    "Claro Nicaragua and Movistar stores — SIM cards and mobile data plans",
+    "INSS (Instituto Nicaragüense de Seguridad Social) — social security and healthcare registration",
+  ],
 };
 
 export default nicaragua;

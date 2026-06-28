@@ -141,6 +141,24 @@ const venezuela: CountryData = {
     "Movistar Digitel SIM Venezuela",
   ],
   relatedCountries: ["colombia", "guyana", "brazil"],
+  firstThirtyDays: [
+    "Arrive at Simón Bolívar International Airport (Caracas) or La Chinita (Maracaibo) — Venezuelan immigration processes returning nationals",
+    "Get a Movistar, Digitel, or Movilnet SIM at any carrier store — requires cédula or passport",
+    "Contact family networks immediately — family support is critical given Venezuela's ongoing economic situation",
+    "Visit the SAIME (Servicio Administrativo de Identificación, Migración y Extranjería) to renew your cédula de identidad",
+    "Open a bank account at Banesco or Banco Mercantil — required for receiving Bs. transfers and USD remittances",
+    "Set up a Zelle-linked account through family or acquaintances — USD via Zelle is the dominant informal payment system",
+    "Contact SENCAMER or local government Misiones (Misión Hogar, Misión Alimentación) for transitional support",
+    "Register with INCE (Instituto Nacional de Capacitación y Educación Socialista) for free vocational training",
+  ],
+  businessDirectory: [
+    "SAIME (Servicio Administrativo de Identificación) — cédula de identidad and passport renewal",
+    "INCE (Instituto Nacional de Capacitación) — free vocational training and skills programs",
+    "Banesco and Banco Mercantil branches — banking services with cédula documentation",
+    "Movistar Venezuela and Digitel stores — SIM cards and mobile data plans",
+    "Misiones Sociales offices — government social programs for food, housing, and health support",
+    "Defensoría del Pueblo — human rights and legal assistance for returnees",
+  ],
 };
 
 export default venezuela;

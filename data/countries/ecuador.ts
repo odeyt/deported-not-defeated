@@ -141,6 +141,24 @@ const ecuador: CountryData = {
     "Claro SIM Ecuador",
   ],
   relatedCountries: ["peru", "colombia", "venezuela"],
+  firstThirtyDays: [
+    "Arrive at Mariscal Sucre International Airport (Quito) or José Joaquín de Olmedo (Guayaquil) — Ecuadorian immigration processes returning nationals",
+    "Get a Claro, Movistar, or CNT Ecuador SIM at the airport or any carrier store — requires cédula or passport",
+    "Contact family networks in your provincia — Ecuador uses the U.S. dollar, making financial planning more straightforward",
+    "Visit the Registro Civil to obtain or renew your cédula de ciudadanía ecuatoriana",
+    "Open a bank account at Banco Pichincha, Banco Guayaquil, or BanEcuador using your cédula",
+    "Register with the Ministerio del Trabajo for employment assistance and vocational training programs",
+    "Enroll in the IESS (Instituto Ecuatoriano de Seguridad Social) for health insurance and social security",
+    "Contact the MIES (Ministerio de Inclusión Económica y Social) for transitional welfare programs",
+  ],
+  businessDirectory: [
+    "Registro Civil — cédula de ciudadanía issuance and civil documentation services",
+    "IESS (Instituto Ecuatoriano de Seguridad Social) — health insurance and social security enrollment",
+    "MIES (Ministerio de Inclusión Económica y Social) — transitional welfare and social programs",
+    "Banco Pichincha and BanEcuador branches — banking with cédula documentation",
+    "Claro Ecuador and Movistar stores — SIM cards and mobile data plans",
+    "Ministerio del Trabajo offices — employment placement and labor rights services",
+  ],
 };
 
 export default ecuador;

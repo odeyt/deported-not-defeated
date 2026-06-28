@@ -143,6 +143,24 @@ const vietnam: CountryData = {
     "SEARAC Vietnamese deportee",
   ],
   relatedCountries: ["cambodia", "laos", "philippines"],
+  firstThirtyDays: [
+    "Arrive at Nội Bài International Airport (Hanoi) or Tân Sơn Nhất (Ho Chi Minh City) — Vietnamese immigration processes returning nationals",
+    "Get a Viettel, Mobifone, or Vinaphone SIM at the airport or any carrier store — requires your CMND (national ID) or passport",
+    "Contact family networks in your hometown province — Vietnamese family ties by province and village are strong",
+    "Visit the nearest police station (công an) to register your household (hộ khẩu) and update your national ID",
+    "Open a bank account at Vietcombank, BIDV, or VPBank using your CMND/CCCD and household registration",
+    "Connect with SEARAC (Southeast Asia Resource Action Center) for deportee family and legal resources",
+    "Register with the Department of Labour, Invalids and Social Affairs (DOLISA) for employment and welfare programs",
+    "Seek community support through local Buddhist pagodas or Catholic parishes for transitional assistance",
+  ],
+  businessDirectory: [
+    "Cục Quản lý xuất nhập cảnh (Immigration Department) — national ID (CCCD) renewal and registration",
+    "Vietcombank and BIDV branches — banking with CMND/CCCD documentation",
+    "Viettel, Mobifone, and Vinaphone stores — SIM cards and mobile data plans",
+    "DOLISA (Department of Labour, Invalids and Social Affairs) offices — employment placement and welfare programs",
+    "Vietnam Employment Service Centers — job placement and vocational training",
+    "Buddhist pagodas and local tổ dân phố (residential groups) — community housing and transitional support",
+  ],
 };
 
 export default vietnam;

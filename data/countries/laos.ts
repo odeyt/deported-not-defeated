@@ -142,6 +142,24 @@ const laos: CountryData = {
     "Buddhist temple deportee support",
   ],
   relatedCountries: ["cambodia", "vietnam", "thailand"],
+  firstThirtyDays: [
+    "Arrive at Wattay International Airport in Vientiane — Lao immigration processes returning nationals",
+    "Get a Unitel or Lao Telecom SIM card at the airport or any carrier store — prepaid SIMs require your passport",
+    "Contact family networks immediately — Lao Buddhist temple communities are central social support structures",
+    "Visit the Department of Civil Registration to obtain or renew your national ID and household registration (baan)",
+    "Open a bank account at BCEL (Banque pour le Commerce Extérieur Lao) or LDB using your national ID",
+    "Connect with SEARAC (Southeast Asia Resource Action Center) for U.S.-based deportee family support resources",
+    "Visit your local temple (wat) — Buddhist community networks offer transitional housing and community support",
+    "Register with the Ministry of Labour and Social Welfare for employment placement assistance",
+  ],
+  businessDirectory: [
+    "Department of Civil Registration — national ID and household registration (baan) documentation",
+    "BCEL (Banque pour le Commerce Extérieur Lao) branches — banking with national ID",
+    "Unitel and Lao Telecom stores — SIM cards and mobile data plans",
+    "Ministry of Labour and Social Welfare — employment placement and social support programs",
+    "SEAMEO offices — education and vocational training resources",
+    "Local wat (Buddhist temples) — community housing and transitional social support",
+  ],
 };
 
 export default laos;

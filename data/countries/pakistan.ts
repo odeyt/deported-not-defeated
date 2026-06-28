@@ -142,6 +142,24 @@ const pakistan: CountryData = {
     "Sehat Sahulat healthcare",
   ],
   relatedCountries: ["india", "bangladesh", "nepal"],
+  firstThirtyDays: [
+    "Arrive at Jinnah International Airport (Karachi) or Allama Iqbal (Lahore) — FIA (Federal Investigation Agency) processes returning Pakistani nationals",
+    "Get a Jazz, Telenor, Zong, or Ufone SIM at the airport or any franchise — SIM registration requires your CNIC or passport via biometric",
+    "Contact family networks in your ancestral hometown or city — Pakistani family and biradari (kinship) networks are primary support",
+    "Visit the nearest NADRA (National Database and Registration Authority) office to obtain or renew your CNIC (Computerized National Identity Card)",
+    "Your CNIC is required for SIM registration, banking, employment, and all government services — top priority",
+    "Open a bank account at HBL, MCB Bank, or Bank Alfalah using your CNIC",
+    "Set up a JazzCash or EasyPaisa mobile wallet to receive remittances from family in the U.S. before opening a full account",
+    "Contact the Overseas Pakistanis Foundation (OPF) for reintegration assistance and welfare programs",
+  ],
+  businessDirectory: [
+    "NADRA (National Database and Registration Authority) — CNIC issuance and biometric registration offices nationwide",
+    "Overseas Pakistanis Foundation (OPF) — reintegration assistance and welfare programs for returnees",
+    "HBL and MCB Bank branches — banking with CNIC documentation",
+    "Jazz and Telenor franchise stores — SIM cards and mobile data plans",
+    "JazzCash and EasyPaisa — mobile wallets for remittances and digital payments",
+    "Pakistan Bait-ul-Mal — social welfare assistance for low-income and vulnerable citizens",
+  ],
 };
 
 export default pakistan;

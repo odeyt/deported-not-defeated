@@ -142,6 +142,24 @@ const poland: CountryData = {
     "Polish community Chicago deportee",
   ],
   relatedCountries: ["romania", "ukraine", "albania"],
+  firstThirtyDays: [
+    "Arrive at Warsaw Chopin Airport or Kraków John Paul II Airport — Polish Border Guard processes returning Polish nationals",
+    "Get a Play, Orange, T-Mobile, or Plus Poland SIM at the airport or any carrier store — prepaid SIMs require your dowód osobisty (national ID) or passport",
+    "Contact family networks in your home city or gmina — Polish Catholic parish communities are strong social networks",
+    "Visit the Urząd Gminy or Urząd Miasta to register your pobyt (residence) and obtain or renew your dowód osobisty",
+    "Open a bank account at PKO Bank Polski, Bank Pekao, or mBank using your dowód osobisty — or use BLIK digital payments",
+    "Register with the Powiatowy Urząd Pracy (PUP — county employment office) for free job placement and retraining",
+    "Enroll in NFZ (Narodowy Fundusz Zdrowia) for public health insurance coverage",
+    "As an EU citizen, you have full right to work in any EU/EEA country — explore opportunities across Europe if needed",
+  ],
+  businessDirectory: [
+    "Urząd Gminy / Urząd Miasta — residence registration and dowód osobisty (national ID) issuance",
+    "Powiatowy Urząd Pracy (PUP) — free employment placement, retraining, and unemployment benefits",
+    "PKO Bank Polski and mBank branches — banking with dowód osobisty documentation",
+    "Play and Orange Poland stores — SIM cards and mobile data plans",
+    "NFZ (Narodowy Fundusz Zdrowia) offices — public health insurance enrollment",
+    "ZUS (Zakład Ubezpieczeń Społecznych) — social security and pension registration",
+  ],
 };
 
 export default poland;

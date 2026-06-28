@@ -141,6 +141,24 @@ const trinidadAndTobago: CountryData = {
     "Digicel SIM Trinidad",
   ],
   relatedCountries: ["jamaica", "bahamas", "guyana"],
+  firstThirtyDays: [
+    "Arrive at Piarco International Airport in Port of Spain — T&T immigration processes returning nationals",
+    "Get a Digicel or bmobile (TSTT) SIM card at the airport or any carrier store — requires passport or national ID",
+    "Contact family or community networks in your borough or county — T&T communities are geographically organized",
+    "Visit the Registration, Immigration and Granting of Asylum (RRIGA) to renew your national ID card",
+    "Open a bank account at Republic Bank, Scotiabank TT, or RBC Royal Bank using your national ID and TT birth certificate",
+    "Register with the Ministry of Labour and Small Enterprise Development for employment assistance",
+    "Enroll in the National Insurance Board (NIB T&T) for health and social security benefits",
+    "Contact the Ministry of Social Development for welfare and transitional assistance programs",
+  ],
+  businessDirectory: [
+    "RRIGA (Registration, Immigration and Granting of Asylum) — national ID and immigration documentation",
+    "National Insurance Board (NIB) T&T — social security and health benefits enrollment",
+    "Ministry of Social Development — transitional welfare and emergency assistance",
+    "Republic Bank and Scotiabank TT branches — banking with national ID documentation",
+    "Digicel T&T and bmobile (TSTT) stores — SIM cards and mobile data plans",
+    "Ministry of Labour and Small Enterprise Development — employment placement services",
+  ],
 };
 
 export default trinidadAndTobago;

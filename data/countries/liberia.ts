@@ -141,6 +141,24 @@ const liberia: CountryData = {
     "Liberian community Minnesota deportee",
   ],
   relatedCountries: ["sierra-leone", "ghana", "nigeria"],
+  firstThirtyDays: [
+    "Arrive at Roberts International Airport near Monrovia — Liberian immigration processes returning nationals",
+    "Get a Lonestar Cell MTN or Orange (Cellcom) Liberia SIM at the airport or any vendor — requires passport or national ID",
+    "Contact family networks in Monrovia or your home county — Liberian family and ethnic community ties are vital support",
+    "Visit the Liberia National Identification Registry (LNIR) or the Liberia Institute of Statistics to obtain your national ID",
+    "Open a bank account at Ecobank Liberia, United Bank for Africa (UBA), or Lonestar Money mobile wallet",
+    "Liberia uses the Liberian Dollar and U.S. Dollar — USD is widely accepted and preferred for larger transactions",
+    "Contact UNHCR Liberia or IOM Liberia if you face protection concerns or need transitional support",
+    "Register with the Ministry of Labour for employment placement and skills development programs",
+  ],
+  businessDirectory: [
+    "Liberia National Identification Registry (LNIR) — national ID issuance and biometric registration",
+    "IOM (International Organization for Migration) Liberia — deportee reintegration and transitional assistance",
+    "Ecobank Liberia and UBA Liberia branches — banking with national ID documentation",
+    "Lonestar Cell MTN and Orange (Cellcom) stores — SIM cards and mobile data plans",
+    "Lonestar Money — mobile wallet for remittances and digital payments",
+    "Ministry of Labour — employment placement and skills development programs",
+  ],
 };
 
 export default liberia;

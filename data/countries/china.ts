@@ -143,6 +143,24 @@ const china: CountryData = {
     "Beijing Guangzhou housing deportee",
   ],
   relatedCountries: ["vietnam", "cambodia", "indonesia"],
+  firstThirtyDays: [
+    "Arrive at Beijing Capital, Shanghai Pudong, or Guangzhou Baiyun airport — Chinese immigration processes returning nationals with hukou verification",
+    "Register at your local police station (派出所) within 24 hours of arrival — required for all residents including returning citizens",
+    "Get a China Mobile, China Unicom, or China Telecom SIM — requires your Resident Identity Card (居民身份证 / shenfenzheng)",
+    "Visit the local Public Security Bureau (PSB) to update or obtain your 居民身份证 (Resident Identity Card / RIC)",
+    "Set up WeChat Pay and Alipay — both are essential for daily transactions, payments, and receiving money",
+    "Open a bank account at Bank of China, ICBC, or Agricultural Bank of China using your RIC",
+    "Register your household registration (户口/hukou) at the local police station — required for access to local services",
+    "Contact your local street committee (居委会) for community registration and access to local welfare programs",
+  ],
+  businessDirectory: [
+    "Local Public Security Bureau (PSB / 公安局) — RIC (resident ID card) and hukou registration",
+    "Bank of China and ICBC branches — banking with RIC documentation",
+    "China Mobile and China Unicom stores — SIM cards and mobile data plans",
+    "WeChat Pay and Alipay — essential mobile payment platforms for all daily transactions",
+    "Local 居委会 (Residents' Committee) — community registration and access to local social services",
+    "Ministry of Civil Affairs (民政部) offices — social welfare and transitional assistance programs",
+  ],
 };
 
 export default china;

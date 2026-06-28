@@ -141,6 +141,24 @@ const panama: CountryData = {
     "CSS Panama healthcare",
   ],
   relatedCountries: ["costa-rica", "colombia", "nicaragua"],
+  firstThirtyDays: [
+    "Arrive at Tocumen International Airport in Panama City — Panamanian immigration processes returning nationals",
+    "Get a Cable & Wireless (Más Móvil), Claro, or Movistar Panama SIM at the airport — requires cédula or passport",
+    "Contact family networks — Panama's small size means strong regional community connections",
+    "Visit the Tribunal Electoral office to obtain or renew your cédula de identidad panameña",
+    "Open a bank account at Banco Nacional de Panamá or BAC Panama using your cédula",
+    "Register with the MITRADEL (Ministerio de Trabajo y Desarrollo Laboral) for employment services",
+    "Enroll in the CSS (Caja de Seguro Social) for healthcare and social security coverage",
+    "Contact the Defensoría del Pueblo for legal assistance and human rights support",
+  ],
+  businessDirectory: [
+    "Tribunal Electoral — cédula de identidad issuance and registration services",
+    "CSS (Caja de Seguro Social) — public healthcare and social security enrollment",
+    "MITRADEL (Ministerio de Trabajo) offices — employment placement and labor rights",
+    "Banco Nacional de Panamá branches — banking with cédula documentation",
+    "Claro Panama and Movistar Panama stores — SIM cards and mobile plans",
+    "Defensoría del Pueblo — human rights and legal assistance for returning citizens",
+  ],
 };
 
 export default panama;

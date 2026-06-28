@@ -141,6 +141,24 @@ const elSalvador: CountryData = {
     "El Salvador remittance USD",
   ],
   relatedCountries: ["guatemala", "honduras", "mexico"],
+  firstThirtyDays: [
+    "Arrive at Monseñor Óscar Arnulfo Romero International Airport in San Salvador — Salvadoran immigration processes returning nationals",
+    "Get a Claro or Tigo SIM card at the airport or any authorized vendor — requires your DUI or passport",
+    "Contact family immediately — family networks in your municipio or community are the most reliable support",
+    "Visit the RNPN (Registro Nacional de las Personas Naturales) to reactivate or obtain your DUI (Documento Único de Identidad)",
+    "Your DUI is required for banking, government services, and employment — it is the top priority document",
+    "Open a bank account at Banco Agrícola, Davivienda, or Banco de América Central using your DUI",
+    "Register with the Ministry of Labor (MTPS) for free job placement assistance and training programs",
+    "Contact Cristosal or the Procuraduría para la Defensa de los Derechos Humanos if you face human rights concerns",
+  ],
+  businessDirectory: [
+    "RNPN (Registro Nacional de las Personas Naturales) — DUI issuance and identity document registration",
+    "Ministry of Labor (MTPS) offices — free job placement and vocational training programs",
+    "Cristosal — human rights and legal assistance organization for deportees",
+    "Banco Agrícola and Davivienda branches — banking with DUI identification",
+    "Claro El Salvador and Tigo El Salvador stores — SIM cards and mobile plans",
+    "ISSS (Instituto Salvadoreño del Seguro Social) — social security and health insurance registration",
+  ],
 };
 
 export default elSalvador;

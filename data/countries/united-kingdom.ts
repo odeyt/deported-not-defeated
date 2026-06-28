@@ -142,6 +142,24 @@ const unitedKingdom: CountryData = {
     "UK deportee from USA",
   ],
   relatedCountries: ["ireland", "romania", "poland"],
+  firstThirtyDays: [
+    "Arrive at Heathrow, Gatwick, or Manchester Airport — UK Border Force processes returning British nationals",
+    "Get an EE, O2, Vodafone, or Three UK SIM at any supermarket or carrier store — prepaid SIMs require no ID",
+    "Contact family networks and community connections — the UK has strong South Asian, Caribbean, and West African diaspora communities",
+    "If you were born in the UK, visit the General Register Office or nearest registry to obtain your birth certificate",
+    "Apply for a UK passport at His Majesty's Passport Office (HMPO) online or at any Post Office Passport Check and Send service",
+    "Open a bank account at Barclays, HSBC, Lloyds, or a challenger bank (Monzo, Starling) — Monzo and Starling require only a smartphone and proof of address",
+    "Register with the DWP (Department for Work and Pensions) and your local Jobcentre Plus for Universal Credit and employment support",
+    "Apply for a National Insurance (NI) number to enable legal employment and access to benefits",
+  ],
+  businessDirectory: [
+    "HMPO (His Majesty's Passport Office) — UK passport application and renewal (gov.uk/apply-renew-passport)",
+    "Jobcentre Plus (DWP) — Universal Credit, employment support, and benefits registration",
+    "Monzo and Starling Bank — digital bank accounts accessible with minimal documentation",
+    "EE and O2 stores — SIM cards and mobile data plans",
+    "Citizens Advice — free legal, welfare, and financial guidance for returning citizens",
+    "HMRC — National Insurance number application and tax registration for employment",
+  ],
 };
 
 export default unitedKingdom;

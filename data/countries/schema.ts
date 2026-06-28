@@ -31,4 +31,6 @@ export interface CountryData {
   relatedCountries: string[];
   cities?: string[];
   affiliateNote?: string;
+  firstThirtyDays?: string[];
+  businessDirectory?: string[];
 }

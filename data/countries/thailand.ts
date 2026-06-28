@@ -142,6 +142,24 @@ const thailand: CountryData = {
     "Universal Coverage Thailand",
   ],
   relatedCountries: ["laos", "cambodia", "myanmar"],
+  firstThirtyDays: [
+    "Arrive at Suvarnabhumi Airport (Bangkok) or Don Mueang — Thai immigration processes returning Thai nationals",
+    "Get an AIS, DTAC (True Move H), or TrueMove H SIM at the airport — tourist SIMs available; national ID needed for post-paid",
+    "Contact family networks in your province (จังหวัด) — Thai family and community ties are organized by hometown province",
+    "Visit your local Amphoe (district office) to update your tabien baan (house registration) and obtain your Thai national ID",
+    "Open a bank account at Bangkok Bank, Kasikorn Bank (KBank), or Krungthai Bank using your Thai national ID",
+    "Register with the Department of Employment (กรมการจัดหางาน) for free job placement services",
+    "Enroll in the Universal Coverage Scheme (บัตรทอง / Gold Card) for public healthcare coverage",
+    "Contact the Ministry of Social Development and Human Security (พม.) for transitional welfare programs",
+  ],
+  businessDirectory: [
+    "Amphoe (District Office) — tabien baan (house registration) and national ID renewal",
+    "Department of Employment — free job placement and vocational training programs",
+    "Bangkok Bank and KBank branches — banking with Thai national ID documentation",
+    "AIS and TrueMove H (DTAC) stores — SIM cards and mobile data plans",
+    "Universal Coverage Scheme (Gold Card) registration at district hospitals — free public healthcare",
+    "Ministry of Social Development and Human Security offices — welfare and transitional assistance",
+  ],
 };
 
 export default thailand;

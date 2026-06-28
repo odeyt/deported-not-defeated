@@ -142,6 +142,24 @@ const somalia: CountryData = {
     "UNHCR Somalia",
   ],
   relatedCountries: ["ethiopia", "kenya", "djibouti"],
+  firstThirtyDays: [
+    "Arrive at Aden Adde International Airport in Mogadishu — immigration is managed by the Federal Government of Somalia",
+    "Get a Hormuud Telecom or Somtel SIM card — Mogadishu vendors are widely available; prepaid SIMs require minimal documentation",
+    "Contact family networks and clan connections immediately — clan-based networks are the primary support and safety system in Somalia",
+    "Visit the National Identification and Registration Authority (NIRA) to obtain a Somali national ID if available in your area",
+    "Set up EVC Plus (Hormuud) or ZAAD mobile money for receiving remittances — these are the dominant financial systems in Somalia",
+    "Contact the IOM (International Organization for Migration) Somalia for deportee reintegration programs and transitional support",
+    "Connect with local elders and clan leaders for housing assistance — formal rental markets are limited outside Mogadishu",
+    "Seek UNHCR Somalia or local NGO support if you face protection concerns upon return",
+  ],
+  businessDirectory: [
+    "NIRA (National Identification and Registration Authority) — Somali national ID registration where available",
+    "IOM (International Organization for Migration) Somalia — deportee reintegration support and transitional assistance",
+    "EVC Plus (Hormuud Telecom) and ZAAD — mobile money for remittances and daily transactions",
+    "Hormuud Telecom and Somtel stores — SIM cards and mobile communications",
+    "UNHCR Somalia — protection and legal guidance for vulnerable returnees",
+    "Somali Chamber of Commerce and Industry — business registration and economic integration support",
+  ],
 };
 
 export default somalia;

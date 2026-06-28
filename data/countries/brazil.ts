@@ -142,6 +142,24 @@ const brazil: CountryData = {
     "Missão Paz São Paulo",
   ],
   relatedCountries: ["venezuela", "colombia", "peru"],
+  firstThirtyDays: [
+    "Arrive at Guarulhos International Airport (São Paulo) or Galeão (Rio de Janeiro) — Polícia Federal processes returning nationals",
+    "Get a Claro, Vivo, or TIM Brasil SIM at the airport or any authorized store — requires CPF or passport",
+    "Contact family networks in your estado — Brazil's regions have distinct cultures; community ties by state are strong",
+    "Visit the Cartório de Registro Civil to obtain or replace your RG (Registro Geral / national ID) and CPF (Cadastro de Pessoas Físicas)",
+    "Your CPF is the tax ID essential for banking, employment, and all digital services — activate or recover it online at receitafederal.gov.br",
+    "Open a bank account at Caixa Econômica Federal, Bradesco, or Banco do Brasil using your RG and CPF",
+    "Set up a PIX key via your bank app — Brazil's instant payment system is used for nearly all transactions",
+    "Register with SINE (Sistema Nacional de Empregos) at your local CRAS for free employment placement",
+  ],
+  businessDirectory: [
+    "Receita Federal (receitafederal.gov.br) — CPF registration and tax ID recovery online",
+    "Cartório de Registro Civil — RG and civil document issuance",
+    "SINE (Sistema Nacional de Empregos) at CRAS offices — employment placement and social services",
+    "Caixa Econômica Federal branches — banking and social benefit distribution",
+    "Claro Brasil and Vivo stores — SIM cards and mobile data plans",
+    "CRAS (Centro de Referência de Assistência Social) — social welfare and transitional assistance programs",
+  ],
 };
 
 export default brazil;

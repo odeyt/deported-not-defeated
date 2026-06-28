@@ -141,6 +141,24 @@ const dominicanRepublic: CountryData = {
     "Remitly Dominican Republic",
   ],
   relatedCountries: ["haiti", "cuba", "jamaica"],
+  firstThirtyDays: [
+    "Arrive at Las Américas International Airport (Santo Domingo) or Gregorio Luperón (Puerto Plata) — Dominican immigration processes returning nationals",
+    "Get a Claro, Altice, or Viva Dominican Republic SIM at the airport or any carrier store — requires cédula or passport",
+    "Contact family networks in your provincia — community support is vital for transitional housing",
+    "Visit the JCE (Junta Central Electoral) to obtain or renew your cédula de identidad dominicana",
+    "Your cédula is required for banking, employment, and government services — get it on your first week",
+    "Open a bank account at Banco Popular, BanReservas, or Scotiabank DR using your cédula",
+    "Register with the Ministerio de Trabajo for employment placement and vocational training programs",
+    "Contact Profamilia or Centro de Orientación e Investigación Integral (COIN) for health and social services",
+  ],
+  businessDirectory: [
+    "JCE (Junta Central Electoral) — cédula de identidad issuance nationwide",
+    "Ministerio de Trabajo offices — employment placement and labor rights services",
+    "BanReservas and Banco Popular branches — banking with cédula documentation",
+    "Claro Dominican Republic and Altice stores — SIM cards and mobile data plans",
+    "INFOTEP — vocational training and skills certification programs",
+    "Profamilia — health services and family welfare support",
+  ],
 };
 
 export default dominicanRepublic;

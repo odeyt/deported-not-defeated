@@ -141,6 +141,24 @@ const colombia: CountryData = {
     "Claro SIM Colombia",
   ],
   relatedCountries: ["venezuela", "ecuador", "panama"],
+  firstThirtyDays: [
+    "Arrive at El Dorado International Airport (Bogotá) or José María Córdova (Medellín) — Colombian immigration processes returning nationals",
+    "Get a Claro, Movistar, or Tigo Colombia SIM at the airport or any carrier store — requires your cédula or passport",
+    "Contact family networks in your departamento — regional community ties are essential for initial support",
+    "Visit the Registraduría Nacional del Estado Civil to obtain or renew your cédula de ciudadanía",
+    "Your cédula is the master ID for banking, employment, healthcare, and all government services",
+    "Open a bank account at Bancolombia, Davivienda, or Banco de Bogotá using your cédula",
+    "Register with Compensar, Cafam, or your regional Caja de Compensación Familiar for employment and social benefits",
+    "Contact SENA (Servicio Nacional de Aprendizaje) for free vocational training and job placement programs",
+  ],
+  businessDirectory: [
+    "Registraduría Nacional del Estado Civil — cédula de ciudadanía issuance nationwide",
+    "SENA (Servicio Nacional de Aprendizaje) — free vocational training and job placement programs",
+    "Caja de Compensación Familiar (Compensar, Cafam) — employment services and social benefits",
+    "Bancolombia and Davivienda branches — banking with cédula documentation",
+    "Claro Colombia and Movistar stores — SIM cards and mobile data plans",
+    "ICBF (Instituto Colombiano de Bienestar Familiar) — family welfare and child services",
+  ],
 };
 
 export default colombia;

@@ -142,6 +142,24 @@ const philippines: CountryData = {
     "Globe Smart SIM Philippines",
   ],
   relatedCountries: ["vietnam", "cambodia", "indonesia"],
+  firstThirtyDays: [
+    "Arrive at NAIA (Ninoy Aquino International Airport) in Manila or Mactan-Cebu International — Philippine immigration processes returning nationals",
+    "Get a Globe or Smart SIM at the airport or any 7-Eleven or carrier store — no ID required for prepaid",
+    "Contact family networks in your home province — barangay and regional family ties are the strongest support system",
+    "Visit the Philippine Statistics Authority (PSA) or local civil registry to obtain your birth certificate and Philsys (national ID)",
+    "Open a GCash mobile wallet using just your phone number — fastest way to receive remittances from the U.S.",
+    "Open a full bank account at BDO, BPI, or Metrobank using your PhilSys ID and PSA birth certificate",
+    "Register with DOLE (Department of Labour and Employment) for job placement and livelihood programs",
+    "Contact OWWA (Overseas Workers Welfare Administration) for any returning OFW reintegration support you may qualify for",
+  ],
+  businessDirectory: [
+    "Philippine Statistics Authority (PSA) — birth certificate and PhilSys national ID issuance",
+    "DOLE (Department of Labour and Employment) — job placement and livelihood assistance programs",
+    "OWWA (Overseas Workers Welfare Administration) — OFW reintegration and welfare support",
+    "BDO and BPI bank branches — banking with PhilSys ID and PSA documentation",
+    "Globe and Smart stores — SIM cards and mobile data plans",
+    "GCash and Maya (PayMaya) — mobile wallets for remittances and cashless transactions",
+  ],
 };
 
 export default philippines;

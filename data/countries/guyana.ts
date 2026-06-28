@@ -141,6 +141,24 @@ const guyana: CountryData = {
     "Georgetown housing deportee",
   ],
   relatedCountries: ["trinidad-and-tobago", "venezuela", "brazil"],
+  firstThirtyDays: [
+    "Arrive at Cheddi Jagan International Airport in Timehri — Guyana immigration processes returning nationals",
+    "Get a Digicel or GTT (Guyana Telephone & Telegraph) SIM card at the airport or any carrier store",
+    "Contact family networks in Georgetown or your home region — Indo-Guyanese and Afro-Guyanese community ties are strong",
+    "Visit the Guyana Registry of Births, Deaths and Marriages to obtain your birth certificate and national ID",
+    "Open a bank account at Republic Bank Guyana, Scotiabank Guyana, or Citizens Bank using your national ID",
+    "Register with the Ministry of Labour for employment assistance and apprenticeship programs",
+    "Contact the Ministry of Human Services and Social Security for transitional welfare programs",
+    "Explore opportunities in Guyana's oil and gas sector through the Natural Resources Ministry — the sector is growing rapidly",
+  ],
+  businessDirectory: [
+    "Guyana Registry of Births, Deaths and Marriages — birth certificate and national ID documentation",
+    "Ministry of Human Services and Social Security — transitional welfare and social assistance",
+    "Republic Bank Guyana and Citizens Bank branches — banking with national ID",
+    "Digicel Guyana and GTT stores — SIM cards and mobile data plans",
+    "Ministry of Labour — employment placement and apprenticeship programs",
+    "Guyana Oil & Gas Association — information on the growing energy sector job opportunities",
+  ],
 };
 
 export default guyana;

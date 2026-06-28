@@ -142,6 +142,24 @@ const ethiopia: CountryData = {
     "Ethiopian diaspora deportee",
   ],
   relatedCountries: ["somalia", "cameroon", "nigeria"],
+  firstThirtyDays: [
+    "Arrive at Bole International Airport in Addis Ababa — Ethiopian immigration processes returning nationals",
+    "Get an Ethio Telecom SIM card at the airport or any Ethio Telecom branch — requires your Kebele ID or passport",
+    "Contact family networks in Addis Ababa or your home region — Ethiopian ethnic and regional ties (Amhara, Oromo, Tigray, etc.) are vital",
+    "Visit your local Kebele (local administrative unit) to obtain or renew your Kebele ID and household registration",
+    "Open a bank account at Commercial Bank of Ethiopia (CBE) or Awash Bank using your Kebele ID",
+    "Set up Telebirr (Ethio Telecom mobile money) for receiving remittances from family in the U.S.",
+    "Register with the Federal TVET Agency for free vocational and technical education and training",
+    "Contact the Ministry of Labour and Social Affairs for employment assistance and social welfare programs",
+  ],
+  businessDirectory: [
+    "Kebele administration offices — local ID registration, household documentation, and community services",
+    "Commercial Bank of Ethiopia (CBE) branches — banking with Kebele ID documentation",
+    "Ethio Telecom outlets — SIM cards, Telebirr mobile money, and mobile data plans",
+    "Federal TVET Agency — free vocational and technical education and training programs",
+    "Ministry of Labour and Social Affairs — employment placement and social welfare",
+    "Ethiopian Human Rights Commission — legal protection and rights advocacy for returnees",
+  ],
 };
 
 export default ethiopia;

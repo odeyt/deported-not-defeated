@@ -142,6 +142,24 @@ const ukraine: CountryData = {
     "TPS Ukraine",
   ],
   relatedCountries: ["poland", "romania", "albania"],
+  firstThirtyDays: [
+    "Arrive at Boryspil International Airport (Kyiv) or Lviv Danylo Halytskyi — Ukrainian State Border Guard processes returning Ukrainian nationals",
+    "Get a Kyivstar, Vodafone Ukraine, or lifecell SIM at the airport or any carrier store — requires your Ukrainian passport or ID card",
+    "Contact family networks in your home oblast (region) — Ukrainian regional community ties are strong; wartime support networks have also developed",
+    "Visit the State Migration Service or your local CNAP (Center for Administrative Services) to renew your internal passport (ID card) or biometric passport",
+    "Open a bank account at PrivatBank, Monobank, or PUMB using your ID card — PrivatBank is the most widely used",
+    "Set up Monobank or PrivatBank Privat24 app for digital banking and receiving transfers from abroad",
+    "Register with the State Employment Service (Derzhavna Sluzhba Zainiatosti) for job placement assistance",
+    "Contact local volunteer organizations and community support networks — Ukraine has extensive civil society support due to the ongoing conflict",
+  ],
+  businessDirectory: [
+    "CNAP (Center for Administrative Services) — passport and ID card renewal, government services",
+    "State Employment Service — job placement and vocational retraining programs",
+    "PrivatBank and PUMB branches — banking with Ukrainian ID documentation",
+    "Kyivstar and Vodafone Ukraine stores — SIM cards and mobile data plans",
+    "Monobank (app-only) — digital banking and money transfers with minimal documentation",
+    "Legal Aid Centers (Bezoplata Pravova Dopomoha) — free legal assistance for vulnerable citizens",
+  ],
 };
 
 export default ukraine;

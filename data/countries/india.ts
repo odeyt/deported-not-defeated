@@ -142,6 +142,24 @@ const india: CountryData = {
     "Ayushman Bharat healthcare",
   ],
   relatedCountries: ["pakistan", "bangladesh", "nepal"],
+  firstThirtyDays: [
+    "Arrive at Indira Gandhi International Airport (Delhi) or Chhatrapati Shivaji (Mumbai) — immigration processes returning Indian nationals",
+    "Get a Jio, Airtel, or Vi (Vodafone Idea) SIM at the airport or any authorized outlet — requires your Aadhaar or passport",
+    "Contact family networks in your home state — Indian regional, caste, and linguistic community ties are essential support",
+    "Visit the nearest Aadhaar Seva Kendra to update your Aadhaar card (biometric national ID) — foundational document for all services",
+    "Your Aadhaar is linked to bank accounts, SIM cards, healthcare, and government services — top priority",
+    "Open a bank account at State Bank of India (SBI), Punjab National Bank, or any public sector bank using your Aadhaar",
+    "Register with the nearest employment exchange or use the National Career Service (NCS) portal for job placement",
+    "Enroll in Ayushman Bharat (PM-JAY) if eligible for free public healthcare coverage",
+  ],
+  businessDirectory: [
+    "Aadhaar Seva Kendra — Aadhaar card update and biometric re-enrollment centers",
+    "State Bank of India (SBI) branches — banking with Aadhaar documentation nationwide",
+    "Jio and Airtel stores — SIM cards and mobile data plans",
+    "National Career Service (NCS) portal — online job placement and employment exchanges",
+    "Pradhan Mantri Jan Dhan Yojana centers — zero-balance bank account program for low-income citizens",
+    "Ayushman Bharat (PM-JAY) enrollment centers — free public healthcare for qualifying families",
+  ],
 };
 
 export default india;

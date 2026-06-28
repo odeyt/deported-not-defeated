@@ -142,6 +142,24 @@ const indonesia: CountryData = {
     "GoPay OVO Indonesia",
   ],
   relatedCountries: ["philippines", "malaysia", "vietnam"],
+  firstThirtyDays: [
+    "Arrive at Soekarno-Hatta International Airport (Jakarta) or Ngurah Rai (Bali) — Directorate General of Immigration processes returning nationals",
+    "Get a Telkomsel, Indosat Ooredoo, or XL Axiata SIM at the airport or any minimarket — requires your KTP or passport",
+    "Contact family networks in your kampung or kota — Indonesian community ties are organized by island and ethnic region",
+    "Visit the Dinas Kependudukan dan Pencatatan Sipil (Disdukcapil) in your kecamatan to update or obtain your KTP (national ID) and KK (family card)",
+    "Your KTP is essential for banking, employment, BPJS healthcare, and all government services",
+    "Open a bank account at Bank Mandiri, BCA, or BRI using your KTP and KK",
+    "Register for BPJS Kesehatan (public health insurance) at your nearest BPJS office using your KTP",
+    "Set up GoPay or OVO digital wallet for everyday transactions — widely accepted across Indonesian cities",
+  ],
+  businessDirectory: [
+    "Disdukcapil (Dinas Kependudukan dan Pencatatan Sipil) — KTP and KK registration and issuance",
+    "BPJS Kesehatan offices — public health insurance enrollment for Indonesian citizens",
+    "Bank Mandiri and BRI branches — banking with KTP documentation",
+    "Telkomsel and Indosat Ooredoo stores — SIM cards and mobile data plans",
+    "GoPay and OVO — digital wallets for remittances and cashless transactions",
+    "Disnaker (Dinas Tenaga Kerja) offices — employment placement and skills training programs",
+  ],
 };
 
 export default indonesia;

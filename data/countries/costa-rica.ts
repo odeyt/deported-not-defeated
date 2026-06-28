@@ -141,6 +141,24 @@ const costaRica: CountryData = {
     "Costa Rica call center jobs",
   ],
   relatedCountries: ["panama", "nicaragua", "colombia"],
+  firstThirtyDays: [
+    "Arrive at Juan Santamaría International Airport in Alajuela — Costa Rican immigration processes returning nationals",
+    "Get a Kolbi (ICE), Movistar, or Claro Costa Rica SIM at the airport or any store — requires your cédula or passport",
+    "Contact family or community connections in the Gran Metropolitan Area (GAM) or your home province",
+    "Visit the TSE (Tribunal Supremo de Elecciones) to obtain or renew your cédula de identidad",
+    "Open a bank account at Banco Nacional, BCR (Banco de Costa Rica), or BAC Credomatic using your cédula",
+    "Register with the MTSS (Ministerio de Trabajo y Seguridad Social) for employment assistance",
+    "Enroll in the CCSS (Caja Costarricense de Seguro Social) for healthcare and social security benefits",
+    "Check IMAS (Instituto Mixto de Ayuda Social) for transitional social assistance programs",
+  ],
+  businessDirectory: [
+    "TSE (Tribunal Supremo de Elecciones) — cédula de identidad issuance nationwide",
+    "CCSS (Caja Costarricense de Seguro Social) — public healthcare and social security enrollment",
+    "IMAS (Instituto Mixto de Ayuda Social) — transitional assistance and social programs",
+    "Banco Nacional and BCR branches — banking with cédula documentation",
+    "Kolbi (ICE) and Claro Costa Rica stores — SIM cards and mobile plans",
+    "MTSS (Ministerio de Trabajo) offices — employment placement and labor rights",
+  ],
 };
 
 export default costaRica;

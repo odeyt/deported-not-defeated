@@ -141,6 +141,24 @@ const jamaica: CountryData = {
     "Digicel SIM Jamaica",
   ],
   relatedCountries: ["dominican-republic", "trinidad-and-tobago", "bahamas"],
+  firstThirtyDays: [
+    "Arrive at Norman Manley International Airport (Kingston) or Sangster International (Montego Bay) — Jamaican immigration processes returning nationals",
+    "Get a Digicel or Flow (C&W) Jamaica SIM card at the airport or any carrier store — no ID required for prepaid",
+    "Contact family or community connections in your parish — parish networks are strong and essential",
+    "Visit the Registrar General's Department (RGD) to obtain your birth certificate and national ID",
+    "Open a bank account at National Commercial Bank (NCB), Scotiabank Jamaica, or JN Bank using your national ID",
+    "Register with HEART/NSTA Trust for free vocational skills training and job placement programs",
+    "Contact the Ministry of Labour and Social Security for employment placement and social welfare",
+    "Reach out to JASDEP (Jamaica Social Development Commission) for community and deportee support programs",
+  ],
+  businessDirectory: [
+    "Registrar General's Department (RGD) — birth certificate and national ID issuance",
+    "HEART/NSTA Trust — free vocational training and employment certification programs",
+    "Ministry of Labour and Social Security — employment placement and social welfare services",
+    "National Commercial Bank (NCB) branches — banking with national ID documentation",
+    "Digicel Jamaica and Flow stores — SIM cards and mobile data plans",
+    "Jamaica Social Development Commission (JSDC) — community programs and deportee reintegration support",
+  ],
 };
 
 export default jamaica;

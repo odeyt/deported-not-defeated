@@ -142,6 +142,24 @@ const ghana: CountryData = {
     "Ghana diaspora returnee",
   ],
   relatedCountries: ["nigeria", "liberia", "sierra-leone"],
+  firstThirtyDays: [
+    "Arrive at Kotoka International Airport in Accra — Ghana Immigration Service processes returning nationals",
+    "Get an MTN Ghana, Vodafone Ghana, or AirtelTigo SIM at the airport or any vendor — requires your Ghana Card or passport",
+    "Contact family networks in your region or hometown — Ghanaian family ties by ethnic community (Akan, Ewe, Ga, Dagomba) are strong",
+    "Visit the National Identification Authority (NIA) to obtain or renew your Ghana Card (national ID)",
+    "Your Ghana Card is required for banking, SIM registration, voting, and government services",
+    "Open a bank account at GCB Bank, Ecobank Ghana, or Fidelity Bank using your Ghana Card",
+    "Set up MTN Mobile Money (MoMo) for receiving remittances — widely used across Ghana",
+    "Register with the Ghana Employment and Labour Relations Commission for job placement assistance",
+  ],
+  businessDirectory: [
+    "National Identification Authority (NIA) — Ghana Card issuance and biometric registration",
+    "Ghana Employment and Labour Relations Commission — job placement and labor rights services",
+    "GCB Bank and Ecobank Ghana branches — banking with Ghana Card documentation",
+    "MTN Ghana and AirtelTigo stores — SIM cards and mobile data plans",
+    "MTN Mobile Money (MoMo) — mobile wallet widely used for remittances and payments",
+    "NHIS (National Health Insurance Scheme) enrollment centers — public health insurance registration",
+  ],
 };
 
 export default ghana;

@@ -141,6 +141,24 @@ const cameroon: CountryData = {
     "Anglophone crisis Cameroon deportee",
   ],
   relatedCountries: ["nigeria", "ghana", "ethiopia"],
+  firstThirtyDays: [
+    "Arrive at Douala International Airport or Nsimalen Airport (Yaoundé) — Cameroonian immigration processes returning nationals",
+    "Get an MTN Cameroon or Orange Cameroon SIM at the airport or any vendor — requires your CNI (Carte Nationale d'Identité) or passport",
+    "Contact family networks in your region — Cameroon's bilingual (French/English) population is organized by region and ethnic community",
+    "Visit the MINATD (Ministère de l'Administration Territoriale) or your sous-préfecture to obtain or renew your CNI",
+    "Open a bank account at Afriland First Bank, Ecobank Cameroon, or CCA Bank using your CNI",
+    "Set up MTN Mobile Money (MoMo) or Orange Money for receiving remittances — widely used across Cameroon",
+    "Register with the Ministry of Employment and Vocational Training for job placement assistance",
+    "If you are Anglophone, contact civil society organizations for community support — the Northwest and Southwest regions face specific challenges",
+  ],
+  businessDirectory: [
+    "MINATD sous-préfecture offices — CNI (national ID) issuance and civil registration",
+    "Ministry of Employment and Vocational Training — employment placement and skills programs",
+    "Afriland First Bank and Ecobank Cameroon branches — banking with CNI documentation",
+    "MTN Cameroon and Orange Cameroon stores — SIM cards and mobile data plans",
+    "MTN Mobile Money (MoMo) and Orange Money — mobile wallets for remittances and payments",
+    "UNHCR Cameroon — protection and legal guidance for vulnerable returnees",
+  ],
 };
 
 export default cameroon;

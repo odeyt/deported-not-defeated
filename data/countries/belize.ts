@@ -141,6 +141,24 @@ const belize: CountryData = {
     "BTL SIM card Belize",
   ],
   relatedCountries: ["guatemala", "honduras", "mexico"],
+  firstThirtyDays: [
+    "Arrive at Philip S.W. Goldson International Airport in Belize City — Belize Immigration processes returning nationals",
+    "Get a BTL (Belize Telemedia Limited) or Smart (Digi) SIM card — available in Belize City at any carrier store",
+    "Contact family or community connections immediately — Belize's small population means tight community networks",
+    "Visit the Belize Registry to obtain or renew your Belize national ID or birth certificate",
+    "Open a bank account at Belize Bank, Atlantic Bank, or Heritage Bank using your national ID and birth certificate",
+    "Register with the Department of Labour for employment placement assistance",
+    "Contact the National Organization for the Prevention of Child Abuse and Neglect (NOPCAN) if you have children in Belize",
+    "Explore the Belize Social Security Board for any social security benefits you may qualify for",
+  ],
+  businessDirectory: [
+    "Belize National Registry — birth certificate and national ID issuance",
+    "Department of Labour — employment placement and labor rights services",
+    "Belize Social Security Board — social security registration and benefits",
+    "Belize Bank and Atlantic Bank branches — banking with national ID documentation",
+    "BTL (Digi) and Smart stores — SIM cards and mobile plans",
+    "Ministry of Human Development — social welfare and transitional assistance",
+  ],
 };
 
 export default belize;

@@ -141,6 +141,24 @@ const peru: CountryData = {
     "Claro Entel SIM Peru",
   ],
   relatedCountries: ["ecuador", "colombia", "brazil"],
+  firstThirtyDays: [
+    "Arrive at Jorge Chávez International Airport in Lima — Migraciones (Superintendencia Nacional de Migraciones) processes returning Peruvians",
+    "Get a Claro, Entel, or Movistar Peru SIM card at the airport or any authorized vendor — requires DNI or passport",
+    "Contact family networks in your región or distrito — Peruvian family ties are regionally and culturally strong",
+    "Visit RENIEC (Registro Nacional de Identificación y Estado Civil) to obtain or renew your DNI (Documento Nacional de Identidad)",
+    "Your DNI is required for banking, employment, healthcare, and all government services",
+    "Open a bank account at BCP (Banco de Crédito), Interbank, or Banco de la Nación using your DNI",
+    "Register with SENATI (Servicio Nacional de Adiestramiento en Trabajo Industrial) for free vocational training",
+    "Enroll in SIS (Seguro Integral de Salud) for free public healthcare coverage",
+  ],
+  businessDirectory: [
+    "RENIEC (Registro Nacional de Identificación y Estado Civil) — DNI issuance and documentation services",
+    "SENATI (Servicio Nacional de Adiestramiento en Trabajo Industrial) — free vocational and technical training",
+    "SIS (Seguro Integral de Salud) — free public healthcare enrollment for low-income citizens",
+    "Banco de la Nación and BCP branches — banking with DNI documentation",
+    "Claro Peru and Entel stores — SIM cards and mobile data plans",
+    "Ministerio de Trabajo y Promoción del Empleo — employment placement and labor rights services",
+  ],
 };
 
 export default peru;

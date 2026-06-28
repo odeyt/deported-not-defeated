@@ -142,6 +142,24 @@ const russia: CountryData = {
     "Russian military mobilization deportee",
   ],
   relatedCountries: ["ukraine", "poland", "romania"],
+  firstThirtyDays: [
+    "Arrive at Sheremetyevo (Moscow) or Pulkovo (St. Petersburg) airport — Russian FSB border control processes returning Russian nationals",
+    "Get an MTS, Beeline, MegaFon, or Tele2 SIM at any carrier store — requires your Russian internal passport (паспорт)",
+    "Contact family networks in your home city or region — Russian city-based family ties are primary support",
+    "Visit the MFC (Multifunctional Center, МФЦ) to obtain or renew your внутренний паспорт (internal Russian passport) — required for all services",
+    "Open a bank account at Sberbank or VTB — most Western money transfer services are blocked due to sanctions; use Mir payment system",
+    "Set up a SBP (Система Быстрых Платежей) transfer from family using alternative channels such as wire transfers through non-sanctioned banks or crypto",
+    "Register at your local housing registry (ЖЭК/МФЦ) for your propiska (residence registration) — required for employment and services",
+    "Be aware of mandatory military registration requirements if you are a male citizen of conscription age — consult legal counsel",
+  ],
+  businessDirectory: [
+    "MFC (Многофункциональный Центр / МФЦ) — government services, passport renewal, and registration",
+    "Sberbank and VTB branches — banking with internal passport documentation",
+    "MTS and MegaFon stores — SIM cards and mobile data plans",
+    "Gosuslugi (gosuslugi.ru) — government services portal for document applications and registrations",
+    "Mir payment system — domestic card system for payments given Western card restrictions",
+    "Pensionny Fond Rossii (PFR) — pension and social insurance registration",
+  ],
 };
 
 export default russia;

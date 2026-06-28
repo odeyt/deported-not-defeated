@@ -141,6 +141,24 @@ const cuba: CountryData = {
     "Havana housing deportee",
   ],
   relatedCountries: ["dominican-republic", "haiti", "jamaica"],
+  firstThirtyDays: [
+    "Arrive at José Martí International Airport in Havana — Cuban immigration processes returning nationals",
+    "Get an ETECSA Cubacel SIM card at an ETECSA office — Nauta prepaid plans required; internet access is limited",
+    "Contact family immediately — Cuban family networks are the backbone of transitional support given limited government resources",
+    "Visit the nearest MININT (Ministerio del Interior) office to renew your carné de identidad (national ID)",
+    "Register with your local CDR (Comité de Defensa de la Revolución) — this facilitates access to local services",
+    "Open a bank account at Banco Metropolitano or BPA to access your MLC (freely convertible currency) account",
+    "Enroll in INDER or local workplace programs if you have vocational or sports skills",
+    "Contact the Cuban Red Cross for emergency transitional assistance and social services referrals",
+  ],
+  businessDirectory: [
+    "MININT (Ministerio del Interior) — carné de identidad renewal and registration",
+    "ETECSA offices — SIM cards, Nauta internet accounts, and mobile plans",
+    "Banco Metropolitano and BPA branches — banking and MLC (convertible currency) account access",
+    "CDR (Comité de Defensa de la Revolución) local chapters — community services and local registration",
+    "Cuban Red Cross — emergency assistance and social services coordination",
+    "MINCIN (Ministerio de Comercio Interior) — libreta supply ration book and essential goods access",
+  ],
 };
 
 export default cuba;

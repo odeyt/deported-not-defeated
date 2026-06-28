@@ -142,6 +142,24 @@ const myanmar: CountryData = {
     "Burma Task Force USA",
   ],
   relatedCountries: ["thailand", "laos", "bangladesh"],
+  firstThirtyDays: [
+    "Arrive at Yangon International Airport — immigration processes are managed by Myanmar's military administration; travel with caution",
+    "Get a Ooredoo Myanmar or MPT SIM card at the airport or any vendor — requires passport or NRC (national ID)",
+    "Contact family networks immediately — ethnic and regional community ties (Bamar, Karen, Shan, etc.) are critical for safety and support",
+    "Visit the General Administration Department (GAD) in your township to register your NRC (National Registration Card)",
+    "Your NRC is required for banking and local services — priority document to obtain or renew",
+    "Open a bank account at KBZ Bank, CB Bank, or AYA Bank using your NRC and household registration",
+    "Connect with SEARAC (Southeast Asia Resource Action Center) for U.S.-based community support resources",
+    "Contact the UNHCR Myanmar office or local civil society organizations for protection and legal guidance given the political situation",
+  ],
+  businessDirectory: [
+    "General Administration Department (GAD) township offices — NRC registration and household documentation",
+    "KBZ Bank and CB Bank branches — banking with NRC and household registration",
+    "Ooredoo Myanmar and MPT stores — SIM cards and mobile data plans",
+    "UNHCR Myanmar — protection and legal guidance for vulnerable returnees",
+    "KBZPay and Wave Money — mobile wallets for receiving remittances without full banking access",
+    "Local Buddhist monasteries (kyaung) — community housing and transitional support networks",
+  ],
 };
 
 export default myanmar;

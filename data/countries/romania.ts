@@ -142,6 +142,24 @@ const romania: CountryData = {
     "Romania IT sector jobs",
   ],
   relatedCountries: ["albania", "ukraine", "poland"],
+  firstThirtyDays: [
+    "Arrive at Henri Coandă International Airport (Bucharest) or Cluj-Napoca International — Romanian Border Police processes returning nationals",
+    "Get an Orange, Vodafone, Digi, or Telekom Romania SIM at the airport or any store — prepaid SIMs require your CI (national ID) or passport",
+    "Contact family networks in your hometown (sat or oraș) — Romanian family and Orthodox Christian community ties are strong",
+    "Visit the local Direcție de Evidență a Persoanelor (DEP) to obtain or renew your Carte de Identitate (CI — Romanian national ID)",
+    "Open a bank account at BRD, BCR, or Banca Transilvania using your CI and proof of address",
+    "Register with ANOFM (Agenția Națională pentru Ocuparea Forței de Muncă) for free employment placement and vocational training",
+    "Enroll in CNAS (Casa Națională de Asigurări de Sănătate) for Romanian public health insurance",
+    "As an EU citizen, you have the right to work freely in any EU member state — explore options if Romania's job market is limited",
+  ],
+  businessDirectory: [
+    "DEP (Direcție de Evidență a Persoanelor) local offices — Carte de Identitate issuance nationwide",
+    "ANOFM (Agenția Națională pentru Ocuparea Forței de Muncă) — free employment placement and training",
+    "BRD and Banca Transilvania branches — banking with CI documentation",
+    "Orange Romania and Digi stores — SIM cards and mobile data plans",
+    "CNAS enrollment offices — public health insurance registration",
+    "Asociația pentru Relații Comunitare — civil society support and community programs",
+  ],
 };
 
 export default romania;

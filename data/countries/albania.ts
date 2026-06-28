@@ -141,6 +141,24 @@ const albania: CountryData = {
     "Albanian community New York deportee",
   ],
   relatedCountries: ["romania", "ukraine", "poland"],
+  firstThirtyDays: [
+    "Arrive at Tirana International Airport Nënë Tereza — Albanian Border Police processes returning nationals",
+    "Get a Vodafone Albania, ONE Albania, or ALBtelecom SIM at the airport or any carrier store — requires your ID card or passport",
+    "Contact family networks in Tirana or your home fis (clan) region — Albanian family and regional community ties are vital",
+    "Visit the local Civil Registration Office (Gjendja Civile) to obtain or renew your Letërnjoftim (Albanian national ID card)",
+    "Open a bank account at Raiffeisen Bank Albania, BKT (Banka Kombëtare Tregtare), or OTP Bank using your Letërnjoftim",
+    "Register with the National Employment Service (Shërbimi Kombëtar i Punësimit) for free job placement assistance",
+    "Enroll in the National Health Service (ISKSH) for public healthcare coverage",
+    "As an aspiring EU candidate nation, Albania has growing IT and service sectors in Tirana — English skills are valuable",
+  ],
+  businessDirectory: [
+    "Gjendja Civile (Civil Registration Office) — Letërnjoftim (national ID) issuance nationwide",
+    "National Employment Service (Shërbimi Kombëtar i Punësimit) — job placement and vocational training",
+    "Raiffeisen Bank Albania and BKT branches — banking with Letërnjoftim documentation",
+    "Vodafone Albania and ONE Albania stores — SIM cards and mobile data plans",
+    "ISKSH (Health Insurance Fund) — public health insurance enrollment",
+    "Open Data Albania and civil society organizations — legal rights and community support resources",
+  ],
 };
 
 export default albania;

@@ -141,6 +141,24 @@ const honduras: CountryData = {
     "Honduras maquila jobs",
   ],
   relatedCountries: ["el-salvador", "guatemala", "nicaragua"],
+  firstThirtyDays: [
+    "Arrive at Ramón Villeda Morales Airport (San Pedro Sula) or Toncontín Airport (Tegucigalpa) — Honduran immigration processes returning nationals",
+    "Get a Claro or Tigo Honduras SIM at the airport or any authorized vendor — requires your DNI or passport",
+    "Contact family in your municipio — community networks are the strongest immediate support resource",
+    "Visit the Registro Nacional de las Personas (RNP) to obtain or renew your DNI (Documento Nacional de Identidad)",
+    "Your DNI is required for banking, employment, and all government services",
+    "Open a bank account at Banco Atlántida, BAC, or Ficohsa using your DNI",
+    "Contact FONAMIH (Foro Nacional para las Migraciones en Honduras) for deportee reintegration support",
+    "Register with the Secretaría de Trabajo y Seguridad Social for free employment placement services",
+  ],
+  businessDirectory: [
+    "RNP (Registro Nacional de las Personas) — DNI issuance and identity documentation services",
+    "FONAMIH (Foro Nacional para las Migraciones en Honduras) — deportee reintegration support and advocacy",
+    "Secretaría de Trabajo y Seguridad Social — free employment placement and labor rights services",
+    "Banco Atlántida and Ficohsa branches — banking accessible with DNI documentation",
+    "Claro Honduras and Tigo Honduras stores — SIM cards and mobile data plans",
+    "IHSS (Instituto Hondureño de Seguridad Social) — social security and healthcare registration",
+  ],
 };
 
 export default honduras;

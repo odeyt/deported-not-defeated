@@ -143,6 +143,24 @@ const nigeria: CountryData = {
     "Nigeria tech jobs returnee",
   ],
   relatedCountries: ["ghana", "liberia", "cameroon"],
+  firstThirtyDays: [
+    "Arrive at Murtala Muhammed Airport (Lagos) or Nnamdi Azikiwe Airport (Abuja) — Nigerian Immigration Service processes returning nationals",
+    "Get a SIM card at the airport — MTN or Airtel kiosks are available; SIM registration requires your NIN or passport",
+    "Contact family in your state of origin immediately — ethnic community networks (Yoruba, Igbo, Hausa) are your strongest support system",
+    "Visit a NIMC enrollment center to activate or re-obtain your National Identification Number (NIN) — required for banking, SIM, and government services",
+    "Open a mobile money account with Opay or Kuda using just your phone number to receive transfers before you get a full bank account",
+    "Visit an Access Bank, GTBank, or First Bank branch to open a full account — requires NIN and a utility address",
+    "Register with NEMA (National Emergency Management Agency) if you need transitional housing or emergency support",
+    "Download Remitly or Wise to receive money from family in the U.S. at low fees",
+  ],
+  businessDirectory: [
+    "NIMC enrollment centers — National Identity Management Commission, for NIN registration (nimc.gov.ng)",
+    "Nigerian Immigration Service offices — passport applications and travel document renewal (immigration.gov.ng)",
+    "NEMA (National Emergency Management Agency) — emergency support and transitional assistance for returnees",
+    "Legal Aid Council of Nigeria — free legal services for qualifying low-income returnees",
+    "Jobberman.com — largest formal job board in Nigeria for employment listings",
+    "Opay and Kuda fintech offices — digital banking sign-up without full bank documentation",
+  ],
 };
 
 export default nigeria;

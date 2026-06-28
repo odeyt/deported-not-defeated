@@ -142,6 +142,24 @@ const cambodia: CountryData = {
     "SEARAC Cambodian deportee",
   ],
   relatedCountries: ["laos", "vietnam", "thailand"],
+  firstThirtyDays: [
+    "Arrive at Phnom Penh International Airport or Siem Reap International — Cambodian immigration processes returning nationals",
+    "Get a Smart, Metfone, or CellCard SIM at the airport or any vendor — prepaid SIMs are widely available",
+    "Contact family networks immediately — Buddhist temple communities are key support structures",
+    "Visit the Ministry of Interior to obtain or renew your National ID Card (Khmer ID)",
+    "Open an ABA Bank or ACLEDA Bank account using your national ID — both offer mobile banking apps",
+    "Connect with SEARAC (Southeast Asia Resource Action Center) for deportee family and community resources",
+    "Register with the Ministry of Labour and Vocational Training for employment placement programs",
+    "Seek support from TPO Cambodia (Transcultural Psychosocial Organization) for mental health services",
+  ],
+  businessDirectory: [
+    "Ministry of Interior — Khmer national ID card issuance and registration",
+    "ABA Bank and ACLEDA Bank branches — banking and mobile money services",
+    "Smart Axiata, Metfone, and CellCard stores — SIM cards and mobile data plans",
+    "Ministry of Labour and Vocational Training — employment placement and skills programs",
+    "TPO Cambodia — mental health and psychosocial support for returning deportees",
+    "National Authority for Combating Human Trafficking — legal protection for vulnerable returnees",
+  ],
 };
 
 export default cambodia;

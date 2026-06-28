@@ -141,6 +141,24 @@ const bahamas: CountryData = {
     "Bahamas tourism jobs",
   ],
   relatedCountries: ["jamaica", "dominican-republic", "trinidad-and-tobago"],
+  firstThirtyDays: [
+    "Arrive at Lynden Pindling International Airport in Nassau — Bahamian immigration processes returning nationals",
+    "Get a BTC (ALIV) or BTC Prepaid SIM card at the airport or any carrier store — requires passport or national ID",
+    "Contact family networks on your island — island communities in the Bahamas are tight-knit and supportive",
+    "Visit the Department of Immigration and the Civil Registry to obtain or renew your Bahamian national ID",
+    "Open a bank account at Commonwealth Bank, Royal Bank of Canada, or Bank of Bahamas using your national ID",
+    "Register with the Department of Labour for employment placement and skills training programs",
+    "Enroll in the National Insurance Board (NIB) to access health and social security benefits",
+    "Contact the Bahamas Department of Social Services for transitional welfare assistance",
+  ],
+  businessDirectory: [
+    "Department of Immigration and Civil Registry — national ID and birth certificate issuance",
+    "National Insurance Board (NIB) — social security and healthcare enrollment",
+    "Department of Social Services — transitional welfare and emergency assistance",
+    "Commonwealth Bank and Royal Bank of Canada branches — banking with national ID",
+    "BTC (ALIV) stores — SIM cards and mobile data plans",
+    "Department of Labour — employment placement and vocational training services",
+  ],
 };
 
 export default bahamas;
