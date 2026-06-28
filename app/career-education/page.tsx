@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Info, AlertTriangle } from "lucide-react";
 import {
-  Briefcase, GraduationCap, Laptop, Globe, TrendingUp,
-  FileText, Award, BookOpen, ArrowRight, Info, AlertTriangle,
-} from "lucide-react";
+  IconBriefcase, IconGradCap, IconLaptop, IconGlobe,
+  IconTrending, IconResume, IconCertificate, IconBook,
+  IconRocket,
+} from "@/components/career/CareerIcons";
 import CareerPathFinder from "@/components/career/CareerPathFinder";
 import CourseComparisonTable from "@/components/career/CourseComparisonTable";
 import CareerEmailCapture from "@/components/career/CareerEmailCapture";
@@ -21,14 +23,14 @@ export const metadata: Metadata = {
 };
 
 const SECTIONS = [
-  { icon: Briefcase,    label: "Find Jobs",             href: "#find-jobs",      desc: "Local jobs for returnees",            color: "text-emerald-600 bg-emerald-50" },
-  { icon: BookOpen,     label: "Learn New Skills",       href: "#learn-skills",   desc: "Online courses & platforms",          color: "text-blue-600 bg-blue-50" },
-  { icon: GraduationCap,label: "Teach English",          href: "#teach-english",  desc: "TEFL/TESOL certification paths",      color: "text-violet-600 bg-violet-50" },
-  { icon: Laptop,       label: "Remote Work",            href: "#remote-work",    desc: "Freelance & online income",           color: "text-teal-600 bg-teal-50" },
-  { icon: TrendingUp,   label: "Start a Business",       href: "#start-business", desc: "Micro-business ideas & tools",        color: "text-rose-600 bg-rose-50" },
-  { icon: FileText,     label: "Resume & Interview",     href: "#resume",         desc: "Build a resume, prep for interviews", color: "text-orange-600 bg-orange-50" },
-  { icon: Award,        label: "Certifications",         href: "#certifications", desc: "Industry-recognized credentials",     color: "text-amber-600 bg-amber-50" },
-  { icon: Globe,        label: "Free Training",          href: "#free-training",  desc: "No-cost learning resources",          color: "text-indigo-600 bg-indigo-50" },
+  { Icon: IconBriefcase,  label: "Find Jobs",           href: "#find-jobs",      color: "text-emerald-500" },
+  { Icon: IconBook,       label: "Learn New Skills",    href: "#learn-skills",   color: "text-blue-500" },
+  { Icon: IconGradCap,    label: "Teach English",       href: "#teach-english",  color: "text-violet-500" },
+  { Icon: IconLaptop,     label: "Remote Work",         href: "#remote-work",    color: "text-teal-400" },
+  { Icon: IconTrending,   label: "Start a Business",    href: "#start-business", color: "text-rose-500" },
+  { Icon: IconResume,     label: "Resume & Interview",  href: "#resume",         color: "text-orange-500" },
+  { Icon: IconCertificate,label: "Certifications",      href: "#certifications", color: "text-amber-500" },
+  { Icon: IconGlobe,      label: "Free Training",       href: "#free-training",  color: "text-indigo-400" },
 ];
 
 // Course affiliate cards data
@@ -46,7 +48,7 @@ const COURSES = [
     gradient: "from-orange-400 to-red-500",
     iconBg: "bg-orange-50",
     iconColor: "text-orange-600",
-    icon: <BookOpen size={18} />,
+    icon: <IconBook size={18} />,
   },
   {
     name: "Coursera",
@@ -61,7 +63,7 @@ const COURSES = [
     gradient: "from-blue-400 to-indigo-600",
     iconBg: "bg-blue-50",
     iconColor: "text-blue-600",
-    icon: <GraduationCap size={18} />,
+    icon: <IconGradCap size={18} />,
   },
   {
     name: "Alison",
@@ -76,7 +78,7 @@ const COURSES = [
     gradient: "from-green-400 to-teal-500",
     iconBg: "bg-green-50",
     iconColor: "text-green-600",
-    icon: <Award size={18} />,
+    icon: <IconCertificate size={18} />,
   },
   {
     name: "Skillshare",
@@ -91,7 +93,7 @@ const COURSES = [
     gradient: "from-teal-400 to-cyan-500",
     iconBg: "bg-teal-50",
     iconColor: "text-teal-600",
-    icon: <BookOpen size={18} />,
+    icon: <IconBook size={18} />,
   },
   {
     name: "LinkedIn Learning",
@@ -106,7 +108,7 @@ const COURSES = [
     gradient: "from-blue-500 to-blue-700",
     iconBg: "bg-blue-50",
     iconColor: "text-blue-700",
-    icon: <Briefcase size={18} />,
+    icon: <IconBriefcase size={18} />,
   },
   {
     name: "edX",
@@ -121,7 +123,7 @@ const COURSES = [
     gradient: "from-rose-400 to-red-600",
     iconBg: "bg-rose-50",
     iconColor: "text-rose-600",
-    icon: <GraduationCap size={18} />,
+    icon: <IconGradCap size={18} />,
   },
 ];
 
@@ -139,7 +141,7 @@ const REMOTE_TOOLS = [
     gradient: "from-emerald-400 to-green-600",
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",
-    icon: <Laptop size={18} />,
+    icon: <IconLaptop size={18} />,
   },
   {
     name: "Fiverr",
@@ -154,7 +156,7 @@ const REMOTE_TOOLS = [
     gradient: "from-teal-400 to-emerald-600",
     iconBg: "bg-teal-50",
     iconColor: "text-teal-600",
-    icon: <Globe size={18} />,
+    icon: <IconGlobe size={18} />,
   },
   {
     name: "Grammarly",
@@ -169,7 +171,7 @@ const REMOTE_TOOLS = [
     gradient: "from-green-400 to-teal-500",
     iconBg: "bg-green-50",
     iconColor: "text-green-600",
-    icon: <FileText size={18} />,
+    icon: <IconResume size={18} />,
   },
 ];
 
@@ -195,7 +197,7 @@ export default function CareerEducationPage() {
                 href={s.href}
                 className="group bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-xl p-4 text-center transition-all"
               >
-                <s.icon size={20} className="mx-auto mb-2 text-brand-red group-hover:scale-110 transition-transform" />
+                <s.Icon size={22} className={`mx-auto mb-2 ${s.color} group-hover:scale-110 transition-transform`} />
                 <p className="text-white text-xs font-semibold leading-tight">{s.label}</p>
               </a>
             ))}
@@ -226,7 +228,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
-              <Briefcase size={22} className="text-emerald-600" />
+              <IconBriefcase size={24} className="text-emerald-600" />
             </div>
             <div>
               <p className="text-emerald-600 text-xs font-bold uppercase tracking-widest mb-1">Step One</p>
@@ -272,7 +274,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
-              <BookOpen size={22} className="text-blue-600" />
+              <IconBook size={24} className="text-blue-600" />
             </div>
             <div>
               <p className="text-blue-600 text-xs font-bold uppercase tracking-widest mb-1">Online Courses</p>
@@ -297,7 +299,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
-              <GraduationCap size={22} className="text-violet-600" />
+              <IconGradCap size={24} className="text-violet-600" />
             </div>
             <div>
               <p className="text-violet-600 text-xs font-bold uppercase tracking-widest mb-1">TEFL / TESOL</p>
@@ -385,7 +387,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center shrink-0">
-              <Laptop size={22} className="text-teal-600" />
+              <IconLaptop size={24} className="text-teal-600" />
             </div>
             <div>
               <p className="text-teal-600 text-xs font-bold uppercase tracking-widest mb-1">Remote Work</p>
@@ -434,7 +436,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center shrink-0">
-              <TrendingUp size={22} className="text-rose-600" />
+              <IconTrending size={24} className="text-rose-600" />
             </div>
             <div>
               <p className="text-rose-600 text-xs font-bold uppercase tracking-widest mb-1">Entrepreneurship</p>
@@ -446,10 +448,10 @@ export default function CareerEducationPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
             {[
-              { title: "Website Builder", desc: "Create a professional business website in hours. No coding required.", cta: "Build Your Site", icon: <Globe size={18} /> },
-              { title: "Logo Maker", desc: "Design a professional logo for your business brand quickly and affordably.", cta: "Create Your Logo", icon: <Award size={18} /> },
-              { title: "Business Email", desc: "A professional email address builds trust with clients and customers.", cta: "Get Business Email", icon: <FileText size={18} /> },
-              { title: "Payment Tools", desc: "Accept payments from customers locally and internationally.", cta: "Set Up Payments", icon: <TrendingUp size={18} /> },
+              { title: "Website Builder", desc: "Create a professional business website in hours. No coding required.", cta: "Build Your Site", icon: <IconGlobe size={18} /> },
+              { title: "Logo Maker", desc: "Design a professional logo for your business brand quickly and affordably.", cta: "Create Your Logo", icon: <IconCertificate size={18} /> },
+              { title: "Business Email", desc: "A professional email address builds trust with clients and customers.", cta: "Get Business Email", icon: <IconResume size={18} /> },
+              { title: "Payment Tools", desc: "Accept payments from customers locally and internationally.", cta: "Set Up Payments", icon: <IconTrending size={18} /> },
             ].map((tool) => (
               <div key={tool.title} className="bg-gray-50 border border-gray-200 rounded-2xl p-5 flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-rose-100 flex items-center justify-center shrink-0 text-rose-600">
@@ -477,7 +479,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
-              <FileText size={22} className="text-orange-600" />
+              <IconResume size={24} className="text-orange-600" />
             </div>
             <div>
               <p className="text-orange-600 text-xs font-bold uppercase tracking-widest mb-1">Career Tools</p>
@@ -496,7 +498,7 @@ export default function CareerEducationPage() {
             ].map((tool) => (
               <div key={tool.name} className="bg-white border border-gray-200 rounded-2xl p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
-                  <FileText size={18} className="text-orange-600" />
+                  <IconResume size={20} className="text-orange-600" />
                 </div>
                 <p className="font-bold text-navy-800 text-sm">{tool.name}</p>
                 <p className="text-gray-500 text-xs leading-relaxed">{tool.desc}</p>
@@ -518,7 +520,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center shrink-0">
-              <Award size={22} className="text-amber-600" />
+              <IconCertificate size={24} className="text-amber-600" />
             </div>
             <div>
               <p className="text-amber-600 text-xs font-bold uppercase tracking-widest mb-1">Credentials</p>
@@ -564,7 +566,7 @@ export default function CareerEducationPage() {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
             <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-              <Globe size={22} className="text-indigo-600" />
+              <IconGlobe size={24} className="text-indigo-600" />
             </div>
             <div>
               <p className="text-indigo-600 text-xs font-bold uppercase tracking-widest mb-1">Zero Cost</p>

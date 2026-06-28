@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Briefcase, Laptop, GraduationCap, Wrench, Globe, TrendingUp } from "lucide-react";
+import { IconBriefcase, IconLaptop, IconGradCap, IconWrench, IconGlobe, IconTrending } from "./CareerIcons";
 
 const QUESTIONS = [
   {
@@ -53,7 +53,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     recs.push({
       title: "Teach English Online or Locally",
       desc: "Your English skills are a valuable asset. Get TEFL/TESOL certified and start teaching — online platforms pay $10–$25/hour. No degree required for many platforms.",
-      icon: <GraduationCap size={20} />,
+      icon: <IconGradCap size={20} />,
       cta: "Explore TEFL Certification",
       href: "#affiliate-placeholder", // TODO: Replace with TEFL affiliate link
       color: "text-blue-600 bg-blue-50",
@@ -64,7 +64,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     recs.push({
       title: "Remote Freelance Work",
       desc: "Platforms like Upwork and Fiverr let you offer services globally — writing, design, customer support, translation, data entry. Start with what you know.",
-      icon: <Laptop size={20} />,
+      icon: <IconLaptop size={20} />,
       cta: "Set Up Your Freelance Profile",
       href: "#affiliate-placeholder", // TODO: Replace with Upwork/Fiverr affiliate link
       color: "text-violet-600 bg-violet-50",
@@ -75,7 +75,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     recs.push({
       title: "Trade & Vocational Work",
       desc: "Your hands-on skills are in demand. Construction, cooking, agriculture, and electrical work offer stable income. Certification courses can increase your earning power quickly.",
-      icon: <Wrench size={20} />,
+      icon: <IconWrench size={20} />,
       cta: "Find Vocational Training",
       href: "#affiliate-placeholder", // TODO: Replace with vocational training affiliate link
       color: "text-orange-600 bg-orange-50",
@@ -86,7 +86,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     recs.push({
       title: "BPO / Call Center Work",
       desc: "If you're in Latin America, Philippines, or Southeast Asia, call centers and BPO companies actively hire English speakers with or without a degree.",
-      icon: <Briefcase size={20} />,
+      icon: <IconBriefcase size={20} />,
       cta: "Search Local BPO Jobs",
       href: "#affiliate-placeholder", // TODO: Replace with job board affiliate link
       color: "text-emerald-600 bg-emerald-50",
@@ -96,7 +96,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
   recs.push({
     title: "Free Online Courses",
     desc: "Platforms like Coursera, Alison, and edX offer hundreds of free courses with certificates. Build new skills at your own pace — many courses take under 4 weeks.",
-    icon: <Globe size={20} />,
+    icon: <IconGlobe size={20} />,
     cta: "Browse Free Courses",
     href: "#affiliate-placeholder", // TODO: Replace with Coursera/Alison affiliate link
     color: "text-teal-600 bg-teal-50",
@@ -106,7 +106,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     recs.push({
       title: "Start a Small Business",
       desc: "Many deportees successfully start micro-businesses — food stands, repair shops, delivery services, or digital services. Start small, grow steady.",
-      icon: <TrendingUp size={20} />,
+      icon: <IconTrending size={20} />,
       cta: "Business Startup Resources",
       href: "#affiliate-placeholder", // TODO: Replace with business tools affiliate link
       color: "text-rose-600 bg-rose-50",
@@ -199,7 +199,7 @@ export default function CareerPathFinder() {
                     href={r.href}
                     className="inline-flex items-center gap-1 text-brand-red hover:text-red-400 text-xs font-bold transition-colors mt-auto"
                   >
-                    {r.cta} <ArrowRight size={12} />
+                    {r.cta} →
                   </a>
                 </div>
               ))}

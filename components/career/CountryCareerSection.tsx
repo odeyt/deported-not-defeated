@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Briefcase, Laptop, GraduationCap, TrendingUp, ArrowRight } from "lucide-react";
+import { IconBriefcase, IconLaptop, IconGradCap, IconTrending } from "./CareerIcons";
 
 export interface CountryCareerData {
   topJobs: string[];
@@ -23,7 +23,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
         {/* Header */}
         <div className="flex items-start gap-4 mb-8">
           <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center shrink-0">
-            <Briefcase size={22} className="text-amber-600" />
+            <IconBriefcase size={22} className="text-amber-600" />
           </div>
           <div>
             <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">Career & Education</p>
@@ -38,7 +38,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
           {/* Top Jobs */}
           <div className="bg-gray-800 border border-white/10 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-4">
-              <Briefcase size={16} className="text-emerald-400" />
+              <IconBriefcase size={16} className="text-emerald-400" />
               <h3 className="text-white font-bold text-sm uppercase tracking-wide">Top Job Opportunities</h3>
             </div>
             <ul className="space-y-2">
@@ -54,7 +54,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
           {/* Remote Work */}
           <div className="bg-gray-800 border border-white/10 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-4">
-              <Laptop size={16} className="text-violet-400" />
+              <IconLaptop size={16} className="text-violet-400" />
               <h3 className="text-white font-bold text-sm uppercase tracking-wide">Remote Work Options</h3>
             </div>
             <ul className="space-y-2">
@@ -70,14 +70,14 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
               href="#affiliate-placeholder"
               className="inline-flex items-center gap-1 text-violet-400 hover:text-violet-300 text-xs font-semibold mt-4 transition-colors"
             >
-              Set up remote work profile <ArrowRight size={11} />
+              Set up remote work profile →
             </a>
           </div>
 
           {/* Small Business */}
           <div className="bg-gray-800 border border-white/10 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-4">
-              <TrendingUp size={16} className="text-rose-400" />
+              <IconTrending size={16} className="text-rose-400" />
               <h3 className="text-white font-bold text-sm uppercase tracking-wide">Small Business Ideas</h3>
             </div>
             <ul className="space-y-2">
@@ -93,7 +93,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
               href="#affiliate-placeholder"
               className="inline-flex items-center gap-1 text-rose-400 hover:text-rose-300 text-xs font-semibold mt-4 transition-colors"
             >
-              Business startup tools <ArrowRight size={11} />
+              Business startup tools →
             </a>
           </div>
 
@@ -101,7 +101,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
           <div className="space-y-4">
             <div className="bg-blue-900/30 border border-blue-700/30 rounded-2xl p-5">
               <div className="flex items-center gap-2 mb-2">
-                <GraduationCap size={16} className="text-blue-400" />
+                <IconGradCap size={16} className="text-blue-400" />
                 <h3 className="text-white font-bold text-sm uppercase tracking-wide">Teach English</h3>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">{data.englishTeaching}</p>
@@ -110,7 +110,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
                 href="#affiliate-placeholder"
                 className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-xs font-semibold mt-3 transition-colors"
               >
-                Get TEFL certified <ArrowRight size={11} />
+                Get TEFL certified →
               </a>
             </div>
             <div className="bg-amber-900/20 border border-amber-700/20 rounded-2xl p-5">
@@ -140,7 +140,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
             href="/career-education"
             className="inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors"
           >
-            Full Career & Education Center <ArrowRight size={14} />
+            Full Career & Education Center →
           </Link>
           {/* TODO: Replace with real course affiliate link */}
           <a
