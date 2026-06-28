@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { AffiliatePartner } from "@/lib/types";
-import AffiliateStatusBadge from "./AffiliateStatusBadge";
 import AffiliateCTAButton from "./AffiliateCTAButton";
 
 interface Props {
@@ -23,7 +22,6 @@ export default function AffiliateCard({ partner, showFullDetail = false }: Props
             </p>
           )}
         </div>
-        <AffiliateStatusBadge status={partner.affiliate_status} />
       </div>
 
       {/* Description */}
@@ -39,13 +37,6 @@ export default function AffiliateCard({ partner, showFullDetail = false }: Props
           <p className="text-xs font-semibold text-navy-800 mb-0.5 uppercase tracking-wide">Why it may help</p>
           <p className="text-gray-600 text-sm">{partner.why_it_fits}</p>
         </div>
-      )}
-
-      {/* Status note */}
-      {partner.affiliate_status !== "approved" && (
-        <p className="text-yellow-700 text-xs bg-yellow-50 border border-yellow-100 rounded-lg px-3 py-2">
-          Affiliate partnership pending. This guide is informational only. No commission is earned from this link.
-        </p>
       )}
 
       {/* CTA */}
