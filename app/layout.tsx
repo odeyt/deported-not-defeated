@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   verification: {
     google: "bwxhDrsp543XbhFozXrAC42p9tz4cpuZaGWBoWy-Tn4",
   },
+  other: {
+    "impact-site-verification": "c1092dc1-29a5-427b-9033-cad5d30b1041",
+  },
   openGraph: {
     title: "Deported Not Defeated",
     description:
@@ -30,11 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        <meta name="impact-site-verification" {...{ value: "c1092dc1-29a5-427b-9033-cad5d30b1041" } as any} />
-      </head>
-      <body>
+<body>
         <Analytics />
         <Navbar />
         {children}
