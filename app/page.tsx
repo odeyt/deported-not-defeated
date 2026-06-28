@@ -191,69 +191,38 @@ export default function HomePage() {
 
           {/* Clickable country portrait grid — all 7 countries */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 mb-4" style={{ background: "black" }}>
-            {/* Laos — top-left of portraits-countries.png */}
-            <Link href="/laos" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 0%" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇱🇦</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Laos</p>
-              </div>
-            </Link>
-            {/* Cambodia — top-right of portraits-countries.png */}
-            <Link href="/cambodia" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 0%" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇰🇭</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Cambodia</p>
-              </div>
-            </Link>
-            {/* Vietnam — bottom-left of portraits-countries.png */}
-            <Link href="/vietnam" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 100%" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇻🇳</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Vietnam</p>
-              </div>
-            </Link>
-            {/* Philippines — bottom-right of portraits-countries.png */}
-            <Link href="/philippines" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 100%" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇵🇭</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Philippines</p>
-              </div>
-            </Link>
-            {/* Mexico — dedicated portrait */}
-            <Link href="/mexico" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-mexico.png')" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇲🇽</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Mexico</p>
-              </div>
-            </Link>
-            {/* El Salvador */}
-            <Link href="/el-salvador" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-el-salvador.png')" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇸🇻</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">El Salvador</p>
-              </div>
-            </Link>
-            {/* Guatemala */}
-            <Link href="/guatemala" className="group relative aspect-[3/4] block cursor-pointer overflow-hidden">
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-guatemla.png')" }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: "inset 0 0 120px 60px black" }} />
-              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
-                <span className="text-2xl">🇬🇹</span>
-                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Guatemala</p>
-              </div>
-            </Link>
+            {[
+              { href: "/laos",        flag: "🇱🇦", label: "Laos",        bg: "url('/images/portraits-countries.png')", size: "210% 210%", pos: "0% 0%"   },
+              { href: "/cambodia",    flag: "🇰🇭", label: "Cambodia",    bg: "url('/images/portraits-countries.png')", size: "210% 210%", pos: "100% 0%"  },
+              { href: "/vietnam",     flag: "🇻🇳", label: "Vietnam",     bg: "url('/images/portraits-countries.png')", size: "210% 210%", pos: "0% 100%" },
+              { href: "/philippines", flag: "🇵🇭", label: "Philippines", bg: "url('/images/portraits-countries.png')", size: "210% 210%", pos: "100% 100%"},
+              { href: "/mexico",      flag: "🇲🇽", label: "Mexico",      bg: "url('/images/portrait-mexico.png')",     size: "cover",    pos: "center"  },
+              { href: "/el-salvador", flag: "🇸🇻", label: "El Salvador", bg: "url('/images/portrait-el-salvador.png')",size: "cover",    pos: "center"  },
+              { href: "/guatemala",   flag: "🇬🇹", label: "Guatemala",   bg: "url('/images/portrait-guatemla.png')",   size: "cover",    pos: "center"  },
+            ].map(({ href, flag, label, bg, size, pos }) => (
+              <Link key={href} href={href} className="group relative aspect-[3/4] block cursor-pointer overflow-hidden" style={{ background: "black" }}>
+                {/* Image — extended 16px beyond card edges so raw image borders are always clipped */}
+                <div
+                  className="absolute transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    top: "-16px", right: "-16px", bottom: "-16px", left: "-16px",
+                    backgroundImage: bg,
+                    backgroundSize: size,
+                    backgroundPosition: pos,
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+                {/* Strong vignette from all 4 edges */}
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  boxShadow: "inset 0 0 80px 60px black",
+                  background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 35%, transparent 55%, rgba(0,0,0,0.75) 100%)",
+                }} />
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                  <span className="text-2xl">{flag}</span>
+                  <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">{label}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
