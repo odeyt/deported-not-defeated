@@ -4,15 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-const countries = [
-  { label: "🇱🇦 Laos", href: "/laos" },
-  { label: "🇰🇭 Cambodia", href: "/cambodia" },
-  { label: "🇻🇳 Vietnam", href: "/vietnam" },
-  { label: "🇵🇭 Philippines", href: "/philippines" },
-  { label: "🇲🇽 Mexico", href: "/mexico" },
-  { label: "🇸🇻 El Salvador", href: "/el-salvador" },
-  { label: "🇬🇹 Guatemala", href: "/guatemala" },
-];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,17 +29,14 @@ export default function Navbar() {
               Countries <ChevronDown size={14} />
             </button>
             {countriesOpen && (
-              <div className="absolute top-full left-0 mt-1 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-44 py-2 z-50">
-                {countries.map((c) => (
-                  <Link
-                    key={c.href}
-                    href={c.href}
-                    className="block px-4 py-2 text-sm hover:bg-white/5 hover:text-brand-red transition-colors"
-                    onClick={() => setCountriesOpen(false)}
-                  >
-                    {c.label}
-                  </Link>
-                ))}
+              <div className="absolute top-full left-0 mt-1 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-52 py-2 z-50">
+                <Link
+                  href="/country-guides"
+                  className="block px-4 py-2 text-sm hover:bg-white/5 hover:text-brand-red transition-colors font-medium"
+                  onClick={() => setCountriesOpen(false)}
+                >
+                  View All Country Guides →
+                </Link>
               </div>
             )}
           </div>
@@ -88,16 +76,13 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-navy-800 border-t border-white/10 px-4 pb-4 flex flex-col gap-1 text-sm font-medium">
           <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Country Guides</p>
-          {countries.map((c) => (
-            <Link
-              key={c.href}
-              href={c.href}
-              className="py-2 hover:text-brand-red transition-colors border-b border-white/5"
-              onClick={() => setOpen(false)}
-            >
-              {c.label}
-            </Link>
-          ))}
+          <Link
+            href="/country-guides"
+            className="py-2 hover:text-brand-red transition-colors border-b border-white/5 font-medium"
+            onClick={() => setOpen(false)}
+          >
+            View All Country Guides →
+          </Link>
           <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Site</p>
           {[
             ["Resources", "/resources"],

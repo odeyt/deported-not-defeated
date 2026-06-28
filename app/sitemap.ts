@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { allCountries } from "@/data/countries/index";
 
 const BASE = "https://deportednotdefeated.com";
 
@@ -20,6 +21,17 @@ function countryPages(country: string, capital: string): MetadataRoute.Sitemap {
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
+
+    // Country Guides index
+    { url: `${BASE}/country-guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
+
+    // All 45 country landing pages (dynamic [country] route)
+    ...allCountries.map((c) => ({
+      url: `${BASE}/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
 
     // Laos
     { url: `${BASE}/laos`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },

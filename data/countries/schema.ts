@@ -1,0 +1,34 @@
+export interface CountryData {
+  slug: string;
+  countryName: string;
+  countryCode: string;
+  flagEmoji: string;
+  region: "North America" | "Central America" | "Caribbean" | "South America" | "Asia" | "Africa" | "Europe";
+  subregion?: string;
+  capital: string;
+  languages: string[];
+  currency: string;
+  summary: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  quickFacts: { label: string; value: string }[];
+  returningHome: string[];
+  travelDocuments: string[];
+  embassyInfo: string;
+  housing: string[];
+  jobs: string[];
+  healthcare: string[];
+  mentalHealth: string[];
+  moneyTransfer: string[];
+  phoneInternet: string[];
+  transportation: string[];
+  legalResources: string[];
+  reentryInfo: string[];
+  faqs: { question: string; answer: string }[];
+  seoTitle: string;
+  seoDescription: string;
+  keywords: string[];
+  relatedCountries: string[];
+  cities?: string[];
+  affiliateNote?: string;
+}
