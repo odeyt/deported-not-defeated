@@ -59,6 +59,9 @@ export default function Navbar() {
           <Link href="/legal-resources" className="hover:text-brand-red transition-colors">
             Legal Resources
           </Link>
+          <Link href="/ai-report" className="hover:text-brand-red transition-colors">
+            Free Report
+          </Link>
           <Link href="/about" className="hover:text-brand-red transition-colors">
             About
           </Link>
@@ -99,6 +102,7 @@ export default function Navbar() {
           {[
             ["Resources", "/resources"],
             ["Legal Resources", "/legal-resources"],
+            ["Free Report", "/ai-report"],
             ["About", "/about"],
             ["Contact", "/contact"],
           ].map(([label, href]) => (

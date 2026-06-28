@@ -4,6 +4,7 @@ import Image from "next/image";
 import NewsletterForm from "@/components/NewsletterForm";
 import ChecklistGate from "@/components/ChecklistGate";
 import DeportationCounter from "@/components/DeportationCounter";
+import AIReportCTA from "@/components/AIReportCTA";
 import {
   Home,
   Briefcase,
@@ -433,6 +434,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <AIReportCTA />
       <NewsletterForm />
     </>
   );
