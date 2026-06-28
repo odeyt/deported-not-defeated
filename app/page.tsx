@@ -185,37 +185,81 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-10">
-            <Image
-              src="/images/portraits-countries.png"
-              alt="Deported But Not Defeated — Laos, Cambodia, Vietnam, Philippines"
-              width={1200}
-              height={800}
-              className="w-full object-cover"
-              quality={90}
-            />
-          </div>
-
-          {/* Country cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { flag: "🇱🇦", name: "Laos", href: "/laos", status: "Live", color: "bg-green-500" },
-              { flag: "🇰🇭", name: "Cambodia", href: "/cambodia", status: "Live", color: "bg-green-500" },
-              { flag: "🇻🇳", name: "Vietnam", href: "/vietnam", status: "Live", color: "bg-green-500" },
-              { flag: "🇵🇭", name: "Philippines", href: "/philippines", status: "Live", color: "bg-green-500" },
-            ].map((c) => (
-              <Link
-                key={c.name}
-                href={c.href}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-5 text-center transition-all group"
-              >
-                <div className="text-4xl mb-3">{c.flag}</div>
-                <p className="font-bold text-white mb-2">{c.name}</p>
-                <span className={`text-xs text-white px-2 py-1 rounded-full ${c.color}`}>
-                  {c.status}
-                </span>
-              </Link>
-            ))}
+          {/* Clickable country portrait grid — all 7 countries */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
+            {/* Laos — top-left of portraits-countries.png */}
+            <Link href="/laos" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 0%" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇱🇦</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Laos</p>
+              </div>
+            </Link>
+            {/* Cambodia — top-right of portraits-countries.png */}
+            <Link href="/cambodia" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 0%" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇰🇭</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Cambodia</p>
+              </div>
+            </Link>
+            {/* Vietnam — bottom-left of portraits-countries.png */}
+            <Link href="/vietnam" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "0% 100%" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇻🇳</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Vietnam</p>
+              </div>
+            </Link>
+            {/* Philippines — bottom-right of portraits-countries.png */}
+            <Link href="/philippines" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portraits-countries.png')", backgroundSize: "200% 200%", backgroundPosition: "100% 100%" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇵🇭</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Philippines</p>
+              </div>
+            </Link>
+            {/* Mexico — dedicated portrait */}
+            <Link href="/mexico" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('/images/portrait-mexico.png')" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇲🇽</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Mexico</p>
+              </div>
+            </Link>
+            {/* El Salvador — Unsplash placeholder until AI portrait is uploaded */}
+            <Link href="/el-salvador" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519764622345-23439dd774f7?w=600&h=800&fit=crop&auto=format')" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <p className="text-white font-black text-xl tracking-widest uppercase drop-shadow-lg">Deported</p>
+                <p className="text-xs text-white/80 tracking-widest uppercase">— but not —</p>
+                <p className="text-brand-red font-black text-xl tracking-widest uppercase drop-shadow-lg">Defeated</p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇸🇻</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">El Salvador</p>
+              </div>
+            </Link>
+            {/* Guatemala — Unsplash placeholder until AI portrait is uploaded */}
+            <Link href="/guatemala" className="group relative rounded-xl overflow-hidden shadow-lg aspect-[3/4] block cursor-pointer">
+              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=600&h=800&fit=crop&auto=format')" }} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <p className="text-white font-black text-xl tracking-widest uppercase drop-shadow-lg">Deported</p>
+                <p className="text-xs text-white/80 tracking-widest uppercase">— but not —</p>
+                <p className="text-brand-red font-black text-xl tracking-widest uppercase drop-shadow-lg">Defeated</p>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-3 text-center pointer-events-none">
+                <span className="text-2xl">🇬🇹</span>
+                <p className="text-white font-bold text-sm mt-1 tracking-wide group-hover:text-brand-red transition-colors">Guatemala</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
