@@ -22,9 +22,10 @@ function getSupabase() {
 
 // ── PDF builder ───────────────────────────────────────────────────────────────
 
-async function buildPDF(report: ReturnType<typeof generateReport>, answers: AssessmentAnswers): Promise<Buffer> {
+async function buildPDF(report: ReturnType<typeof generateReport>): Promise<Buffer> {
   return new Promise((resolve, reject) => {
-    const doc = new PDFDocument({ margin: 50, size: "LETTER" });
+    // bufferPages: true required for switchToPage; we skip footer loop entirely to avoid hang
+    const doc = new PDFDocument({ margin: 50, size: "LETTER", bufferPages: true });
     const chunks: Buffer[] = [];
     doc.on("data", (chunk: Buffer) => chunks.push(chunk));
     doc.on("end", () => resolve(Buffer.concat(chunks)));
@@ -34,58 +35,58 @@ async function buildPDF(report: ReturnType<typeof generateReport>, answers: Asse
     const RED = "#c0392b";
     const GRAY = "#6b7280";
     const LIGHT = "#f3f4f6";
+    const W = doc.page.width;
 
-    // ── Header ──────────────────────────────────────────────────────────────
-    doc.rect(0, 0, doc.page.width, 80).fill(NAVY);
-    doc.fillColor("white").font("Helvetica-Bold").fontSize(18)
-      .text("AI Immigration Case Preparation Report", 50, 22);
+    // ── Header bar ──────────────────────────────────────────────────────────
+    doc.rect(0, 0, W, 75).fill(NAVY);
+    doc.fillColor("white").font("Helvetica-Bold").fontSize(17)
+      .text("AI Immigration Case Preparation Report", 50, 18, { width: W - 100 });
     doc.fillColor(RED).font("Helvetica").fontSize(10)
       .text("deportednotdefeated.com", 50, 50);
-    doc.moveDown(4);
 
     // ── Disclaimer box ───────────────────────────────────────────────────────
-    const discY = doc.y;
-    doc.rect(50, discY, doc.page.width - 100, 55).fill("#fef9c3");
+    doc.moveDown(3.5);
+    doc.rect(50, doc.y, W - 100, 58).fill("#fef9c3");
     doc.fillColor("#713f12").font("Helvetica-Bold").fontSize(9)
-      .text("IMPORTANT: EDUCATIONAL USE ONLY — NOT LEGAL ADVICE", 60, discY + 8);
-    doc.font("Helvetica").fontSize(8.5)
-      .text(REPORT_DISCLAIMER, 60, discY + 22, { width: doc.page.width - 120, lineGap: 2 });
-    doc.y = discY + 68;
+      .text("IMPORTANT: EDUCATIONAL USE ONLY — NOT LEGAL ADVICE", 60, doc.y + 6, { width: W - 120 });
+    doc.font("Helvetica").fontSize(8)
+      .text(REPORT_DISCLAIMER, 60, doc.y + 4, { width: W - 120, lineGap: 1.5 });
+    doc.moveDown(2.5);
 
-    // ── Recipient ────────────────────────────────────────────────────────────
-    doc.fillColor(NAVY).font("Helvetica-Bold").fontSize(14)
-      .text(`Prepared for: ${report.recipientName}`, 50, doc.y + 10);
+    // ── Recipient + date ─────────────────────────────────────────────────────
     const now = new Date();
+    doc.fillColor(NAVY).font("Helvetica-Bold").fontSize(13)
+      .text(`Prepared for: ${report.recipientName}`, 50, doc.y + 6);
     doc.fillColor(GRAY).font("Helvetica").fontSize(9)
-      .text(`Generated: ${now.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`, 50, doc.y + 4);
-    doc.y += 20;
+      .text(`Generated: ${now.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`, 50, doc.y + 3);
+    doc.moveDown(1.5);
 
     // ── Section renderer ─────────────────────────────────────────────────────
     function renderSection(title: string, items: string[]) {
       if (items.length === 0) return;
-
-      if (doc.y > doc.page.height - 140) doc.addPage();
+      if (doc.y > doc.page.height - 130) doc.addPage();
 
       // Title bar
-      doc.rect(50, doc.y, doc.page.width - 100, 22).fill(NAVY);
+      const ty = doc.y;
+      doc.rect(50, ty, W - 100, 22).fill(NAVY);
       doc.fillColor("white").font("Helvetica-Bold").fontSize(10)
-        .text(title, 58, doc.y + 6);
-      doc.y += 30;
+        .text(title, 58, ty + 6, { width: W - 120 });
+      doc.moveDown(0.3);
 
       items.forEach((item, i) => {
-        if (doc.y > doc.page.height - 60) doc.addPage();
-        // Alternating row
+        if (doc.y > doc.page.height - 55) doc.addPage();
+        const rowY = doc.y;
         if (i % 2 === 0) {
-          doc.rect(50, doc.y - 2, doc.page.width - 100, 18).fill(LIGHT);
+          doc.rect(50, rowY, W - 100, 19).fill(LIGHT);
         }
         doc.fillColor(RED).font("Helvetica-Bold").fontSize(8.5)
-          .text("→", 56, doc.y + 1);
+          .text("->", 56, rowY + 3);
         doc.fillColor("#1f2937").font("Helvetica").fontSize(8.5)
-          .text(item, 70, doc.y + 1, { width: doc.page.width - 130, lineGap: 1.5 });
-        doc.y += 20;
+          .text(item, 72, rowY + 3, { width: W - 132, lineGap: 1.5 });
+        doc.moveDown(0.05);
       });
 
-      doc.y += 10;
+      doc.moveDown(0.8);
     }
 
     renderSection(report.topics.title, report.topics.items);
@@ -95,18 +96,14 @@ async function buildPDF(report: ReturnType<typeof generateReport>, answers: Asse
     renderSection(report.resources.title, report.resources.items);
     renderSection(report.services.title, report.services.items);
 
-    // ── Footer on each page ──────────────────────────────────────────────────
-    const pages = (doc as unknown as { _pageBuffer: unknown[] })._pageBuffer?.length ?? 1;
-    for (let i = 0; i < pages; i++) {
-      doc.switchToPage?.(i);
-      doc.fillColor(GRAY).font("Helvetica").fontSize(7.5)
-        .text(
-          "This report is educational only. It is not legal advice. Consult a licensed immigration attorney before taking action. | deportednotdefeated.com",
-          50,
-          doc.page.height - 30,
-          { width: doc.page.width - 100, align: "center" }
-        );
-    }
+    // ── Closing disclaimer ───────────────────────────────────────────────────
+    if (doc.y > doc.page.height - 80) doc.addPage();
+    doc.moveDown(1);
+    doc.fillColor(GRAY).font("Helvetica").fontSize(7.5)
+      .text(
+        "This report is educational only and is not legal advice. Consult a licensed immigration attorney before taking action. | deportednotdefeated.com",
+        50, doc.y, { width: W - 100, align: "center" }
+      );
 
     doc.end();
   });
@@ -212,7 +209,7 @@ export async function POST(req: NextRequest) {
     });
 
     // ── Generate PDF ───────────────────────────────────────────────────────
-    const pdfBuffer = await buildPDF(report, answers);
+    const pdfBuffer = await buildPDF(report);
     const pdfBase64 = pdfBuffer.toString("base64");
 
     // ── Send emails ────────────────────────────────────────────────────────
