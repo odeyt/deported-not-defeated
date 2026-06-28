@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import NewsletterForm from "@/components/NewsletterForm";
 import ChecklistGate from "@/components/ChecklistGate";
+import DeportationCounter from "@/components/DeportationCounter";
 import {
   Home,
   Briefcase,
@@ -157,6 +158,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <DeportationCounter />
 
       {/* Mission quote */}
       <section className="bg-brand-red text-white py-12 px-4">
