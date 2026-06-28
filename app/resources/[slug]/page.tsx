@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import type { AffiliatePartner } from "@/lib/types";
-import AffiliateStatusBadge from "@/components/AffiliateStatusBadge";
 import AffiliateCTAButton from "@/components/AffiliateCTAButton";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -59,7 +58,6 @@ export default async function PartnerPage({ params }: Props) {
           </div>
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <h1 className="text-4xl md:text-5xl font-extrabold">{partner.company_name}</h1>
-            <AffiliateStatusBadge status={partner.affiliate_status} />
           </div>
           {partner.short_description && (
             <p className="text-gray-300 text-lg mt-3">{partner.short_description}</p>
@@ -70,25 +68,6 @@ export default async function PartnerPage({ params }: Props) {
       <section className="py-12 px-4">
         <div className="max-w-3xl mx-auto space-y-8">
 
-          {/* Status notice */}
-          {!isApproved ? (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
-              <p className="font-bold text-yellow-800 mb-1">Affiliate Partnership Pending</p>
-              <p className="text-yellow-700 text-sm">
-                We have not yet established an affiliate relationship with {partner.company_name}.
-                This guide is informational only. The link below goes to the official website — we
-                do not earn a commission from this visit.
-              </p>
-            </div>
-          ) : (
-            <div className="bg-green-50 border border-green-200 rounded-2xl p-5">
-              <p className="font-bold text-green-800 mb-1">Partner Link Available</p>
-              <p className="text-green-700 text-sm">
-                We have an affiliate relationship with {partner.company_name}. If you click through
-                and make a purchase, we may earn a commission at no extra cost to you.
-              </p>
-            </div>
-          )}
 
           {/* Full description */}
           {(partner.full_description || partner.short_description) && (
@@ -123,9 +102,7 @@ export default async function PartnerPage({ params }: Props) {
               {isApproved ? `Visit ${partner.company_name}` : `View ${partner.company_name} Official Website`}
             </h3>
             <p className="text-gray-300 text-sm mb-6">
-              {isApproved
-                ? "Use our partner link. Same price — no extra cost to you."
-                : "This link goes directly to the official website. Compare options and check current terms before deciding."}
+              Compare options and check current terms before deciding.
             </p>
             <AffiliateCTAButton partner={partner} size="lg" />
             {!isApproved && partner.official_website_url && (
