@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/NewsletterForm";
+import { ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Deported Not Defeated",
@@ -56,6 +57,124 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Why This Project Exists */}
+          <div className="bg-white border border-gray-200 rounded-xl p-8 space-y-6">
+            <h2 className="text-2xl font-bold text-navy-800">Why This Project Exists</h2>
+
+            <p className="text-gray-600 leading-relaxed">
+              Every year, hundreds of thousands of people are removed from the United States and returned to countries around the world. In fiscal year 2024 alone, U.S. Immigration and Customs Enforcement (ICE) deported more than{" "}
+              <strong>271,000 people</strong> to <strong>192 different countries</strong> — the highest annual total in nearly a decade.{" "}
+              <a href="https://www.axios.com/2024/12/20/deportations-immigration-record-2024-ice" target="_blank" rel="noopener noreferrer" className="text-brand-red underline inline-flex items-center gap-0.5">Axios<ExternalLink size={11} /></a>
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Following changes in U.S. immigration enforcement beginning in 2025, deportation activity increased further. ICE reported removing{" "}
+              <strong>more than 442,000 people during fiscal year 2025</strong>, and government officials have stated that enforcement efforts are expected to continue at a high level.{" "}
+              <a href="https://www.axios.com/2026/04/15/ice-deportations-us-immigration-trump-biden-2025" target="_blank" rel="noopener noreferrer" className="text-brand-red underline inline-flex items-center gap-0.5">Axios<ExternalLink size={11} /></a>
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Many of those returned arrive with little preparation. Some left their birth country as children and return decades later. Others have no family, no job, limited financial resources, and may not speak the local language fluently. For many, deportation means starting life over from the beginning.
+            </p>
+
+            <div>
+              <h3 className="text-lg font-bold text-navy-800 mb-3">Why People Are Deported</h3>
+              <ul className="space-y-2 text-gray-600">
+                {[
+                  "Overstaying a visa.",
+                  "Entering the country without authorization.",
+                  "Violating immigration laws or court orders.",
+                  "Certain criminal convictions.",
+                  "Denial of asylum or other immigration applications.",
+                  "Expiration or loss of lawful immigration status.",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold mt-0.5">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-500 text-sm mt-3 italic">Every immigration case is different, and deportation does not necessarily mean someone committed a serious crime.</p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-navy-800 mb-3">Why This Website Matters</h3>
+              <p className="text-gray-600 mb-3">Being deported often creates immediate challenges:</p>
+              <ul className="space-y-2 text-gray-600 mb-4">
+                {[
+                  "Finding a safe place to live.",
+                  "Getting identification documents.",
+                  "Finding employment.",
+                  "Opening a bank account.",
+                  "Accessing healthcare.",
+                  "Understanding local laws and customs.",
+                  "Reconnecting with family.",
+                  "Coping with stress and rebuilding confidence.",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold mt-0.5">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-600 leading-relaxed">
+                Many deportees struggle because reliable information is scattered across many websites — or not available at all.{" "}
+                <strong>Deported Not Defeated</strong> was created to bring practical resources together in one place.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-gray-600 font-semibold mb-2">Our mission is simple:</p>
+              <ul className="space-y-2 text-gray-600">
+                {[
+                  "Help people rebuild their lives.",
+                  "Connect them with trustworthy resources.",
+                  "Provide country-specific guidance.",
+                  "Share job opportunities and support services.",
+                  "Offer financial, legal, and educational information.",
+                  "Remind every visitor that deportation is not the end of their story.",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-brand-red font-bold mt-0.5">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="text-gray-600 leading-relaxed">
+              We believe everyone deserves the opportunity to rebuild with dignity, regardless of how they arrived back in their home country.
+            </p>
+          </div>
+
+          {/* Key Facts */}
+          <div className="bg-navy-800 text-white rounded-xl p-8">
+            <h2 className="text-2xl font-bold mb-6">Key Facts</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { stat: "271,484+", label: "people deported by ICE during U.S. fiscal year 2024", source: "https://www.axios.com/2024/12/20/deportations-immigration-record-2024-ice" },
+                { stat: "442,000+", label: "people removed during fiscal year 2025 per ICE reporting", source: "https://www.axios.com/2026/04/15/ice-deportations-us-immigration-trump-biden-2025" },
+                { stat: "190+",     label: "countries deportees were returned to worldwide", source: "https://www.axios.com/2024/12/20/deportations-immigration-record-2024-ice" },
+                { stat: "1",        label: "platform dedicated to helping them rebuild — this one", source: null },
+              ].map((f) => (
+                <div key={f.stat} className="bg-white/10 rounded-xl p-5">
+                  <p className="text-3xl font-extrabold text-brand-red mb-1">{f.stat}</p>
+                  <p className="text-gray-300 text-sm leading-relaxed">{f.label}</p>
+                  {f.source && (
+                    <a href={f.source} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 underline mt-1 inline-flex items-center gap-0.5 hover:text-white">
+                      Source <ExternalLink size={10} />
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Closing quote */}
+          <div className="bg-brand-red text-white rounded-2xl p-8 text-center">
+            <p className="text-xl md:text-2xl font-bold leading-relaxed">
+              &ldquo;A deportation may change where you live — but it does not define who you are. This project exists to help people rebuild, reconnect, and move forward with hope.&rdquo;
+            </p>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-xl p-8">
