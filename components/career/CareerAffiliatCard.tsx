@@ -17,7 +17,7 @@ interface CareerAffiliateCardProps {
   gradient: string;
   iconBg: string;
   iconColor: string;
-  icon: React.ReactNode;
+  icon: string;
 }
 
 export default function CareerAffiliateCard({
@@ -46,8 +46,8 @@ export default function CareerAffiliateCard({
           </span>
         )}
         <div className="flex items-start gap-3">
-          <div className={`w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center shrink-0`}>
-            <span className={iconColor}>{icon}</span>
+          <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${iconBg} flex items-center justify-center shrink-0 text-2xl shadow-sm`}>
+            {icon}
           </div>
           <div className="min-w-0">
             <h3 className="font-bold text-navy-800 text-base leading-tight group-hover:text-brand-red transition-colors">
