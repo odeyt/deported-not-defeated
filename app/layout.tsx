@@ -31,7 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <meta name="impact-site-verification" value="c1092dc1-29a5-427b-9033-cad5d30b1041" />
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <meta name="impact-site-verification" {...{ value: "c1092dc1-29a5-427b-9033-cad5d30b1041" } as any} />
       </head>
       <body>
         <Analytics />
