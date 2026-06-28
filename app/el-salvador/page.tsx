@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/el-salvador/first-30-days",
-    title: "Your First 30 Days",
-    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-    img: "https://images.unsplash.com/photo-1596005554384-d293674c91d7?w=600&h=600&fit=crop&auto=format",
-    urgent: true,
-  },
-  {
-    href: "/el-salvador/housing-san-salvador",
-    title: "Find Housing",
-    desc: "Search for safe, affordable housing options and long-term rentals in San Salvador.",
-    img: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/find-work-el-salvador",
-    title: "Find Work",
-    desc: "Access job listings, BPO call centers, and resources to help you get back to work.",
-    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/sim-card-el-salvador",
-    title: "Phone & Internet",
-    desc: "Get a Claro or Tigo SIM card, affordable data plans, and stay connected with family.",
-    img: "https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/receive-money-usa-to-el-salvador",
-    title: "Banking & Money",
-    desc: "El Salvador uses USD — open accounts and receive money with confidence.",
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/cost-of-living-san-salvador",
-    title: "Cost of Living",
-    desc: "Real monthly budget for San Salvador — from $400 to $900 USD/month.",
-    img: "https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/hospitals-san-salvador",
-    title: "Healthcare",
-    desc: "Find clinics, mental health support, and medical services you can trust.",
-    img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/emergency-numbers-el-salvador",
-    title: "Emergency Numbers",
-    desc: "Police 911, Ambulance 132, US Embassy, and crisis contacts in El Salvador.",
-    img: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/el-salvador/start-over-after-deportation",
-    title: "Start Over Guide",
-    desc: "Practical steps for rebuilding your life with dignity after deportation.",
-    img: "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/resources",
-    title: "All Resources",
-    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
-  },
+  { href: "/el-salvador/first-30-days",               title: "Your First 30 Days",  desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",       pos: "0% 0%",     urgent: true },
+  { href: "/el-salvador/housing-san-salvador",         title: "Find Housing",        desc: "Search for safe, affordable housing options and long-term rentals in San Salvador.",        pos: "66.6% 0%"  },
+  { href: "/el-salvador/find-work-el-salvador",        title: "Find Work",           desc: "Access job listings, BPO call centers, and resources to help you get back to work.",        pos: "100% 0%"   },
+  { href: "/el-salvador/sim-card-el-salvador",         title: "Phone & Internet",    desc: "Get a Claro or Tigo SIM card, affordable data plans, and stay connected with family.",      pos: "100% 50%"  },
+  { href: "/el-salvador/receive-money-usa-to-el-salvador", title: "Banking & Money", desc: "El Salvador uses USD — open accounts and receive money with confidence.",                  pos: "66.6% 50%" },
+  { href: "/el-salvador/cost-of-living-san-salvador",  title: "Cost of Living",      desc: "Real monthly budget for San Salvador — from $400 to $900 USD/month.",                      pos: "0% 100%"   },
+  { href: "/el-salvador/hospitals-san-salvador",       title: "Healthcare",          desc: "Find clinics, mental health support, and medical services you can trust.",                  pos: "33.3% 50%" },
+  { href: "/el-salvador/emergency-numbers-el-salvador",title: "Emergency Numbers",   desc: "Police 911, Ambulance 132, US Embassy, and crisis contacts in El Salvador.",               pos: "0% 50%"    },
+  { href: "/el-salvador/start-over-after-deportation", title: "Start Over Guide",    desc: "Practical steps for rebuilding your life with dignity after deportation.",                  pos: "33.3% 100%"},
+  { href: "/resources",                                title: "All Resources",       desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",                 pos: "33.3% 0%"  },
 ];
 
 export default function ElSalvadorPage() {
@@ -97,13 +46,17 @@ export default function ElSalvadorPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
-                key={g.href}
+                key={g.title}
                 href={g.href}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${g.img}')` }}
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/elsalvador.png')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
