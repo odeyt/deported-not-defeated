@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { allCountries, countriesBySlug } from "@/data/countries/index";
 import type { CountryData } from "@/data/countries/schema";
-import { AlertTriangle, ExternalLink } from "lucide-react";
+import { AlertTriangle, ExternalLink, Banknote, Wifi, ShieldCheck, HeartPulse, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import {
   moneyTransferProviders,
   countryMoneyTransferRecommendations,
@@ -152,30 +152,60 @@ const DEFAULT_MONEY_SLUGS = ["wise", "remitly", "moneygram", "western-union", "w
 function MoneyTransferCards({ slugs }: { slugs: string[] }) {
   const providers = moneyTransferProviders.filter((p) => slugs.includes(p.slug));
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {providers.map((p) => (
-        <div key={p.slug} className="bg-gray-800 border border-white/10 rounded-xl p-4 flex flex-col gap-3 hover:border-white/20 transition-colors">
-          <div>
-            <p className="text-white font-semibold text-sm">{p.name}</p>
-            <p className="text-gray-400 text-xs">{p.bestFor}</p>
-          </div>
-          <p className="text-gray-300 text-xs leading-relaxed">{p.shortDescription}</p>
-          <div className="flex gap-2 mt-auto flex-wrap">
-            {p.cashPickup === "Yes" && (
-              <span className="text-xs bg-green-900/40 text-green-300 border border-green-700/30 rounded-full px-2 py-0.5">Cash Pickup</span>
+        <div key={p.slug} className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
+          <div className="h-1.5 w-full bg-gradient-to-r from-emerald-400 to-teal-600" />
+          <div className="p-5 flex flex-col gap-3 flex-1">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                <Banknote size={18} className="text-emerald-600" />
+              </div>
+              <div>
+                <p className="font-bold text-navy-800 text-base leading-tight group-hover:text-brand-red transition-colors">{p.name}</p>
+                <span className="inline-block text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full mt-1 bg-emerald-50 text-emerald-700">
+                  Money Transfer
+                </span>
+              </div>
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed">{p.shortDescription}</p>
+            {p.bestFor && (
+              <div className="bg-emerald-50 rounded-xl p-3">
+                <p className="text-xs font-bold uppercase tracking-wide mb-0.5 text-emerald-700">Best For</p>
+                <p className="text-gray-600 text-sm">{p.bestFor}</p>
+              </div>
             )}
-            {p.bankRequired !== "No" && (
-              <span className="text-xs bg-blue-900/40 text-blue-300 border border-blue-700/30 rounded-full px-2 py-0.5">Bank Deposit</span>
-            )}
+            <div className="flex flex-wrap gap-1.5">
+              {p.cashPickup === "Yes" && (
+                <span className="text-xs bg-green-50 text-green-700 border border-green-100 rounded-full px-2 py-0.5 flex items-center gap-1">
+                  <CheckCircle2 size={10} /> Cash Pickup
+                </span>
+              )}
+              {p.bankRequired !== "No" && (
+                <span className="text-xs bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-2 py-0.5 flex items-center gap-1">
+                  <CheckCircle2 size={10} /> Bank Deposit
+                </span>
+              )}
+              {p.mobileWallet !== "No" && (
+                <span className="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2 py-0.5 flex items-center gap-1">
+                  <CheckCircle2 size={10} /> Mobile Wallet
+                </span>
+              )}
+            </div>
+            <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between gap-3">
+              <a
+                href={p.affiliateUrl}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                className="inline-block bg-brand-red hover:bg-red-700 text-white text-sm font-bold px-4 py-2 rounded-xl transition-colors"
+              >
+                Visit Official Website →
+              </a>
+              <Link href={`/resources/money-transfer/${p.slug}`} className="text-gray-500 hover:text-brand-red text-xs font-semibold transition-colors whitespace-nowrap">
+                Full Guide →
+              </Link>
+            </div>
           </div>
-          <a
-            href={p.affiliateUrl}
-            target="_blank"
-            rel="sponsored nofollow noopener"
-            className="inline-flex items-center gap-1 text-xs text-brand-red hover:text-red-400 font-semibold transition-colors"
-          >
-            <ExternalLink size={11} /> Visit Official Website
-          </a>
         </div>
       ))}
     </div>
@@ -185,6 +215,58 @@ function MoneyTransferCards({ slugs }: { slugs: string[] }) {
 function AffiliateCards() {
   return <MoneyTransferCards slugs={DEFAULT_MONEY_SLUGS} />;
 }
+
+// Resource hub sections matching the main /resources page
+const RESOURCE_SECTIONS = [
+  {
+    slug: "money-transfer",
+    label: "Send Money",
+    Icon: Banknote,
+    href: "/resources/money-transfer",
+    desc: "Wire transfers, remittance apps, and how to receive money from the USA.",
+    bar: "from-emerald-400 to-teal-600",
+    iconBg: "bg-emerald-100",
+    iconColor: "text-emerald-600",
+    badgeColor: "text-emerald-700 bg-emerald-50",
+    providers: ["wise", "remitly", "worldremit"],
+  },
+  {
+    slug: "phone-internet",
+    label: "Stay Connected",
+    Icon: Wifi,
+    href: "/resources/phone-internet",
+    desc: "eSIM cards, local SIM plans, and affordable data options abroad.",
+    bar: "from-blue-400 to-indigo-600",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    badgeColor: "text-blue-700 bg-blue-50",
+    providers: [],
+  },
+  {
+    slug: "vpn-privacy",
+    label: "Protect Your Privacy",
+    Icon: ShieldCheck,
+    href: "/resources/vpn-privacy",
+    desc: "VPN services to keep your browsing secure and private.",
+    bar: "from-violet-400 to-purple-600",
+    iconBg: "bg-violet-100",
+    iconColor: "text-violet-600",
+    badgeColor: "text-violet-700 bg-violet-50",
+    providers: [],
+  },
+  {
+    slug: "health-insurance",
+    label: "Health Insurance",
+    Icon: HeartPulse,
+    href: "/resources/health-insurance",
+    desc: "International health coverage for people living outside the USA.",
+    bar: "from-rose-400 to-red-600",
+    iconBg: "bg-rose-100",
+    iconColor: "text-rose-600",
+    badgeColor: "text-rose-700 bg-rose-50",
+    providers: [],
+  },
+];
 
 function CategoryContent({
   category,
@@ -377,16 +459,70 @@ function CategoryContent({
 
     case "resources":
       return (
-        <div className="space-y-6">
-          <AffiliateCards />
-          <p className="text-gray-500 text-xs">
-            Disclosure: Some links may be affiliate links. We only recommend services we believe
-            are useful for deportees.
-          </p>
+        <div className="space-y-14">
+          {/* Disclosure banner */}
+          <div className="bg-amber-900/30 border border-amber-600/30 rounded-xl p-4">
+            <p className="text-amber-200 text-xs leading-relaxed">
+              <strong>Affiliate Disclosure:</strong> Some links may be affiliate links. We may earn a commission if you use them, at no extra cost to you. We only list services we believe may genuinely help people rebuild after deportation.
+            </p>
+          </div>
+
+          {/* 4 resource sections */}
+          {RESOURCE_SECTIONS.map((section) => (
+            <div key={section.slug}>
+              {/* Section header */}
+              <div className="flex items-start justify-between mb-6 pb-4 border-b border-white/10">
+                <div className="flex items-center gap-4">
+                  <div className={`w-11 h-11 rounded-xl ${section.iconBg} flex items-center justify-center shrink-0`}>
+                    <section.Icon size={20} className={section.iconColor} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-extrabold text-white leading-tight">{section.label}</h3>
+                    <p className="text-gray-400 text-sm mt-0.5">{section.desc}</p>
+                  </div>
+                </div>
+                <Link
+                  href={section.href}
+                  className="flex items-center gap-1 text-brand-red font-bold text-sm hover:underline shrink-0 mt-1"
+                >
+                  See all <ArrowUpRight size={14} />
+                </Link>
+              </div>
+
+              {/* Provider cards (money transfer only) or CTA card */}
+              {section.providers.length > 0 ? (
+                <MoneyTransferCards slugs={section.providers} />
+              ) : (
+                <Link
+                  href={section.href}
+                  className={`group block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden`}
+                >
+                  <div className={`h-1.5 w-full bg-gradient-to-r ${section.bar}`} />
+                  <div className="p-6 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-xl ${section.iconBg} flex items-center justify-center shrink-0`}>
+                        <section.Icon size={22} className={section.iconColor} />
+                      </div>
+                      <div>
+                        <p className="font-bold text-navy-800 text-lg group-hover:text-brand-red transition-colors">{section.label}</p>
+                        <p className="text-gray-500 text-sm mt-0.5">{section.desc}</p>
+                      </div>
+                    </div>
+                    <span className="flex items-center gap-1 text-brand-red font-bold text-sm shrink-0">
+                      Browse guides <ArrowUpRight size={16} />
+                    </span>
+                  </div>
+                </Link>
+              )}
+            </div>
+          ))}
+
+          {/* Reentry info */}
           {data.reentryInfo.length > 0 && (
-            <ContentCard title="U.S. Reentry Education">
+            <div className="bg-gray-800 border border-white/10 rounded-xl p-5 md:p-6">
+              <h3 className="text-white font-semibold text-base mb-4">U.S. Reentry Education</h3>
               <BulletList items={data.reentryInfo} />
-            </ContentCard>
+            </div>
           )}
         </div>
       );
