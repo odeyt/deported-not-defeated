@@ -66,7 +66,13 @@ export default async function ResourcesPage() {
                 href={s.href}
                 className="group bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-xl p-4 text-center transition-all"
               >
-                <s.Icon size={22} className="mx-auto mb-2 text-brand-red group-hover:scale-110 transition-transform" />
+                <s.Icon size={22} className={`mx-auto mb-2 group-hover:scale-110 transition-transform ${
+                    s.slug === "money-transfer"   ? "text-emerald-400" :
+                    s.slug === "phone-internet"   ? "text-blue-400" :
+                    s.slug === "vpn-privacy"      ? "text-violet-400" :
+                    s.slug === "health-insurance" ? "text-rose-400" :
+                    "text-brand-red"
+                  }`} />
                 <p className="text-white text-xs font-semibold leading-tight">{s.label}</p>
               </Link>
             ))}
@@ -101,8 +107,14 @@ export default async function ResourcesPage() {
             <section key={s.slug} id={s.slug}>
               <div className="flex items-start justify-between mb-6 pt-8 border-t border-gray-100">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center shrink-0">
-                    <s.Icon size={18} className="text-brand-red" />
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    s.slug === "money-transfer"   ? "bg-emerald-100 text-emerald-600" :
+                    s.slug === "phone-internet"   ? "bg-blue-100 text-blue-600" :
+                    s.slug === "vpn-privacy"      ? "bg-violet-100 text-violet-600" :
+                    s.slug === "health-insurance" ? "bg-rose-100 text-rose-600" :
+                    "bg-navy-800 text-brand-red"
+                  }`}>
+                    <s.Icon size={18} />
                   </div>
                   <div>
                     <h2 className="text-2xl font-extrabold text-navy-800 leading-tight">{s.label}</h2>
