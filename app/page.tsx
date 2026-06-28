@@ -369,23 +369,29 @@ export default function HomePage() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-navy-800 mb-10">Built on Five Principles</h2>
-          <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <Image
-              src="/images/principles.jpg"
-              alt="Courage, Faith, Education, Opportunity, Success"
-              width={1200}
-              height={400}
-              className="w-full object-cover"
-              quality={90}
-            />
-            {/* Labels overlay */}
-            <div className="absolute bottom-0 left-0 right-0 grid grid-cols-5">
-              {["Courage", "Faith", "Education", "Opportunity", "Success"].map((label) => (
-                <div key={label} className="bg-black/60 backdrop-blur-sm py-3 text-center">
-                  <p className="text-white font-bold text-sm md:text-base tracking-wide">{label}</p>
+          <div className="flex rounded-2xl overflow-hidden shadow-lg gap-1 bg-gray-200">
+            {[
+              { label: "Courage",     img: "/images/value-courage.jpg",     href: "/laos/first-30-days" },
+              { label: "Faith",       img: "/images/value-faith.jpg",       href: "/about" },
+              { label: "Education",   img: "/images/value-education.jpg",   href: "/resources" },
+              { label: "Opportunity", img: "/images/value-opportunity.jpg", href: "/laos/jobs" },
+              { label: "Success",     img: "/images/value-success.jpg",     href: "/stories" },
+            ].map((p) => (
+              <Link
+                key={p.label}
+                href={p.href}
+                className="group relative flex-1 h-64 md:h-80 overflow-hidden"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${p.img}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 py-3 text-center">
+                  <p className="text-white font-bold text-sm md:text-base tracking-wide drop-shadow">{p.label}</p>
                 </div>
-              ))}
-            </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
