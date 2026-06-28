@@ -5,7 +5,7 @@ import { countryVisitData } from "@/data/familyVisitData";
 import TravelProviderCard from "@/components/travel/TravelProviderCard";
 import TravelBudgetCalculator from "@/components/travel/TravelBudgetCalculator";
 import FamilyVisitFAQ from "@/components/travel/FamilyVisitFAQ";
-import CountryVisitSection from "@/components/travel/CountryVisitSection";
+import FamilyVisitEmailForm from "@/components/travel/FamilyVisitEmailForm";
 
 export const metadata: Metadata = {
   title: "Family Visit Travel Guide | Visit a Loved One After Deportation",
@@ -400,7 +400,7 @@ export default function FamilyVisitTravelPage() {
             </p>
           </div>
 
-          {/* Region grid */}
+          {/* Region grid — links to each country page where CountryVisitSection is embedded */}
           {Object.entries(REGION_MAP).map(([region, slugs]) => {
             const regionCountries = countries.filter((c) => slugs.includes(c.slug));
             if (!regionCountries.length) return null;
@@ -409,9 +409,9 @@ export default function FamilyVisitTravelPage() {
                 <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 pl-1">{region}</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                   {regionCountries.map((country) => (
-                    <a
+                    <Link
                       key={country.slug}
-                      href={`#country-${country.slug}`}
+                      href={`/${country.slug}`}
                       className="group bg-white border border-gray-200 hover:border-brand-red/40 rounded-xl p-3 flex items-center gap-3 transition-all hover:shadow-md"
                     >
                       <span className="text-2xl">{country.flagEmoji}</span>
@@ -423,7 +423,7 @@ export default function FamilyVisitTravelPage() {
                           <p className="text-gray-400 text-xs truncate">{countryVisitData[country.slug].currency.split(" — ")[0]}</p>
                         )}
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -743,48 +743,6 @@ export default function FamilyVisitTravelPage() {
         </div>
       </section>
 
-      {/* ── Country-Specific Visit Guides ─────────────────────────── */}
-      <section id="country-guides" className="py-14 px-4 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-brand-red text-xs font-bold uppercase tracking-widest mb-2">By Destination</p>
-            <h2 className="text-2xl font-extrabold text-navy-800 mb-2">Country-Specific Visit Guides</h2>
-            <p className="text-gray-500 text-sm max-w-2xl mx-auto">
-              Detailed travel information for every country. Airports, transportation, visa rules, safety tips, and more — unique per destination.
-            </p>
-          </div>
-        </div>
-
-        {/* Render each country guide that has data */}
-        {countries.map((country) => {
-          const visitData = countryVisitData[country.slug];
-          if (!visitData) return null;
-          return (
-            <div key={country.slug} id={`country-${country.slug}`}>
-              <div className="max-w-5xl mx-auto px-4 pb-2">
-                <div className="flex items-center gap-3 pt-8 pb-4">
-                  <span className="text-4xl">{country.flagEmoji}</span>
-                  <h3 className="text-xl font-extrabold text-navy-800">
-                    Visiting {country.countryName}
-                  </h3>
-                  <Link
-                    href={`/${country.slug}`}
-                    className="ml-auto text-xs text-brand-red hover:text-red-700 font-semibold transition-colors"
-                  >
-                    Full {country.countryName} Guide →
-                  </Link>
-                </div>
-              </div>
-              <CountryVisitSection
-                countryName={country.countryName}
-                countrySlug={country.slug}
-                data={visitData}
-              />
-            </div>
-          );
-        })}
-      </section>
-
       {/* ── Email Capture ─────────────────────────────────────────── */}
       <section id="email-capture" className="py-14 px-4 bg-navy-800">
         <div className="max-w-3xl mx-auto text-center">
@@ -793,55 +751,8 @@ export default function FamilyVisitTravelPage() {
           <p className="text-gray-400 text-sm mb-8 max-w-xl mx-auto">
             Enter your details and we&apos;ll send you a printable family visit checklist, country-specific tips, and updates on the best travel deals.
           </p>
-          {/* TODO: Connect this form to a real backend — currently a visual placeholder */}
-          {/* TODO: Add email provider integration (Resend, Mailchimp, or ConvertKit) */}
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="bg-gray-800/50 border border-white/10 rounded-2xl p-6 space-y-4 text-left"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wide mb-1.5">Your Name</label>
-                <input
-                  type="text"
-                  placeholder="First name"
-                  className="w-full bg-gray-800 border border-white/10 text-white rounded-xl px-3 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-red"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wide mb-1.5">Email Address</label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="w-full bg-gray-800 border border-white/10 text-white rounded-xl px-3 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-red"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wide mb-1.5">Country Visiting</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Mexico, Philippines"
-                  className="w-full bg-gray-800 border border-white/10 text-white rounded-xl px-3 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-red"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wide mb-1.5">Travel Month</label>
-                <input
-                  type="text"
-                  placeholder="e.g. August 2025"
-                  className="w-full bg-gray-800 border border-white/10 text-white rounded-xl px-3 py-2.5 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-red"
-                />
-              </div>
-            </div>
-            {/* TODO: Add analytics event tracking for checklist signup clicks */}
-            <button
-              type="submit"
-              className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 rounded-xl transition-colors text-sm"
-            >
-              Send Me the Checklist →
-            </button>
-            <p className="text-gray-500 text-xs text-center">No spam. Unsubscribe anytime.</p>
-          </form>
+          {/* TODO: Connect FamilyVisitEmailForm to /api/subscribe or email marketing provider */}
+          <FamilyVisitEmailForm />
         </div>
       </section>
 
