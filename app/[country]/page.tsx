@@ -27,16 +27,67 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const CATEGORIES = [
-  { slug: "first-30-days",   title: "Your First 30 Days", icon: "📋", desc: "Checklist for your first month after arrival", urgent: true },
-  { slug: "directory",       title: "Business Directory", icon: "🏢", desc: "Local businesses, services, and organizations" },
-  { slug: "find-housing",    title: "Find Housing",       icon: "🏠", desc: "Short-term and long-term housing options" },
-  { slug: "find-work",       title: "Find Work",          icon: "💼", desc: "Jobs, income, and employment resources" },
-  { slug: "legal-documents", title: "Legal & Documents",  icon: "⚖️", desc: "IDs, passports, visas, and legal rights" },
-  { slug: "healthcare",      title: "Healthcare",         icon: "🏥", desc: "Hospitals, clinics, and mental health support" },
-  { slug: "banking-money",   title: "Banking & Money",    icon: "💰", desc: "Accounts, transfers, and managing finances" },
-  { slug: "phone-internet",  title: "Phone & Internet",   icon: "📱", desc: "SIM cards, data plans, and connectivity" },
-  { slug: "transportation",  title: "Transportation",     icon: "🚌", desc: "Getting around and local transit" },
-  { slug: "resources",       title: "All Resources",      icon: "📚", desc: "Tools, services, and affiliate resources" },
+  {
+    slug: "first-30-days",
+    title: "Your First 30 Days",
+    img: "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=600&h=600&fit=crop&auto=format",
+    desc: "Checklist for your first month after arrival",
+    urgent: true,
+  },
+  {
+    slug: "directory",
+    title: "Business Directory",
+    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&h=600&fit=crop&auto=format",
+    desc: "Local businesses, services, and organizations",
+  },
+  {
+    slug: "find-housing",
+    title: "Find Housing",
+    img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=600&fit=crop&auto=format",
+    desc: "Short-term and long-term housing options",
+  },
+  {
+    slug: "find-work",
+    title: "Find Work",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop&auto=format",
+    desc: "Jobs, income, and employment resources",
+  },
+  {
+    slug: "legal-documents",
+    title: "Legal & Documents",
+    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=600&fit=crop&auto=format",
+    desc: "IDs, passports, visas, and legal rights",
+  },
+  {
+    slug: "healthcare",
+    title: "Healthcare",
+    img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=600&fit=crop&auto=format",
+    desc: "Hospitals, clinics, and mental health support",
+  },
+  {
+    slug: "banking-money",
+    title: "Banking & Money",
+    img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=600&h=600&fit=crop&auto=format",
+    desc: "Accounts, transfers, and managing finances",
+  },
+  {
+    slug: "phone-internet",
+    title: "Phone & Internet",
+    img: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=600&h=600&fit=crop&auto=format",
+    desc: "SIM cards, data plans, and connectivity",
+  },
+  {
+    slug: "transportation",
+    title: "Transportation",
+    img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=600&fit=crop&auto=format",
+    desc: "Getting around and local transit",
+  },
+  {
+    slug: "resources",
+    title: "All Resources",
+    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
+    desc: "Tools, services, and affiliate resources",
+  },
 ];
 
 export default function CountryPage({ params }: Props) {
@@ -80,19 +131,13 @@ export default function CountryPage({ params }: Props) {
                 href={`/${data.slug}/${cat.slug}`}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${cat.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
-                {/* Gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-navy-800 to-gray-900 transition-transform duration-500 group-hover:scale-105" />
-                {/* Large emoji */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span
-                    className="text-5xl md:text-6xl"
-                    style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.7))" }}
-                  >
-                    {cat.icon}
-                  </span>
-                </div>
-                {/* Bottom gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                {/* Realistic photo background */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  style={{ backgroundImage: `url('${cat.img}')` }}
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                 {/* Text */}
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                   {cat.urgent && (
