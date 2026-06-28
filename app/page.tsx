@@ -380,15 +380,15 @@ export default function HomePage() {
               <Link
                 key={p.label}
                 href={p.href}
-                className="group relative flex-1 h-64 md:h-80 overflow-hidden"
+                className="group relative flex-1 block h-64 md:h-80 overflow-hidden cursor-pointer hover:ring-2 hover:ring-white hover:z-10"
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 pointer-events-none"
                   style={{ backgroundImage: `url('${p.img}')` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 py-3 text-center">
-                  <p className="text-white font-bold text-sm md:text-base tracking-wide drop-shadow">{p.label}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 py-3 text-center pointer-events-none">
+                  <p className="text-white font-bold text-sm md:text-base tracking-wide drop-shadow group-hover:text-yellow-300 transition-colors">{p.label}</p>
                 </div>
               </Link>
             ))}
