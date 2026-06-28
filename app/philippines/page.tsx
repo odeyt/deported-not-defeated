@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/philippines/first-30-days",
-    title: "Your First 30 Days",
-    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-    img: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=600&h=600&fit=crop&auto=format",
-    urgent: true,
-  },
-  {
-    href: "/philippines/housing-manila",
-    title: "Find Housing",
-    desc: "Search for safe, affordable housing options and long-term rentals in Manila.",
-    img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/find-work-philippines",
-    title: "Find Work",
-    desc: "Access job listings, BPO opportunities, and resources to help you get back to work.",
-    img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/sim-card-philippines",
-    title: "Phone & Internet",
-    desc: "Get a Globe or Smart SIM card, affordable data plans, and stay connected with family.",
-    img: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/receive-money-usa-to-philippines",
-    title: "Banking & Money",
-    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
-    img: "https://images.unsplash.com/photo-1559526324-593bc073d938?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/cost-of-living-manila",
-    title: "Cost of Living",
-    desc: "Real monthly budget for Manila — from ₱15,000 to ₱40,000/month.",
-    img: "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/hospitals-manila",
-    title: "Healthcare",
-    desc: "Find clinics, mental health support, and medical services you can trust.",
-    img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/emergency-numbers-philippines",
-    title: "Emergency Numbers",
-    desc: "Police 911, Ambulance 911, Red Cross, US Embassy, and crisis contacts.",
-    img: "https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/philippines/start-over-after-deportation",
-    title: "Start Over Guide",
-    desc: "Practical steps for rebuilding your life with dignity after deportation.",
-    img: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/resources",
-    title: "All Resources",
-    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
-  },
+  { href: "/philippines/first-30-days",               title: "Your First 30 Days", desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",         pos: "0% 0%",     urgent: true },
+  { href: "/resources",                                title: "Business Directory", desc: "Find verified local businesses that can support you and help you rebuild.",                   pos: "33.3% 0%"  },
+  { href: "/philippines/housing-manila",               title: "Find Housing",       desc: "Search for safe, affordable housing options and long-term rentals in Manila.",                pos: "66.6% 0%"  },
+  { href: "/philippines/find-work-philippines",        title: "Find Work",          desc: "Access job listings, BPO opportunities, and resources to help you get back to work.",        pos: "100% 0%"   },
+  { href: "/philippines/start-over-after-deportation", title: "Legal & Documents",  desc: "Get help with visas, IDs, legal rights, and important documents.",                           pos: "0% 50%"    },
+  { href: "/philippines/hospitals-manila",             title: "Healthcare",         desc: "Find clinics, mental health support, and medical services you can trust.",                   pos: "33.3% 50%" },
+  { href: "/philippines/receive-money-usa-to-philippines", title: "Banking & Money",desc: "Open accounts, send or receive money, and manage your finances with confidence.",            pos: "66.6% 50%" },
+  { href: "/philippines/sim-card-philippines",         title: "Phone & Internet",   desc: "Get a Globe or Smart SIM card, affordable data plans, and stay connected with family.",      pos: "100% 50%"  },
+  { href: "/philippines/cost-of-living-manila",        title: "Transportation",     desc: "Jeepneys, tricycles, Grab, and how to get around Manila and beyond.",                       pos: "0% 100%"   },
+  { href: "/resources",                                title: "All Resources",      desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",                  pos: "33.3% 100%"},
 ];
 
 export default function PhilippinesPage() {
@@ -97,13 +46,17 @@ export default function PhilippinesPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
-                key={g.href}
+                key={g.title}
                 href={g.href}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${g.img}')` }}
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/phillippines.png')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
