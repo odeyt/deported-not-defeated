@@ -23,8 +23,8 @@ const stories = [
     flag: "🇰🇭",
     quote: "I didn't speak Khmer well. My kids are in the USA. I had to start completely from zero. But I found a job, then a better one.",
     outcome: "Employed in logistics",
-    // Southeast Asian man
-    img: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=120&h=120&fit=crop&crop=faces&auto=format",
+    // Southeast Asian / Cambodian woman
+    img: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=120&h=120&fit=crop&crop=faces&auto=format",
   },
   {
     name: "Jose L.",
