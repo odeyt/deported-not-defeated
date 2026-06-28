@@ -41,7 +41,7 @@ const FAQS = [
   },
   {
     q: "How can I stay connected by phone?",
-    a: "The best options are: (1) eSIM through Airalo or Holafly — no physical card needed, activate before you arrive; (2) purchase a local SIM card at the destination airport; (3) international roaming plan from your US carrier (expensive but convenient). We recommend eSIM for the easiest experience.",
+    a: "The best options are: (1) eSIM through Airalo, Holafly, or NumeroMoney — no physical card needed, activate before you arrive (use code RE_29X3K on NumeroMoney for €3 off); (2) purchase a local SIM card at the destination airport; (3) international roaming plan from your US carrier (expensive but convenient). We recommend eSIM for the easiest experience.",
   },
 ];
 
