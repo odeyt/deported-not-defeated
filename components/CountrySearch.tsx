@@ -75,26 +75,19 @@ export default function CountrySearch({ countries }: CountrySearchProps) {
                   <Link
                     key={country.slug}
                     href={`/${country.slug}`}
-                    className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square"
+                    className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square bg-gray-900"
                   >
-                    {/* Background: dark gradient with flag color accent */}
-                    <div
-                      className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                      style={{
-                        background: "linear-gradient(135deg, #0d1f3c 0%, #1a2a4a 50%, #0a1628 100%)",
-                      }}
+                    {/* Real national flag as full-card background */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://flagcdn.com/w320/${country.countryCode.toLowerCase()}.png`}
+                      alt={`${country.countryName} national flag`}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
                     />
-                    {/* Flag centered */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span
-                        className="text-6xl md:text-7xl select-none transition-transform duration-500 group-hover:scale-110"
-                        style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))" }}
-                      >
-                        {country.flagEmoji}
-                      </span>
-                    </div>
-                    {/* Bottom overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                    {/* Gradient overlay for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
+                    {/* Bottom text */}
                     <div className="absolute bottom-0 left-0 right-0 p-3">
                       <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-0.5">
                         {country.region}
@@ -106,7 +99,7 @@ export default function CountrySearch({ countries }: CountrySearchProps) {
                         {country.capital}
                       </p>
                     </div>
-                    {/* Hover: View Guide badge */}
+                    {/* Hover badge */}
                     <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded-lg">
                         View Guide →
