@@ -126,19 +126,143 @@ export default function DeportationCounter() {
           ))}
         </div>
 
-        {/* Flight tracker links */}
+        {/* ── Deportation Flight Tracker ── */}
+        <div className="bg-gray-900 border border-red-900/40 rounded-2xl overflow-hidden mb-6">
+          {/* Header bar */}
+          <div className="bg-gradient-to-r from-red-950/60 to-gray-900 px-5 py-4 flex items-center gap-3 border-b border-red-900/30">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-red" />
+              </span>
+              <p className="text-white font-bold text-sm tracking-wide uppercase">Deportation Flight Tracker</p>
+            </div>
+            <span className="ml-auto text-gray-500 text-xs">ICE Air Operations · Updated continuously</span>
+          </div>
+
+          <div className="p-5 space-y-5">
+            {/* Active corridors */}
+            <div>
+              <p className="text-gray-400 text-xs uppercase tracking-widest mb-3 font-semibold">Active Deportation Corridors</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  { from: "🇺🇸 USA", to: "🇲🇽 Mexico",              route: "Multiple daily ICE Air charter flights",        freq: "High Volume",  color: "border-red-700/60 bg-red-950/20" },
+                  { from: "🇺🇸 USA", to: "🇬🇹 Guatemala",           route: "Weekly ICE Air charters via Guatemala City",   freq: "High Volume",  color: "border-red-700/60 bg-red-950/20" },
+                  { from: "🇺🇸 USA", to: "🇸🇻 El Salvador",         route: "Regular charters to San Salvador (SAL)",       freq: "High Volume",  color: "border-red-700/60 bg-red-950/20" },
+                  { from: "🇺🇸 USA", to: "🇭🇳 Honduras",            route: "ICE Air charters to Tegucigalpa & San Pedro",  freq: "High Volume",  color: "border-red-700/60 bg-red-950/20" },
+                  { from: "🇺🇸 USA", to: "🇧🇷 Brazil / 🇨🇴 Colombia", route: "Long-haul South America charters",           freq: "Growing",      color: "border-orange-700/50 bg-orange-950/10" },
+                  { from: "🇺🇸 USA", to: "🇵🇭 Philippines",         route: "Commercial + ICE-chartered long-haul flights", freq: "Active",       color: "border-orange-700/50 bg-orange-950/10" },
+                  { from: "🇺🇸 USA", to: "🇮🇳 India / 🇵🇰 Pakistan",  route: "Military-assisted long-haul repatriation",   freq: "Active",       color: "border-orange-700/50 bg-orange-950/10" },
+                  { from: "🇺🇸 USA", to: "🇳🇬 Nigeria / 🇬🇭 Ghana",  route: "West Africa deportation charters",           freq: "Active",       color: "border-orange-700/50 bg-orange-950/10" },
+                ].map((r) => (
+                  <div key={r.to} className={`rounded-lg border px-4 py-3 flex items-center gap-3 ${r.color}`}>
+                    <Plane size={14} className="text-brand-red flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="text-white text-xs font-semibold truncate">{r.from} → {r.to}</p>
+                      <p className="text-gray-400 text-xs truncate">{r.route}</p>
+                    </div>
+                    <span className={`ml-auto text-xs font-bold flex-shrink-0 px-2 py-0.5 rounded-full ${r.freq === "High Volume" ? "bg-red-900/60 text-red-400" : "bg-orange-900/40 text-orange-400"}`}>
+                      {r.freq}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Track live flights */}
+            <div>
+              <p className="text-gray-400 text-xs uppercase tracking-widest mb-3 font-semibold">Track Deportation Flights Live</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {[
+                  {
+                    name: "Witness at the Border",
+                    desc: "Tracks ICE Air charter flights in real time using ADS-B data. Most comprehensive deportation flight tracker.",
+                    href: "https://witnessattheborder.org",
+                    badge: "Best Tracker",
+                    badgeColor: "bg-brand-red text-white",
+                  },
+                  {
+                    name: "ADS-B Exchange",
+                    desc: "Unfiltered global flight tracker. Search tail numbers of known ICE Air aircraft (N-series charters).",
+                    href: "https://globe.adsbexchange.com",
+                    badge: "Live Flights",
+                    badgeColor: "bg-blue-900 text-blue-300",
+                  },
+                  {
+                    name: "FlightAware",
+                    desc: "Search ICE Air charter flight numbers and aircraft tail numbers for recent deportation routes.",
+                    href: "https://flightaware.com",
+                    badge: "Flight History",
+                    badgeColor: "bg-gray-700 text-gray-300",
+                  },
+                  {
+                    name: "ICE ERO Statistics",
+                    desc: "Official ICE Enforcement and Removal Operations data including total removals by country.",
+                    href: "https://www.ice.gov/features/ERO-statistics",
+                    badge: "Official Data",
+                    badgeColor: "bg-gray-700 text-gray-300",
+                  },
+                  {
+                    name: "DHS Immigration Data",
+                    desc: "Department of Homeland Security official enforcement statistics and annual reports.",
+                    href: "https://www.dhs.gov/immigration-statistics",
+                    badge: "Gov Source",
+                    badgeColor: "bg-gray-700 text-gray-300",
+                  },
+                  {
+                    name: "Deportation Research Clinic",
+                    desc: "Academic research tracking ICE Air operations, contractor aircraft, and flight patterns.",
+                    href: "https://deportationresearchclinic.org",
+                    badge: "Research",
+                    badgeColor: "bg-gray-700 text-gray-300",
+                  },
+                ].map((t) => (
+                  <a
+                    key={t.name}
+                    href={t.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-gray-800 hover:bg-gray-750 border border-gray-700 hover:border-gray-600 rounded-xl p-4 flex flex-col gap-2 transition-colors"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-white font-semibold text-sm group-hover:text-red-300 transition-colors leading-tight">{t.name}</p>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${t.badgeColor}`}>{t.badge}</span>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">{t.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-brand-red text-xs font-semibold mt-auto">
+                      Open tracker <ExternalLink size={10} />
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* ICE Air note */}
+            <div className="bg-amber-950/20 border border-amber-800/30 rounded-xl p-4">
+              <p className="text-amber-300 text-xs font-bold mb-1 uppercase tracking-wider">About ICE Air Operations</p>
+              <p className="text-amber-200/70 text-xs leading-relaxed">
+                ICE Air is a division of ICE that operates charter flights to deport people from the United States.
+                Flights use contracted aircraft operated by companies such as World Atlantic Airlines, GlobalX, and others.
+                These aircraft are identifiable by tail numbers and flight codes tracked by independent monitors.
+                This information is publicly available through FAA and ADS-B flight data.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Source links */}
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Plane size={16} className="text-brand-red" />
-            <p className="text-white font-bold text-sm">Deportation Flight Trackers & Sources</p>
+            <p className="text-white font-bold text-sm">Additional Sources</p>
           </div>
           <div className="flex flex-wrap gap-3">
             {[
-              { label: "Witness at the Border", href: "https://witnessattheborder.org" },
-              { label: "ICE Official Stats", href: "https://www.ice.gov/features/ERO-statistics" },
-              { label: "DHS Enforcement Data", href: "https://www.dhs.gov/immigration-statistics" },
               { label: "Axios: FY2025 Report", href: "https://www.axios.com/2026/04/15/ice-deportations-us-immigration-trump-biden-2025" },
               { label: "Axios: FY2024 Record", href: "https://www.axios.com/2024/12/20/deportations-immigration-record-2024-ice" },
+              { label: "ICE Official Stats", href: "https://www.ice.gov/features/ERO-statistics" },
+              { label: "DHS Enforcement Data", href: "https://www.dhs.gov/immigration-statistics" },
+              { label: "Witness at the Border", href: "https://witnessattheborder.org" },
             ].map((l) => (
               <a
                 key={l.label}
