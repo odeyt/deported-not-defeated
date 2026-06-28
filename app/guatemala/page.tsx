@@ -9,67 +9,16 @@ export const metadata: Metadata = {
 };
 
 const guides = [
-  {
-    href: "/guatemala/first-30-days",
-    title: "Your First 30 Days",
-    desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",
-    img: "https://images.unsplash.com/photo-1548765342-6a9d8d4f68cd?w=600&h=600&fit=crop&auto=format",
-    urgent: true,
-  },
-  {
-    href: "/guatemala/housing-guatemala-city",
-    title: "Find Housing",
-    desc: "Search for safe, affordable housing options and long-term rentals in Guatemala City.",
-    img: "https://images.unsplash.com/photo-1598897516650-4bd29aaebdc0?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/find-work-guatemala",
-    title: "Find Work",
-    desc: "Access job listings, call center opportunities, and resources to help you get back to work.",
-    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/sim-card-guatemala",
-    title: "Phone & Internet",
-    desc: "Get a Tigo or Claro SIM card, affordable data plans, and stay connected with family.",
-    img: "https://images.unsplash.com/photo-1598520106830-8c45c2035460?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/receive-money-usa-to-guatemala",
-    title: "Banking & Money",
-    desc: "Open accounts, send or receive money, and manage your finances with confidence.",
-    img: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/cost-of-living-guatemala-city",
-    title: "Cost of Living",
-    desc: "Real monthly budget for Guatemala City — from Q3,000 to Q8,000/month.",
-    img: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/hospitals-guatemala-city",
-    title: "Healthcare",
-    desc: "Find clinics, mental health support, and medical services you can trust.",
-    img: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/emergency-numbers-guatemala",
-    title: "Emergency Numbers",
-    desc: "PNC 110, Ambulance 122, US Embassy, CONRED, and crisis contacts in Guatemala.",
-    img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/guatemala/start-over-after-deportation",
-    title: "Start Over Guide",
-    desc: "Practical steps for rebuilding your life with dignity after deportation.",
-    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=600&fit=crop&auto=format",
-  },
-  {
-    href: "/resources",
-    title: "All Resources",
-    desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",
-    img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&h=600&fit=crop&auto=format",
-  },
+  { href: "/guatemala/first-30-days",              title: "Your First 30 Days",  desc: "Essential checklist and step-by-step guide for your first 30 days after returning.",                   pos: "0% 0%",    urgent: true },
+  { href: "/guatemala/housing-guatemala-city",      title: "Find Housing",        desc: "Search for safe, affordable housing options and long-term rentals in Guatemala City.",                  pos: "33.3% 0%"  },
+  { href: "/guatemala/find-work-guatemala",         title: "Find Work",           desc: "Access job listings, call center opportunities, and resources to help you get back to work.",           pos: "66.6% 0%"  },
+  { href: "/guatemala/sim-card-guatemala",          title: "Phone & Internet",    desc: "Get a Tigo or Claro SIM card, affordable data plans, and stay connected with family.",                  pos: "100% 0%"   },
+  { href: "/guatemala/receive-money-usa-to-guatemala", title: "Banking & Money",  desc: "Open accounts, send or receive money, and manage your finances with confidence.",                       pos: "0% 50%"    },
+  { href: "/guatemala/cost-of-living-guatemala-city",  title: "Cost of Living",   desc: "Real monthly budget for Guatemala City — from Q3,000 to Q8,000/month.",                               pos: "33.3% 50%" },
+  { href: "/guatemala/hospitals-guatemala-city",    title: "Healthcare",          desc: "Find clinics, mental health support, and medical services you can trust.",                             pos: "66.6% 50%" },
+  { href: "/guatemala/emergency-numbers-guatemala", title: "Emergency Numbers",   desc: "PNC 110, Ambulance 122, US Embassy, CONRED, and crisis contacts in Guatemala.",                       pos: "100% 50%"  },
+  { href: "/guatemala/start-over-after-deportation", title: "Start Over Guide",   desc: "Practical steps for rebuilding your life with dignity after deportation.",                             pos: "0% 100%"   },
+  { href: "/resources",                             title: "All Resources",       desc: "Money transfer, eSIM, VPN, and insurance tools that may help you rebuild.",                            pos: "33.3% 100%"},
 ];
 
 export default function GuatemalaPage() {
@@ -97,13 +46,17 @@ export default function GuatemalaPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {guides.map((g) => (
               <Link
-                key={g.href}
+                key={g.title}
                 href={g.href}
                 className={`group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square ${g.urgent ? "ring-2 ring-brand-red" : ""}`}
               >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${g.img}')` }}
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    backgroundImage: "url('/images/guatamala.png')",
+                    backgroundSize: "400% 300%",
+                    backgroundPosition: g.pos,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
