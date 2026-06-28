@@ -70,33 +70,49 @@ export default function CountrySearch({ countries }: CountrySearchProps) {
               <h2 className="text-lg font-semibold text-gray-400 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
                 {region}
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {grouped[region].map((country) => (
-                  <div
+                  <Link
                     key={country.slug}
-                    className="bg-gray-800 border border-white/10 rounded-xl p-5 flex flex-col gap-3 hover:border-white/20 transition-colors"
+                    href={`/${country.slug}`}
+                    className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all aspect-square"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{country.flagEmoji}</span>
-                      <div>
-                        <h3 className="text-white font-bold text-base leading-tight">
-                          {country.countryName}
-                        </h3>
-                        <p className="text-gray-400 text-xs">{country.region}</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
-                      {country.summary}
-                    </p>
-                    <div className="mt-auto">
-                      <Link
-                        href={`/${country.slug}`}
-                        className="inline-block bg-brand-red hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                    {/* Background: dark gradient with flag color accent */}
+                    <div
+                      className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #0d1f3c 0%, #1a2a4a 50%, #0a1628 100%)",
+                      }}
+                    />
+                    {/* Flag centered */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span
+                        className="text-6xl md:text-7xl select-none transition-transform duration-500 group-hover:scale-110"
+                        style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))" }}
                       >
-                        View Guide →
-                      </Link>
+                        {country.flagEmoji}
+                      </span>
                     </div>
-                  </div>
+                    {/* Bottom overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <span className="text-xs font-bold text-brand-red uppercase tracking-wider block mb-0.5">
+                        {country.region}
+                      </span>
+                      <h3 className="font-bold text-white text-sm md:text-base leading-tight group-hover:text-red-300 transition-colors">
+                        {country.countryName}
+                      </h3>
+                      <p className="text-gray-400 text-xs mt-0.5 hidden md:block">
+                        {country.capital}
+                      </p>
+                    </div>
+                    {/* Hover: View Guide badge */}
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded-lg">
+                        View Guide →
+                      </span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </section>
