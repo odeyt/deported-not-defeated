@@ -69,9 +69,9 @@ export default function AboutPage() {
                 { title: "Success",     desc: "On your own terms.",                    href: "/laos/start-over-after-deportation", img: "/images/value-success.jpg" },
                 { title: "Dignity",     desc: "You deserve respect.",                  href: "/contact",                           img: "/images/value-dignity.jpg" },
               ].map((v) => (
-                <Link key={v.title} href={v.href} className="group rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition-shadow block">
+                <Link key={v.title} href={v.href} className="group rounded-2xl border border-gray-200 shadow-md hover:shadow-xl transition-shadow block overflow-hidden">
                   <div
-                    className="w-full h-44 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-44 bg-cover bg-top transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url('${v.img}')` }}
                   />
                   <div className="px-4 py-3 bg-white text-center">
