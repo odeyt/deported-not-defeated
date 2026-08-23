@@ -23,6 +23,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     {
       label: "Affiliates",
       links: [
+        ["/admin/affiliates/dashboard", "Dashboard"],
         ["/admin/affiliates", "Partners"],
         ["/admin/affiliate-applications", "Applications"],
         ["/admin/affiliate-clicks", "Click Report"],

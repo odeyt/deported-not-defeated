@@ -1,4 +1,13 @@
-import type { AffiliatePartner, AffiliateCategory } from "./types";
+/**
+ * Pre-M-AFFILIATE-1 affiliate helpers, moved here verbatim when
+ * lib/affiliate.ts became the lib/affiliate/ module.
+ *
+ * Re-exported from ./index, so every existing `@/lib/affiliate` import
+ * resolves exactly as before. Kept separate from the new engine so the
+ * legacy `affiliate_partners`-shaped helpers and the new provider model
+ * do not quietly blur together.
+ */
+import type { AffiliatePartner, AffiliateCategory } from "@/lib/types";
 
 export function getEffectiveUrl(partner: Pick<AffiliatePartner, "affiliate_status" | "affiliate_url" | "slug" | "official_website_url">): string {
   if (partner.affiliate_status === "approved" && partner.affiliate_url) {
