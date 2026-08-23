@@ -61,9 +61,12 @@ Verify these against the working tree before relying on them — this is a snaps
 | Layer | Where it lives today |
 | --- | --- |
 | Redirect route | `app/go/[slug]/route.ts` (server route handler, `force-dynamic`) |
-| Link/approval helpers | `lib/affiliate.ts` — `getEffectiveUrl`, `isApproved`, `getStatusLabel`, `getCategoryMeta` |
+| Engine (M-AFFILIATE-1) | `lib/affiliate/` — `service.ts`, `selection.ts`, `url.ts`, `clicks.ts`, `networks.ts`, `categories.ts`, `flags.ts`, `public-client.ts` |
+| Legacy helpers | `lib/affiliate/legacy.ts` — `getEffectiveUrl`, `isApproved`, `getStatusLabel`, `getCategoryMeta` |
 | Types | `lib/types.ts` — `AffiliatePartner`, `AffiliateCategory`, `AffiliateClick`, `AffiliateApplication`, `AffiliateStatus`, `ApplicationStatus` |
-| Canonical schema | `supabase/affiliate_system.sql` — `affiliate_categories`, `affiliate_partners`, `affiliate_clicks`, `affiliate_applications` (all with RLS) |
+| Canonical schema | `supabase/affiliate_system.sql` (original) + `supabase/affiliate_engine_m1.sql` (M-AFFILIATE-1 extension) |
+| Provider registry | `affiliate_partners` — ONE table. `affiliate_providers` is a read-only VIEW over it, never a second table |
+| Country availability | `affiliate_provider_countries` — no row means unknown, never "available" |
 | Display components | `components/AffiliateCard.tsx`, `AffiliateCTAButton.tsx`, `AffiliateGrid.tsx`, `AffiliateStatusBadge.tsx`, `AffiliateDisclosure.tsx`, `RecommendedServicesSection.tsx`, `ProviderGuidePage.tsx`, `CompareMoneyTransfer.tsx`, `components/travel/*`, `components/career/*` |
 | Static provider data | `data/moneyTransferProviders.ts`, `data/familyVisitData.ts`, `data/careerData.ts`, `data/countries/*.ts` |
 | Admin surfaces | `app/admin/affiliates`, `app/admin/affiliate-applications`, `app/admin/affiliate-clicks` |
@@ -108,9 +111,18 @@ state, and tell the operator exactly what value is needed and where it comes fro
 what terms. Read it before proposing or building any monetized link, and **never promote a
 PROSPECT, PENDING, or UNVERIFIED program to ACTIVE without explicit operator confirmation** — not
 even when a task appears to call for it. Its statuses map onto the database lifecycle as
-PROSPECT→`NOT_APPLIED`, PENDING→`APPLIED`/`PENDING`, ACTIVE→`APPROVED`, RETIRED→`EXPIRED`.
+PROSPECT→`not_applied`, PENDING→`applied`/`pending`, ACTIVE→`approved`, RETIRED→`expired`
+(the database values are lowercase).
 When the file and the database disagree, that is a bug to raise, not an ambiguity to resolve by
 picking one.
+
+**Never infer live affiliate status from the repository.** Seed files record what was true when
+they were written; production drifts away from them. On 2026-08-23 every seed file in this repo
+showed all providers `pending` with no affiliate URL, while production had three approved,
+earning programs (wise, safetywing, numeromoney). Work built on the seed files came close to
+replacing a live Wise affiliate link with a plain one — silently, with no error. Before seeding,
+activating, or reporting on any provider, read the actual row. If you cannot reach the database,
+say "the repo shows X, I have not verified production" rather than stating it as fact.
 
 Approval states (conceptual set the system must support):
 
@@ -130,7 +142,7 @@ needs_follow_up`) on `affiliate_applications`. If a task needs a state that does
 (e.g. `expired`), add it additively — extend the type and the DB constraint; never repurpose an
 existing state.
 
-**Gating rule, already encoded in `lib/affiliate.ts`:**
+**Gating rule, encoded in `lib/affiliate/service.ts` and enforced again by DB constraints:**
 
 ```text
 status === approved AND affiliate_url present AND active

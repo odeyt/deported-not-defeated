@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import type { AffiliateCategory } from "@/lib/types";
-
-const STATUS_OPTIONS = ["pending", "applied", "approved", "rejected", "paused"] as const;
+import { AFFILIATE_STATUSES } from "@/lib/affiliate/types";
+import { AFFILIATE_CATEGORIES, CATEGORY_LABELS } from "@/lib/affiliate/categories";
+import { AFFILIATE_NETWORKS, NETWORK_ADAPTERS } from "@/lib/affiliate/networks";
+import { isSafeAffiliateUrl } from "@/lib/affiliate/url";
 const inputClass = "w-full px-3 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:border-navy-500 text-sm";
 
 export default function NewAffiliatePartnerPage() {
@@ -22,7 +24,13 @@ export default function NewAffiliatePartnerPage() {
     typical_potential: "",
     official_website_url: "",
     affiliate_url: "",
-    affiliate_status: "pending" as typeof STATUS_OPTIONS[number],
+    // A new provider has NOT been applied for. Anything else would overstate
+    // the commercial position the moment the row is created.
+    affiliate_status: "not_applied" as (typeof AFFILIATE_STATUSES)[number],
+    canonical_category: "",
+    network: "",
+    global_priority: 0,
+    available_globally: false,
     cta_label: "Learn More",
     country_focus: "Laos",
     priority: 0,
@@ -53,10 +61,25 @@ export default function NewAffiliatePartnerPage() {
     e.preventDefault();
     setSaving(true);
     const supabase = createClient();
+    if (form.affiliate_url && !isSafeAffiliateUrl(form.affiliate_url)) {
+      alert("Affiliate URL must be an absolute http(s) URL with no embedded credentials.");
+      setSaving(false);
+      return;
+    }
+    if (form.affiliate_status === "approved" && !form.affiliate_url) {
+      alert("A provider cannot be created as approved without a real tracking URL.");
+      setSaving(false);
+      return;
+    }
+
+    // Empty strings would violate the canonical-category foreign key and would
+    // store a meaningless "" network, so they become NULL.
     const payload = {
       ...form,
       affiliate_url: form.affiliate_url || null,
       category_id: form.category_id || null,
+      canonical_category: form.canonical_category || null,
+      network: form.network || null,
     };
     const { error } = await supabase.from("affiliate_partners").insert(payload);
     if (!error) {
@@ -128,7 +151,7 @@ export default function NewAffiliatePartnerPage() {
           <div>
             <label className="block text-xs font-semibold text-gray-600 mb-1">Status</label>
             <select value={form.affiliate_status} onChange={(e) => update("affiliate_status", e.target.value)} className={inputClass}>
-              {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+              {AFFILIATE_STATUSES.map((s) => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}
             </select>
           </div>
           <div>
@@ -141,8 +164,42 @@ export default function NewAffiliatePartnerPage() {
           </div>
         </div>
 
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-gray-600 mb-1">Canonical Category</label>
+            <select value={form.canonical_category} onChange={(e) => update("canonical_category", e.target.value)} className={inputClass}>
+              <option value="">No category — excluded from recommendations</option>
+              {AFFILIATE_CATEGORIES.map((c) => <option key={c} value={c}>{CATEGORY_LABELS[c]}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-semibold text-gray-600 mb-1">Affiliate Network</label>
+            <select value={form.network} onChange={(e) => update("network", e.target.value)} className={inputClass}>
+              <option value="">Unknown</option>
+              {AFFILIATE_NETWORKS.map((n) => <option key={n} value={n}>{NETWORK_ADAPTERS[n].label}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-semibold text-gray-600 mb-1">Global Priority</label>
+            <input type="number" value={form.global_priority} onChange={(e) => update("global_priority", parseInt(e.target.value, 10) || 0)} className={inputClass} />
+          </div>
+          <div className="flex items-end">
+            <label className="flex items-center gap-2 text-sm cursor-pointer pb-2.5">
+              <input type="checkbox" checked={form.available_globally} onChange={(e) => update("available_globally", e.target.checked)} className="accent-navy-600" />
+              Available globally
+            </label>
+          </div>
+        </div>
+
+        <p className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+          Per-country availability is set on the edit screen once the provider has been created.
+        </p>
+
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1">Country Focus</label>
+          <label className="block text-xs font-semibold text-gray-600 mb-1">Country Focus (legacy free text)</label>
           <input value={form.country_focus} onChange={(e) => update("country_focus", e.target.value)} className={inputClass} placeholder="Laos" />
         </div>
 

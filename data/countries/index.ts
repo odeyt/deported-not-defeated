@@ -97,3 +97,13 @@ export const allCountries: CountryData[] = [
 export const countriesBySlug: Record<string, CountryData> = Object.fromEntries(
   allCountries.map((c) => [c.slug, c])
 );
+
+/**
+ * Lookup by ISO 3166-1 alpha-2, uppercased.
+ *
+ * The affiliate engine keys country availability on ISO codes, so this maps
+ * a `?country=GT` parameter back to the country's display name.
+ */
+export const countriesByCode: Record<string, CountryData> = Object.fromEntries(
+  allCountries.map((c) => [c.countryCode.toUpperCase(), c])
+);
