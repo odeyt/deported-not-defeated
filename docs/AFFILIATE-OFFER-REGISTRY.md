@@ -147,6 +147,22 @@ Order reflects expected value to this audience, not expected payout.
 | 9 | Coursera | Merchant | PROSPECT |
 | 10 | PartnerStack | Network | PROSPECT — no provider row |
 
+### Travelpayouts Drive — installed 2026-08-23
+
+The Drive script (partner marker `565661`) is installed site-wide via
+`components/TravelpayoutsDrive.tsx`.
+
+**Installing Drive is an onboarding step, not an approval.** Travelpayouts stays
+`PROSPECT` here and `NOT_APPLIED` in the database until the operator confirms the
+program has actually approved this site.
+
+Drive is Travelpayouts' own monetization tooling and runs **outside** the
+`/go/[slug]` engine. Anything it injects or rewrites on a page is not covered by
+the engine's approval gate, click tracking, ranking rules, or disclosure
+placement. Check what it actually renders on a live page before relying on it,
+and if it starts inserting commercial links, make sure a disclosure sits near
+them.
+
 ## Money transfer
 
 | Merchant | Slug | Public URL | Notes |
