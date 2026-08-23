@@ -19,7 +19,7 @@ This is the day-to-day runbook. Architecture lives in
 select slug, name, category, affiliate_status, active from affiliate_providers order by category, slug;
 ```
 
-Expected: **26 providers, every one `NOT_APPLIED`, every `affiliate_url` NULL**,
+Expected: **25 providers, every one `NOT_APPLIED`, every `affiliate_url` NULL**,
 5 active (money transfer), 3 Guatemala availability rows.
 
 4. Confirm `AFFILIATE_ENGINE_ENABLED` is unset or `true` in the hosting environment.

@@ -570,8 +570,8 @@ on conflict (provider_id, country_code) do nothing;
 --   select * from resolve_affiliate_destination('remitly');
 --
 -- Expected after this migration:
---   * 26 providers, ALL affiliate_status = 'NOT_APPLIED', ALL affiliate_url NULL
---   * 5 providers active (money transfer), 21 inactive
+--   * 25 providers, ALL affiliate_status = 'NOT_APPLIED', ALL affiliate_url NULL
+--   * 5 providers active (money transfer), 20 inactive
 --   * 3 Guatemala availability rows
 --   * resolve_affiliate_destination('remitly') -> remitly.com, monetized = false
 -- ============================================================
