@@ -104,6 +104,14 @@ state, and tell the operator exactly what value is needed and where it comes fro
 
 **A provider may use a monetized affiliate link only when its approval is actually confirmed.**
 
+`docs/AFFILIATE-OFFER-REGISTRY.md` is the operator's record of which relationships exist and on
+what terms. Read it before proposing or building any monetized link, and **never promote a
+PROSPECT, PENDING, or UNVERIFIED program to ACTIVE without explicit operator confirmation** — not
+even when a task appears to call for it. Its statuses map onto the database lifecycle as
+PROSPECT→`NOT_APPLIED`, PENDING→`APPLIED`/`PENDING`, ACTIVE→`APPROVED`, RETIRED→`EXPIRED`.
+When the file and the database disagree, that is a bug to raise, not an ambiguity to resolve by
+picking one.
+
 Approval states (conceptual set the system must support):
 
 ```text
@@ -333,7 +341,8 @@ Before any significant affiliate work:
    docs (`01_Product_Strategy.md`, `02_Brand_Guidelines.md`, `03_UI_Design_System.md`,
    `DECISIONS.md`).
 2. Inspect the current repository architecture.
-3. Inspect the existing affiliate implementation (route, lib, types, SQL, components).
+3. Inspect the existing affiliate implementation (route, lib, types, SQL, components) and read
+   `docs/AFFILIATE-OFFER-REGISTRY.md` for the current relationship status of every provider.
 4. Check `git status`.
 5. Preserve unrelated changes — never revert or reformat work you did not touch.
 6. Follow existing patterns (Next.js App Router, TypeScript, Tailwind, Supabase, `@/` imports).
@@ -389,6 +398,8 @@ State plainly which items are blocked on the operator, and the exact value neede
 - [ ] No hardcoded affiliate URL added to a page component
 - [ ] All monetized links route through `/go/[slug]`
 - [ ] No fabricated IDs, URLs, rates, cookie durations, or approval states
+- [ ] `docs/AFFILIATE-OFFER-REGISTRY.md` still matches the database, and its `Last Verified` /
+      review dates were updated if a relationship changed
 - [ ] Non-approved providers fall back to a useful non-monetized destination
 - [ ] Country availability considered; fallback chain ends in a helpful answer
 - [ ] Disclosure present next to the commercial content
