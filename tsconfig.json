@@ -10,6 +10,9 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    // The test suite runs on Node native TypeScript, whose ESM resolver needs
+    // fully-specified relative imports. tsc has to accept the same specifiers.
+    "allowImportingTsExtensions": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],

@@ -12,6 +12,9 @@ import {
   WalletCards,
 } from "lucide-react";
 import { moneyTransferProviders } from "@/data/moneyTransferProviders";
+import AffiliateRecommendations from "@/components/affiliate/AffiliateRecommendations";
+import { normalizeCountryCode } from "@/lib/affiliate/url";
+import { countriesByCode } from "@/data/countries/index";
 
 export const metadata: Metadata = {
   title: "Money Transfer Resources for Deportees and Families | Deported Not Defeated",
@@ -41,7 +44,30 @@ const primaryProviders = moneyTransferProviders.filter((p) =>
   PRIMARY_SLUGS.includes(p.slug)
 );
 
-export default function MoneyTransferPage() {
+/**
+ * M-AFFILIATE-1 first production proof (spec §48).
+ *
+ * The hand-maintained provider grid below is untouched — it still renders
+ * exactly the same 12 cards from data/moneyTransferProviders.ts, and its
+ * CTAs still point at /go/<slug>. What is new is the registry-backed
+ * <AffiliateRecommendations> block, which pulls providers, ordering, and
+ * country eligibility from the database instead of from a hardcoded list.
+ *
+ * Country context arrives as ?country=GT. Country guides link in that way;
+ * without it the block simply renders the country-agnostic ranking.
+ *
+ * Adding this block makes the route server-rendered rather than static.
+ * That matches the rest of /resources/* , which already reads Supabase
+ * per-request.
+ */
+export default function MoneyTransferPage({
+  searchParams,
+}: {
+  searchParams?: { country?: string };
+}) {
+  const countryCode = normalizeCountryCode(searchParams?.country ?? null);
+  const countryName = countryCode ? countriesByCode[countryCode]?.countryName ?? null : null;
+
   return (
     <main>
       {/* Hero */}
@@ -73,6 +99,25 @@ export default function MoneyTransferPage() {
           </p>
         </div>
       </div>
+
+      {/* Registry-backed recommendations — the centralized engine */}
+      <section className="py-12 px-4 max-w-6xl mx-auto">
+        <AffiliateRecommendations
+          category="MONEY_TRANSFER"
+          country={countryCode}
+          heading={countryName ? `Sending Money to ${countryName}` : "Ways to Send Money"}
+          intro={
+            countryName
+              ? `Services listed for ${countryName}, then wider options to compare. Availability, fees, and delivery times change often — confirm the current terms with the provider before you send anything.`
+              : "Compare options for sending money internationally. Add your country to the address bar as ?country=MX to see country-specific listings."
+          }
+          placement="money_transfer_index"
+          campaign="resources"
+          limit={9}
+          fallbackHref="/resources/money-transfer/compare"
+          fallbackLabel="We do not have registry listings for this country yet."
+        />
+      </section>
 
       {/* Provider cards */}
       <section className="py-12 px-4 max-w-6xl mx-auto">
