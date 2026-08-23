@@ -48,6 +48,41 @@ export const PUBLIC_PROVIDER_COLUMNS = [
   "priority",
 ].join(", ");
 
+/**
+ * Column set that exists BEFORE supabase/affiliate_engine_m1.sql runs.
+ *
+ * A deploy and its migration do not land at the same instant. If the build
+ * ships first, selecting canonical_category / network / placement_type fails
+ * with PostgREST 42703 and every provider lookup returns null — which silently
+ * turns a live affiliate redirect into a /resources fallback. That is exactly
+ * what happened on 2026-08-23.
+ *
+ * So the read retries with these columns. toProvider() already treats the newer
+ * fields as optional, so a provider resolved this way still redirects to its
+ * approved affiliate URL; it simply has no canonical category until the
+ * migration runs.
+ */
+const LEGACY_PROVIDER_COLUMNS = [
+  "id",
+  "slug",
+  "company_name",
+  "short_description",
+  "why_it_fits",
+  "official_website_url",
+  "affiliate_url",
+  "affiliate_status",
+  "cta_label",
+  "active",
+  "featured",
+  "priority",
+].join(", ");
+
+/** True when PostgREST rejected the query because a column does not exist yet. */
+function isMissingColumnError(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false;
+  return error.code === "42703" || /does not exist/i.test(error.message ?? "");
+}
+
 interface ProviderRow {
   id: string;
   slug: string;
@@ -147,12 +182,21 @@ export async function getProviderBySlug(slug: string): Promise<AffiliateProvider
     const supabase = await getReadClient();
     if (!supabase) return null;
 
-    const { data, error } = await supabase
-      .from("affiliate_partners")
-      .select(PUBLIC_PROVIDER_COLUMNS)
-      .eq("slug", slug)
-      .limit(1)
-      .maybeSingle();
+    const query = (columns: string) =>
+      supabase
+        .from("affiliate_partners")
+        .select(columns)
+        .eq("slug", slug)
+        .limit(1)
+        .maybeSingle();
+
+    let { data, error } = await query(PUBLIC_PROVIDER_COLUMNS);
+
+    // The migration may not have run yet. Retry with the pre-migration column
+    // set rather than dropping an approved provider on the floor.
+    if (isMissingColumnError(error)) {
+      ({ data, error } = await query(LEGACY_PROVIDER_COLUMNS));
+    }
 
     if (error || !data) return null;
     return toProvider(data as unknown as ProviderRow);
