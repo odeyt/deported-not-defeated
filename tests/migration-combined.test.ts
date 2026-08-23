@@ -75,13 +75,24 @@ test("it aborts rather than locking the operator out of the admin", () => {
   );
 });
 
-test("it refuses to run with the email placeholder still in place", () => {
+test("with the placeholder left in place it promotes the sole account, or aborts", () => {
+  // Production has exactly one auth account, so the common path needs no
+  // operator input — and no personal email lands in this public repository.
   assert.ok(combined.includes("YOUR@EMAIL.HERE"));
   assert.match(
     combined,
-    /raise exception[\s\S]*placeholder was not replaced/i,
-    "an unedited placeholder must abort, not silently create no admin"
+    /account_count <> 1/,
+    "the sole-account path must be explicit"
   );
+  assert.match(
+    combined,
+    /raise exception[\s\S]*ambiguous/i,
+    "more than one auth account must abort rather than guess an administrator"
+  );
+});
+
+test("an explicit address matching no account aborts", () => {
+  assert.match(combined, /raise exception[\s\S]*no Supabase auth account matches/i);
 });
 
 test("the promotion runs before the admin-only policies are installed", () => {

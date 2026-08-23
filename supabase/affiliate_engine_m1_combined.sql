@@ -6,7 +6,7 @@
 -- docs/M-AFFILIATE1-PRODUCTION-ACTIVATION.md §"Composing the migration".
 --
 --   Section A  = supabase/affiliate_engine_m1.sql            (verbatim)
---   Section B  = admin promotion + abort guard               (added here)
+--   Section B  = admin bootstrap + abort guards              (added here)
 --   Section C  = supabase/affiliate_engine_m1_hardening.sql  (verbatim)
 --
 -- WHY COMBINED
@@ -16,17 +16,15 @@
 --   window. Wrapping both in one transaction removes it: either the whole
 --   thing applies, or nothing does.
 --
--- PREREQUISITE — READ THIS
---   Deploy the M-AFFILIATE1 application build FIRST.
---   Section C revokes blanket SELECT on affiliate_partners from `anon`.
---   Until the build that replaces select("*") with an explicit column list is
---   live, /resources and its four category pages will break. That build is on
---   branch feature/m-affiliate1.
+-- PREREQUISITE
+--   The M-AFFILIATE1 application build must already be deployed (commit
+--   5b3172e or later). Section C revokes blanket SELECT on affiliate_partners
+--   from `anon`; the build that replaced select("*") with an explicit column
+--   list must be live first. As of 2026-08-24 it is.
 --
 -- BEFORE RUNNING
 --   1. Confirm you are in the correct Supabase project.
---   2. Edit the admin email on the marked line in Section B.
---   3. Run the whole file in one execution. Do not run it in pieces.
+--   2. Run the whole file in one execution. Do not run it in pieces.
 --
 -- IF IT ABORTS
 --   Nothing is applied. The transaction rolls back. Fix what the error says
@@ -36,21 +34,19 @@
 begin;
 
 -- ============================================================
--- SECTION B0 — OPERATOR INPUT (edit this)
+-- SECTION B0 — ADMINISTRATOR (usually nothing to do here)
+--
+-- Leave the placeholder alone and the migration promotes the ONLY existing
+-- Supabase auth account. That is the common case, and it avoids putting a
+-- personal email address into a public Git repository.
+--
+-- Set an address here ONLY if more than one auth account exists, or if the
+-- administrator should be someone other than the sole account. The migration
+-- aborts rather than guessing.
 -- ============================================================
 create temporary table _m_affiliate1_config (admin_email text) on commit drop;
 
--- ⬇⬇⬇  REPLACE WITH THE EMAIL OF YOUR SUPABASE AUTH USER  ⬇⬇⬇
 insert into _m_affiliate1_config values ('YOUR@EMAIL.HERE');
--- ⬆⬆⬆  REPLACE WITH THE EMAIL OF YOUR SUPABASE AUTH USER  ⬆⬆⬆
-
-do $$
-begin
-  if exists (select 1 from _m_affiliate1_config where admin_email = 'YOUR@EMAIL.HERE') then
-    raise exception
-      'ABORT: the admin email placeholder was not replaced. Edit Section B0 and re-run. Nothing has been applied.';
-  end if;
-end $$;
 
 
 -- ============================================================
@@ -749,20 +745,55 @@ grant select on affiliate_provider_countries       to anon, authenticated;
 
 
 -- ============================================================
--- SECTION B — PROMOTE THE OPERATOR TO ADMIN, THEN VERIFY
+-- SECTION B — BOOTSTRAP THE ADMINISTRATOR, THEN VERIFY
 --
 -- Section C restricts every affiliate write to user_profiles.role = 'admin'.
--- user_profiles is currently EMPTY in production (verified 2026-08-24), so
--- without this step the hardening would lock every human out of the affiliate
--- admin with no way back in through the UI.
+-- user_profiles was EMPTY in production when this was written (verified
+-- 2026-08-24), so without this step the hardening would lock every human out
+-- of the affiliate admin with no route back through the UI.
 --
--- The guard below aborts the whole transaction rather than allowing that.
+-- Every failure path below aborts the entire transaction rather than leaving
+-- that state behind.
 -- ============================================================
-insert into user_profiles (id, email, role)
-select u.id, u.email, 'admin'
-  from auth.users u
-  join _m_affiliate1_config c on lower(u.email) = lower(c.admin_email)
-on conflict (id) do update set role = 'admin';
+do $$
+declare
+  configured    text;
+  target_id     uuid;
+  target_email  text;
+  account_count integer;
+begin
+  select admin_email into configured from _m_affiliate1_config;
+
+  if configured is distinct from 'YOUR@EMAIL.HERE' then
+    -- An explicit address was supplied: it must match a real auth account.
+    select id, email into target_id, target_email
+      from auth.users
+     where lower(email) = lower(configured)
+     limit 1;
+
+    if target_id is null then
+      raise exception
+        'ABORT: no Supabase auth account matches the address set in Section B0. Nothing has been applied.';
+    end if;
+  else
+    -- Placeholder left in place: promote the sole account, or abort.
+    select count(*) into account_count from auth.users;
+
+    if account_count <> 1 then
+      raise exception
+        'ABORT: % auth accounts exist, so the administrator is ambiguous. Set the address in Section B0 and re-run. Nothing has been applied.',
+        account_count;
+    end if;
+
+    select id, email into target_id, target_email from auth.users limit 1;
+  end if;
+
+  insert into user_profiles (id, email, role)
+  values (target_id, target_email, 'admin')
+  on conflict (id) do update set role = 'admin';
+
+  raise notice 'Administrator bootstrapped: %', target_email;
+end $$;
 
 do $$
 declare
@@ -772,10 +803,10 @@ begin
 
   if admin_count = 0 then
     raise exception
-      'ABORT: no administrator exists. The email in Section B0 does not match any row in auth.users. Nothing has been applied — check the address and re-run.';
+      'ABORT: no administrator exists after bootstrap. Nothing has been applied.';
   end if;
 
-  raise notice 'Administrators after promotion: %', admin_count;
+  raise notice 'Administrators: %', admin_count;
 end $$;
 
 
