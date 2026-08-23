@@ -25,9 +25,9 @@ found three things that would have caused real damage if the migration had simpl
 | --- | --- | --- |
 | **F1** | Five public pages query `affiliate_partners` with `select("*")` | The hardening file revokes blanket SELECT from `anon`. `/resources` and its four category pages would have started returning permission errors the moment it ran. |
 | **F2** | `user_profiles` exists in production but is **empty** — zero admins | Hardening block H3 restricts every affiliate write to `role = 'admin'`. With no admin row, the operator would have been locked out of the affiliate admin with no route back through the UI. |
-| **F3** | Click tracking has been **silently off** since #6 deployed | `recordClick()` requires the service-role client. `SUPABASE_SERVICE_ROLE_KEY` is not set in Vercel, so every click since that deploy has gone unrecorded. Redirects work; analytics do not. |
+| **F3** | Click tracking has been **silently off** since #6 deployed | `recordClick()` inserts seven columns the migration has not created yet, so every insert fails and returns false. **Corrected in M-AFFILIATE1.1** — the original diagnosis blamed a missing `SUPABASE_SERVICE_ROLE_KEY`; the key is in fact present in Vercel Production. See §M-AFFILIATE1.1. |
 
-F1 and F2 are fixed. F3 requires an operator action.
+F1 and F2 are fixed. F3 needs the migration to run — see the M-AFFILIATE1.1 section, which corrects the original cause.
 
 ---
 
@@ -131,7 +131,7 @@ sitemap     <loc>https://www.deportednotdefeated.com/…</loc>
 
 ### 4. Combined migration — F2 and the exposure window
 
-`supabase/affiliate_engine_m1_combined.sql` (1,003 lines) wraps both migrations in **one
+`supabase/affiliate_engine_m1_combined.sql` (1,034 lines) wraps both migrations in **one
 transaction** with an admin-promotion step and two abort guards between them.
 
 #### Composing the migration
@@ -154,8 +154,8 @@ everything applies or nothing does.
 
 **Two guards, both aborting the whole transaction:**
 
-1. The email placeholder was not replaced → abort.
-2. No `user_profiles` row with `role = 'admin'` after promotion → abort.
+1. More than one auth account, with no address configured → abort (regenerated in M-AFFILIATE1.1).
+2. No `user_profiles` row with `role = 'admin'` after bootstrap → abort.
 
 The second is what prevents the F2 lockout. Verified safe to wrap: no `CONCURRENTLY` index, no
 nested transaction statement.
@@ -208,16 +208,19 @@ the destination.
 The probes above produced **no click rows**. The most recent row in `affiliate_clicks` predates
 them.
 
-Cause, by elimination: `AFFILIATE_CLICK_LOGGING_ENABLED` defaults to `true`; the redirect executes;
-`recordClick()` calls `createAdminClient()`, which returns `null` without
-`SUPABASE_SERVICE_ROLE_KEY`. The key is absent from the Vercel environment.
+> **This diagnosis was wrong and is corrected in the M-AFFILIATE1.1 section below.**
+> The original text blamed a missing `SUPABASE_SERVICE_ROLE_KEY`. That key *is* present in the
+> Vercel Production environment and has been for 59 days. The reasoning was by elimination and
+> stopped one step too early: it never checked whether the insert itself could succeed.
 
-This is a regression introduced by #6, which moved click logging from anonymous insert to
-service-role insert. Redirects and merchant-side attribution are unaffected — only first-party
-click analytics stopped.
+**Verified cause:** `recordClick()` inserts `country_code`, `category`, `placement`, `campaign`,
+`network`, `outcome`, and `session_identifier`. All seven are created by the migration, and the
+migration has not run — so every insert fails with `42703` and returns `false`.
 
-**Fix:** set `SUPABASE_SERVICE_ROLE_KEY` in Vercel → Settings → Environment Variables. Operator
-action; the key must not pass through a chat.
+This is the same class of failure as the `/go` outage on 2026-08-23: code deployed ahead of the
+schema it depends on.
+
+**Fix:** run the migration. No environment change is required.
 
 ---
 
@@ -297,3 +300,114 @@ In order:
    migration had no effect, which is consistent with it being executed against a different project.
 
 Nothing above can be done from this environment.
+
+---
+
+# M-AFFILIATE1.1 — Activation attempt, 2026-08-24
+
+**Outcome: the migration still was not applied.** Same blocker: no `psql`, no Supabase CLI, no
+database password, no Management API token. The service-role key authenticates against PostgREST,
+which cannot execute DDL.
+
+Two gates that were previously open are now closed, and one earlier conclusion was wrong.
+
+## Production identity — RESOLVED
+
+The Vercel CLI is authenticated (`thammo01-7973`), which made the project identity provable:
+
+```
+Project                deported-not-defeated
+Production URL         https://www.deportednotdefeated.com
+Expected Supabase ref  smxlxlgtpqhzkkwkyzrv
+```
+
+The env var values could not be read back — `NEXT_PUBLIC_SUPABASE_URL` is marked **Sensitive** in
+Vercel, so `vercel env pull` returns an empty value by design. Identity was therefore established
+**behaviourally**, which is stronger evidence than a config read:
+
+| Provider | Stored in `smxl…` | Served by production |
+| --- | --- | --- |
+| wise | `wise.com/invite/dic/odeyt` | `wise.com/invite/dic/odeyt` |
+| safetywing | `safetywing.com/` | `safetywing.com/` |
+| numeromoney | `numero.app` | `numero.app/` |
+| airalo | *no affiliate URL* → `www.airalo.com` | `www.airalo.com/` |
+
+Four exact matches, including a distinctive invite path, and — decisively — the approval-gated
+case: airalo has no affiliate URL in this project, and production serves its ordinary website
+instead. That fingerprint cannot be produced by a different database.
+
+**MATCH: YES.** The earlier suspicion that a previous migration attempt hit the wrong project
+remains the best explanation for why it had no effect here.
+
+## Correction: the service-role key was never the blocker
+
+`vercel env ls production` shows `SUPABASE_SERVICE_ROLE_KEY` present, created 59 days ago,
+scoped to Production and Preview. The M-AFFILIATE1 report claimed it was absent. That was wrong.
+
+The verified cause of the tracking outage is that `recordClick()` inserts seven columns that do
+not exist yet:
+
+```
+partner_id          exists
+partner_slug        exists
+page_path           exists
+country_code        MISSING
+category            MISSING
+placement           MISSING
+campaign            MISSING
+network             MISSING
+outcome             MISSING
+session_identifier  MISSING
+```
+
+Every insert fails with `42703`. **Tracking will start working when the migration runs, with no
+environment change.**
+
+The original reasoning was "by elimination" and stopped one step early — it never asked whether
+the insert could succeed. Elimination is only as good as the last hypothesis you bothered to test.
+
+## Administrator bootstrap — no longer needs an email
+
+Production has **exactly one** Supabase auth account, and it matches the operator address the
+repository already documents in `ADMIN_TO` (`app/api/immigration-assessment/route.ts`).
+
+The combined migration was regenerated so the placeholder no longer has to be edited:
+
+- placeholder left alone → promotes the sole auth account
+- more than one account → **aborts** rather than guessing
+- explicit address that matches nothing → **aborts**
+
+This resolves §26: no personal email needs to be committed to a public repository, and one
+operator step disappears.
+
+## Pre-migration snapshot (2026-08-24)
+
+```
+affiliate_partners rows        11
+affiliate_clicks rows          310
+approved providers             wise, safetywing, numeromoney
+user_profiles admins           0     ← the lockout risk, still live
+migration objects present      none of 4
+```
+
+## Verified this pass
+
+| Gate | Result |
+| --- | --- |
+| Production identity | PASS (behavioural proof) |
+| `SUPABASE_SERVICE_ROLE_KEY` present in Production | YES |
+| Key server-only, no `NEXT_PUBLIC_` variant, browser guard present | PASS |
+| Click tracking fail-open (redirect survives logging failure) | PASS |
+| Admin auth user identified without guessing | PASS |
+| Open redirect (`?url=`, `?to=`, `?redirect=`, `javascript:`, encoded, unknown slug) | PASS |
+| Smoke: `/`, `/resources`, `/mexico`, `/robots.txt`, `/sitemap.xml`, 404, `/admin` 307 | PASS |
+| SEO regression: sitemap www, 0 apex, robots www, per-route canonicals | PASS |
+| `/resources`: only the 3 approved providers use `/go/`; pending providers stay unmonetized | PASS |
+| Secret scan | PASS — the single match is the repo's own detection regex |
+| typecheck / tests / build | PASS — 97/97 |
+
+## Still blocked
+
+Applying `supabase/affiliate_engine_m1_combined.sql` requires a human with SQL-editor access.
+Everything else is ready: the file is atomic, aborts rather than half-applying, needs no edits,
+and the application build it depends on is already live.
