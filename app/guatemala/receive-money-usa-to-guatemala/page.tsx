@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/NewsletterForm";
+import AffiliateRecommendations from "@/components/affiliate/AffiliateRecommendations";
+
+// Affiliate recommendations are read through a cookie-free client, so this page
+// stays statically generated. Revalidate hourly so provider changes made in the
+// admin appear without a redeploy.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "How to Receive Money from USA to Guatemala | Remitly, Western Union, Bi",
@@ -43,6 +49,20 @@ export default function GuatemalaReceiveMoneyPage() {
               ))}
             </div>
           </div>
+
+          {/* M-AFFILIATE-1 integration proof. Country-scoped, centrally managed:
+              no provider link on this page is hardcoded. Renders nothing if the
+              engine is disabled, unconfigured, or has no Guatemala-eligible
+              provider — the guide above stands on its own either way. */}
+          <AffiliateRecommendations
+            category="MONEY_TRANSFER"
+            country="GT"
+            countryName="Guatemala"
+            tone="dark"
+            placement="country-guide-money-transfer"
+            heading="Send Money to Guatemala"
+            intro="Services with confirmed availability for this corridor. Fees, rates, and delivery times change often — always confirm directly with the provider before sending."
+          />
 
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">Opening a Bank Account</h2>
