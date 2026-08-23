@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE = "https://deportednotdefeated.com";
+const BASE = "https://www.deportednotdefeated.com";
 
 /**
  * robots.txt

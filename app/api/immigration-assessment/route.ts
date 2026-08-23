@@ -71,12 +71,12 @@ function buildReportEmail(report: ReturnType<typeof generateReport>): string {
   </div>
 
   <div style="margin-top:24px">
-    <a href="https://deportednotdefeated.com/legal-resources"
+    <a href="https://www.deportednotdefeated.com/legal-resources"
        style="display:inline-block;background:#c0392b;color:white;padding:12px 24px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px">
       Explore Legal Resources →
     </a>
     &nbsp;
-    <a href="https://deportednotdefeated.com/legal-resources#find-legal-help"
+    <a href="https://www.deportednotdefeated.com/legal-resources#find-legal-help"
        style="display:inline-block;background:#0a1628;color:white;padding:12px 24px;border-radius:8px;font-weight:bold;text-decoration:none;font-size:13px">
       Find an Attorney →
     </a>

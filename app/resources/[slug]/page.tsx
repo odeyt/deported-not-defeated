@@ -1,3 +1,4 @@
+import { PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY } from "@/lib/affiliate/publicColumns";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -315,7 +316,7 @@ async function getPartner(slug: string): Promise<AffiliatePartner | null> {
   const supabase = await createClient();
   const { data } = await supabase
     .from("affiliate_partners")
-    .select("*, affiliate_categories(id, name, slug)")
+    .select(PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY)
     .eq("slug", slug)
     .eq("active", true)
     .single();
