@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
               Your <strong>Laos Restart Checklist: First 30 Days After Deportation</strong> covers everything you need — housing, phone, money, legal documents, and more.
             </p>
             <div style="text-align:center;margin:32px 0">
-              <a href="https://deportednotdefeated.com/api/checklist"
+              <a href="https://www.deportednotdefeated.com/api/checklist"
                  style="background:#b91c1c;color:#fff;padding:16px 36px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block">
                 Download Your Free PDF →
               </a>

@@ -1,3 +1,4 @@
+import { PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY } from "@/lib/affiliate/publicColumns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
@@ -24,21 +25,21 @@ async function getPartnersByCategory(categorySlug: string) {
   const supabase = await createClient();
   const { data } = await supabase
     .from("affiliate_partners")
-    .select("*, affiliate_categories(id, name, slug)")
+    .select(PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY)
     .eq("affiliate_categories.slug", categorySlug)
     .eq("active", true)
     .order("priority", { ascending: false });
-  return (data ?? []) as AffiliatePartner[];
+  return (data ?? []) as unknown as AffiliatePartner[];
 }
 
 async function getAllActivePartners() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("affiliate_partners")
-    .select("*, affiliate_categories(id, name, slug)")
+    .select(PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY)
     .eq("active", true)
     .order("priority", { ascending: false });
-  return (data ?? []) as AffiliatePartner[];
+  return (data ?? []) as unknown as AffiliatePartner[];
 }
 
 export default async function ResourcesPage() {

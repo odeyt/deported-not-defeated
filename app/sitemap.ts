@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { allCountries } from "@/data/countries/index";
 
-const BASE = "https://deportednotdefeated.com";
+const BASE = "https://www.deportednotdefeated.com";
 
 function countryPages(country: string, capital: string): MetadataRoute.Sitemap {
   return [

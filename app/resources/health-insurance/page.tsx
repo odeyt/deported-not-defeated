@@ -1,3 +1,4 @@
+import { PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY } from "@/lib/affiliate/publicColumns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -16,11 +17,11 @@ export default async function HealthInsurancePage() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("affiliate_partners")
-    .select("*, affiliate_categories(id, name, slug)")
+    .select(PUBLIC_PARTNER_COLUMNS_WITH_CATEGORY)
     .eq("active", true)
     .order("priority", { ascending: false });
 
-  const partners = ((data ?? []) as AffiliatePartner[]).filter(
+  const partners = ((data ?? []) as unknown as AffiliatePartner[]).filter(
     (p) => (p.affiliate_categories as any)?.slug === "health-insurance"
   );
 
