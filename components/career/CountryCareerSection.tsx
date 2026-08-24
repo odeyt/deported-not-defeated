@@ -67,7 +67,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
             </ul>
             {/* TODO: Replace with Upwork/Fiverr affiliate link when approved */}
             <a
-              href="#affiliate-placeholder"
+              href="/go/category/career-training"
               className="inline-flex items-center gap-1 text-violet-400 hover:text-violet-300 text-xs font-semibold mt-4 transition-colors"
             >
               Set up remote work profile →
@@ -90,7 +90,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
             </ul>
             {/* TODO: Replace with website builder / business tools affiliate link */}
             <a
-              href="#affiliate-placeholder"
+              href="/go/category/education"
               className="inline-flex items-center gap-1 text-rose-400 hover:text-rose-300 text-xs font-semibold mt-4 transition-colors"
             >
               Business startup tools →
@@ -107,7 +107,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
               <p className="text-gray-300 text-sm leading-relaxed">{data.englishTeaching}</p>
               {/* TODO: Replace with TEFL/TESOL affiliate link when approved */}
               <a
-                href="#affiliate-placeholder"
+                href="/go/category/remote-work"
                 className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-xs font-semibold mt-3 transition-colors"
               >
                 Get TEFL certified →
@@ -144,7 +144,7 @@ export default function CountryCareerSection({ countryName, countrySlug, data }:
           </Link>
           {/* TODO: Replace with real course affiliate link */}
           <a
-            href="#affiliate-placeholder"
+            href="/go/category/career-training"
             className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
           >
             Browse Free Online Courses

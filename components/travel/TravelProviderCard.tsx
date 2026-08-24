@@ -25,7 +25,7 @@ export default function TravelProviderCard({
   description,
   bestFor,
   priceLevel,
-  href = "#affiliate-placeholder",
+  href = "/resources",
   ctaLabel = "Learn More",
   gradient,
   icon,
@@ -75,7 +75,6 @@ export default function TravelProviderCard({
 
         {/* CTA */}
         <div className="mt-auto pt-3 border-t border-gray-100">
-          {/* TODO: Replace href="#affiliate-placeholder" with real affiliate URL + tracking parameters */}
           <a
             href={href}
             target="_blank"

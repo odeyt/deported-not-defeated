@@ -28,7 +28,7 @@ export default function CareerAffiliateCard({
   price,
   hasCertificate,
   hasFree,
-  href = "#affiliate-placeholder",
+  href = "/resources",
   ctaLabel = "Start Learning Today",
   sponsored = false,
   gradient,
@@ -69,7 +69,6 @@ export default function CareerAffiliateCard({
           {hasCertificate && <span className="text-xs bg-purple-50 text-purple-700 border border-purple-100 rounded-full px-2 py-0.5">Certificate</span>}
         </div>
         <div className="mt-auto pt-3 border-t border-gray-100">
-          {/* TODO: Replace href="#affiliate-placeholder" with real affiliate URL */}
           <a
             href={href}
             target="_blank"

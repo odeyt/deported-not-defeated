@@ -220,14 +220,13 @@ export default function TravelBudgetCalculator() {
               ⚠️ Flights not included. Actual costs vary by season, city, airline, exchange rate, and availability. These are rough estimates only.
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
-              {/* TODO: Add analytics event tracking for calculator CTA clicks */}
-              <a href="#affiliate-placeholder" className="flex-1 text-center bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+              <a href="/go/category/flights" className="flex-1 text-center bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
                 Search Flights →
               </a>
-              <a href="#affiliate-placeholder" className="flex-1 text-center border border-white/20 hover:border-white/40 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+              <a href="/go/category/hotels" className="flex-1 text-center border border-white/20 hover:border-white/40 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
                 Find Hotels →
               </a>
-              <a href="#affiliate-placeholder" className="flex-1 text-center border border-white/20 hover:border-white/40 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+              <a href="/go/category/travel-insurance" className="flex-1 text-center border border-white/20 hover:border-white/40 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
                 Get Insurance →
               </a>
             </div>

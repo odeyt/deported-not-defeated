@@ -55,7 +55,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
       desc: "Your English skills are a valuable asset. Get TEFL/TESOL certified and start teaching — online platforms pay $10–$25/hour. No degree required for many platforms.",
       icon: <IconGradCap size={20} />,
       cta: "Explore TEFL Certification",
-      href: "#affiliate-placeholder", // TODO: Replace with TEFL affiliate link
+      href: "/go/category/tefl-tesol", // TODO: Replace with TEFL affiliate link
       color: "text-blue-600 bg-blue-50",
     });
   }
@@ -66,7 +66,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
       desc: "Platforms like Upwork and Fiverr let you offer services globally — writing, design, customer support, translation, data entry. Start with what you know.",
       icon: <IconLaptop size={20} />,
       cta: "Set Up Your Freelance Profile",
-      href: "#affiliate-placeholder", // TODO: Replace with Upwork/Fiverr affiliate link
+      href: "/go/upwork", // TODO: Replace with Upwork/Fiverr affiliate link
       color: "text-violet-600 bg-violet-50",
     });
   }
@@ -77,7 +77,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
       desc: "Your hands-on skills are in demand. Construction, cooking, agriculture, and electrical work offer stable income. Certification courses can increase your earning power quickly.",
       icon: <IconWrench size={20} />,
       cta: "Find Vocational Training",
-      href: "#affiliate-placeholder", // TODO: Replace with vocational training affiliate link
+      href: "/go/category/career-training", // TODO: Replace with vocational training affiliate link
       color: "text-orange-600 bg-orange-50",
     });
   }
@@ -88,7 +88,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
       desc: "If you're in Latin America, Philippines, or Southeast Asia, call centers and BPO companies actively hire English speakers with or without a degree.",
       icon: <IconBriefcase size={20} />,
       cta: "Search Local BPO Jobs",
-      href: "#affiliate-placeholder", // TODO: Replace with job board affiliate link
+      href: "/go/category/remote-work", // TODO: Replace with job board affiliate link
       color: "text-emerald-600 bg-emerald-50",
     });
   }
@@ -98,7 +98,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
     desc: "Platforms like Coursera, Alison, and edX offer hundreds of free courses with certificates. Build new skills at your own pace — many courses take under 4 weeks.",
     icon: <IconGlobe size={20} />,
     cta: "Browse Free Courses",
-    href: "#affiliate-placeholder", // TODO: Replace with Coursera/Alison affiliate link
+    href: "/go/coursera", // TODO: Replace with Coursera/Alison affiliate link
     color: "text-teal-600 bg-teal-50",
   });
 
@@ -108,7 +108,7 @@ function getRecommendations(answers: Record<string, string>): Recommendation[] {
       desc: "Many deportees successfully start micro-businesses — food stands, repair shops, delivery services, or digital services. Start small, grow steady.",
       icon: <IconTrending size={20} />,
       cta: "Business Startup Resources",
-      href: "#affiliate-placeholder", // TODO: Replace with business tools affiliate link
+      href: "/go/category/business-tools", // TODO: Replace with business tools affiliate link
       color: "text-rose-600 bg-rose-50",
     });
   }
@@ -194,7 +194,6 @@ export default function CareerPathFinder() {
                     <p className="text-white font-bold text-sm">{r.title}</p>
                     <p className="text-gray-400 text-xs mt-1 leading-relaxed">{r.desc}</p>
                   </div>
-                  {/* TODO: Replace href="#affiliate-placeholder" with real affiliate URL */}
                   <a
                     href={r.href}
                     className="inline-flex items-center gap-1 text-brand-red hover:text-red-400 text-xs font-bold transition-colors mt-auto"

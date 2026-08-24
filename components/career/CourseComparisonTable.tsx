@@ -7,7 +7,7 @@ const PLATFORMS = [
     free: false,
     certificate: true,
     cost: "$10–$20/course (on sale)",
-    href: "#affiliate-placeholder", // TODO: Replace with Udemy affiliate link
+    href: "/go/udemy", // TODO: Replace with Udemy affiliate link
     highlight: true,
   },
   {
@@ -16,7 +16,7 @@ const PLATFORMS = [
     free: true,
     certificate: true,
     cost: "Free audit / $49+/mo certificate",
-    href: "#affiliate-placeholder", // TODO: Replace with Coursera affiliate link
+    href: "/go/coursera", // TODO: Replace with Coursera affiliate link
     highlight: false,
   },
   {
@@ -25,7 +25,7 @@ const PLATFORMS = [
     free: true,
     certificate: true,
     cost: "Free (diploma ~$20 optional)",
-    href: "#affiliate-placeholder", // TODO: Replace with Alison affiliate link
+    href: "/go/alison", // TODO: Replace with Alison affiliate link
     highlight: false,
   },
   {
@@ -34,7 +34,7 @@ const PLATFORMS = [
     free: false,
     certificate: false,
     cost: "~$8/mo (annual plan)",
-    href: "#affiliate-placeholder", // TODO: Replace with Skillshare affiliate link
+    href: "/go/skillshare", // TODO: Replace with Skillshare affiliate link
     highlight: false,
   },
   {
@@ -43,7 +43,7 @@ const PLATFORMS = [
     free: false,
     certificate: true,
     cost: "~$27/mo or free with LinkedIn Premium",
-    href: "#affiliate-placeholder", // TODO: Replace with LinkedIn Learning affiliate link
+    href: "/go/linkedin-learning", // TODO: Replace with LinkedIn Learning affiliate link
     highlight: false,
   },
   {
@@ -52,7 +52,7 @@ const PLATFORMS = [
     free: true,
     certificate: true,
     cost: "Free audit / $149+ certificates",
-    href: "#affiliate-placeholder", // TODO: Replace with edX affiliate link
+    href: "/go/edx", // TODO: Replace with edX affiliate link
     highlight: false,
   },
 ];
@@ -106,7 +106,6 @@ export default function CourseComparisonTable() {
               </td>
               <td className="px-4 py-4 text-gray-600 hidden lg:table-cell">{p.cost}</td>
               <td className="px-4 py-4 text-center">
-                {/* TODO: Replace href="#affiliate-placeholder" with real affiliate URL */}
                 <a
                   href={p.href}
                   target="_blank"

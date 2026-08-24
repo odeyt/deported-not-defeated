@@ -47,7 +47,7 @@ const VISA_HELP = [
     description: "Online visa and travel authorization application service. Process tourist visas, eTAs, and travel documents for 150+ countries.",
     bestFor: "Travelers who need a visa and want a guided, simplified application process.",
     priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with iVisa affiliate link
+    href: "/go/ivisa", // TODO: Replace with iVisa affiliate link
     ctaLabel: "Check Visa Requirements",
     gradient: "from-blue-400 to-indigo-600",
     icon: "📄",
@@ -58,7 +58,7 @@ const VISA_HELP = [
     description: "Free visa requirement checker used by airlines. Enter your passport and destination — get instant entry requirements.",
     bestFor: "Quickly checking whether you need a visa before booking flights.",
     priceLevel: "Free" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Sherpa affiliate link
+    href: "/go/sherpa", // TODO: Replace with Sherpa affiliate link
     ctaLabel: "Check Requirements Free",
     gradient: "from-teal-400 to-cyan-600",
     icon: "🔍",
@@ -69,7 +69,7 @@ const VISA_HELP = [
     description: "Professional visa processing with dedicated agents. Handles the paperwork for complex visa applications including Africa and Asia.",
     bestFor: "Complex visa applications requiring professional assistance and document handling.",
     priceLevel: "Premium" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with VisaHQ affiliate link
+    href: "/go/visahq", // TODO: Replace with VisaHQ affiliate link
     ctaLabel: "Get Visa Help",
     gradient: "from-amber-400 to-orange-600",
     icon: "🏛️",

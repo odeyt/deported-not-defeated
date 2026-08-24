@@ -54,8 +54,7 @@ export default function CountryVisitSection({ countryName, countrySlug, data }: 
           <div className="bg-blue-900/30 border border-blue-700/30 rounded-2xl p-5">
             <h3 className="text-white font-bold text-sm uppercase tracking-wide mb-2">📄 Visa Rules</h3>
             <p className="text-gray-300 text-sm leading-relaxed">{data.visaSummary}</p>
-            {/* TODO: Replace with iVisa affiliate link when approved */}
-            <a href="#affiliate-placeholder" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-xs font-semibold mt-3 transition-colors">
+            <a href="/go/category/legal" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 text-xs font-semibold mt-3 transition-colors">
               Check visa requirements →
             </a>
           </div>
@@ -90,21 +89,20 @@ export default function CountryVisitSection({ countryName, countrySlug, data }: 
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3">
-          {/* TODO: Add analytics events and real affiliate URLs for each CTA */}
           <a
-            href="#affiliate-placeholder"
+            href="/go/category/flights"
             className="inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-colors"
           >
             ✈️ Compare Flights to {countryName}
           </a>
           <a
-            href="#affiliate-placeholder"
+            href="/go/category/hotels"
             className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
           >
             🏨 Find Hotels
           </a>
           <a
-            href="#affiliate-placeholder"
+            href="/go/category/esim"
             className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
           >
             🛡️ Get Travel Insurance
