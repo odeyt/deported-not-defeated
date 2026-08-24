@@ -43,7 +43,7 @@ const COURSES = [
     price: "$10–$20/course on sale",
     hasCertificate: true,
     hasFree: false,
-    href: "#affiliate-placeholder", // TODO: Replace with Udemy affiliate link
+    href: "/go/udemy",
     ctaLabel: "Browse Udemy Courses",
     gradient: "from-orange-400 to-red-500",
     iconBg: "bg-orange-50",
@@ -58,7 +58,7 @@ const COURSES = [
     price: "Free audit / $49+/mo",
     hasCertificate: true,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with Coursera affiliate link
+    href: "/go/coursera",
     ctaLabel: "Start on Coursera",
     gradient: "from-blue-400 to-indigo-600",
     iconBg: "bg-blue-50",
@@ -73,7 +73,7 @@ const COURSES = [
     price: "Free (diploma cert ~$20)",
     hasCertificate: true,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with Alison affiliate link
+    href: "/go/alison",
     ctaLabel: "Start Free on Alison",
     gradient: "from-green-400 to-teal-500",
     iconBg: "bg-green-50",
@@ -88,7 +88,7 @@ const COURSES = [
     price: "~$8/month (annual)",
     hasCertificate: false,
     hasFree: false,
-    href: "#affiliate-placeholder", // TODO: Replace with Skillshare affiliate link
+    href: "/go/skillshare",
     ctaLabel: "Explore Skillshare",
     gradient: "from-teal-400 to-cyan-500",
     iconBg: "bg-teal-50",
@@ -103,7 +103,7 @@ const COURSES = [
     price: "~$27/mo or LinkedIn Premium",
     hasCertificate: true,
     hasFree: false,
-    href: "#affiliate-placeholder", // TODO: Replace with LinkedIn Learning affiliate link
+    href: "/go/linkedin-learning",
     ctaLabel: "Start LinkedIn Learning",
     gradient: "from-blue-500 to-blue-700",
     iconBg: "bg-blue-50",
@@ -118,7 +118,7 @@ const COURSES = [
     price: "Free audit / $149+ cert",
     hasCertificate: true,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with edX affiliate link
+    href: "/go/edx",
     ctaLabel: "Browse edX Programs",
     gradient: "from-rose-400 to-red-600",
     iconBg: "bg-rose-50",
@@ -136,7 +136,7 @@ const REMOTE_TOOLS = [
     price: "Free to join / commission on earnings",
     hasCertificate: false,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with Upwork affiliate link
+    href: "/go/upwork",
     ctaLabel: "Create Upwork Profile",
     gradient: "from-emerald-400 to-green-600",
     iconBg: "bg-emerald-50",
@@ -151,7 +151,7 @@ const REMOTE_TOOLS = [
     price: "Free to join / 20% commission",
     hasCertificate: false,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with Fiverr affiliate link
+    href: "/go/fiverr",
     ctaLabel: "Start Selling on Fiverr",
     gradient: "from-teal-400 to-emerald-600",
     iconBg: "bg-teal-50",
@@ -166,7 +166,7 @@ const REMOTE_TOOLS = [
     price: "Free / Premium $12/mo",
     hasCertificate: false,
     hasFree: true,
-    href: "#affiliate-placeholder", // TODO: Replace with Grammarly affiliate link
+    href: "/go/grammarly",
     ctaLabel: "Try Grammarly Free",
     gradient: "from-green-400 to-teal-500",
     iconBg: "bg-green-50",
@@ -367,14 +367,14 @@ export default function CareerEducationPage() {
               </div>
               {/* TODO: Replace href with TEFL affiliate link when approved */}
               <a
-                href="#affiliate-placeholder"
+                href="/go/category/tefl-tesol"
                 className="block bg-brand-red hover:bg-red-700 text-white text-center font-bold px-6 py-4 rounded-2xl transition-colors"
               >
                 Get TEFL Certified — Compare Programs <ArrowRight size={14} className="inline ml-1" />
               </a>
               {/* TODO: Replace href with TESOL affiliate link when approved */}
               <a
-                href="#affiliate-placeholder"
+                href="/go/category/tefl-tesol"
                 className="block border border-violet-300 text-violet-700 hover:bg-violet-50 text-center font-bold px-6 py-4 rounded-2xl transition-colors text-sm"
               >
                 Compare TEFL vs TESOL Programs
@@ -464,7 +464,7 @@ export default function CareerEducationPage() {
                   <p className="text-gray-500 text-xs mt-1 leading-relaxed">{tool.desc}</p>
                   {/* TODO: Replace href with appropriate business tool affiliate link */}
                   <a
-                    href="#affiliate-placeholder"
+                    href="/go/category/business-tools"
                     className="inline-flex items-center gap-1 text-brand-red hover:text-red-700 text-xs font-bold mt-2 transition-colors"
                   >
                     {tool.cta} <ArrowRight size={11} />
@@ -506,7 +506,7 @@ export default function CareerEducationPage() {
                 <p className="text-gray-500 text-xs leading-relaxed">{tool.desc}</p>
                 {/* TODO: Replace href with real affiliate link for each tool */}
                 <a
-                  href="#affiliate-placeholder"
+                  href="/go/category/resume"
                   className="mt-auto inline-flex items-center gap-1 bg-brand-red hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors"
                 >
                   {tool.cta} <ArrowRight size={11} />
@@ -547,7 +547,7 @@ export default function CareerEducationPage() {
                   </div>
                   {/* TODO: Replace href with appropriate certification affiliate link */}
                   <a
-                    href="#affiliate-placeholder"
+                    href="/go/alison"
                     className="shrink-0 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
                   >
                     Get Certified
@@ -577,11 +577,11 @@ export default function CareerEducationPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { name: "Alison.com", desc: "4,000+ free courses with free certificates across all fields.", href: "#affiliate-placeholder" },
+              { name: "Alison.com", desc: "4,000+ free courses with free certificates across all fields.", href: "/go/alison" },
               { name: "Khan Academy", desc: "Free academic education — math, science, computing, and more.", href: "https://www.khanacademy.org" },
               { name: "Google Digital Garage", desc: "Free digital marketing fundamentals from Google.", href: "https://grow.google/intl/ALL_us/google-digital-garage/" },
-              { name: "Coursera (Audit)", desc: "Audit most Coursera courses completely free — no certificate.", href: "#affiliate-placeholder" },
-              { name: "edX (Audit)", desc: "Free access to MIT, Harvard, and other university courses.", href: "#affiliate-placeholder" },
+              { name: "Coursera (Audit)", desc: "Audit most Coursera courses completely free — no certificate.", href: "/go/coursera" },
+              { name: "edX (Audit)", desc: "Free access to MIT, Harvard, and other university courses.", href: "/go/edx" },
               { name: "YouTube", desc: "Countless free tutorials on every skill from cooking to coding.", href: "https://www.youtube.com" },
               { name: "FreeCodeCamp", desc: "Free full-stack coding curriculum — JavaScript, Python, and more.", href: "https://www.freecodecamp.org" },
               { name: "ILO Skills", desc: "International Labour Organization's free career skills training.", href: "https://www.ilo.org/skills" },
