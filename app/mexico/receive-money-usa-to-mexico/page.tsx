@@ -49,7 +49,12 @@ export default function MexicoReceiveMoneyPage() {
             intro="Fees and delivery times change often and differ by amount, payout method, and state. Confirm the current cost with the provider before sending — we deliberately do not quote prices we cannot keep accurate."
             placement="mx-money-transfer"
             campaign="mx_money_transfer_compare"
-            limit={6}
+            {/* Show every provider eligible for this corridor. A limit of 6 cut
+                the list at rank 7 of 8, which happened to hide Wise — the only
+                provider here with a live affiliate relationship. The fix is to
+                remove the arbitrary cutoff, not to promote Wise: ranking stays
+                country priority, and commission is never an input. */}
+            limit={8}
             fallbackHref="/resources/money-transfer"
             fallbackLabel="See all money transfer options"
           />
