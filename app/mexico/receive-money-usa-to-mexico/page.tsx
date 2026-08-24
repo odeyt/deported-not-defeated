@@ -1,18 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/NewsletterForm";
+import AffiliateRecommendations from "@/components/affiliate/AffiliateRecommendations";
+
+// Provider cards come from the registry, so refresh hourly rather than only on
+// deploy. The page is still served statically.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "How to Receive Money from USA to Mexico | Remitly, OXXO, Wise",
-  description: "Fastest ways for family to send money from the USA to Mexico — Remitly, Western Union, Wise, OXXO Pay, and Zelle comparison.",
+  title: "How to Receive Money from USA to Mexico | Transfer Options Compared",
+  description:
+    "Ways for family to send money from the USA to Mexico — cash pickup at OXXO, bank deposit, and mobile wallet options, with what each one requires.",
 };
 
-const methods = [
-  { name: "Remitly", speed: "Minutes", fee: "Low (~$2–4)", delivery: "BBVA, Santander, HSBC, or OXXO cash pickup", best: "Best overall — used by millions of US-Mexico families" },
-  { name: "Zelle (to Mexican bank)", speed: "Same day", fee: "Free (via US bank)", delivery: "BBVA Mexico or HSBC Mexico accounts linked to Zelle", best: "Best if your family has a US bank with Zelle" },
-  { name: "Western Union", speed: "Minutes", fee: "Moderate ($5–15)", delivery: "Cash pickup at OXXO, Walmart, Elektra nationwide", best: "Best for cash pickup — OXXO on every corner" },
-  { name: "Wise", speed: "1–2 days", fee: "Very low (0.5–1%)", delivery: "Bank transfer to BBVA, Santander, HSBC in MXN or USD", best: "Best for large amounts — lowest fees" },
-];
+/**
+ * Provider cards come from the central affiliate registry via
+ * <AffiliateRecommendations>, not from a hardcoded list.
+ *
+ * The previous version of this page carried a hand-written table asserting
+ * specific fees ("Low (~$2–4)"), speeds, and superlatives ("Best overall",
+ * "lowest fees"). None of it was sourced or dated, and fees on this corridor
+ * change constantly. Those claims are removed rather than restated: the
+ * registry says which services operate here and whether that has been
+ * confirmed, and the reader checks the current price with the provider.
+ *
+ * Options that are not in the registry but genuinely useful — Zelle to a
+ * Mexican bank, OXXO cash pickup — are kept below as editorial guidance, so
+ * nobody loses a good option just because we do not earn from it.
+ */
 
 export default function MexicoReceiveMoneyPage() {
   return (
@@ -27,21 +42,42 @@ export default function MexicoReceiveMoneyPage() {
 
       <section className="py-12 px-4 bg-gray-950">
         <div className="max-w-3xl mx-auto space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold text-white mb-4">Best Transfer Services</h2>
-            <div className="grid gap-4">
-              {methods.map((m) => (
-                <div key={m.name} className="bg-navy-800 rounded-xl p-5">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-bold text-white text-lg">{m.name}</h3>
-                    <span className="text-green-400 text-xs font-semibold bg-green-400/10 px-2 py-1 rounded">{m.speed}</span>
-                  </div>
-                  <p className="text-gray-400 text-sm mb-1"><span className="text-gray-300">Fee:</span> {m.fee}</p>
-                  <p className="text-gray-400 text-sm mb-1"><span className="text-gray-300">Delivery:</span> {m.delivery}</p>
-                  <p className="text-brand-red text-sm font-semibold mt-2">{m.best}</p>
-                </div>
-              ))}
-            </div>
+          <AffiliateRecommendations
+            country="MX"
+            category="MONEY_TRANSFER"
+            heading="Transfer services that operate on this corridor"
+            intro="Fees and delivery times change often and differ by amount, payout method, and state. Confirm the current cost with the provider before sending — we deliberately do not quote prices we cannot keep accurate."
+            placement="mx-money-transfer"
+            campaign="mx_money_transfer_compare"
+            limit={6}
+            fallbackHref="/resources/money-transfer"
+            fallbackLabel="See all money transfer options"
+          />
+
+          {/* Useful options that are not in the affiliate registry. Kept
+              because they are genuinely among the best choices on this
+              corridor, and hiding them would make the page worse. */}
+          <div className="bg-navy-800 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-white mb-3">
+              Other options worth knowing about
+            </h2>
+            <p className="text-gray-400 text-sm mb-4">
+              We earn nothing from either of these. They are here because they are often the
+              right answer.
+            </p>
+            <ul className="text-gray-300 text-sm space-y-3">
+              <li>
+                <strong className="text-white">Zelle to a Mexican bank.</strong> If your family in
+                the US banks somewhere that supports Zelle and you hold an account at a Mexican
+                bank that receives it, this can be same-day with no transfer fee on the US side.
+                Check current support with both banks — the list of participating banks changes.
+              </li>
+              <li>
+                <strong className="text-white">OXXO cash pickup.</strong> Several services pay out
+                at OXXO, which matters when you have no bank account yet. Ask the sender which
+                payout networks their service reaches in your state.
+              </li>
+            </ul>
           </div>
 
           <div className="bg-navy-800 rounded-xl p-6">
@@ -68,6 +104,7 @@ export default function MexicoReceiveMoneyPage() {
           <div className="flex flex-wrap gap-4">
             <Link href="/mexico/first-30-days" className="text-brand-red hover:underline text-sm">← First 30 Days</Link>
             <Link href="/resources/money-transfer" className="text-brand-red hover:underline text-sm">Compare All Money Transfer Services →</Link>
+            <Link href="/tools/return-home-cost" className="text-brand-red hover:underline text-sm">Estimate your first weeks in Mexico →</Link>
           </div>
         </div>
       </section>
