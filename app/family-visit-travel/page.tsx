@@ -3,9 +3,14 @@ import Link from "next/link";
 import { allCountries } from "@/data/countries/index";
 import { countryVisitData } from "@/data/familyVisitData";
 import TravelProviderCard from "@/components/travel/TravelProviderCard";
+import AffiliateRecommendations from "@/components/affiliate/AffiliateRecommendations";
 import TravelBudgetCalculator from "@/components/travel/TravelBudgetCalculator";
 import FamilyVisitFAQ from "@/components/travel/FamilyVisitFAQ";
 import FamilyVisitEmailForm from "@/components/travel/FamilyVisitEmailForm";
+
+// Provider cards come from the registry, so refresh hourly. Pasting a
+// Travelpayouts tracking link in the admin goes live without a deploy.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Family Visit Travel Guide | Visit a Loved One After Deportation",
@@ -29,282 +34,11 @@ export const metadata: Metadata = {
 
 // ── Travel provider data ──────────────────────────────────────────────────────
 
-const FLIGHTS = [
-  {
-    name: "Skyscanner",
-    category: "Flight Search",
-    description: "Compares hundreds of airlines and travel sites at once. The most comprehensive flight comparison tool available.",
-    bestFor: "Finding the cheapest flight options across multiple airlines and dates.",
-    priceLevel: "Varies" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Skyscanner affiliate link (Partners.skyscanner.net)
-    ctaLabel: "Compare Flights",
-    gradient: "from-blue-400 to-indigo-600",
-    icon: "✈️",
-  },
-  {
-    name: "Expedia",
-    category: "Flight + Hotel",
-    description: "Book flights and hotels together for potential bundle savings. Large inventory with flexible cancellation options.",
-    bestFor: "Travelers who want to bundle flights and accommodation in one booking.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Expedia affiliate link
-    ctaLabel: "Search Flights",
-    gradient: "from-yellow-400 to-orange-500",
-    icon: "🌐",
-  },
-  {
-    name: "Trip.com",
-    category: "International Flights",
-    description: "Strong inventory for Asian routes and last-minute international deals. Often cheaper than Western booking platforms for Asia travel.",
-    bestFor: "Flights to Southeast Asia, the Philippines, and other Asian destinations.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Trip.com affiliate link
-    ctaLabel: "Find Cheap Flights",
-    gradient: "from-teal-400 to-cyan-600",
-    icon: "🛫",
-  },
-  {
-    name: "CheapOair",
-    category: "Discount Flights",
-    description: "Specializes in discounted international airfares. Good for finding deals on less common routes to Latin America and Africa.",
-    bestFor: "Discounted international fares, especially to Central America and Africa.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with CheapOair affiliate link
-    ctaLabel: "Find Deals",
-    gradient: "from-green-400 to-emerald-600",
-    icon: "💺",
-  },
-  {
-    name: "WayAway",
-    category: "Cashback Flights",
-    description: "Earn cashback on flight bookings. Compare prices from major airlines and get a percentage back on every booking.",
-    bestFor: "Frequent travelers who want to earn cashback on every flight booked.",
-    priceLevel: "Varies" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with WayAway affiliate link
-    ctaLabel: "Earn Cashback on Flights",
-    gradient: "from-violet-400 to-purple-600",
-    icon: "💳",
-  },
-];
 
-const HOTELS = [
-  {
-    name: "Booking.com",
-    category: "Hotels",
-    description: "The world's largest accommodation platform. Millions of properties including hotels, guesthouses, and apartments — most with free cancellation.",
-    bestFor: "Finding verified, reviewed accommodation in any country at any budget.",
-    priceLevel: "Varies" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Booking.com affiliate link
-    ctaLabel: "Search Hotels",
-    gradient: "from-blue-400 to-blue-600",
-    icon: "🏨",
-  },
-  {
-    name: "Agoda",
-    category: "Hotels & Apartments",
-    description: "Particularly strong for Asia and Latin America. Often has better deals than competitors for Thailand, Philippines, Mexico, and Central America.",
-    bestFor: "Hotels and apartments in Southeast Asia and Latin America.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Agoda affiliate link
-    ctaLabel: "Find Hotels",
-    gradient: "from-red-400 to-rose-600",
-    icon: "🏩",
-  },
-  {
-    name: "Hotels.com",
-    category: "Hotels + Rewards",
-    description: "Earn free nights through the One Key rewards program. Large inventory with price-match guarantee.",
-    bestFor: "Travelers who visit regularly and want to earn free nights over time.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Hotels.com affiliate link
-    ctaLabel: "Browse Hotels",
-    gradient: "from-orange-400 to-red-500",
-    icon: "🔑",
-  },
-];
 
-const HOSTELS = [
-  {
-    name: "Hostelworld",
-    category: "Budget Hostels",
-    description: "The world's #1 hostel booking platform. Verified reviews, private and dorm rooms, and the largest hostel inventory worldwide.",
-    bestFor: "Budget travelers and solo visitors who want affordable, social accommodation.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Hostelworld affiliate link
-    ctaLabel: "Find Hostels",
-    gradient: "from-amber-400 to-orange-500",
-    icon: "🛏️",
-  },
-  {
-    name: "Agoda (Budget Stays)",
-    category: "Budget Rooms",
-    description: "Agoda lists budget guesthouses, small hotels, and cheap private rooms that don't appear on traditional hostel platforms.",
-    bestFor: "Budget travelers who want private rooms at hostel prices.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Agoda affiliate link
-    ctaLabel: "Find Budget Stays",
-    gradient: "from-lime-400 to-green-600",
-    icon: "🏡",
-  },
-];
 
-const CAR_RENTALS = [
-  {
-    name: "DiscoverCars",
-    category: "Car Rental Comparison",
-    description: "Compares car rental prices from all major companies in one search. Full coverage insurance options and transparent pricing.",
-    bestFor: "Finding the best car rental deal with full insurance coverage.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with DiscoverCars affiliate link
-    ctaLabel: "Compare Cars",
-    gradient: "from-sky-400 to-blue-600",
-    icon: "🚗",
-  },
-  {
-    name: "Rentalcars.com",
-    category: "Car Rental",
-    description: "Over 900 car rental locations globally. Backed by Booking.com — reliable pricing and customer support.",
-    bestFor: "Reliable international car rental with broad global availability.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Rentalcars.com affiliate link
-    ctaLabel: "Search Rentals",
-    gradient: "from-indigo-400 to-violet-600",
-    icon: "🚙",
-  },
-  {
-    name: "EconomyBookings",
-    category: "Budget Car Rental",
-    description: "Budget-focused car rental comparison. Great for finding low-cost rental deals in Latin America and Eastern Europe.",
-    bestFor: "Budget-conscious travelers needing affordable rental options.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with EconomyBookings affiliate link
-    ctaLabel: "Find Deals",
-    gradient: "from-emerald-400 to-teal-600",
-    icon: "🚘",
-  },
-];
 
-const INSURANCE = [
-  {
-    name: "SafetyWing",
-    category: "Travel Medical Insurance",
-    description: "Flexible monthly travel medical insurance. Subscribe and cancel anytime. Covers emergency medical, hospitalization, and evacuation.",
-    bestFor: "Budget-conscious travelers who want solid medical coverage without long commitments.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with SafetyWing affiliate link (safetywing.com partner)
-    ctaLabel: "Get Coverage",
-    gradient: "from-teal-400 to-emerald-600",
-    icon: "🛡️",
-    sponsored: true,
-  },
-  {
-    name: "VisitorsCoverage",
-    category: "Insurance Comparison",
-    description: "Compare multiple travel insurance plans side by side. Medical, trip cancellation, and comprehensive options from leading insurers.",
-    bestFor: "Comparing multiple insurance plans to find the right coverage for your trip.",
-    priceLevel: "Varies" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with VisitorsCoverage affiliate link
-    ctaLabel: "Compare Plans",
-    gradient: "from-blue-400 to-indigo-600",
-    icon: "📋",
-  },
-  {
-    name: "World Nomads",
-    category: "Adventure Travel Insurance",
-    description: "Comprehensive travel insurance including adventure activities, gear, and trip cancellation. Trusted by National Geographic and Lonely Planet.",
-    bestFor: "Travelers planning adventure activities, tours, or extended travel.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with World Nomads affiliate link
-    ctaLabel: "Get a Quote",
-    gradient: "from-rose-400 to-red-600",
-    icon: "🌍",
-  },
-];
 
-const ESIMS = [
-  {
-    name: "Airalo",
-    category: "eSIM",
-    description: "The world's first and largest eSIM marketplace. Digital SIM cards for 200+ countries — activate before departure, no physical card needed.",
-    bestFor: "Travelers with eSIM-compatible phones who want instant connectivity abroad.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Airalo affiliate link
-    ctaLabel: "Get an eSIM",
-    gradient: "from-violet-400 to-purple-600",
-    icon: "📱",
-    sponsored: true,
-  },
-  {
-    name: "Holafly",
-    category: "Unlimited Data eSIM",
-    description: "Unlimited data eSIM plans for travelers. Simple setup, good coverage in Latin America and Europe.",
-    bestFor: "Travelers who need unlimited data and want simple, predictable pricing.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Holafly affiliate link
-    ctaLabel: "Buy eSIM",
-    gradient: "from-pink-400 to-rose-600",
-    icon: "🔗",
-  },
-  {
-    name: "Nomad",
-    category: "Travel eSIM",
-    description: "Affordable data plans for travelers in 100+ countries. Pay only for what you need — no monthly commitment.",
-    bestFor: "Short-trip travelers who want affordable data without an unlimited plan.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Nomad eSIM affiliate link
-    ctaLabel: "Get Connected",
-    gradient: "from-amber-400 to-orange-600",
-    icon: "🌐",
-  },
-  {
-    name: "NumeroMoney",
-    category: "eSIM + Money App",
-    description: "eSIM data plans plus an international money transfer app in one. Great for Latin America and international travelers.",
-    bestFor: "Travelers visiting Latin America who want data and an easy money transfer app.",
-    priceLevel: "Budget" as const,
-    href: "https://numero.app?ref=RE_29X3K",
-    ctaLabel: "Get eSIM",
-    gradient: "from-teal-400 to-cyan-600",
-    icon: "💳",
-    sponsored: true,
-  },
-];
-
-const TOURS = [
-  {
-    name: "Viator",
-    category: "Tours & Experiences",
-    description: "The largest tours and activities platform. Thousands of verified experiences in every country — day trips, cultural tours, food tours, and more.",
-    bestFor: "Finding and booking local tours and activities in any destination worldwide.",
-    priceLevel: "Varies" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Viator affiliate link
-    ctaLabel: "Browse Tours",
-    gradient: "from-orange-400 to-red-500",
-    icon: "🗺️",
-  },
-  {
-    name: "GetYourGuide",
-    category: "Activities & Day Trips",
-    description: "Instant booking for tours, museums, and experiences worldwide. Excellent cancellation policies and verified operator reviews.",
-    bestFor: "Booking popular tourist activities, skip-the-line tickets, and guided tours.",
-    priceLevel: "Mid-range" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with GetYourGuide affiliate link
-    ctaLabel: "Find Activities",
-    gradient: "from-yellow-400 to-amber-600",
-    icon: "🎫",
-  },
-  {
-    name: "Klook",
-    category: "Asia & Budget Tours",
-    description: "Particularly strong for Southeast Asia experiences. Budget-friendly tours, attraction tickets, and transportation passes.",
-    bestFor: "Tours and activities in Southeast Asia and Asia-Pacific at budget-friendly prices.",
-    priceLevel: "Budget" as const,
-    href: "#affiliate-placeholder", // TODO: Replace with Klook affiliate link
-    ctaLabel: "Book Activities",
-    gradient: "from-rose-400 to-pink-600",
-    icon: "🎪",
-  },
-];
 
 const VISA_HELP = [
   {
@@ -460,7 +194,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {FLIGHTS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="FLIGHTS" heading="Flight search platforms" placement="family-visit-flights" campaign="family_visit_flights" limit={6} />
           </div>
         </div>
       </section>
@@ -479,7 +213,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-            {HOTELS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="HOTELS" heading="Hotel booking platforms" placement="family-visit-hotels" campaign="family_visit_hotels" limit={6} />
           </div>
 
           {/* Budget Hostels subsection */}
@@ -494,7 +228,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {HOSTELS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="HOSTELS" heading="Hostel and budget stays" placement="family-visit-hostels" campaign="family_visit_hostels" limit={6} />
           </div>
         </div>
       </section>
@@ -516,7 +250,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {CAR_RENTALS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="CAR_RENTAL" heading="Car rental comparison" placement="family-visit-car-rental" campaign="family_visit_car-rental" limit={6} />
           </div>
         </div>
       </section>
@@ -537,7 +271,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {INSURANCE.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="TRAVEL_INSURANCE" heading="Travel insurance for your trip" intro="Cover for the person travelling from the United States. These policies are for travel outside your home country - they are not a substitute for health cover where your loved one lives." placement="family-visit-insurance" campaign="family_visit_insurance" limit={4} />
           </div>
         </div>
       </section>
@@ -559,7 +293,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {ESIMS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="ESIM" heading="eSIM and mobile data" placement="family-visit-esim" campaign="family_visit_esim" limit={6} />
           </div>
         </div>
       </section>
@@ -580,7 +314,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {TOURS.map((p) => <TravelProviderCard key={p.name} {...p} />)}
+            <AffiliateRecommendations category="TOURS" heading="Tours and activities" placement="family-visit-tours" campaign="family_visit_tours" limit={6} />
           </div>
         </div>
       </section>
