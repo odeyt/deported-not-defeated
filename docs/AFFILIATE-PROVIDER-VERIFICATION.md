@@ -3,7 +3,7 @@
 **Purpose:** track which provider–country availability claims have been confirmed against the
 provider's own published information, and which are still editorial research.
 
-**Why it matters:** the site currently holds **113 provider–country rows, none of them verified.**
+**Why it matters:** the site holds **113 provider–country rows, 2 of them verified** (Wise and Remitly for Mexico, both Tier 1, M-AFFILIATE3).
 Until a row is verified, visitors see a *"Confirm availability with provider"* note, and the
 provider cannot be presented as definitively available. Working through this queue is what turns
 a hedge into a recommendation — it is the highest-value manual task available.
@@ -26,7 +26,7 @@ Recorded in `affiliate_provider_countries.verified_at` (NULL = unverified) plus 
 | **API_VERIFIED** | Confirmed programmatically against a provider API | May state availability plainly |
 | **UNAVAILABLE** | Provider confirmed as not serving this corridor | `available = false`; excluded from results |
 
-Today every row is UNVERIFIED or EDITORIALLY_RESEARCHED. **Nothing is PROVIDER_VERIFIED.**
+As of 2026-08-24: **2 rows are PROVIDER_VERIFIED** (wise/MX, remitly/MX). The other 111 remain UNVERIFIED or EDITORIALLY_RESEARCHED.
 
 ### What counts as evidence
 
@@ -49,13 +49,13 @@ Record the URL and the date in `availability_notes`, then set `verified_at`.
 
 ## Mexico queue — ranked by revenue potential
 
-Mexico has **8 provider rows, 0 verified**. Ordered by likely commercial value: the money-transfer
+Mexico has **8 provider rows, 2 verified**. Ordered by likely commercial value: the money-transfer
 corridor is the largest and is what most Mexico traffic already arrives asking about.
 
 | # | Provider | Category | Availability | Affiliate status | Action required |
 | --- | --- | --- | --- | --- | --- |
-| 1 | **Wise** | Money transfer | Unverified (priority 30) | **approved — earning** | Confirm MX corridor on Wise's own site. This is the only monetized money-transfer provider, and it is ranked 7th of 8 — verify, then set priority deliberately. |
-| 2 | **Remitly** | Money transfer | Unverified (priority 80) | `pending` | Confirm corridor, then chase the application. High-volume US→MX service; likely the single most valuable approval available. |
+| 1 | **Wise** | Money transfer | ✅ **PROVIDER_VERIFIED** 2026-08-24 | **approved — earning** | Bank deposit only, **no cash pickup documented**. Review by 2026-11-22. |
+| 2 | **Remitly** | Money transfer | ✅ **PROVIDER_VERIFIED** 2026-08-24 | `pending` (origin unverified) | Cash pickup + bank + wallet. Program exists via **Impact**. **Highest-value approval available.** |
 | 3 | **Western Union** | Money transfer | Unverified (priority 100) | `not_applied` | Confirm corridor and OXXO payout, then apply. Currently ranked first and earns nothing. |
 | 4 | **MoneyGram** | Money transfer | Unverified (priority 90) | `pending` | Confirm corridor, chase application. |
 | 5 | **Xoom** | Money transfer | Unverified (priority 70) | `not_applied` | Confirm corridor. PayPal-owned; check whether a program exists. |
@@ -74,9 +74,11 @@ These categories have no Mexico rows at all, so nothing renders for them on Mexi
 | **Flights / hotels** | The "visit your loved one" journey | Travelpayouts network first |
 | **Car rental / transfers** | Airport arrival | Discover Cars |
 
-> **SafetyWing is approved and earning but has no Mexico availability row**, so it cannot appear on
-> any Mexico page. Adding that row is a few minutes of work against a live earning program — the
-> best effort-to-revenue ratio in this table.
+> **SafetyWing has no Mexico row — and M-AFFILIATE3 found that is probably correct.** Nomad
+> Insurance provides only incidental home-country coverage, so it is likely inappropriate for a
+> returnee living in Mexico, whatever the affiliate status says. An earlier version of this file
+> called adding the row the best available quick win. That was wrong. Confirm product suitability
+> with SafetyWing before creating it, and scope it to family-visit contexts if it is travel-only.
 
 ---
 
@@ -109,4 +111,9 @@ Verification does not change ranking, and neither does commission. Ranking is co
 then global priority, then trust score. If verifying a provider makes you want to rank it higher,
 change the priority for a reason you could defend to a visitor — not because it pays.
 
-**Last reviewed:** 2026-08-24 · **Verified rows:** 0 of 113
+**Last reviewed:** 2026-08-24 · **Verified rows:** 2 of 113
+
+> **Updated by M-AFFILIATE3.** Wise and Remitly now carry Tier 1 corridor verification for
+> Mexico. The SafetyWing Mexico row recommended in M-AFFILIATE2 was **not** created: its Nomad
+> Insurance provides only incidental home-country coverage, so it is likely inappropriate for a
+> returnee residing in Mexico. See [`M-AFFILIATE3-PROVIDER-VERIFICATION.md`](./M-AFFILIATE3-PROVIDER-VERIFICATION.md).
