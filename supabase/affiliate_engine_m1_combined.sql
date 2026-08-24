@@ -13,18 +13,30 @@
 --   Running A alone leaves production in a state where anonymous users can
 --   read operator columns (internal_notes, account_identifier, commission
 --   data) that A itself creates. The gap between A and C is the exposure
---   window. Wrapping both in one transaction removes it: either the whole
---   thing applies, or nothing does.
+--   window. Wrapping both in one transaction removes it.
+--
+-- RE-RUNNABLE
+--   Every statement is idempotent: `create ... if not exists`,
+--   `on conflict do nothing`, `drop policy if exists`, and grants/revokes
+--   that converge on the same state. Running this file twice is safe.
+--
+--   An earlier revision passed the administrator's address between sections
+--   through a TEMPORARY table. Temp tables are session-scoped and dropped at
+--   commit, so a re-run or a partial re-execution failed with
+--   `relation "_m_affiliate1_config" does not exist` — after the real work had
+--   already committed, which made a successful migration look like a failure.
+--   The address is now a local variable inside the DO block that uses it, so
+--   nothing has to survive between statements.
 --
 -- PREREQUISITE
 --   The M-AFFILIATE1 application build must already be deployed (commit
 --   5b3172e or later). Section C revokes blanket SELECT on affiliate_partners
 --   from `anon`; the build that replaced select("*") with an explicit column
---   list must be live first. As of 2026-08-24 it is.
+--   list must be live first.
 --
 -- BEFORE RUNNING
 --   1. Confirm you are in the correct Supabase project.
---   2. Run the whole file in one execution. Do not run it in pieces.
+--   2. Run the whole file in one execution.
 --
 -- IF IT ABORTS
 --   Nothing is applied. The transaction rolls back. Fix what the error says
@@ -32,21 +44,6 @@
 -- ============================================================
 
 begin;
-
--- ============================================================
--- SECTION B0 — ADMINISTRATOR (usually nothing to do here)
---
--- Leave the placeholder alone and the migration promotes the ONLY existing
--- Supabase auth account. That is the common case, and it avoids putting a
--- personal email address into a public Git repository.
---
--- Set an address here ONLY if more than one auth account exists, or if the
--- administrator should be someone other than the sole account. The migration
--- aborts rather than guessing.
--- ============================================================
-create temporary table _m_affiliate1_config (admin_email text) on commit drop;
-
-insert into _m_affiliate1_config values ('YOUR@EMAIL.HERE');
 
 
 -- ============================================================
@@ -752,18 +749,25 @@ grant select on affiliate_provider_countries       to anon, authenticated;
 -- 2026-08-24), so without this step the hardening would lock every human out
 -- of the affiliate admin with no route back through the UI.
 --
--- Every failure path below aborts the entire transaction rather than leaving
--- that state behind.
+-- ADMINISTRATOR ADDRESS — usually nothing to do here.
+--   Leave the placeholder alone and this promotes the ONLY existing Supabase
+--   auth account. That is the common case, and it keeps a personal email out
+--   of a public Git repository.
+--
+--   Set an address on the marked line below ONLY if more than one auth
+--   account exists, or if the administrator should be someone other than the
+--   sole account. Every failure path aborts the whole transaction rather than
+--   guessing.
 -- ============================================================
 do $$
 declare
-  configured    text;
+  -- ⬇⬇⬇  OPTIONAL: replace with a specific Supabase auth email  ⬇⬇⬇
+  configured    constant text := 'YOUR@EMAIL.HERE';
+  -- ⬆⬆⬆  OPTIONAL: replace with a specific Supabase auth email  ⬆⬆⬆
   target_id     uuid;
   target_email  text;
   account_count integer;
 begin
-  select admin_email into configured from _m_affiliate1_config;
-
   if configured is distinct from 'YOUR@EMAIL.HERE' then
     -- An explicit address was supplied: it must match a real auth account.
     select id, email into target_id, target_email
@@ -773,7 +777,7 @@ begin
 
     if target_id is null then
       raise exception
-        'ABORT: no Supabase auth account matches the address set in Section B0. Nothing has been applied.';
+        'ABORT: no Supabase auth account matches the address configured in Section B. Nothing has been applied.';
     end if;
   else
     -- Placeholder left in place: promote the sole account, or abort.
@@ -781,7 +785,7 @@ begin
 
     if account_count <> 1 then
       raise exception
-        'ABORT: % auth accounts exist, so the administrator is ambiguous. Set the address in Section B0 and re-run. Nothing has been applied.',
+        'ABORT: % auth accounts exist, so the administrator is ambiguous. Set the address in Section B and re-run. Nothing has been applied.',
         account_count;
     end if;
 
