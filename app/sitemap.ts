@@ -24,6 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Country Guides index
     { url: `${BASE}/country-guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
 
+    // First-party tools
+    { url: `${BASE}/tools/return-home-cost`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+
     // All 45 country landing pages (dynamic [country] route)
     ...allCountries.map((c) => ({
       url: `${BASE}/${c.slug}`,
