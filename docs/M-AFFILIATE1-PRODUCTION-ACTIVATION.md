@@ -131,7 +131,7 @@ sitemap     <loc>https://www.deportednotdefeated.com/…</loc>
 
 ### 4. Combined migration — F2 and the exposure window
 
-`supabase/affiliate_engine_m1_combined.sql` (1,034 lines) wraps both migrations in **one
+`supabase/affiliate_engine_m1_combined.sql` (1,038 lines) wraps both migrations in **one
 transaction** with an admin-promotion step and two abort guards between them.
 
 #### Composing the migration
@@ -411,3 +411,77 @@ migration objects present      none of 4
 Applying `supabase/affiliate_engine_m1_combined.sql` requires a human with SQL-editor access.
 Everything else is ready: the file is atomic, aborts rather than half-applying, needs no edits,
 and the application build it depends on is already live.
+
+---
+
+# M-AFFILIATE1.1 — ACTIVATED (2026-08-24)
+
+**The affiliate engine is live in production.** The migration was executed by the operator in the
+Supabase SQL editor for project `smxlxlgtpqhzkkwkyzrv`.
+
+## Result
+
+| Check | Result |
+| --- | --- |
+| 1. Anonymous holds no operator columns | PASS — `notes`, `internal_notes`, `account_identifier`, `commission_value`, `commission_notes` all denied |
+| 2. Anonymous cannot write clicks | PASS — HTTP 401 (was 201) |
+| 3. At least one administrator | PASS — 1 |
+| 4. Three live programs untouched | PASS — wise, safetywing, numeromoney all approved + active |
+| 5. Engine data seeded | PASS — 21 categories, 113 country rows, providers 11 → 40 |
+
+**Click tracking works for the first time.** Three controlled clicks produced three rows, each
+with `outcome = affiliate` and the correct country and category:
+
+```
+wise         outcome=affiliate  country=MX  category=MONEY_TRANSFER
+safetywing   outcome=affiliate  country=MX  category=HEALTH_INSURANCE
+numeromoney  outcome=affiliate  country=MX  category=PHONE_INTERNET
+```
+
+310 → 313 rows. This confirms the corrected diagnosis: the missing columns were the blocker, not
+the service-role key.
+
+Regression after hardening: `/`, `/resources`, all three category pages, and `/mexico` return 200;
+provider cards still render; only the three approved providers use `/go/`; open redirect still
+rejected; `/admin` still gated at 307.
+
+## The error that looked like a failure
+
+The run reported:
+
+```
+ERROR: 42P01: relation "_m_affiliate1_config" does not exist
+```
+
+**This fired after the real work had already committed.** The admin row existed, the hardening had
+applied, and the seed had landed — all of which happen *before* the statement that failed.
+
+Cause: the administrator's address was passed between Section B0 and Section B through a
+`TEMPORARY` table. Temp tables are session-scoped and dropped at commit, so any re-run or partial
+re-execution cannot see one created earlier. A successful migration therefore ended on a red error
+message, which is the worst possible outcome short of an actual failure — it invites someone to
+"fix" a database that is already correct.
+
+## The fix
+
+The temp table is gone. The address is now a local constant inside the `DO` block that reads it:
+
+```sql
+do $$
+declare
+  configured constant text := 'YOUR@EMAIL.HERE';
+  ...
+```
+
+Nothing has to survive between statements, so the file is now genuinely re-runnable. Three tests
+guard it:
+
+- no `create temporary table`, and no reference to the old config table in executable SQL
+- the address is declared where it is read
+- every `create table` carries `if not exists`, and every `create policy` is preceded by
+  `drop policy if exists`
+
+**Design lesson:** a migration should carry no state between its own statements. Anything that
+must span statements has to survive transaction boundaries, connection pooling, and re-runs — and
+when it does not, the failure surfaces at the end, long after the point where it could be
+understood.

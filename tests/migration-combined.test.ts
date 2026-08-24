@@ -101,3 +101,53 @@ test("the promotion runs before the admin-only policies are installed", () => {
     "promoting after the policies are live is the lockout scenario"
   );
 });
+
+test("no state is passed between statements, so the file is re-runnable", () => {
+  // A temporary table spanning ~700 lines of migration is session-scoped and
+  // dropped at commit. On 2026-08-24 that produced
+  // `relation "_m_affiliate1_config" does not exist` AFTER the real work had
+  // already committed — a successful migration that looked like a failure.
+  const executable = combined
+    .split("\n")
+    .filter((line) => !line.trim().startsWith("--"))
+    .join("\n");
+
+  assert.ok(
+    !/create\s+temporary\s+table/i.test(executable),
+    "no temporary table: nothing may need to survive between statements"
+  );
+  assert.ok(
+    !/_m_affiliate1_config/.test(executable),
+    "the old cross-statement config table must not return"
+  );
+});
+
+test("the administrator address is a local variable inside the block that uses it", () => {
+  assert.match(
+    combined,
+    /configured\s+constant\s+text\s*:=\s*'YOUR@EMAIL\.HERE'/,
+    "the address must be declared where it is read"
+  );
+});
+
+test("every statement is idempotent, so a second run is safe", () => {
+  const executable = combined
+    .split("\n")
+    .filter((line) => !line.trim().startsWith("--"))
+    .join("\n");
+
+  // Bare `create table` / `create policy` would fail on a re-run.
+  const bareCreateTable = /create\s+table\s+(?!if\s+not\s+exists)/i.test(executable);
+  const bareCreatePolicy = executable
+    .split("\n")
+    .some((line, index, lines) => {
+      if (!/^\s*create\s+policy/i.test(line)) return false;
+      // Each create policy must be preceded by a matching drop policy.
+      return !lines.slice(Math.max(0, index - 3), index).some((prior) =>
+        /drop\s+policy\s+if\s+exists/i.test(prior)
+      );
+    });
+
+  assert.ok(!bareCreateTable, "every create table needs `if not exists`");
+  assert.ok(!bareCreatePolicy, "every create policy needs a preceding `drop policy if exists`");
+});
