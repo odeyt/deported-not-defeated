@@ -42,6 +42,12 @@ export default function MexicoReceiveMoneyPage() {
 
       <section className="py-12 px-4 bg-gray-950">
         <div className="max-w-3xl mx-auto space-y-8">
+          {/* limit is 8 because eight providers are eligible for this corridor.
+              An earlier limit of 6 cut the list at rank 7 of 8, which happened
+              to hide Wise — the only provider here with a live affiliate
+              relationship. The fix was to remove the arbitrary cutoff, not to
+              promote Wise: ranking stays country priority, and commission is
+              never an input. */}
           <AffiliateRecommendations
             country="MX"
             category="MONEY_TRANSFER"
@@ -49,11 +55,6 @@ export default function MexicoReceiveMoneyPage() {
             intro="Fees and delivery times change often and differ by amount, payout method, and state. Confirm the current cost with the provider before sending — we deliberately do not quote prices we cannot keep accurate."
             placement="mx-money-transfer"
             campaign="mx_money_transfer_compare"
-            {/* Show every provider eligible for this corridor. A limit of 6 cut
-                the list at rank 7 of 8, which happened to hide Wise — the only
-                provider here with a live affiliate relationship. The fix is to
-                remove the arbitrary cutoff, not to promote Wise: ranking stays
-                country priority, and commission is never an input. */}
             limit={8}
             fallbackHref="/resources/money-transfer"
             fallbackLabel="See all money transfer options"
