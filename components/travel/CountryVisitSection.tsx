@@ -102,7 +102,7 @@ export default function CountryVisitSection({ countryName, countrySlug, data }: 
             🏨 Find Hotels
           </a>
           <a
-            href="/go/category/esim"
+            href="/go/category/phone-internet"
             className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"
           >
             🛡️ Get Travel Insurance

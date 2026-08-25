@@ -42,7 +42,7 @@ export default async function ReturnHomeCostPage({
   // avoids a request per checkbox.
   const [allMoneyTransfer, allEsim] = await Promise.all([
     getProvidersForCategory({ category: "MONEY_TRANSFER", country: model.countryCode }),
-    getProvidersForCategory({ category: "ESIM", country: model.countryCode }),
+    getProvidersForCategory({ category: "PHONE_INTERNET", country: model.countryCode }),
   ]);
   const moneyTransferProviders = allMoneyTransfer.slice(0, 4);
   const esimProviders = allEsim.slice(0, 3);

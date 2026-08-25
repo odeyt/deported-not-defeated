@@ -293,7 +293,7 @@ export default function FamilyVisitTravelPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <AffiliateRecommendations category="ESIM" heading="eSIM and mobile data" placement="family-visit-esim" campaign="family_visit_esim" limit={6} />
+            <AffiliateRecommendations category="PHONE_INTERNET" heading="eSIM and mobile data" placement="family-visit-esim" campaign="family_visit_esim" limit={6} />
           </div>
         </div>
       </section>
