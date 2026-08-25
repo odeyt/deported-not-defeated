@@ -10,8 +10,13 @@ import {
   type HousingChoice,
   type TransportChoice,
 } from "@/lib/return-home/calculate";
-import { FX_NOTE, convertToUsd, type CountryCostModel } from "@/data/returnHomeCosts";
+import {
+  FX_NOTE,
+  convertToUsd,
+  type CountryCostModel,
+} from "@/data/returnHomeCosts";
 import ProviderRecommendationCard from "@/components/affiliate/ProviderRecommendationCard";
+import ImpressionTracker from "@/components/affiliate/ImpressionTracker";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import type { AffiliateProvider } from "@/lib/affiliate/types";
 
@@ -35,15 +40,32 @@ interface Props {
   esimProviders: AffiliateProvider[];
 }
 
-const HOUSING_OPTIONS: { value: HousingChoice; label: string; hint: string }[] = [
-  { value: "staying_with_family", label: "Staying with family or friends", hint: "No housing cost" },
-  { value: "rented_room", label: "Renting a room", hint: "Cuarto de renta" },
-  { value: "own_place", label: "Renting your own place", hint: "Apartment" },
-];
+const HOUSING_OPTIONS: { value: HousingChoice; label: string; hint: string }[] =
+  [
+    {
+      value: "staying_with_family",
+      label: "Staying with family or friends",
+      hint: "No housing cost",
+    },
+    { value: "rented_room", label: "Renting a room", hint: "Cuarto de renta" },
+    { value: "own_place", label: "Renting your own place", hint: "Apartment" },
+  ];
 
-const TRANSPORT_OPTIONS: { value: TransportChoice; label: string; hint: string }[] = [
-  { value: "minimal", label: "Mostly walking, some transit", hint: "Metro and bus" },
-  { value: "regular", label: "Daily transit, occasional rides", hint: "Metro plus Uber/DiDi" },
+const TRANSPORT_OPTIONS: {
+  value: TransportChoice;
+  label: string;
+  hint: string;
+}[] = [
+  {
+    value: "minimal",
+    label: "Mostly walking, some transit",
+    hint: "Metro and bus",
+  },
+  {
+    value: "regular",
+    label: "Daily transit, occasional rides",
+    hint: "Metro plus Uber/DiDi",
+  },
 ];
 
 const fieldClass =
@@ -67,10 +89,29 @@ export default function ReturnHomeCalculator({
 
   // A resource block appears only when the reader asked for that thing AND we
   // actually have providers for it. No selection means no commercial module.
-  const showMoneyTransfer = input.familyMaySendMoney && moneyTransferProviders.length > 0;
+  const showMoneyTransfer =
+    input.familyMaySendMoney && moneyTransferProviders.length > 0;
   const showEsim = input.needsPhone && esimProviders.length > 0;
 
-  function update<K extends keyof CalculatorInput>(key: K, value: CalculatorInput[K]) {
+  // Impressions are recorded only for blocks actually shown, so a reader who
+  // never asked about money transfer never counts toward its CTR.
+  const trackedFor = (
+    providers: typeof moneyTransferProviders,
+    campaign: string,
+  ) =>
+    providers.map((provider) => ({
+      providerId: provider.id,
+      providerSlug: provider.slug,
+      countryCode: model.countryCode,
+      category: provider.category ?? null,
+      placement: "calculator-result",
+      campaign,
+    }));
+
+  function update<K extends keyof CalculatorInput>(
+    key: K,
+    value: CalculatorInput[K],
+  ) {
     setInput((prev) => ({ ...prev, [key]: value }));
     setCopied(false);
   }
@@ -108,8 +149,10 @@ export default function ReturnHomeCalculator({
               onChange={(e) => update("people", Number(e.target.value))}
               onBlur={(e) => {
                 const n = Number(e.target.value);
-                if (!Number.isFinite(n) || n < INPUT_LIMITS.people.min) update("people", 1);
-                else if (n > INPUT_LIMITS.people.max) update("people", INPUT_LIMITS.people.max);
+                if (!Number.isFinite(n) || n < INPUT_LIMITS.people.min)
+                  update("people", 1);
+                else if (n > INPUT_LIMITS.people.max)
+                  update("people", INPUT_LIMITS.people.max);
               }}
               className={fieldClass}
               aria-describedby="people-hint"
@@ -155,8 +198,12 @@ export default function ReturnHomeCalculator({
                   className="mt-1 w-4 h-4 accent-brand-red shrink-0"
                 />
                 <span className="min-w-0">
-                  <span className="block text-sm text-white">{option.label}</span>
-                  <span className="block text-xs text-gray-400">{option.hint}</span>
+                  <span className="block text-sm text-white">
+                    {option.label}
+                  </span>
+                  <span className="block text-xs text-gray-400">
+                    {option.hint}
+                  </span>
                 </span>
               </label>
             ))}
@@ -192,8 +239,12 @@ export default function ReturnHomeCalculator({
                   className="mt-1 w-4 h-4 accent-brand-red shrink-0"
                 />
                 <span className="min-w-0">
-                  <span className="block text-sm text-white">{option.label}</span>
-                  <span className="block text-xs text-gray-400">{option.hint}</span>
+                  <span className="block text-sm text-white">
+                    {option.label}
+                  </span>
+                  <span className="block text-xs text-gray-400">
+                    {option.hint}
+                  </span>
                 </span>
               </label>
             ))}
@@ -223,7 +274,9 @@ export default function ReturnHomeCalculator({
             <input
               type="checkbox"
               checked={input.includeEmergencyReserve}
-              onChange={(e) => update("includeEmergencyReserve", e.target.checked)}
+              onChange={(e) =>
+                update("includeEmergencyReserve", e.target.checked)
+              }
               className="w-4 h-4 accent-brand-red"
             />
             Add an emergency reserve
@@ -255,30 +308,45 @@ export default function ReturnHomeCalculator({
       <div className="space-y-4">
         <div className="bg-navy-800 border border-white/10 rounded-2xl p-5">
           <h2 className="text-lg font-bold text-white mb-1">
-            Estimated cost for {result.weeks} {result.weeks === 1 ? "week" : "weeks"}
+            Estimated cost for {result.weeks}{" "}
+            {result.weeks === 1 ? "week" : "weeks"}
           </h2>
           <p className="text-xs text-gray-400 mb-4">
-            Based on {model.basedOn} figures. Costs elsewhere in {model.countryName} are often lower.
+            Based on {model.basedOn} figures. Costs elsewhere in{" "}
+            {model.countryName} are often lower.
           </p>
 
-          <div className="grid grid-cols-3 gap-3" role="group" aria-label="Estimate range">
+          <div
+            className="grid grid-cols-3 gap-3"
+            role="group"
+            aria-label="Estimate range"
+          >
             {[
               { label: "Lean", value: result.totals.low },
-              { label: "Typical", value: result.totals.typical, emphasis: true },
+              {
+                label: "Typical",
+                value: result.totals.typical,
+                emphasis: true,
+              },
               { label: "With buffer", value: result.totals.high },
             ].map((band) => (
               <div
                 key={band.label}
                 className={`rounded-xl p-3 border ${
-                  band.emphasis ? "border-brand-red bg-brand-red/10" : "border-white/10"
+                  band.emphasis
+                    ? "border-brand-red bg-brand-red/10"
+                    : "border-white/10"
                 }`}
               >
-                <p className="text-[11px] uppercase tracking-wide text-gray-400">{band.label}</p>
+                <p className="text-[11px] uppercase tracking-wide text-gray-400">
+                  {band.label}
+                </p>
                 <p className="text-lg font-extrabold text-white leading-tight mt-1 break-words">
                   {formatMoney(band.value, model.currency)}
                 </p>
                 <p className="text-[11px] text-gray-400 mt-0.5">
-                  ≈ USD {Math.round(convertToUsd(band.value)).toLocaleString("en-US")}
+                  ≈ USD{" "}
+                  {Math.round(convertToUsd(band.value)).toLocaleString("en-US")}
                 </p>
               </div>
             ))}
@@ -289,26 +357,51 @@ export default function ReturnHomeCalculator({
 
         {/* Transparency: every line, and how it was derived. */}
         <div className="bg-navy-800 border border-white/10 rounded-2xl overflow-hidden">
-          <h3 className="text-sm font-bold text-white px-5 pt-4 pb-2">How this is calculated</h3>
+          <h3 className="text-sm font-bold text-white px-5 pt-4 pb-2">
+            How this is calculated
+          </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <caption className="sr-only">
-                Cost breakdown by category, showing lean, typical, and buffer estimates
+                Cost breakdown by category, showing lean, typical, and buffer
+                estimates
               </caption>
               <thead>
                 <tr className="text-[11px] uppercase tracking-wide text-gray-400 border-b border-white/10">
-                  <th scope="col" className="text-left px-5 py-2 font-semibold">Category</th>
-                  <th scope="col" className="text-right px-2 py-2 font-semibold">Lean</th>
-                  <th scope="col" className="text-right px-2 py-2 font-semibold">Typical</th>
-                  <th scope="col" className="text-right px-5 py-2 font-semibold">Buffer</th>
+                  <th scope="col" className="text-left px-5 py-2 font-semibold">
+                    Category
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-right px-2 py-2 font-semibold"
+                  >
+                    Lean
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-right px-2 py-2 font-semibold"
+                  >
+                    Typical
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-right px-5 py-2 font-semibold"
+                  >
+                    Buffer
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {result.lines.map((line) => (
-                  <tr key={line.code} className="border-b border-white/5 last:border-0">
+                  <tr
+                    key={line.code}
+                    className="border-b border-white/5 last:border-0"
+                  >
                     <td className="px-5 py-2.5">
                       <span className="block text-gray-100">{line.label}</span>
-                      <span className="block text-[11px] text-gray-500">{line.basis}</span>
+                      <span className="block text-[11px] text-gray-500">
+                        {line.basis}
+                      </span>
                     </td>
                     <td className="text-right px-2 py-2.5 text-gray-400 tabular-nums">
                       {line.low.toLocaleString("en-US")}
@@ -327,10 +420,13 @@ export default function ReturnHomeCalculator({
 
           {result.notEstimated.length > 0 && (
             <div className="px-5 py-4 border-t border-white/10 bg-white/[0.02]">
-              <p className="text-xs font-semibold text-gray-300 mb-1">Not included in the total</p>
+              <p className="text-xs font-semibold text-gray-300 mb-1">
+                Not included in the total
+              </p>
               {result.notEstimated.map((line) => (
                 <p key={line.code} className="text-xs text-gray-400">
-                  <span className="text-gray-300">{line.label}:</span> {line.note}
+                  <span className="text-gray-300">{line.label}:</span>{" "}
+                  {line.note}
                 </p>
               ))}
             </div>
@@ -352,45 +448,64 @@ export default function ReturnHomeCalculator({
           <div className="space-y-5">
             {showMoneyTransfer && (
               <section aria-labelledby="calc-money-heading">
-                <h3 id="calc-money-heading" className="text-base font-bold text-white mb-1">
+                <h3
+                  id="calc-money-heading"
+                  className="text-base font-bold text-white mb-1"
+                >
                   Getting money from the US
                 </h3>
                 <p className="text-xs text-gray-400 mb-3">
-                  You said family may send money. These services operate on this corridor.
+                  You said family may send money. These services operate on this
+                  corridor.
                 </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {moneyTransferProviders.map((provider) => (
-                    <ProviderRecommendationCard
-                      key={provider.id}
-                      provider={provider}
-                      country={model.countryCode}
-                      placement="calculator-result"
-                      campaign="return_cost_money_transfer"
-                    />
-                  ))}
-                </div>
+                <ImpressionTracker
+                  impressions={trackedFor(
+                    moneyTransferProviders,
+                    "return_cost_money_transfer",
+                  )}
+                >
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {moneyTransferProviders.map((provider) => (
+                      <ProviderRecommendationCard
+                        key={provider.id}
+                        provider={provider}
+                        country={model.countryCode}
+                        placement="calculator-result"
+                        campaign="return_cost_money_transfer"
+                      />
+                    ))}
+                  </div>
+                </ImpressionTracker>
               </section>
             )}
 
             {showEsim && (
               <section aria-labelledby="calc-esim-heading">
-                <h3 id="calc-esim-heading" className="text-base font-bold text-white mb-1">
+                <h3
+                  id="calc-esim-heading"
+                  className="text-base font-bold text-white mb-1"
+                >
                   Getting a phone working
                 </h3>
                 <p className="text-xs text-gray-400 mb-3">
-                  You included a phone plan. An eSIM can be active before you arrive.
+                  You included a phone plan. An eSIM can be active before you
+                  arrive.
                 </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {esimProviders.map((provider) => (
-                    <ProviderRecommendationCard
-                      key={provider.id}
-                      provider={provider}
-                      country={model.countryCode}
-                      placement="calculator-result"
-                      campaign="return_cost_esim"
-                    />
-                  ))}
-                </div>
+                <ImpressionTracker
+                  impressions={trackedFor(esimProviders, "return_cost_esim")}
+                >
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {esimProviders.map((provider) => (
+                      <ProviderRecommendationCard
+                        key={provider.id}
+                        provider={provider}
+                        country={model.countryCode}
+                        placement="calculator-result"
+                        campaign="return_cost_esim"
+                      />
+                    ))}
+                  </div>
+                </ImpressionTracker>
               </section>
             )}
 
@@ -399,9 +514,10 @@ export default function ReturnHomeCalculator({
         )}
 
         <p className="text-xs text-gray-500 leading-relaxed">
-          This is an estimate to help you plan, not financial advice and not official pricing.
-          Figures come from our {model.basedOn} cost research, last reviewed {model.lastReviewed}.
-          Real costs vary by neighbourhood, season, and circumstance.
+          This is an estimate to help you plan, not financial advice and not
+          official pricing. Figures come from our {model.basedOn} cost research,
+          last reviewed {model.lastReviewed}. Real costs vary by neighbourhood,
+          season, and circumstance.
         </p>
       </div>
     </div>

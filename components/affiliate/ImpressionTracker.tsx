@@ -89,14 +89,28 @@ export default function ImpressionTracker({ impressions, children }: Props) {
       return;
     }
 
+    // A fixed 0.5 threshold measures half of the ELEMENT, so a provider grid
+    // taller than the viewport can never reach it and would never report at
+    // all. Measure against whichever is smaller — the element or the viewport —
+    // so "half of it was on screen" keeps meaning that for a block of any size.
+    const seenEnough = (entry: IntersectionObserverEntry) => {
+      if (!entry.isIntersecting) return false;
+      const rect = entry.boundingClientRect;
+      const viewport = entry.rootBounds?.height ?? window.innerHeight;
+      const reference = Math.min(rect.height, viewport);
+      if (reference <= 0) return true;
+      const visible = Math.min(rect.bottom, viewport) - Math.max(rect.top, 0);
+      return visible >= reference * 0.5;
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
+        if (entries.some(seenEnough)) {
           flush();
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
 
     observer.observe(node);
