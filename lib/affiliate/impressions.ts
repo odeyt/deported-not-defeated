@@ -47,7 +47,7 @@ function clamp(value: string | null | undefined, max: number): string | null {
  * never affect what the visitor sees.
  */
 export async function recordAffiliateImpressions(
-  records: AffiliateImpressionRecord[]
+  records: AffiliateImpressionRecord[],
 ): Promise<number> {
   if (!isAffiliateClickLoggingEnabled()) return 0;
   if (!records.length) return 0;
@@ -59,7 +59,9 @@ export async function recordAffiliateImpressions(
     return 0;
   }
 
-  const rows = records.slice(0, MAX_BATCH).map((record) => ({
+  // CHUNKED, never sliced. Truncating here is what dropped Wise — rendered
+  // 21st in a 21-provider list — from the very batch meant to measure it.
+  const rows = records.map((record) => ({
     provider_id: record.providerId,
     partner_slug: clamp(record.providerSlug, 64),
     country_code: clamp(record.countryCode, 2),
@@ -69,19 +71,34 @@ export async function recordAffiliateImpressions(
     page_path: clamp(record.sourcePage, 512),
   }));
 
+  let written = 0;
   try {
-    const { error } = await supabase.from("affiliate_impressions").insert(rows);
-    return error ? 0 : rows.length;
+    for (let i = 0; i < rows.length; i += MAX_BATCH) {
+      const chunk = rows.slice(i, i + MAX_BATCH);
+      const { error } = await supabase
+        .from("affiliate_impressions")
+        .insert(chunk);
+      if (error) return written;
+      written += chunk.length;
+    }
+    return written;
   } catch {
-    return 0;
+    return written;
   }
 }
 
 /**
- * Upper bound per request. A page showing more than this is a design problem,
- * and without a cap a crafted request could write unbounded rows.
+ * Rows per INSERT — a transport chunk size, NOT a limit on what can be
+ * recorded. More than this many observed cards produces more than one insert,
+ * never a truncated one.
  */
 export const MAX_BATCH = 20;
+
+/**
+ * Hard bound on a single HTTP request, purely an abuse guard. The client
+ * chunks at MAX_BATCH, so legitimate traffic never approaches this.
+ */
+export const MAX_REQUEST_IMPRESSIONS = 64;
 
 /**
  * Build a deduplication key.
@@ -91,5 +108,11 @@ export const MAX_BATCH = 20;
  * denominator and quietly depress every CTR figure.
  */
 export function impressionKey(record: AffiliateImpressionRecord): string {
-  return [record.providerSlug, record.placement ?? "", record.sourcePage ?? ""].join("|");
+  return [
+    record.providerSlug,
+    record.placement ?? "",
+    record.sourcePage ?? "",
+    record.category ?? "",
+    record.campaign ?? "",
+  ].join("|");
 }

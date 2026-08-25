@@ -94,17 +94,6 @@ export default async function AffiliateRecommendations({
   const { available, alternatives } = partitionByCountryEvidence(ranked);
   const title = heading ?? `${CATEGORY_LABELS[category]} Options`;
 
-  // The denominator of affiliate CTR. Built from exactly the providers rendered
-  // below, so an impression can never be counted for a card nobody was shown.
-  const tracked = [...available, ...alternatives].map((provider) => ({
-    providerId: provider.id,
-    providerSlug: provider.slug,
-    countryCode,
-    category,
-    placement: placement ?? null,
-    campaign: campaign ?? null,
-  }));
-
   return (
     <section
       aria-labelledby={`affiliate-rec-${category.toLowerCase()}`}
@@ -121,48 +110,69 @@ export default async function AffiliateRecommendations({
           <p className="text-gray-600 text-sm mt-2 leading-relaxed">{intro}</p>
         )}
       </div>
-
-      <ImpressionTracker impressions={tracked}>
-        {available.length > 0 && (
-          <div>
-            {countryCode && (
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
-                Listed for {countryCode}
-              </h3>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {available.map((provider) => (
-                <ProviderRecommendationCard
-                  key={provider.id}
-                  provider={provider}
-                  country={countryCode}
-                  placement={placement}
-                  campaign={campaign}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {alternatives.length > 0 && (
-          <div>
+      {available.length > 0 && (
+        <div>
+          {countryCode && (
             <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
-              {available.length > 0 ? "Other Options" : "Options to Compare"}
+              Listed for {countryCode}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {alternatives.map((provider) => (
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {available.map((provider) => (
+              <ImpressionTracker
+                key={provider.id}
+                className="h-full"
+                impression={{
+                  providerId: provider.id,
+                  providerSlug: provider.slug,
+                  countryCode,
+                  category,
+                  placement: placement ?? null,
+                  campaign: campaign ?? null,
+                }}
+              >
                 <ProviderRecommendationCard
-                  key={provider.id}
                   provider={provider}
                   country={countryCode}
                   placement={placement}
                   campaign={campaign}
                 />
-              ))}
-            </div>
+              </ImpressionTracker>
+            ))}
           </div>
-        )}
-      </ImpressionTracker>
+        </div>
+      )}
+
+      {alternatives.length > 0 && (
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
+            {available.length > 0 ? "Other Options" : "Options to Compare"}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {alternatives.map((provider) => (
+              <ImpressionTracker
+                key={provider.id}
+                className="h-full"
+                impression={{
+                  providerId: provider.id,
+                  providerSlug: provider.slug,
+                  countryCode,
+                  category,
+                  placement: placement ?? null,
+                  campaign: campaign ?? null,
+                }}
+              >
+                <ProviderRecommendationCard
+                  provider={provider}
+                  country={countryCode}
+                  placement={placement}
+                  campaign={campaign}
+                />
+              </ImpressionTracker>
+            ))}
+          </div>
+        </div>
+      )}
 
       {showDisclosure && <AffiliateDisclosure />}
     </section>
