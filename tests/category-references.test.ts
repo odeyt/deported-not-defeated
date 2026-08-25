@@ -43,16 +43,23 @@ function sourceFiles(dir: string): string[] {
 
 const files = [...sourceFiles("app"), ...sourceFiles("components")];
 
-/** Categories referenced by a page or component, e.g. category="HOTELS". */
-function referencedCategories(): Map<string, string[]> {
-  const found = new Map<string, string[]>();
+/**
+ * Categories referenced by a page or component, e.g. category="HOTELS".
+ *
+ * Built as a plain object walked with exec() rather than a Map walked with
+ * matchAll(): tsconfig sets no explicit target, so this compiles as ES5, where
+ * iterating a Map or a match iterator needs --downlevelIteration. Keeping the
+ * test ES5-safe is cheaper than widening the compiler config for one file.
+ */
+function referencedCategories(): Record<string, string[]> {
+  const found: Record<string, string[]> = {};
   for (const file of files) {
     const source = fs.readFileSync(file, "utf8");
-    for (const match of source.matchAll(/category[=:]\s*["']([A-Z_]{3,})["']/g)) {
+    const pattern = /category[=:]\s*["']([A-Z_]{3,})["']/g;
+    let match: RegExpExecArray | null;
+    while ((match = pattern.exec(source)) !== null) {
       const code = match[1];
-      const list = found.get(code) ?? [];
-      list.push(path.relative(ROOT, file));
-      found.set(code, list);
+      (found[code] ??= []).push(path.relative(ROOT, file));
     }
   }
   return found;
@@ -61,7 +68,7 @@ function referencedCategories(): Map<string, string[]> {
 test("every referenced category is a real canonical code", () => {
   const valid = new Set<string>(AFFILIATE_CATEGORIES as readonly string[]);
 
-  for (const [code, where] of referencedCategories()) {
+  for (const [code, where] of Object.entries(referencedCategories())) {
     assert.ok(valid.has(code), `unknown category "${code}" referenced in ${where.join(", ")}`);
   }
 });
@@ -72,7 +79,7 @@ test("every referenced category is populated by the provider seed", () => {
   const seed = fs.readFileSync(SEED, "utf8");
   const offenders: string[] = [];
 
-  for (const [code, where] of referencedCategories()) {
+  for (const [code, where] of Object.entries(referencedCategories())) {
     if (!seed.includes(`'${code}'`)) {
       offenders.push(`${code} (referenced in ${where.join(", ")})`);
     }

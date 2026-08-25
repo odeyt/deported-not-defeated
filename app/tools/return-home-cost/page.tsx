@@ -44,8 +44,13 @@ export default async function ReturnHomeCostPage({
     getProvidersForCategory({ category: "MONEY_TRANSFER", country: model.countryCode }),
     getProvidersForCategory({ category: "PHONE_INTERNET", country: model.countryCode }),
   ]);
-  const moneyTransferProviders = allMoneyTransfer.slice(0, 4);
-  const esimProviders = allEsim.slice(0, 3);
+  // NO CUTOFF. A cap here silently drops whatever ranks last, and ranking is by
+  // country priority and trust — never by commission. On 2026-08-23 a limit of 6
+  // hid the one approved money-transfer provider; slicing to 4 reintroduced
+  // exactly that, showing four unmonetized services and cutting off the earning
+  // one. The fix is to remove the cutoff, never to promote a provider that pays.
+  const moneyTransferProviders = allMoneyTransfer;
+  const esimProviders = allEsim;
 
   return (
     <main>

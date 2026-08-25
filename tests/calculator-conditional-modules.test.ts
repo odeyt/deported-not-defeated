@@ -144,3 +144,25 @@ test("the calculator collects nothing about immigration circumstances", () => {
     assert.ok(!code.includes(forbidden), `must never collect ${forbidden}`);
   }
 });
+
+// ------------------------------------------------------- no silent cutoff
+
+test("the calculator does not cap its provider lists", () => {
+  // Twice now a cap has hidden the only approved provider: `limit={6}` on the
+  // Mexico page (2026-08-23) and `slice(0, 4)` here. Ranking is by country
+  // priority and trust, so a monetized provider can legitimately rank last —
+  // and a cutoff then shows only the ones that earn nothing.
+  //
+  // The fix is always to remove the cutoff. Never to promote a provider
+  // because it pays: commission is not a ranking input.
+  const page = fs.readFileSync(path.join(ROOT, "app/tools/return-home-cost/page.tsx"), "utf8");
+
+  assert.ok(
+    !/allMoneyTransfer\s*\.slice\(/.test(page) && !/allEsim\s*\.slice\(/.test(page),
+    "slicing the provider list silently drops whatever ranks last"
+  );
+  assert.ok(
+    !/getProvidersForCategory\([^)]*\blimit\b/.test(page),
+    "a limit option would reintroduce the same cutoff at the query layer"
+  );
+});
