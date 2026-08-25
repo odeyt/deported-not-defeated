@@ -26,6 +26,14 @@ export interface CalculatorInput {
   transport: TransportChoice;
   needsPhone: boolean;
   includeEmergencyReserve: boolean;
+  /**
+   * Whether family in the United States may send money.
+   *
+   * A stated NEED, not a cost input: it never touches the estimate. It exists
+   * only so the page can decide whether a money-transfer resource block is
+   * relevant to this reader. See the commercial-independence test.
+   */
+  familyMaySendMoney: boolean;
 }
 
 export interface LineItem {
@@ -63,6 +71,7 @@ export const DEFAULT_INPUT: CalculatorInput = {
   transport: "regular",
   needsPhone: true,
   includeEmergencyReserve: true,
+  familyMaySendMoney: false,
 };
 
 /** Average weeks per month. Used so "4 weeks" is not silently treated as a month. */
@@ -105,6 +114,7 @@ export function sanitizeInput(raw: Partial<Record<keyof CalculatorInput, unknown
       raw.includeEmergencyReserve,
       DEFAULT_INPUT.includeEmergencyReserve
     ),
+    familyMaySendMoney: toBool(raw.familyMaySendMoney, DEFAULT_INPUT.familyMaySendMoney),
   };
 }
 
@@ -228,6 +238,7 @@ export function toQueryString(input: CalculatorInput): string {
     transport: input.transport,
     phone: input.needsPhone ? "1" : "0",
     reserve: input.includeEmergencyReserve ? "1" : "0",
+    sending: input.familyMaySendMoney ? "1" : "0",
   });
   return params.toString();
 }
@@ -247,5 +258,6 @@ export function fromQueryParams(
     transport: first(params.transport),
     needsPhone: first(params.phone),
     includeEmergencyReserve: first(params.reserve),
+    familyMaySendMoney: first(params.sending),
   });
 }

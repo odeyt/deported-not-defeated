@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import ProviderRecommendationCard from "./ProviderRecommendationCard";
+import ImpressionTracker from "./ImpressionTracker";
 import { getProvidersForCategory } from "@/lib/affiliate/service";
 import { rankProviders, partitionByCountryEvidence } from "@/lib/affiliate/selection";
 import { normalizeCountryCode } from "@/lib/affiliate/url";

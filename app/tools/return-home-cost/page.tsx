@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ReturnHomeCalculator from "@/components/tools/ReturnHomeCalculator";
-import AffiliateRecommendations from "@/components/affiliate/AffiliateRecommendations";
+import { getProvidersForCategory } from "@/lib/affiliate/service";
 import { MEXICO_COST_MODEL } from "@/data/returnHomeCosts";
 import { fromQueryParams } from "@/lib/return-home/calculate";
 
@@ -29,13 +29,23 @@ export const metadata: Metadata = {
  * The estimate is produced before any commercial resource is shown, and the
  * two never interact — see lib/return-home/calculate.ts.
  */
-export default function ReturnHomeCostPage({
+export default async function ReturnHomeCostPage({
   searchParams,
 }: {
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
   const model = MEXICO_COST_MODEL;
   const initialInput = fromQueryParams(searchParams ?? {});
+
+  // Fetched once on the server. The client decides whether to SHOW them based
+  // on what the reader selected — fetching here keeps toggling instant and
+  // avoids a request per checkbox.
+  const [allMoneyTransfer, allEsim] = await Promise.all([
+    getProvidersForCategory({ category: "MONEY_TRANSFER", country: model.countryCode }),
+    getProvidersForCategory({ category: "ESIM", country: model.countryCode }),
+  ]);
+  const moneyTransferProviders = allMoneyTransfer.slice(0, 4);
+  const esimProviders = allEsim.slice(0, 3);
 
   return (
     <main>
@@ -63,36 +73,11 @@ export default function ReturnHomeCostPage({
 
       <section className="bg-gray-950 py-8 px-4">
         <div className="max-w-5xl mx-auto">
-          <ReturnHomeCalculator model={model} initialInput={initialInput} />
-        </div>
-      </section>
-
-      {/* Resources follow the estimate. Which ones appear depends on the
-          reader's situation, never on what a provider pays. */}
-      <section className="bg-gray-950 pb-12 px-4">
-        <div className="max-w-5xl mx-auto space-y-10">
-          <AffiliateRecommendations
-            country="MX"
-            category="MONEY_TRANSFER"
-            heading="Getting money to Mexico"
-            intro="If family in the United States will be sending money, these services operate on this corridor. Availability has not yet been confirmed with each provider — check before relying on one."
-            placement="return-cost-results"
-            campaign="mx_return_cost_results"
-            limit={4}
-            fallbackHref="/resources/money-transfer"
-            fallbackLabel="See all money transfer options"
-          />
-
-          <AffiliateRecommendations
-            country="MX"
-            category="ESIM"
-            heading="Getting a phone working"
-            intro="An eSIM can be active before arrival, which matters when you need to reach family on day one. A local SIM bought in Mexico is often cheaper for longer stays."
-            placement="return-cost-results"
-            campaign="mx_return_cost_results"
-            limit={3}
-            fallbackHref="/mexico/sim-card-mexico"
-            fallbackLabel="Read the Mexico SIM card guide"
+          <ReturnHomeCalculator
+            model={model}
+            initialInput={initialInput}
+            moneyTransferProviders={moneyTransferProviders}
+            esimProviders={esimProviders}
           />
         </div>
       </section>
