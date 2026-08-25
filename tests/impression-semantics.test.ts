@@ -8,7 +8,7 @@ import {
   MAX_REQUEST_IMPRESSIONS,
   impressionKey,
   type AffiliateImpressionRecord,
-} from "../lib/affiliate/impressions.ts";
+} from "../lib/affiliate/impressionShared.ts";
 import {
   chunkImpressions,
   impressionDedupKey,
