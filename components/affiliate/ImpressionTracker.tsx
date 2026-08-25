@@ -2,19 +2,28 @@
 
 import { useEffect, useRef } from "react";
 
+import { queueImpression } from "@/lib/affiliate/impressionQueue";
+
 /**
- * Reports that provider cards were actually shown (M-GROWTH1A Phase 2).
+ * Records that ONE provider card was actually seen (M-GROWTH1A.4).
  *
  * DEFINITION OF AN IMPRESSION
- *   The card entered the viewport. Not "the page rendered it somewhere below
- *   the fold" — a card nobody scrolled to was never an opportunity to click,
- *   and counting it would depress every CTR figure with impressions that never
- *   had a chance.
+ *   THIS card became meaningfully visible in the viewport. Not "the grid
+ *   scrolled into view", not "the server rendered it", not "it was in the
+ *   array". A reader who sees the first three cards of twenty generates three
+ *   impressions, because the other seventeen were never an opportunity to
+ *   click and counting them would depress the CTR of placements that work.
+ *
+ * WHY PER CARD
+ *   The previous version observed the whole grid and flushed every provider at
+ *   once. That produced ~20 rows with one identical timestamp for cards nobody
+ *   had scrolled to, and truncation at 20 dropped the 21st — Wise, the only
+ *   monetized provider in the list.
  *
  * DEDUPLICATION
- *   One impression per provider per placement per page view, held in a ref.
- *   React re-renders, scrolling a card out and back, and Strict Mode's double
- *   effect all resolve to a single row.
+ *   Handled by the shared module queue, keyed by provider, page, placement,
+ *   category and campaign — so it survives this component unmounting and
+ *   remounting, which a per-instance ref did not.
  *
  * FAILURE
  *   Silent. Analytics must never affect what the visitor sees.
@@ -30,92 +39,99 @@ export interface TrackedImpression {
 }
 
 interface Props {
-  impressions: TrackedImpression[];
-  /** Element to observe. Defaults to the wrapper this component renders. */
+  impression: TrackedImpression;
   children?: React.ReactNode;
+  /** Applied to the observed wrapper so it can be the grid item. */
+  className?: string;
 }
 
-export default function ImpressionTracker({ impressions, children }: Props) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const sent = useRef<Set<string>>(new Set());
+/**
+ * Fraction of the card that must be on screen.
+ *
+ * Half. One pixel crossing the boundary is not "seen", and requiring the whole
+ * card would miss a reader who stopped scrolling with the CTA visible.
+ */
+export const VISIBILITY_RATIO = 0.5;
+
+/** No rootMargin: the viewport edge is the boundary, not an invented margin. */
+export const ROOT_MARGIN = "0px";
+
+export default function ImpressionTracker({
+  impression,
+  children,
+  className,
+}: Props) {
+  const nodeRef = useRef<HTMLDivElement | null>(null);
+  const counted = useRef(false);
+
+  const {
+    providerId,
+    providerSlug,
+    countryCode,
+    category,
+    placement,
+    campaign,
+  } = impression;
 
   useEffect(() => {
-    if (!impressions.length) return;
-    const node = containerRef.current;
+    if (!providerSlug || counted.current) return;
+    const node = nodeRef.current;
     if (!node) return;
 
-    const key = (i: TrackedImpression) =>
-      `${i.providerSlug}|${i.placement ?? ""}|${window.location.pathname}`;
-
-    const flush = () => {
-      const unsent = impressions.filter((i) => !sent.current.has(key(i)));
-      if (!unsent.length) return;
-
-      unsent.forEach((i) => sent.current.add(key(i)));
-
-      const payload = JSON.stringify({
-        impressions: unsent.map((i) => ({
-          providerId: i.providerId,
-          providerSlug: i.providerSlug,
-          countryCode: i.countryCode ?? null,
-          category: i.category ?? null,
-          placement: i.placement ?? null,
-          campaign: i.campaign ?? null,
-          sourcePage: window.location.pathname,
-        })),
+    const record = () => {
+      if (counted.current) return;
+      counted.current = true;
+      queueImpression({
+        providerId: providerId ?? null,
+        providerSlug,
+        countryCode: countryCode ?? null,
+        category: category ?? null,
+        placement: placement ?? null,
+        campaign: campaign ?? null,
+        sourcePage: window.location.pathname,
       });
-
-      // sendBeacon survives the page being closed mid-flight and does not
-      // delay navigation. fetch with keepalive is the fallback.
-      try {
-        const blob = new Blob([payload], { type: "application/json" });
-        if (!navigator.sendBeacon?.("/api/affiliate-impression", blob)) {
-          void fetch("/api/affiliate-impression", {
-            method: "POST",
-            body: payload,
-            headers: { "Content-Type": "application/json" },
-            keepalive: true,
-          }).catch(() => {});
-        }
-      } catch {
-        // Never surface an analytics failure.
-      }
     };
 
     // No IntersectionObserver (very old browsers, some test environments):
     // count on mount rather than losing the measurement entirely.
     if (typeof IntersectionObserver === "undefined") {
-      flush();
+      record();
       return;
     }
 
-    // A fixed 0.5 threshold measures half of the ELEMENT, so a provider grid
-    // taller than the viewport can never reach it and would never report at
-    // all. Measure against whichever is smaller — the element or the viewport —
-    // so "half of it was on screen" keeps meaning that for a block of any size.
+    // A card is small relative to the viewport, so the ratio is meaningful
+    // directly. Guarding against a card taller than the viewport keeps the
+    // rule honest on a narrow phone, where one card can fill the screen.
     const seenEnough = (entry: IntersectionObserverEntry) => {
       if (!entry.isIntersecting) return false;
+      if (entry.intersectionRatio >= VISIBILITY_RATIO) return true;
       const rect = entry.boundingClientRect;
       const viewport = entry.rootBounds?.height ?? window.innerHeight;
-      const reference = Math.min(rect.height, viewport);
-      if (reference <= 0) return true;
+      if (rect.height <= viewport) return false;
       const visible = Math.min(rect.bottom, viewport) - Math.max(rect.top, 0);
-      return visible >= reference * 0.5;
+      return visible >= viewport * VISIBILITY_RATIO;
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some(seenEnough)) {
-          flush();
+          record();
           observer.disconnect();
         }
       },
-      { threshold: [0, 0.25, 0.5, 0.75, 1] },
+      {
+        threshold: [0, 0.25, VISIBILITY_RATIO, 0.75, 1],
+        rootMargin: ROOT_MARGIN,
+      },
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [impressions]);
+  }, [providerId, providerSlug, countryCode, category, placement, campaign]);
 
-  return <div ref={containerRef}>{children}</div>;
+  return (
+    <div ref={nodeRef} className={className}>
+      {children}
+    </div>
+  );
 }

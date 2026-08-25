@@ -93,20 +93,20 @@ export default function ReturnHomeCalculator({
     input.familyMaySendMoney && moneyTransferProviders.length > 0;
   const showEsim = input.needsPhone && esimProviders.length > 0;
 
-  // Impressions are recorded only for blocks actually shown, so a reader who
-  // never asked about money transfer never counts toward its CTR.
-  const trackedFor = (
-    providers: typeof moneyTransferProviders,
+  // One record per CARD, counted only when that card is actually seen. A
+  // reader who never asked about money transfer never enters its CTR, and a
+  // reader who asked but never scrolled past the third card counts three.
+  const impressionFor = (
+    provider: (typeof moneyTransferProviders)[number],
     campaign: string,
-  ) =>
-    providers.map((provider) => ({
-      providerId: provider.id,
-      providerSlug: provider.slug,
-      countryCode: model.countryCode,
-      category: provider.category ?? null,
-      placement: "calculator-result",
-      campaign,
-    }));
+  ) => ({
+    providerId: provider.id,
+    providerSlug: provider.slug,
+    countryCode: model.countryCode,
+    category: provider.category ?? null,
+    placement: "calculator-result",
+    campaign,
+  });
 
   function update<K extends keyof CalculatorInput>(
     key: K,
@@ -458,24 +458,25 @@ export default function ReturnHomeCalculator({
                   You said family may send money. These services operate on this
                   corridor.
                 </p>
-                <ImpressionTracker
-                  impressions={trackedFor(
-                    moneyTransferProviders,
-                    "return_cost_money_transfer",
-                  )}
-                >
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {moneyTransferProviders.map((provider) => (
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {moneyTransferProviders.map((provider) => (
+                    <ImpressionTracker
+                      key={provider.id}
+                      className="h-full"
+                      impression={impressionFor(
+                        provider,
+                        "return_cost_money_transfer",
+                      )}
+                    >
                       <ProviderRecommendationCard
-                        key={provider.id}
                         provider={provider}
                         country={model.countryCode}
                         placement="calculator-result"
                         campaign="return_cost_money_transfer"
                       />
-                    ))}
-                  </div>
-                </ImpressionTracker>
+                    </ImpressionTracker>
+                  ))}
+                </div>
               </section>
             )}
 
@@ -491,21 +492,22 @@ export default function ReturnHomeCalculator({
                   You included a phone plan. An eSIM can be active before you
                   arrive.
                 </p>
-                <ImpressionTracker
-                  impressions={trackedFor(esimProviders, "return_cost_esim")}
-                >
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {esimProviders.map((provider) => (
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {esimProviders.map((provider) => (
+                    <ImpressionTracker
+                      key={provider.id}
+                      className="h-full"
+                      impression={impressionFor(provider, "return_cost_esim")}
+                    >
                       <ProviderRecommendationCard
-                        key={provider.id}
                         provider={provider}
                         country={model.countryCode}
                         placement="calculator-result"
                         campaign="return_cost_esim"
                       />
-                    ))}
-                  </div>
-                </ImpressionTracker>
+                    </ImpressionTracker>
+                  ))}
+                </div>
               </section>
             )}
 

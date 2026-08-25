@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
-  MAX_BATCH,
+  MAX_REQUEST_IMPRESSIONS,
   recordAffiliateImpressions,
   type AffiliateImpressionRecord,
 } from "@/lib/affiliate/impressions";
@@ -29,7 +29,8 @@ function sanitize(raw: unknown): AffiliateImpressionRecord | null {
   if (!raw || typeof raw !== "object") return null;
   const value = raw as Record<string, unknown>;
 
-  const slug = typeof value.providerSlug === "string" ? value.providerSlug.trim() : "";
+  const slug =
+    typeof value.providerSlug === "string" ? value.providerSlug.trim() : "";
   if (!SLUG.test(slug)) return null;
 
   const optional = (key: string, pattern: RegExp): string | null => {
@@ -41,15 +42,18 @@ function sanitize(raw: unknown): AffiliateImpressionRecord | null {
 
   // Path only, and only from this site. A full URL would carry a query string,
   // which is the part most likely to hold something personal.
-  const page = typeof value.sourcePage === "string" ? value.sourcePage.split("?")[0] : "";
+  const page =
+    typeof value.sourcePage === "string" ? value.sourcePage.split("?")[0] : "";
   const sourcePage = /^\/[A-Za-z0-9/_-]{0,255}$/.test(page) ? page : null;
 
-  const providerId = typeof value.providerId === "string" ? value.providerId.trim() : "";
+  const providerId =
+    typeof value.providerId === "string" ? value.providerId.trim() : "";
 
   return {
     providerId: /^[0-9a-f-]{36}$/i.test(providerId) ? providerId : null,
     providerSlug: slug,
-    countryCode: optional("countryCode", /^[A-Za-z]{2}$/)?.toUpperCase() ?? null,
+    countryCode:
+      optional("countryCode", /^[A-Za-z]{2}$/)?.toUpperCase() ?? null,
     category: optional("category", SHORT),
     placement: optional("placement", SHORT),
     campaign: optional("campaign", SHORT),
@@ -62,11 +66,16 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const list = Array.isArray(body?.impressions) ? body.impressions : [];
 
+    // An abuse bound, not a telemetry cap. The client chunks at MAX_BATCH, well
+    // under this, so a real reader's impressions are never truncated here —
+    // truncation is exactly what dropped Wise from the batch measuring it.
     const records = list
-      .slice(0, MAX_BATCH)
+      .slice(0, MAX_REQUEST_IMPRESSIONS)
       .map(sanitize)
-      .filter((record: AffiliateImpressionRecord | null): record is AffiliateImpressionRecord =>
-        record !== null
+      .filter(
+        (
+          record: AffiliateImpressionRecord | null,
+        ): record is AffiliateImpressionRecord => record !== null,
       );
 
     if (records.length) {

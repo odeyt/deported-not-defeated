@@ -47,9 +47,11 @@ export default function ProviderRecommendationCard({
   const hasDestination = monetized || Boolean(provider.websiteUrl);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
+    <div className="h-full bg-white border border-gray-200 rounded-2xl p-5 flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between gap-3">
-        <h3 className="font-bold text-navy-800 text-base leading-tight">{provider.name}</h3>
+        <h3 className="font-bold text-navy-800 text-base leading-tight">
+          {provider.name}
+        </h3>
         {monetized && (
           <span className="shrink-0 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
             Partner
@@ -58,7 +60,9 @@ export default function ProviderRecommendationCard({
       </div>
 
       {provider.description && (
-        <p className="text-gray-600 text-sm leading-relaxed">{provider.description}</p>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {provider.description}
+        </p>
       )}
 
       {provider.whyItHelps && (
@@ -66,7 +70,9 @@ export default function ProviderRecommendationCard({
           <p className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-0.5">
             Why it may help
           </p>
-          <p className="text-gray-700 text-sm leading-snug">{provider.whyItHelps}</p>
+          <p className="text-gray-700 text-sm leading-snug">
+            {provider.whyItHelps}
+          </p>
         </div>
       )}
 
@@ -96,11 +102,15 @@ export default function ProviderRecommendationCard({
           <Link
             href={href}
             prefetch={false}
-            rel={monetized ? "sponsored nofollow noopener" : "nofollow noopener"}
+            rel={
+              monetized ? "sponsored nofollow noopener" : "nofollow noopener"
+            }
             className="inline-flex items-center justify-center w-full gap-2 bg-brand-red hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red text-white text-sm font-bold px-4 py-3 rounded-xl transition-colors min-h-[44px]"
           >
             <span>{ctaLabel}</span>
-            <span className="sr-only">— {provider.name}, opens the provider website</span>
+            <span className="sr-only">
+              — {provider.name}, opens the provider website
+            </span>
             <span aria-hidden="true">→</span>
           </Link>
         ) : (
