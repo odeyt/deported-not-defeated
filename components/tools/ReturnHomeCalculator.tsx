@@ -11,6 +11,9 @@ import {
   type TransportChoice,
 } from "@/lib/return-home/calculate";
 import { FX_NOTE, convertToUsd, type CountryCostModel } from "@/data/returnHomeCosts";
+import ProviderRecommendationCard from "@/components/affiliate/ProviderRecommendationCard";
+import AffiliateDisclosure from "@/components/AffiliateDisclosure";
+import type { AffiliateProvider } from "@/lib/affiliate/types";
 
 /**
  * The interactive part of the Return-Home Cost Calculator.
@@ -23,6 +26,13 @@ import { FX_NOTE, convertToUsd, type CountryCostModel } from "@/data/returnHomeC
 interface Props {
   model: CountryCostModel;
   initialInput: CalculatorInput;
+  /**
+   * Providers fetched once on the server and shown only when the reader has
+   * said they need that category. Passing them down rather than fetching per
+   * toggle keeps the response instant and avoids a request per keystroke.
+   */
+  moneyTransferProviders: AffiliateProvider[];
+  esimProviders: AffiliateProvider[];
 }
 
 const HOUSING_OPTIONS: { value: HousingChoice; label: string; hint: string }[] = [
@@ -44,11 +54,21 @@ function formatMoney(amount: number, currency: string): string {
   return `${currency} ${amount.toLocaleString("en-US")}`;
 }
 
-export default function ReturnHomeCalculator({ model, initialInput }: Props) {
+export default function ReturnHomeCalculator({
+  model,
+  initialInput,
+  moneyTransferProviders,
+  esimProviders,
+}: Props) {
   const [input, setInput] = useState<CalculatorInput>(initialInput);
   const [copied, setCopied] = useState(false);
 
   const result = useMemo(() => calculate(model, input), [model, input]);
+
+  // A resource block appears only when the reader asked for that thing AND we
+  // actually have providers for it. No selection means no commercial module.
+  const showMoneyTransfer = input.familyMaySendMoney && moneyTransferProviders.length > 0;
+  const showEsim = input.needsPhone && esimProviders.length > 0;
 
   function update<K extends keyof CalculatorInput>(key: K, value: CalculatorInput[K]) {
     setInput((prev) => ({ ...prev, [key]: value }));
@@ -193,6 +213,15 @@ export default function ReturnHomeCalculator({ model, initialInput }: Props) {
           <label className="flex items-center gap-3 text-sm text-gray-200">
             <input
               type="checkbox"
+              checked={input.familyMaySendMoney}
+              onChange={(e) => update("familyMaySendMoney", e.target.checked)}
+              className="w-4 h-4 accent-brand-red"
+            />
+            Family in the US may send me money
+          </label>
+          <label className="flex items-center gap-3 text-sm text-gray-200">
+            <input
+              type="checkbox"
               checked={input.includeEmergencyReserve}
               onChange={(e) => update("includeEmergencyReserve", e.target.checked)}
               className="w-4 h-4 accent-brand-red"
@@ -307,6 +336,67 @@ export default function ReturnHomeCalculator({ model, initialInput }: Props) {
             </div>
           )}
         </div>
+
+        {/* ------------------------------------------- needs-based resources
+
+            Shown ONLY when the reader explicitly said they need that category.
+            No inference from immigration answers, no profiling, and nothing
+            derived from the estimate itself — the budget is computed before
+            any of this and never consults provider data.
+
+            Deliberately absent: travel insurance and accommodation. Nomad
+            insurance covers travel OUTSIDE your home country, so it is wrong
+            for someone who has returned to Mexico and lives there; hotels are
+            for visitors, not for a person renting a room long-term.          */}
+        {(showMoneyTransfer || showEsim) && (
+          <div className="space-y-5">
+            {showMoneyTransfer && (
+              <section aria-labelledby="calc-money-heading">
+                <h3 id="calc-money-heading" className="text-base font-bold text-white mb-1">
+                  Getting money from the US
+                </h3>
+                <p className="text-xs text-gray-400 mb-3">
+                  You said family may send money. These services operate on this corridor.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {moneyTransferProviders.map((provider) => (
+                    <ProviderRecommendationCard
+                      key={provider.id}
+                      provider={provider}
+                      country={model.countryCode}
+                      placement="calculator-result"
+                      campaign="return_cost_money_transfer"
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {showEsim && (
+              <section aria-labelledby="calc-esim-heading">
+                <h3 id="calc-esim-heading" className="text-base font-bold text-white mb-1">
+                  Getting a phone working
+                </h3>
+                <p className="text-xs text-gray-400 mb-3">
+                  You included a phone plan. An eSIM can be active before you arrive.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {esimProviders.map((provider) => (
+                    <ProviderRecommendationCard
+                      key={provider.id}
+                      provider={provider}
+                      country={model.countryCode}
+                      placement="calculator-result"
+                      campaign="return_cost_esim"
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <AffiliateDisclosure />
+          </div>
+        )}
 
         <p className="text-xs text-gray-500 leading-relaxed">
           This is an estimate to help you plan, not financial advice and not official pricing.
