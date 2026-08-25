@@ -3,9 +3,15 @@ import AffiliateDisclosure from "@/components/AffiliateDisclosure";
 import ProviderRecommendationCard from "./ProviderRecommendationCard";
 import ImpressionTracker from "./ImpressionTracker";
 import { getProvidersForCategory } from "@/lib/affiliate/service";
-import { rankProviders, partitionByCountryEvidence } from "@/lib/affiliate/selection";
+import {
+  rankProviders,
+  partitionByCountryEvidence,
+} from "@/lib/affiliate/selection";
 import { normalizeCountryCode } from "@/lib/affiliate/url";
-import { CATEGORY_LABELS, isAffiliateCategory } from "@/lib/affiliate/categories";
+import {
+  CATEGORY_LABELS,
+  isAffiliateCategory,
+} from "@/lib/affiliate/categories";
 import type { AffiliateCategoryCode } from "@/lib/affiliate/categories";
 
 interface Props {
@@ -56,8 +62,14 @@ export default async function AffiliateRecommendations({
   if (!isAffiliateCategory(category)) return null;
 
   const countryCode = normalizeCountryCode(country);
-  const providers = await getProvidersForCategory({ category, country: countryCode });
-  const ranked = rankProviders(providers, { country: countryCode }).slice(0, limit);
+  const providers = await getProvidersForCategory({
+    category,
+    country: countryCode,
+  });
+  const ranked = rankProviders(providers, { country: countryCode }).slice(
+    0,
+    limit,
+  );
 
   // Nothing eligible. Still offer the ordinary resource page rather than
   // hiding help because we cannot monetize it (spec §12, §13).
@@ -66,8 +78,12 @@ export default async function AffiliateRecommendations({
     return (
       <section className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
         <p className="text-gray-600 text-sm">
-          {fallbackLabel ?? `We do not have country-specific listings for this yet.`}{" "}
-          <Link href={fallbackHref} className="text-brand-red font-semibold hover:underline">
+          {fallbackLabel ??
+            `We do not have country-specific listings for this yet.`}{" "}
+          <Link
+            href={fallbackHref}
+            className="text-brand-red font-semibold hover:underline"
+          >
             See the full guide →
           </Link>
         </p>
@@ -78,8 +94,22 @@ export default async function AffiliateRecommendations({
   const { available, alternatives } = partitionByCountryEvidence(ranked);
   const title = heading ?? `${CATEGORY_LABELS[category]} Options`;
 
+  // The denominator of affiliate CTR. Built from exactly the providers rendered
+  // below, so an impression can never be counted for a card nobody was shown.
+  const tracked = [...available, ...alternatives].map((provider) => ({
+    providerId: provider.id,
+    providerSlug: provider.slug,
+    countryCode,
+    category,
+    placement: placement ?? null,
+    campaign: campaign ?? null,
+  }));
+
   return (
-    <section aria-labelledby={`affiliate-rec-${category.toLowerCase()}`} className="space-y-5">
+    <section
+      aria-labelledby={`affiliate-rec-${category.toLowerCase()}`}
+      className="space-y-5"
+    >
       <div>
         <h2
           id={`affiliate-rec-${category.toLowerCase()}`}
@@ -87,48 +117,52 @@ export default async function AffiliateRecommendations({
         >
           {title}
         </h2>
-        {intro && <p className="text-gray-600 text-sm mt-2 leading-relaxed">{intro}</p>}
+        {intro && (
+          <p className="text-gray-600 text-sm mt-2 leading-relaxed">{intro}</p>
+        )}
       </div>
 
-      {available.length > 0 && (
-        <div>
-          {countryCode && (
-            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
-              Listed for {countryCode}
-            </h3>
-          )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {available.map((provider) => (
-              <ProviderRecommendationCard
-                key={provider.id}
-                provider={provider}
-                country={countryCode}
-                placement={placement}
-                campaign={campaign}
-              />
-            ))}
+      <ImpressionTracker impressions={tracked}>
+        {available.length > 0 && (
+          <div>
+            {countryCode && (
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
+                Listed for {countryCode}
+              </h3>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {available.map((provider) => (
+                <ProviderRecommendationCard
+                  key={provider.id}
+                  provider={provider}
+                  country={countryCode}
+                  placement={placement}
+                  campaign={campaign}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {alternatives.length > 0 && (
-        <div>
-          <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
-            {available.length > 0 ? "Other Options" : "Options to Compare"}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {alternatives.map((provider) => (
-              <ProviderRecommendationCard
-                key={provider.id}
-                provider={provider}
-                country={countryCode}
-                placement={placement}
-                campaign={campaign}
-              />
-            ))}
+        {alternatives.length > 0 && (
+          <div>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">
+              {available.length > 0 ? "Other Options" : "Options to Compare"}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {alternatives.map((provider) => (
+                <ProviderRecommendationCard
+                  key={provider.id}
+                  provider={provider}
+                  country={countryCode}
+                  placement={placement}
+                  campaign={campaign}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </ImpressionTracker>
 
       {showDisclosure && <AffiliateDisclosure />}
     </section>

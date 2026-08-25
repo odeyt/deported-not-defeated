@@ -110,3 +110,77 @@ test("click recording still refuses to fall back to anonymous insert", () => {
   assert.match(clicks, /createAdminClient\(\)/);
   assert.match(clicks, /return false/);
 });
+
+// ------------------------------------------------- the tracker is RENDERED
+
+/**
+ * M-GROWTH1A shipped ImpressionTracker, imported it once, and never rendered
+ * it. Every unit test passed, the build compiled, the endpoint returned 204,
+ * and the table stayed empty — because no page ever mounted the component.
+ *
+ * An import is not a usage. These assert the JSX, not the symbol.
+ */
+
+function componentFiles(): string[] {
+  const out: string[] = [];
+  const stack = [path.join(ROOT, "app"), path.join(ROOT, "components")];
+  while (stack.length) {
+    const current = stack.pop()!;
+    if (!fs.existsSync(current)) continue;
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name === "node_modules" || entry.name === ".next") continue;
+        stack.push(full);
+      } else if (entry.name.endsWith(".tsx")) {
+        out.push(full);
+      }
+    }
+  }
+  return out;
+}
+
+test("ImpressionTracker is rendered somewhere, not merely imported", () => {
+  const rendered = componentFiles().filter((f) =>
+    fs.readFileSync(f, "utf8").includes("<ImpressionTracker")
+  );
+  assert.ok(
+    rendered.length > 0,
+    "no component renders <ImpressionTracker>, so affiliate impressions are never recorded"
+  );
+});
+
+test("anything rendering provider cards also records their impressions", () => {
+  const offenders: string[] = [];
+
+  for (const file of componentFiles()) {
+    const source = fs.readFileSync(file, "utf8");
+    if (!source.includes("<ProviderRecommendationCard")) continue;
+    // The card component defines itself; only call sites need a tracker.
+    if (path.basename(file) === "ProviderRecommendationCard.tsx") continue;
+    if (!source.includes("<ImpressionTracker")) {
+      offenders.push(path.relative(ROOT, file));
+    }
+  }
+
+  assert.deepEqual(
+    offenders,
+    [],
+    "these render affiliate cards without counting them, which inflates measured CTR"
+  );
+});
+
+test("the tracker does not use a fixed ratio a tall grid can never reach", () => {
+  // threshold 0.5 measures half the ELEMENT. With the provider cap removed, the
+  // money-transfer grid is taller than the viewport, so a fixed 0.5 would never
+  // fire on the page most likely to convert.
+  const tracker = fs.readFileSync(
+    path.join(ROOT, "components/affiliate/ImpressionTracker.tsx"),
+    "utf8"
+  );
+  assert.ok(
+    !/threshold:\s*0\.5\s*[,}]/.test(tracker),
+    "a fixed 0.5 threshold never fires for an element taller than the viewport"
+  );
+  assert.match(tracker, /rootBounds|innerHeight/, "visibility must be measured against the viewport");
+});
