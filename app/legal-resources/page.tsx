@@ -254,6 +254,8 @@ export default function LegalResourcesPage() {
               { title: "Find Legal Help",        desc: "Law firm directory and attorney referral listings.",      href: "#find-legal-help", Icon: Scale },
               { title: "Legal Tools & Document Help", desc: "Document organizers, translation, FOIA, and more.", href: "#legal-tools",      Icon: FileText },
               { title: "Advertise With Us",      desc: "Reach deportees and families seeking legal guidance.",   href: "#advertise",        Icon: Briefcase },
+              { title: "Legal Resources in the Knowledge Center", desc: "Browse the full Knowledge Center's legal category — guides, FAQs, and related articles.", href: "/knowledge-center/legal", Icon: BookOpen },
+              { title: "Self-Deporting & Voluntary Departure", desc: "Educational articles on self-deporting, voluntary departure, and what comes after.", href: "/knowledge-center/self-deporting", Icon: Globe },
             ].map((l) => (
               <Link
                 key={l.title}

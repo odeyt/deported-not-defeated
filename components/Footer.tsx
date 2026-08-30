@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-5 gap-8">
         <div className="col-span-2 md:col-span-1">
           <p className="font-bold text-white text-lg mb-2">
             Deported <span className="text-brand-red">Not</span> Defeated
@@ -61,6 +61,25 @@ export default function Footer() {
               ["VPN & Privacy", "/resources/vpn-privacy"],
               ["Health Insurance", "/resources/health-insurance"],
               ["All Resources", "/resources"],
+            ].map(([label, href]) => (
+              <li key={href}>
+                <Link href={href} className="hover:text-white transition-colors">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-white mb-3 text-sm uppercase tracking-wider">
+            Knowledge Center
+          </p>
+          <ul className="space-y-2 text-sm">
+            {[
+              ["Legal Resources", "/knowledge-center/legal"],
+              ["Money & Banking", "/knowledge-center/money"],
+              ["Jobs & Training", "/knowledge-center/jobs"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link href={href} className="hover:text-white transition-colors">
