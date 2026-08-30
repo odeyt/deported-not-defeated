@@ -41,6 +41,9 @@ export default function Navbar() {
             )}
           </div>
 
+          <Link href="/knowledge-center" className="hover:text-brand-red transition-colors">
+            Knowledge Center
+          </Link>
           <Link href="/resources" className="hover:text-brand-red transition-colors">
             Resources
           </Link>
@@ -91,6 +94,7 @@ export default function Navbar() {
           </Link>
           <p className="text-gray-400 text-xs uppercase tracking-widest pt-3 pb-1">Site</p>
           {[
+            ["Knowledge Center", "/knowledge-center"],
             ["Resources", "/resources"],
             ["Family Visit Travel", "/family-visit-travel"],
             ["Career & Education", "/career-education"],

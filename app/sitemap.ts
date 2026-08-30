@@ -1,7 +1,38 @@
 import { MetadataRoute } from "next";
 import { allCountries } from "@/data/countries/index";
+import { KNOWLEDGE_CATEGORIES } from "@/lib/knowledgeCenter/categories";
+import { getAllPublishedArticleParams } from "@/lib/knowledgeCenter/service";
 
 const BASE = "https://www.deportednotdefeated.com";
+
+async function knowledgeCenterPages(): Promise<MetadataRoute.Sitemap> {
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: `${BASE}/knowledge-center`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    ...KNOWLEDGE_CATEGORIES.map((category) => ({
+      url: `${BASE}/knowledge-center/${category}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  try {
+    const articles = await getAllPublishedArticleParams();
+    return [
+      ...staticPages,
+      ...articles.map(({ category, slug }) => ({
+        url: `${BASE}/knowledge-center/${category}/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      })),
+    ];
+  } catch {
+    // Falls back to the hub + category pages only — the sitemap must never
+    // fail to build because an article lookup failed.
+    return staticPages;
+  }
+}
 
 function countryPages(country: string, capital: string): MetadataRoute.Sitemap {
   return [
@@ -17,9 +48,12 @@ function countryPages(country: string, capital: string): MetadataRoute.Sitemap {
   ];
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { url: BASE, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
+
+    // Knowledge Center hub, categories, and published articles
+    ...(await knowledgeCenterPages()),
 
     // Country Guides index
     { url: `${BASE}/country-guides`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
