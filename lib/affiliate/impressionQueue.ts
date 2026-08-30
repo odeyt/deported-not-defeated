@@ -24,7 +24,9 @@
 //   drops the tail is what hid Wise three separate times.
 // ============================================================
 
-import { MAX_BATCH, type AffiliateImpressionRecord } from "./impressions";
+// MUST import from impressionShared, never from impressions: the latter pulls
+// the service-role client into the client bundle, whose browser guard throws.
+import { MAX_BATCH, type AffiliateImpressionRecord } from "./impressionShared";
 
 /** Coalescing window. Long enough to group a scroll, short enough to survive. */
 export const FLUSH_DELAY_MS = 300;

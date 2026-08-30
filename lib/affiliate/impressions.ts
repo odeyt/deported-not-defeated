@@ -17,16 +17,20 @@
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isAffiliateClickLoggingEnabled } from "./flags";
+import { MAX_BATCH } from "./impressionShared";
 
-export interface AffiliateImpressionRecord {
-  providerId: string | null;
-  providerSlug: string;
-  countryCode?: string | null;
-  category?: string | null;
-  placement?: string | null;
-  campaign?: string | null;
-  sourcePage?: string | null;
-}
+// Re-exported so server callers keep one import site. The definitions live in
+// impressionShared.ts because this module is server-only — it holds the
+// service-role client, and anything importing a value from here lands in the
+// server graph.
+export {
+  MAX_BATCH,
+  MAX_REQUEST_IMPRESSIONS,
+  impressionKey,
+  type AffiliateImpressionRecord,
+} from "./impressionShared";
+
+import type { AffiliateImpressionRecord } from "./impressionShared";
 
 /** Trim to a sane length; PostgREST rejects nothing, so bound it here. */
 function clamp(value: string | null | undefined, max: number): string | null {
@@ -85,34 +89,4 @@ export async function recordAffiliateImpressions(
   } catch {
     return written;
   }
-}
-
-/**
- * Rows per INSERT — a transport chunk size, NOT a limit on what can be
- * recorded. More than this many observed cards produces more than one insert,
- * never a truncated one.
- */
-export const MAX_BATCH = 20;
-
-/**
- * Hard bound on a single HTTP request, purely an abuse guard. The client
- * chunks at MAX_BATCH, so legitimate traffic never approaches this.
- */
-export const MAX_REQUEST_IMPRESSIONS = 64;
-
-/**
- * Build a deduplication key.
- *
- * One impression per provider per placement per page view. Without this, a
- * React re-render or a card scrolling in and out of view would inflate the
- * denominator and quietly depress every CTR figure.
- */
-export function impressionKey(record: AffiliateImpressionRecord): string {
-  return [
-    record.providerSlug,
-    record.placement ?? "",
-    record.sourcePage ?? "",
-    record.category ?? "",
-    record.campaign ?? "",
-  ].join("|");
 }
