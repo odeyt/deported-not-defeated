@@ -7,13 +7,21 @@ import { trackEvent } from "@/components/Analytics";
 interface Props {
   className?: string;
   children: React.ReactNode;
+  /** e.g. "mexico" — omit for the original Laos checklist at /api/checklist. */
+  country?: string;
+  /** e.g. "Mexico" — modal copy. Defaults to "Laos" when `country` is omitted. */
+  countryLabel?: string;
 }
 
-export default function ChecklistGate({ className, children }: Props) {
+export default function ChecklistGate({ className, children, country, countryLabel }: Props) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done">("idle");
+
+  const label = countryLabel ?? "Laos";
+  const apiUrl = country ? `/api/checklist/${country}` : "/api/checklist";
+  const filename = country ? `${country}-restart-checklist.pdf` : "laos-restart-checklist.pdf";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -27,10 +35,10 @@ export default function ChecklistGate({ className, children }: Props) {
     } catch {}
     // Trigger download via hidden anchor (avoids browser permission block)
     setStatus("done");
-    trackEvent("checklist_download", { method: "email_gate" });
+    trackEvent("checklist_download", { method: "email_gate", country: country ?? "laos" });
     const link = document.createElement("a");
-    link.href = "/api/checklist";
-    link.download = "laos-restart-checklist.pdf";
+    link.href = apiUrl;
+    link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -63,7 +71,7 @@ export default function ChecklistGate({ className, children }: Props) {
                 Free Download
               </p>
               <h3 className="text-2xl font-extrabold text-navy-800 mb-2">
-                Get the Laos Restart Checklist
+                Get the {label} Restart Checklist
               </h3>
               <p className="text-gray-500 text-sm">
                 Enter your email and we'll send updates plus deliver your PDF instantly.

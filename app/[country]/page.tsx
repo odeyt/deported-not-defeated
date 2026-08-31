@@ -6,6 +6,20 @@ import CountryCareerSection from "@/components/career/CountryCareerSection";
 import { countryCareerData } from "@/data/careerData";
 import CountryVisitSection from "@/components/travel/CountryVisitSection";
 import { countryVisitData } from "@/data/familyVisitData";
+import ChecklistGate from "@/components/ChecklistGate";
+
+/**
+ * Countries with a real, country-specific PDF checklist (see
+ * data/checklistContent.ts and app/api/checklist/[country]/route.ts).
+ *
+ * Deliberately does NOT include "laos" — Laos already renders through this
+ * same [country] template (data/countries/laos.ts is part of allCountries),
+ * but its checklist lives at the separate, unparameterized /api/checklist
+ * route and is already linked from the footer, homepage, and its own
+ * subpages. Adding it here would point a second CTA at a country-param
+ * route that doesn't serve Laos.
+ */
+const COUNTRIES_WITH_CHECKLIST = ["mexico", "el-salvador", "guatemala"];
 
 interface Props {
   params: { country: string };
@@ -178,6 +192,31 @@ export default function CountryPage({ params }: Props) {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3b. Country Checklist CTA */}
+      {COUNTRIES_WITH_CHECKLIST.includes(data.slug) && (
+        <section className="bg-gray-900 py-12 px-4">
+          <div className="max-w-3xl mx-auto bg-navy-800 rounded-2xl p-8 text-center">
+            <p className="text-brand-red font-bold uppercase tracking-widest text-xs mb-3">
+              Free Download
+            </p>
+            <h2 className="text-2xl font-bold text-white mb-3">
+              Get the {data.countryName} Restart Checklist
+            </h2>
+            <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+              Your first 30 days in {data.countryName}, step by step — documents, housing, work, and
+              essential contacts. Save it to your phone.
+            </p>
+            <ChecklistGate
+              country={data.slug}
+              countryLabel={data.countryName}
+              className="inline-block bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-bold transition-colors text-base"
+            >
+              Download Free PDF →
+            </ChecklistGate>
           </div>
         </section>
       )}
