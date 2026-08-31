@@ -1,7 +1,31 @@
 # M-AFFILIATE-VERIFY1 — Affiliate Verification Admin Dashboard
 
-**Status:** Implemented, pending operator review and merge.
+**Status:** Merged and deployed to production.
 **Route:** `/admin/affiliates/verification`
+**Merged:** PR [#26](https://github.com/odeyt/deported-not-defeated/pull/26), squash commit `e7d39bc`, confirmed serving production (Vercel deployment `dpl_DsqfobaU4XfVE3VYohU3vw6ULx9s`, aliased to `www.deportednotdefeated.com`) as of 2026-08-31.
+
+## Production verification (M-AFFILIATE-VERIFY1.1, 2026-08-31)
+
+What was actually confirmed against the live deployment, from an environment with no Supabase credentials and no authenticated admin session — everything below is either an unauthenticated HTTP check or a fresh `npm run typecheck`/`test`/`build` on the exact merged commit, never an inference from documentation.
+
+**Confirmed:**
+- `/admin/affiliates/verification` — anonymous request → `307` to `/admin/login` (same session-check boundary as every other admin route, unchanged by this milestone).
+- `/api/admin/affiliate-verification/export` — anonymous request → `401 Unauthorized`, plain-text body, no data.
+- `/go/wise`, `/go/safetywing`, `/go/numeromoney` — identical redirects to the pre-merge baseline (`wise.com/invite/dic/odeyt`; `safetywing.com/?referenceID=...`; NumeroMoney's already-paused `/resources` fallback, unrelated to this milestone).
+- `/mexico/receive-money-usa-to-mexico`, `/tools/return-home-cost` — `200`, and the calculator page still contains its eSIM/phone-plan option text.
+- `sitemap.xml` — `200`, byte-identical size to pre-merge (32,743 bytes) — confirms the new admin/API routes added no sitemap entries.
+- `robots.txt` — unchanged; `/admin/` and `/api/` disallow rules already cover both new routes.
+- Post-merge gate on `main` at `e7d39bc`: `npm run typecheck` clean, `npm test` **256/256** passing, `npm run build` succeeds with both new routes registered as dynamic. Lint remains not runnable (no ESLint config in this repo, pre-existing).
+
+**NOT VERIFIED FROM THIS ENVIRONMENT** — require either Supabase SQL-editor access or an authenticated `admin`-role session, neither of which exists in this environment, and this environment does not request or accept credentials to obtain them:
+- Whether `supabase/affiliate_verification_evidence.sql` has actually been run against production yet (row counts before/after, `evidence_url`/`evidence_tier` column presence, CHECK constraint enforcement).
+- Real Mexico counts (known providers, country/corridor-verified, per-status breakdown, monetized, stale) — the dashboard computes these live from the database on every page load and hardcodes nothing, but confirming the *actual numbers* requires either DB access or a screenshot from a logged-in operator.
+- Wise's and Remitly's live per-field state (corridor, evidence, verification) as rendered in the admin UI specifically.
+- The multi-row-per-destination (generic + corridor-specific) rendering behavior against real data — verified only at the unit-test level (`tests/affiliate-verification-gaps.test.ts`), not against a live provider with multiple rows.
+- The evidence-edit workflow, CHECK-constraint rejection of an invalid tier, and the "Needs attention" tab's live flag counts.
+- Non-admin-authenticated access (403) and admin-authenticated access (200) to either the page or the CSV export — only the anonymous case is checkable without a session.
+
+**Operator action needed to close these gaps:** run `supabase/affiliate_verification_evidence.sql` in the Supabase SQL editor (if not already applied), then open `/admin/affiliates/verification` while signed in as an admin and compare what renders against this document's truth-model table.
 
 ## Purpose
 
