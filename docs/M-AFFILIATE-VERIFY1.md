@@ -17,15 +17,22 @@ What was actually confirmed against the live deployment, from an environment wit
 - `robots.txt` — unchanged; `/admin/` and `/api/` disallow rules already cover both new routes.
 - Post-merge gate on `main` at `e7d39bc`: `npm run typecheck` clean, `npm test` **256/256** passing, `npm run build` succeeds with both new routes registered as dynamic. Lint remains not runnable (no ESLint config in this repo, pre-existing).
 
-**NOT VERIFIED FROM THIS ENVIRONMENT** — require either Supabase SQL-editor access or an authenticated `admin`-role session, neither of which exists in this environment, and this environment does not request or accept credentials to obtain them:
-- Whether `supabase/affiliate_verification_evidence.sql` has actually been run against production yet (row counts before/after, `evidence_url`/`evidence_tier` column presence, CHECK constraint enforcement).
-- Real Mexico counts (known providers, country/corridor-verified, per-status breakdown, monetized, stale) — the dashboard computes these live from the database on every page load and hardcodes nothing, but confirming the *actual numbers* requires either DB access or a screenshot from a logged-in operator.
-- Wise's and Remitly's live per-field state (corridor, evidence, verification) as rendered in the admin UI specifically.
-- The multi-row-per-destination (generic + corridor-specific) rendering behavior against real data — verified only at the unit-test level (`tests/affiliate-verification-gaps.test.ts`), not against a live provider with multiple rows.
-- The evidence-edit workflow, CHECK-constraint rejection of an invalid tier, and the "Needs attention" tab's live flag counts.
+**Migration confirmed applied** (operator ran it in the Supabase SQL editor, 2026-08-31) — verification query result, from real production state:
+
+| `mx_rows` | `mx_verified` | `mx_us_corridor` | `rows_with_evidence` |
+|---|---|---|---|
+| 8 | 2 | 2 | 2 |
+
+Exactly as designed: 8 providers hold an `affiliate_provider_countries` row for `MX`; exactly 2 (Wise, Remitly) are verified; exactly those same 2 carry a `US` corridor (`origin_country`); exactly those same 2 now have `evidence_url` populated. The other 6 MX rows were left untouched — still unverified, no origin, no evidence — confirming the backfill did not silently upgrade anything beyond the two rows it was scoped to. This one query does not confirm the CHECK constraint is enforced (that requires attempting an invalid insert, not yet done) or give a full country/status breakdown across all 21 known MX providers — see remaining gaps below.
+
+**Still NOT VERIFIED FROM THIS ENVIRONMENT** — require an authenticated `admin`-role session, which does not exist in this environment, and this environment does not request or accept credentials to obtain one:
+- The full Mexico summary the dashboard itself computes (known providers, per-status breakdown, monetized, stale, needs-attention count) — the query above confirms the underlying data is correct, but not what the page renders from it.
+- Wise's and Remitly's live per-field state as rendered in the admin UI specifically (vs. confirmed only at the raw-SQL level above).
+- The multi-row-per-destination (generic + corridor-specific) rendering behavior against a real example — verified only at the unit-test level (`tests/affiliate-verification-gaps.test.ts`).
+- The evidence-edit workflow and CHECK-constraint rejection of an invalid tier (e.g. attempting `evidence_tier = 'TIER_4'`).
 - Non-admin-authenticated access (403) and admin-authenticated access (200) to either the page or the CSV export — only the anonymous case is checkable without a session.
 
-**Operator action needed to close these gaps:** run `supabase/affiliate_verification_evidence.sql` in the Supabase SQL editor (if not already applied), then open `/admin/affiliates/verification` while signed in as an admin and compare what renders against this document's truth-model table.
+**Operator action needed to close these gaps:** open `/admin/affiliates/verification` while signed in as an admin and compare what renders against this document's truth-model table and the query result above.
 
 ## Purpose
 
