@@ -78,7 +78,7 @@ Features with High Mission Impact AND High Revenue Potential are always done fir
 | Deep sub-pages for Honduras, DR, India, Philippines | H | Medium | Per country, ~5 sub-pages each |
 | Country-specific PDF checklists (Mexico, El Salvador, Guatemala) | H | Low | Currently only Laos checklist |
 | Affiliate applications submitted (Wise, Remitly, Skyscanner, SafetyWing) | H | Low | Business process, not development |
-| NumeroMoney live affiliate link working | H | Low | Test and confirm |
+| NumeroMoney live affiliate link working | H | Low | Tested 2026-08-31: `/go/numeromoney` redirected correctly, but numero.app itself is unreachable (TLS handshake fails). Paused (`active=false`) pending NumeroMoney fixing their site — see `docs/AFFILIATE-OFFER-REGISTRY.md` |
 | Attorney CTAs on legal pages | M | Low | Link to future attorney directory |
 | Add stories (real content) | M | Low | Content task, not development |
 

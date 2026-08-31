@@ -147,9 +147,9 @@ Notes: Insurance claims are regulated and consequential. Never state what a poli
 
 ## NumeroMoney
 
-Status: ACTIVE
+Status: PAUSED
 
-Category: ESIM
+Category: PHONE_INTERNET (corrected 2026-08-31 — the checked-in seed file still lists `ESIM`, but production's `canonical_category` was already `PHONE_INTERNET` by the time this was verified; the seed file was never updated to match)
 
 Countries Supported: Not yet recorded per country
 
@@ -161,7 +161,7 @@ Commission: Not established. Do not estimate.
 
 Cookie Duration: Not established.
 
-Affiliate URL: Stored in the database. Live.
+Affiliate URL: Stored in the database. `affiliate_status` remains `approved` — this is a temporary pause, not a retirement.
 
 Public Destination URL: https://numero.app
 
@@ -171,9 +171,11 @@ Recommended Landing Pages: `/family-visit-travel`
 
 Recommended Content Topics: eSIM before arrival, staying reachable while travelling
 
-Last Verified: 2026-08-23 (status confirmed in production; program terms NOT reviewed)
+Last Verified: 2026-08-31 — paused, see below.
 
-Notes: A hardcoded referral link also exists at `app/family-visit-travel/page.tsx:265`, bypassing `/go/` — so those clicks are untracked and the URL cannot be changed without a deploy. Routing it through `/go/numeromoney` is outstanding work.
+Notes: The hardcoded referral link previously at `app/family-visit-travel/page.tsx:265` no longer exists; that page now renders NumeroMoney through the standard `<AffiliateRecommendations category="PHONE_INTERNET">` block, routed through `/go/numeromoney` like every other provider.
+
+**2026-08-31: Paused.** `https://numero.app` is currently unreachable — the TLS handshake fails with an `internal_error` alert (verified independently via curl and OpenSSL, reproducible across retries and with/without SNI), and plain HTTP returns `405 Not Allowed` from the AWS load balancer in front of it. This is an outage on NumeroMoney's own infrastructure, not anything in this codebase. Set `active = false` on the `affiliate_partners` row (via the Supabase SQL editor) and redeployed production, so `/go/numeromoney` now falls back to `/resources` instead of dead-ending on a broken TLS connection, and the card no longer renders on `/family-visit-travel`. Re-enable with `update affiliate_partners set active = true, updated_at = now() where slug = 'numeromoney';` once NumeroMoney confirms their site is back up — no other row was touched.
 
 ---
 
@@ -317,5 +319,5 @@ programs that were already rejected or discontinued.
 
 ---
 
-**Registry last reviewed:** 2026-08-23
-**Active:** 3 (wise, safetywing, numeromoney) · **Unverified/pending rows:** 8 · **Prospects seeded:** 29 · **Rejected/Retired:** 0
+**Registry last reviewed:** 2026-08-31
+**Active:** 2 (wise, safetywing) · **Paused:** 1 (numeromoney — destination site unreachable, see entry above) · **Unverified/pending rows:** 8 · **Prospects seeded:** 29 · **Rejected/Retired:** 0
