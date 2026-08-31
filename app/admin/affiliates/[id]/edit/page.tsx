@@ -214,7 +214,7 @@ export default function EditAffiliatePartnerPage() {
           </label>
         </div>
 
-        <ProviderCountriesEditor providerId={id} />
+        <ProviderCountriesEditor providerId={id} category={form.canonical_category} />
 
         {/* Commercial terms — operator-only, never rendered publicly */}
         <div className="border border-gray-200 rounded-xl p-4 space-y-4">

@@ -26,6 +26,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       links: [
         ["/admin/affiliates/dashboard", "Dashboard"],
         ["/admin/affiliates", "Partners"],
+        ["/admin/affiliates/verification", "Verification"],
         ["/admin/affiliate-applications", "Applications"],
         ["/admin/affiliate-clicks", "Click Report"],
       ],
