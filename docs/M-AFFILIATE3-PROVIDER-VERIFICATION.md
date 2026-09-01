@@ -69,7 +69,7 @@ not a ranking problem to fix by promoting Wise — the ranking is correct on the
 | --- | --- | --- | --- | --- |
 | **Remitly** | ✅ yes | NETWORK APPLICATION | **Impact** | Tier 1 — own partner page links to Impact signup |
 | **Airalo** | ✅ yes | NETWORK APPLICATION | **Impact** | Tier 1 — [official affiliate-program page](https://www.airalo.com/m/resources/airalo-affiliate-program/) |
-| **Holafly** | ✅ yes | NETWORK APPLICATION | Impact / Awin / ShareASale | Tier 2 |
+| **Holafly** | ✅ yes | DIRECT AFFILIATE PROGRAM | Direct / operator not publicly specified | Tier 1 — [official Holafly affiliate page](https://esim.holafly.com/affiliate-program/) |
 | **Travelpayouts** | ✅ yes | NETWORK APPLICATION | Travelpayouts | Tier 1 — own site, open signup |
 | **Western Union** | ✅ likely | NETWORK APPLICATION | **Partnerize** | Tier 1 domain (a Partnerize quick-start PDF is hosted on westernunion.com), but the page found is the **GB** program — a US program is unconfirmed |
 | MoneyGram | ❓ unconfirmed | — | — | insufficient |
@@ -97,7 +97,8 @@ affiliate_provider_countries (remitly, MX)  verified_at = 2026-08-24
 -- Network metadata, from Tier 1/2 evidence
 affiliate_partners.network  remitly        = impact
                             airalo         = impact
-                            holafly        = impact
+                            holafly        = impact  -- historical local metadata; current public
+                                                    -- Holafly page does not identify an operator
                             western-union  = partnerize
 ```
 

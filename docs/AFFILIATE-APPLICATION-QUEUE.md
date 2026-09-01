@@ -16,17 +16,19 @@ bank details, and contract acceptance, none of which can or should be automated.
 | --- | --- | --- |
 | Remitly | Impact | Remitly's own partner page links to `app.impact.com/campaign-mediapartner-signup/Remitly.brand` |
 | Airalo | Impact | [Airalo's official affiliate-program page](https://www.airalo.com/m/resources/airalo-affiliate-program/) links to the Impact campaign flow |
-| Holafly | Impact (also Awin, ShareASale) | Holafly affiliate page |
+| Holafly | Direct / operator not publicly specified | [Holafly's official affiliate page](https://esim.holafly.com/affiliate-program/) |
 
 And `app/layout.tsx` already carries an `impact-site-verification` meta tag — which is how you
 verify a property **inside an Impact publisher account**. That strongly suggests an Impact account
 already exists for this site.
 
 **First action: log into Impact and check.** If the account exists and the domain is verified,
-Remitly, Airalo, and Holafly become in-network applications rather than cold signups — three of the
-top five, through one login.
+Remitly and Airalo may become in-network applications rather than cold signups through one login.
+Holafly's current official public affiliate page instead presents a direct embedded contact form and
+does not identify an affiliate-network operator.
 
-If it does not exist, creating it is still the highest-leverage single step available.
+If it does not exist, creating it may still support the verified in-network programs above; it does
+not establish access to Holafly's direct program.
 
 ---
 
@@ -42,7 +44,7 @@ implementation simplicity 5).
 | 2 | **Remitly** | Money transfer | 88 | NETWORK APPLICATION | Impact | B | `pending` in DB, unverified | Apply/check via Impact. 3–5 working days to set up per Remitly |
 | 3 | **Airalo** | eSIM | 82 | NETWORK APPLICATION | Impact | B | `pending` in DB, unverified | Review/apply via Impact only after operator approval. Airalo publishes **up to 10%** commission language. |
 | 4 | **Travelpayouts** | Travel network | 78 | NETWORK APPLICATION | Travelpayouts | A | `not_applied` | Sign up — open to any public site, no stated traffic threshold. Drive script already installed |
-| 5 | **Holafly** | eSIM | 71 | NETWORK APPLICATION | Impact / Awin / ShareASale | B | `pending` in DB | Apply via Impact alongside Airalo. 10%, up to 20% negotiated |
+| 5 | **Holafly** | eSIM | 71 | DIRECT AFFILIATE PROGRAM | Direct / operator not publicly specified | B | `pending` in DB, unverified | Official affiliate page uses an embedded contact form. Numeric commission, cookie, and terms are not publicly verified. |
 | 6 | **Western Union** | Money transfer | 68 | NETWORK APPLICATION | **Partnerize** | C | `not_applied` | Confirm a **US** program exists — the page found is the GB one |
 | 7 | **MoneyGram** | Money transfer | 60 | NO PUBLIC PROGRAM CONFIRMED | — | D | `pending` in DB | Research before spending time. Do not assume a public program |
 | 8 | **NordVPN** | VPN | 58 | NETWORK APPLICATION | Impact (per registry) | B | `pending` in DB | Apply via Impact. High payouts, but placement must stay relevant |
