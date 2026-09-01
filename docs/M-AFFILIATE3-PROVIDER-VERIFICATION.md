@@ -45,7 +45,7 @@ Third-party affiliate directories are Tier 3 and were never used to verify avail
 | Provider | Corridor verified | Payout methods documented | Evidence | Status |
 | --- | --- | --- | --- | --- |
 | **Wise** | ✅ **PROVIDER_VERIFIED** | Bank deposit in MXN only. **No cash pickup documented** | `wise.com/us/send-money/send-money-to-mexico` | approved, earning |
-| **Remitly** | ✅ **PROVIDER_VERIFIED** | Cash pickup (OXXO, Elektra, Walmart, Farmacias Guadalajara), bank deposit (BanCoppel, Santander, HSBC, Scotiabank, Banorte), mobile wallet (Mercado Pago) | `remitly.com/us/en/mexico` | not monetized |
+| **Remitly** | ✅ **PROVIDER_VERIFIED** | Cash pickup, bank deposit, and mobile wallet. The reviewed official corridor page lists Elektra, BanCoppel, Walmart, Santander, HSBC, Scotiabank, OXXO, Farmacias Guadalajara, and Banorte; it does not map each provider to a method. | `remitly.com/us/en/money-transfer/send-money-to-mexico` | not monetized |
 | Western Union | Not verified this pass | — | — | not applied |
 | MoneyGram | Not verified this pass | — | — | `pending` (origin unknown) |
 | Xoom | Not verified this pass | — | — | not applied |
@@ -76,9 +76,11 @@ not a ranking problem to fix by promoting Wise — the ranking is correct on the
 | **Xoom** | ❌ **NO PUBLIC PUBLISHER PROGRAM FOUND** | — | — | PayPal consumer referral schemes are not publisher affiliation |
 | Ria | ❓ unconfirmed | — | — | insufficient |
 
-Commission figures were **not** recorded for Remitly. Third-party sites report $5–20 per funded
-user with a 30-day cookie; Remitly's own page discloses nothing. Under the no-fabrication rule
-that stays **"Not publicly disclosed."**
+As observed on 2026-09-01, [Remitly's official partner page](https://www.remitly.com/us/en/landing/partner-program)
+publishes a USD $5–$20 commission range per referral depending on send corridor and a 30-day
+referral-click attribution window. This is public program language, not expected earnings, final
+campaign terms, or proof of approval. Promotion restrictions, reversals, clawbacks, and termination
+terms remain unverified pending official terms review.
 
 ---
 

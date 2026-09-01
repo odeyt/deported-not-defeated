@@ -68,22 +68,31 @@ Category          Money transfer (USA → Mexico and other corridors)
 Program type      NETWORK APPLICATION
 Network           Impact
 Application URL   app.impact.com/campaign-mediapartner-signup/Remitly.brand
-                  (linked from remitly.com/gb/en/landing/partner-program)
+                  (linked from remitly.com/us/en/landing/partner-program;
+                  canonical query-free public path retained)
 Setup time        3–5 working days after application, per Remitly
-Commission        Not publicly disclosed on Remitly's own page.
-                  Third-party sites report $5–20 per funded new user, 30-day
-                  cookie — NOT confirmed by Remitly. Do not rely on it.
-US eligibility    Not stated on Remitly's own page (that page is the GB market).
-                  Confirm during application.
-Countries served  USA → Mexico verified: cash pickup (OXXO, Elektra, Walmart,
-                  Farmacias Guadalajara), bank deposit (BanCoppel, Santander,
-                  HSBC, Scotiabank, Banorte), mobile wallet (Mercado Pago)
+Commission        USD $5–$20 per referral, depending on send corridor, per
+                  Remitly's official partner page (observed 2026-09-01).
+                  This published range is not expected earnings.
+Cookie             30-day referral-click attribution, per Remitly's official
+                  partner page (observed 2026-09-01).
+US eligibility    United States is listed among Remitly Partner Program
+                  countries. Acceptance remains unverified.
+Countries served  USA → Mexico verified: cash pickup, bank deposit, and mobile
+                  wallet. The official corridor page lists Elektra, BanCoppel,
+                  Walmart, Santander, HSBC, Scotiabank, OXXO, Farmacias
+                  Guadalajara, and Banorte; its reviewed public content does
+                  not map each provider to a specific method.
+Evidence URL      https://www.remitly.com/us/en/money-transfer/send-money-to-mexico
+                  (observed 2026-09-01)
 Relevant pages    /mexico/receive-money-usa-to-mexico
                   /resources/money-transfer
                   /tools/return-home-cost
                   the receive-money-usa-to-* pages for 7 countries
-Compliance        Confirm rules on brand bidding, paid search, and coupon
-                  placement during application
+Compliance        The public partner page says accepted partners must review
+                  program terms; brand bidding, paid search, coupon, email,
+                  incentive, social, messaging, privacy, and disclosure rules
+                  remain unverified until official terms are reviewed.
 Status            DB says `pending` — origin unverified, may be a seed default. No application or approval may be inferred.
 ```
 
