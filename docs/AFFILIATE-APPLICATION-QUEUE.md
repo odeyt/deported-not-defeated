@@ -15,18 +15,20 @@ bank details, and contract acceptance, none of which can or should be automated.
 | Provider | Network | Evidence |
 | --- | --- | --- |
 | Remitly | Impact | Remitly's own partner page links to `app.impact.com/campaign-mediapartner-signup/Remitly.brand` |
-| Airalo | Impact | Airalo help centre names Impact as the platform |
-| Holafly | Impact (also Awin, ShareASale) | Holafly affiliate page |
+| Airalo | Impact | [Airalo's official affiliate-program page](https://www.airalo.com/m/resources/airalo-affiliate-program/) links to the Impact campaign flow |
+| Holafly | Direct / operator not publicly specified | [Holafly's official affiliate page](https://esim.holafly.com/affiliate-program/) |
 
 And `app/layout.tsx` already carries an `impact-site-verification` meta tag — which is how you
 verify a property **inside an Impact publisher account**. That strongly suggests an Impact account
 already exists for this site.
 
 **First action: log into Impact and check.** If the account exists and the domain is verified,
-Remitly, Airalo, and Holafly become in-network applications rather than cold signups — three of the
-top five, through one login.
+Remitly and Airalo may become in-network applications rather than cold signups through one login.
+Holafly's current official public affiliate page instead presents a direct embedded contact form and
+does not identify an affiliate-network operator.
 
-If it does not exist, creating it is still the highest-leverage single step available.
+If it does not exist, creating it may still support the verified in-network programs above; it does
+not establish access to Holafly's direct program.
 
 ---
 
@@ -40,9 +42,9 @@ implementation simplicity 5).
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | **Impact account** | Network | — | NETWORK APPLICATION | Impact | B | Unknown — tag present | **Check whether the account already exists** |
 | 2 | **Remitly** | Money transfer | 88 | NETWORK APPLICATION | Impact | B | `pending` in DB, unverified | Apply/check via Impact. 3–5 working days to set up per Remitly |
-| 3 | **Airalo** | eSIM | 82 | NETWORK APPLICATION | Impact | B | `pending` in DB, unverified | Apply via Impact. 10% standard commission |
+| 3 | **Airalo** | eSIM | 82 | NETWORK APPLICATION | Impact | B | `pending` in DB, unverified | Review/apply via Impact only after operator approval. Airalo publishes **up to 10%** commission language. |
 | 4 | **Travelpayouts** | Travel network | 78 | NETWORK APPLICATION | Travelpayouts | A | `not_applied` | Sign up — open to any public site, no stated traffic threshold. Drive script already installed |
-| 5 | **Holafly** | eSIM | 71 | NETWORK APPLICATION | Impact / Awin / ShareASale | B | `pending` in DB | Apply via Impact alongside Airalo. 10%, up to 20% negotiated |
+| 5 | **Holafly** | eSIM | 71 | DIRECT AFFILIATE PROGRAM | Direct / operator not publicly specified | B | `pending` in DB, unverified | Official affiliate page uses an embedded contact form. Numeric commission, cookie, and terms are not publicly verified. |
 | 6 | **Western Union** | Money transfer | 68 | NETWORK APPLICATION | **Partnerize** | C | `not_applied` | Confirm a **US** program exists — the page found is the GB one |
 | 7 | **MoneyGram** | Money transfer | 60 | NO PUBLIC PROGRAM CONFIRMED | — | D | `pending` in DB | Research before spending time. Do not assume a public program |
 | 8 | **NordVPN** | VPN | 58 | NETWORK APPLICATION | Impact (per registry) | B | `pending` in DB | Apply via Impact. High payouts, but placement must stay relevant |
@@ -68,23 +70,32 @@ Category          Money transfer (USA → Mexico and other corridors)
 Program type      NETWORK APPLICATION
 Network           Impact
 Application URL   app.impact.com/campaign-mediapartner-signup/Remitly.brand
-                  (linked from remitly.com/gb/en/landing/partner-program)
+                  (linked from remitly.com/us/en/landing/partner-program;
+                  canonical query-free public path retained)
 Setup time        3–5 working days after application, per Remitly
-Commission        Not publicly disclosed on Remitly's own page.
-                  Third-party sites report $5–20 per funded new user, 30-day
-                  cookie — NOT confirmed by Remitly. Do not rely on it.
-US eligibility    Not stated on Remitly's own page (that page is the GB market).
-                  Confirm during application.
-Countries served  USA → Mexico verified: cash pickup (OXXO, Elektra, Walmart,
-                  Farmacias Guadalajara), bank deposit (BanCoppel, Santander,
-                  HSBC, Scotiabank, Banorte), mobile wallet (Mercado Pago)
+Commission        USD $5–$20 per referral, depending on send corridor, per
+                  Remitly's official partner page (observed 2026-09-01).
+                  This published range is not expected earnings.
+Cookie             30-day referral-click attribution, per Remitly's official
+                  partner page (observed 2026-09-01).
+US eligibility    United States is listed among Remitly Partner Program
+                  countries. Acceptance remains unverified.
+Countries served  USA → Mexico verified: cash pickup, bank deposit, and mobile
+                  wallet. The official corridor page lists Elektra, BanCoppel,
+                  Walmart, Santander, HSBC, Scotiabank, OXXO, Farmacias
+                  Guadalajara, and Banorte; its reviewed public content does
+                  not map each provider to a specific method.
+Evidence URL      https://www.remitly.com/us/en/money-transfer/send-money-to-mexico
+                  (observed 2026-09-01)
 Relevant pages    /mexico/receive-money-usa-to-mexico
                   /resources/money-transfer
                   /tools/return-home-cost
                   the receive-money-usa-to-* pages for 7 countries
-Compliance        Confirm rules on brand bidding, paid search, and coupon
-                  placement during application
-Status            DB says `pending` — origin unverified, may be a seed default
+Compliance        The public partner page says accepted partners must review
+                  program terms; brand bidding, paid search, coupon, email,
+                  incentive, social, messaging, privacy, and disclosure rules
+                  remain unverified until official terms are reviewed.
+Status            DB says `pending` — origin unverified, may be a seed default. No application or approval may be inferred.
 ```
 
 **Why we fit, for the application form:**
@@ -102,9 +113,9 @@ Provider          Airalo
 Category          eSIM / connectivity
 Program type      NETWORK APPLICATION
 Network           Impact
-Commission        10% standard (Airalo help centre), varies by promotion method
-Payment           Via Impact, bank or PayPal
-Eligibility       Blogs/sites with travel or technology audiences
+Commission        Up to 10% on successful referrals, per Airalo's official affiliate page (observed 2026-09-01). Do not treat this as an expected rate.
+Payment           Not publicly confirmed in the current evidence. Confirm in the applicable Impact campaign terms/account.
+Eligibility       Airalo publicly names travel content creators, travel professionals, tech/travel apps, comparison/deal/cashback sites, member-benefit platforms, and mass-media publishers. Acceptance remains unverified.
 Relevant pages    /mexico/sim-card-mexico, /tools/return-home-cost,
                   /family-visit-travel, the sim-card-* pages for 7 countries
 Fit               Connectivity is a day-one need both for arrivals and for
