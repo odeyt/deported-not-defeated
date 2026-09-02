@@ -1,6 +1,13 @@
 # Affiliate Coverage Matrix
 
 **Measured:** 2026-08-25, directly against the production database.
+**Updated:** 2026-08-31 — one line only (NumeroMoney's monetization state),
+confirmed live via the new `/admin/affiliates/verification` dashboard
+(see `docs/M-AFFILIATE-VERIFY1.md`) and cross-checked against
+`docs/AFFILIATE-OFFER-REGISTRY.md`'s dated pause entry. Every other figure
+below is **unchanged from 2026-08-25** — this update does not re-measure
+the rest of the matrix, so treat click/conversion/registry-size counts as
+that original snapshot's age, not today's.
 Nothing here is estimated.
 
 ---
@@ -9,9 +16,9 @@ Nothing here is estimated.
 
 | Metric | Value |
 | --- | --- |
-| Providers in registry | **50** |
+| Providers in registry | **50** (dashboard now reports 49 — unreconciled, not investigated as part of this update) |
 | Active (visible to visitors) | 50 |
-| **Approved and monetizing** | **3** |
+| **Approved and monetizing** | **2** — updated 2026-08-31. NumeroMoney was paused (`active = false`, destination site unreachable, see `docs/AFFILIATE-OFFER-REGISTRY.md`); its `affiliate_status` no longer reads `approved` in production either, confirmed via the verification dashboard's status filter, though only the `active` flag was changed by that pause action |
 | Provider–country rows | 113 |
 | Rows verified against the provider | **2** |
 | Affiliate clicks recorded | 322 |
@@ -19,8 +26,8 @@ Nothing here is estimated.
 | Dead placeholder CTAs | **0** (was 49) |
 | Hardcoded affiliate URLs | **0** |
 
-**94% of the registry earns nothing.** That is the business in one line: the
-infrastructure is complete, the approvals are not.
+**96% of the registry earns nothing** (2 of 50). That is the business in one
+line: the infrastructure is complete, the approvals are not.
 
 ---
 
@@ -33,7 +40,7 @@ the one that matters.
 | --- | --- | --- | --- |
 | MONEY_TRANSFER | 21 | **1** (Wise) | 20 unmonetized; Wise has no cash pickup |
 | TOURS | 3 | 0 | Travelpayouts — traffic-gated |
-| PHONE_INTERNET | 3 | **1** (NumeroMoney) | Airalo/Holafly pending |
+| PHONE_INTERNET | 3 | 0 — updated 2026-08-31 (was 1, NumeroMoney, now paused) | NumeroMoney's destination site is unreachable (see AFFILIATE-OFFER-REGISTRY.md); Airalo/Holafly pending |
 | LEGAL | 3 | 0 | visa services, editorial only |
 | HOTELS | 3 | 0 | Travelpayouts — traffic-gated |
 | EDUCATION | 3 | 0 | no applications submitted |
@@ -48,13 +55,18 @@ the one that matters.
 
 ---
 
-## The three revenue routes that exist
+## The two revenue routes that exist
+
+**Updated 2026-08-31** — this was "the three revenue routes" as of
+2026-08-25; NumeroMoney is removed from this table because it no longer
+monetizes (paused, `active = false`, its own destination site unreachable —
+see `docs/AFFILIATE-OFFER-REGISTRY.md`'s dated entry for the full history
+and the reactivation steps once it's fixed).
 
 | Provider | Category | Surfaced on | Availability |
 | --- | --- | --- | --- |
 | **Wise** | MONEY_TRANSFER | `/mexico/receive-money-usa-to-mexico`, `/resources/money-transfer`, `/tools/return-home-cost` | MX **verified** — bank deposit only, **no cash pickup** |
 | **SafetyWing** | HEALTH_INSURANCE | `/family-visit-travel` | global; **visitor contexts only** — home-country coverage is incidental |
-| **NumeroMoney** | PHONE_INTERNET | `/family-visit-travel`, `/tools/return-home-cost` | global |
 
 ---
 
