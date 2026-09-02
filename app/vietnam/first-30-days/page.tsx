@@ -95,7 +95,7 @@ export default function VietnamFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Vietnam moves fast. The cities are full of energy, English teaching pays well, and cost of living is low. If you stay disciplined, you can stabilize quickly."
+            &quot;Vietnam moves fast. The cities are full of energy, English teaching pays well, and cost of living is low. If you stay disciplined, you can stabilize quickly.&quot;
           </blockquote>
         </div>
       </section>

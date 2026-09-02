@@ -52,8 +52,8 @@ export default function CareerEmailCapture() {
 
           {status === "success" ? (
             <div className="bg-green-900/40 border border-green-600/40 rounded-xl p-6 text-center">
-              <p className="text-green-300 font-bold text-lg mb-2">You're in!</p>
-              <p className="text-green-200 text-sm">Check your email for the Career Rebuild Checklist. If you don't see it, check your spam folder.</p>
+              <p className="text-green-300 font-bold text-lg mb-2">You&apos;re in!</p>
+              <p className="text-green-200 text-sm">Check your email for the Career Rebuild Checklist. If you don&apos;t see it, check your spam folder.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -78,7 +78,7 @@ export default function CareerEmailCapture() {
                   onChange={(e) => setForm({ ...form, country: e.target.value })}
                   className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-brand-red text-sm"
                 >
-                  <option value="">Country you're rebuilding in</option>
+                  <option value="">Country you&apos;re rebuilding in</option>
                   {COUNTRIES.map((c) => (
                     <option key={c} value={c} className="text-gray-900">{c}</option>
                   ))}

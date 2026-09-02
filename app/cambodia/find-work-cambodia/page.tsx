@@ -48,7 +48,7 @@ export default function CambodiaFindWorkPage() {
               <li>• <strong className="text-white">CambodiaJobs.biz:</strong> Largest Cambodian job board</li>
               <li>• <strong className="text-white">Khmer24.com:</strong> Classifieds including job listings</li>
               <li>• <strong className="text-white">LinkedIn:</strong> NGO and professional sector jobs</li>
-              <li>• <strong className="text-white">Facebook:</strong> Groups like "Jobs in Cambodia" and "Phnom Penh Jobs"</li>
+              <li>• <strong className="text-white">Facebook:</strong> Groups like &quot;Jobs in Cambodia&quot; and &quot;Phnom Penh Jobs&quot;</li>
             </ul>
           </div>
 

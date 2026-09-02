@@ -74,7 +74,7 @@ export default function ChecklistGate({ className, children, country, countryLab
                 Get the {label} Restart Checklist
               </h3>
               <p className="text-gray-500 text-sm">
-                Enter your email and we'll send updates plus deliver your PDF instantly.
+                Enter your email and we&apos;ll send updates plus deliver your PDF instantly.
               </p>
             </div>
 

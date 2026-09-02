@@ -52,9 +52,9 @@ export default function VietnamHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Chotot.com:</strong> Vietnam's biggest classified ads — search "phòng trọ" for rooms</li>
-              <li>• <strong className="text-white">Facebook Groups:</strong> Search "Ho Chi Minh City Rooms for Rent" or "Phòng trọ HCMC"</li>
-              <li>• <strong className="text-white">Walk the area:</strong> Signs saying "Cho Thuê Phòng" = room for rent</li>
+              <li>• <strong className="text-white">Chotot.com:</strong> Vietnam&apos;s biggest classified ads — search &quot;phòng trọ&quot; for rooms</li>
+              <li>• <strong className="text-white">Facebook Groups:</strong> Search &quot;Ho Chi Minh City Rooms for Rent&quot; or &quot;Phòng trọ HCMC&quot;</li>
+              <li>• <strong className="text-white">Walk the area:</strong> Signs saying &quot;Cho Thuê Phòng&quot; = room for rent</li>
               <li>• <strong className="text-white">Batdongsan.com.vn:</strong> Real estate listings with maps</li>
               <li>• <strong className="text-white">Ask at your mini hotel:</strong> Owners often know monthly landlords</li>
             </ul>
@@ -63,7 +63,7 @@ export default function VietnamHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">What to Know Before Signing</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• Landlords typically ask for 1–2 months deposit plus first month's rent</li>
+              <li>• Landlords typically ask for 1–2 months deposit plus first month&apos;s rent</li>
               <li>• Electricity is billed separately — landlords often charge 3,500–4,000 VND/kWh</li>
               <li>• Contracts are simple — written in Vietnamese, have a trusted person review</li>
               <li>• Negotiate — asking for a lower price after viewing is expected and normal</li>

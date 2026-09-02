@@ -48,7 +48,7 @@ export default function VietnamFindWorkPage() {
               <li>• <strong className="text-white">Vietnamworks.com:</strong> Largest job board in Vietnam</li>
               <li>• <strong className="text-white">TopCV.vn:</strong> Resume platform + job search</li>
               <li>• <strong className="text-white">LinkedIn:</strong> International companies and remote roles</li>
-              <li>• <strong className="text-white">Facebook:</strong> "Jobs in Ho Chi Minh City" and "Hanoi Expat Jobs" groups</li>
+              <li>• <strong className="text-white">Facebook:</strong> &quot;Jobs in Ho Chi Minh City&quot; and &quot;Hanoi Expat Jobs&quot; groups</li>
             </ul>
           </div>
 

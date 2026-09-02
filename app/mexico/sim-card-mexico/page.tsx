@@ -73,8 +73,8 @@ export default function MexicoSimCardPage() {
               <li>• <strong className="text-white">Rappi / DiDi Food:</strong> Food delivery and gig work</li>
               <li>• <strong className="text-white">InDriver or Uber:</strong> Rides in every major city</li>
               <li>• <strong className="text-white">BBVA México or Banorte app:</strong> Mobile banking</li>
-              <li>• <strong className="text-white">WhatsApp:</strong> Mexico's primary communication tool</li>
-              <li>• <strong className="text-white">OCC Mundial:</strong> Mexico's top job board</li>
+              <li>• <strong className="text-white">WhatsApp:</strong> Mexico&apos;s primary communication tool</li>
+              <li>• <strong className="text-white">OCC Mundial:</strong> Mexico&apos;s top job board</li>
             </ul>
           </div>
 

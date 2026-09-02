@@ -45,7 +45,7 @@ export default function PhilippinesStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Bayanihan is not just a word — it is a practice. In the Philippines, neighbors literally carried houses together. That spirit does not disappear. You can lean on it."
+            &quot;Bayanihan is not just a word — it is a practice. In the Philippines, neighbors literally carried houses together. That spirit does not disappear. You can lean on it.&quot;
           </blockquote>
         </div>
       </section>

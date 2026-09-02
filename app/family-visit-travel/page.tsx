@@ -244,7 +244,7 @@ export default function FamilyVisitTravelPage() {
               <p className="text-sky-600 text-xs font-bold uppercase tracking-widest mb-1">Ground Transport</p>
               <h2 className="text-2xl font-extrabold text-navy-800">Car Rentals</h2>
               <p className="text-gray-500 text-sm mt-1">
-                An international driver's license is often required. Always check local insurance requirements.
+                An international driver&apos;s license is often required. Always check local insurance requirements.
                 Avoid night driving in unfamiliar areas.
               </p>
             </div>
@@ -483,7 +483,7 @@ export default function FamilyVisitTravelPage() {
             <p className="text-white text-sm leading-relaxed">
               <strong className="text-brand-red">Emergency contacts to save before departure:</strong>{" "}
               US Embassy in destination country • Local police emergency number • Your travel insurance 24/7 emergency line •
-              Your hotel front desk • Your family member's phone number and a neighbor's number as backup.
+              Your hotel front desk • Your family member&apos;s phone number and a neighbor&apos;s number as backup.
             </p>
           </div>
         </div>
