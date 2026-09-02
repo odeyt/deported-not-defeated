@@ -52,10 +52,10 @@ export default function MexicoHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search "cuarto en renta CDMX" — largest selection for budget rooms</li>
-              <li>• <strong className="text-white">Vivanuncios.com.mx:</strong> Mexico's top real estate classifieds</li>
+              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search &quot;cuarto en renta CDMX&quot; — largest selection for budget rooms</li>
+              <li>• <strong className="text-white">Vivanuncios.com.mx:</strong> Mexico&apos;s top real estate classifieds</li>
               <li>• <strong className="text-white">Metros Cúbicos:</strong> Apartment listings with maps and photos</li>
-              <li>• <strong className="text-white">Walk the colonia:</strong> Signs saying "Se Renta Cuarto" or "Se Renta Departamento" are common</li>
+              <li>• <strong className="text-white">Walk the colonia:</strong> Signs saying &quot;Se Renta Cuarto&quot; or &quot;Se Renta Departamento&quot; are common</li>
               <li>• <strong className="text-white">Ask family or acquaintances:</strong> Word-of-mouth housing is extremely common in Mexico</li>
             </ul>
           </div>

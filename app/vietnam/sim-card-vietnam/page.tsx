@@ -72,7 +72,7 @@ export default function VietnamSimCardPage() {
             <ul className="text-gray-300 text-sm space-y-1">
               <li>• <strong className="text-white">Grab:</strong> Taxis and food delivery — use for everything</li>
               <li>• <strong className="text-white">MoMo or ZaloPay:</strong> Digital wallets for payments</li>
-              <li>• <strong className="text-white">Zalo:</strong> Vietnam's primary messaging app (not WhatsApp)</li>
+              <li>• <strong className="text-white">Zalo:</strong> Vietnam&apos;s primary messaging app (not WhatsApp)</li>
               <li>• <strong className="text-white">Chotot:</strong> Classifieds for jobs and housing</li>
               <li>• <strong className="text-white">VPBank NEO or Vietcombank iB@nking:</strong> Mobile banking</li>
             </ul>

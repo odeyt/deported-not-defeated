@@ -96,7 +96,7 @@ export default function PhilippinesFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "The Philippines has one of the most resilient cultures in the world — bayanihan (community helping each other) is real. Lean into your community. You will not rebuild alone."
+            &quot;The Philippines has one of the most resilient cultures in the world — bayanihan (community helping each other) is real. Lean into your community. You will not rebuild alone.&quot;
           </blockquote>
         </div>
       </section>

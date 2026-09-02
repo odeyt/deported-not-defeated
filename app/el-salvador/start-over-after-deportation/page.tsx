@@ -45,7 +45,7 @@ export default function ElSalvadorStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "El Salvador has survived everything it has been through. And so will you. The resilience in this land is in your blood."
+            &quot;El Salvador has survived everything it has been through. And so will you. The resilience in this land is in your blood.&quot;
           </blockquote>
         </div>
       </section>

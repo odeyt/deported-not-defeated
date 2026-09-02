@@ -96,7 +96,7 @@ export default function CambodiaFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Cambodia is not easy at first — but the people are resilient, the cost of living is low, and opportunity exists if you stay consistent. You can build a life here."
+            &quot;Cambodia is not easy at first — but the people are resilient, the cost of living is low, and opportunity exists if you stay consistent. You can build a life here.&quot;
           </blockquote>
         </div>
       </section>

@@ -45,7 +45,7 @@ export default function MexicoStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "You did not leave Mexico because you failed. You left because you had a dream. That same drive that took you north is the drive that will rebuild you here."
+            &quot;You did not leave Mexico because you failed. You left because you had a dream. That same drive that took you north is the drive that will rebuild you here.&quot;
           </blockquote>
         </div>
       </section>

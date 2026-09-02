@@ -121,7 +121,7 @@ export default function CourseComparisonTable() {
       </table>
       <div className="px-5 py-3 bg-gray-50 border-t border-gray-100">
         <p className="text-gray-400 text-xs">
-          Disclosure: Some links may be affiliate links. Prices and availability change — always verify on the platform's website before purchasing.
+          Disclosure: Some links may be affiliate links. Prices and availability change — always verify on the platform&apos;s website before purchasing.
         </p>
       </div>
     </div>

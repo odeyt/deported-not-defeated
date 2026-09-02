@@ -96,7 +96,7 @@ export default function GuatemalaFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Guatemala has 22 languages and thousands of years of culture behind it. Your community is resilient. Your bilingual skills are rare and valuable here. You are not alone."
+            &quot;Guatemala has 22 languages and thousands of years of culture behind it. Your community is resilient. Your bilingual skills are rare and valuable here. You are not alone.&quot;
           </blockquote>
         </div>
       </section>

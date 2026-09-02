@@ -96,7 +96,7 @@ export default function ElSalvadorFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "El Salvador is changing fast. The economy is stabilizing, the tech sector is growing, and your bilingual skills are valuable. You bring something most people here don&apos;t have — experience in two worlds."
+            &quot;El Salvador is changing fast. The economy is stabilizing, the tech sector is growing, and your bilingual skills are valuable. You bring something most people here don&apos;t have — experience in two worlds.&quot;
           </blockquote>
         </div>
       </section>

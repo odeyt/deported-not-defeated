@@ -48,7 +48,7 @@ export default function ElSalvadorFindWorkPage() {
               <li>• <strong className="text-white">Tecoloco.com:</strong> El Salvador&apos;s main job board</li>
               <li>• <strong className="text-white">Computrabajo El Salvador:</strong> Classifieds for skilled work</li>
               <li>• <strong className="text-white">INSAFORP:</strong> Free government training and job placement</li>
-              <li>• <strong className="text-white">Facebook:</strong> "Empleos en El Salvador" groups</li>
+              <li>• <strong className="text-white">Facebook:</strong> &quot;Empleos en El Salvador&quot; groups</li>
             </ul>
           </div>
 

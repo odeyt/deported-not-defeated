@@ -45,7 +45,7 @@ export default function VietnamStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Vietnam rebuilt itself from the ground up. So can you. The country itself is proof that devastation does not have the last word."
+            &quot;Vietnam rebuilt itself from the ground up. So can you. The country itself is proof that devastation does not have the last word.&quot;
           </blockquote>
         </div>
       </section>

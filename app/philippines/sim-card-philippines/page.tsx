@@ -54,7 +54,7 @@ export default function PhilippinesSimCardPage() {
 
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">SIM Registration Law (RA 11934)</h2>
-            <p className="text-gray-300 text-sm mb-2">The Philippines requires SIM registration under Republic Act 11934. You must register your SIM with one valid government ID: PSA birth certificate, PhilSys ID, passport, driver's license, or voter's ID.</p>
+            <p className="text-gray-300 text-sm mb-2">The Philippines requires SIM registration under Republic Act 11934. You must register your SIM with one valid government ID: PSA birth certificate, PhilSys ID, passport, driver&apos;s license, or voter&apos;s ID.</p>
             <p className="text-gray-300 text-sm">Unregistered SIMs will be deactivated. Complete registration at the carrier store or via their app within 30 days of purchase.</p>
           </div>
 
@@ -62,7 +62,7 @@ export default function PhilippinesSimCardPage() {
             <h2 className="text-xl font-bold text-white mb-3">Where to Buy</h2>
             <ul className="text-gray-300 text-sm space-y-2">
               <li>• <strong className="text-white">NAIA Airport:</strong> Globe and Smart booths in the arrivals area — all terminals</li>
-              <li>• <strong className="text-white">SM, Robinson's, Ayala malls:</strong> Carrier stores with staff who can register your SIM</li>
+              <li>• <strong className="text-white">SM, Robinson&apos;s, Ayala malls:</strong> Carrier stores with staff who can register your SIM</li>
               <li>• <strong className="text-white">Sari-sari stores:</strong> Small neighborhood stores sell top-up (load) cards</li>
               <li>• <strong className="text-white">7-Eleven:</strong> Load top-up available — not always SIM cards themselves</li>
             </ul>

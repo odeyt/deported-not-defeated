@@ -52,9 +52,9 @@ export default function ElSalvadorHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search "cuarto en alquiler San Salvador" — large selection</li>
+              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search &quot;cuarto en alquiler San Salvador&quot; — large selection</li>
               <li>• <strong className="text-white">OLX El Salvador:</strong> Classifieds including rooms and apartments</li>
-              <li>• <strong className="text-white">Walk the colonia:</strong> Signs saying "Se Alquila" are common in residential streets</li>
+              <li>• <strong className="text-white">Walk the colonia:</strong> Signs saying &quot;Se Alquila&quot; are common in residential streets</li>
               <li>• <strong className="text-white">Casa del Migrante:</strong> May have referrals to safe, affordable housing for returnees</li>
               <li>• <strong className="text-white">Church networks:</strong> Catholic parishes often know landlords willing to help returnees</li>
             </ul>

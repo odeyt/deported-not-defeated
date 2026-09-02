@@ -52,11 +52,11 @@ export default function PhilippinesHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search "bedspace Manila" or "room for rent QC" — huge selection</li>
+              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search &quot;bedspace Manila&quot; or &quot;room for rent QC&quot; — huge selection</li>
               <li>• <strong className="text-white">Lamudi.com.ph:</strong> Philippine real estate listings with maps and photos</li>
               <li>• <strong className="text-white">OLX Philippines:</strong> Classifieds for rooms, boarding houses, condos</li>
               <li>• <strong className="text-white">Your barangay:</strong> Barangay halls often know of room openings in the neighborhood</li>
-              <li>• <strong className="text-white">Walk the area:</strong> Signs saying "Room for Rent" or "Bedspace Available" are everywhere in residential areas</li>
+              <li>• <strong className="text-white">Walk the area:</strong> Signs saying &quot;Room for Rent&quot; or &quot;Bedspace Available&quot; are everywhere in residential areas</li>
             </ul>
           </div>
 

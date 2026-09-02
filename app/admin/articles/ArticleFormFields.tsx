@@ -111,7 +111,7 @@ export default function ArticleFormFields({ form, update }: Props) {
         />
         <p className="text-[11px] text-gray-500 mt-1">
           Trusted admin-authored HTML. Give each `&lt;h2&gt;`/`&lt;h3&gt;` an `id` attribute to have it
-          appear in the article's table of contents.
+          appear in the article&apos;s table of contents.
         </p>
       </div>
 

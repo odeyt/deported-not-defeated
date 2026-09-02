@@ -52,11 +52,11 @@ export default function GuatemalaHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search "cuarto en alquiler Guatemala" — by far the largest selection</li>
-              <li>• <strong className="text-white">Encuentra24.com:</strong> Guatemala's major classifieds platform</li>
+              <li>• <strong className="text-white">Facebook Marketplace:</strong> Search &quot;cuarto en alquiler Guatemala&quot; — by far the largest selection</li>
+              <li>• <strong className="text-white">Encuentra24.com:</strong> Guatemala&apos;s major classifieds platform</li>
               <li>• <strong className="text-white">OLX Guatemala:</strong> Classifieds for rooms and apartments</li>
               <li>• <strong className="text-white">Casa del Migrante:</strong> May have referrals to housing for returnees</li>
-              <li>• <strong className="text-white">Walk the colonias:</strong> Signs saying "Se Arrienda" or "Se Alquila" are on most residential streets</li>
+              <li>• <strong className="text-white">Walk the colonias:</strong> Signs saying &quot;Se Arrienda&quot; or &quot;Se Alquila&quot; are on most residential streets</li>
             </ul>
           </div>
 

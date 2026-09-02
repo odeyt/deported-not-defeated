@@ -52,9 +52,9 @@ export default function CambodiaHousingPage() {
           <div className="bg-navy-800 rounded-xl p-6">
             <h2 className="text-xl font-bold text-white mb-3">How to Find a Room</h2>
             <ul className="text-gray-300 text-sm space-y-2">
-              <li>• <strong className="text-white">Facebook Groups:</strong> Search "Phnom Penh Rooms for Rent" or "Cambodia Expat Housing" — most landlords post here</li>
-              <li>• <strong className="text-white">Khmer24.com:</strong> Cambodia's biggest classifieds site — rooms, houses, and apartments</li>
-              <li>• <strong className="text-white">Walk the streets:</strong> Signs in Khmer saying "ជួល" (rent) are common in residential areas</li>
+              <li>• <strong className="text-white">Facebook Groups:</strong> Search &quot;Phnom Penh Rooms for Rent&quot; or &quot;Cambodia Expat Housing&quot; — most landlords post here</li>
+              <li>• <strong className="text-white">Khmer24.com:</strong> Cambodia&apos;s biggest classifieds site — rooms, houses, and apartments</li>
+              <li>• <strong className="text-white">Walk the streets:</strong> Signs in Khmer saying &quot;ជួល&quot; (rent) are common in residential areas</li>
               <li>• <strong className="text-white">Ask your guesthouse:</strong> Many guesthouse owners know landlords nearby</li>
               <li>• <strong className="text-white">NGO referrals:</strong> Caritas and Don Bosco sometimes have connections to safe housing</li>
             </ul>

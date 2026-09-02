@@ -96,7 +96,7 @@ export default function MexicoFirst30DaysPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Mexico is your country too. The cities are dynamic, family bonds are strong, and gig work can pay your bills while you get back on your feet. You are not starting from nothing — you are starting from experience."
+            &quot;Mexico is your country too. The cities are dynamic, family bonds are strong, and gig work can pay your bills while you get back on your feet. You are not starting from nothing — you are starting from experience.&quot;
           </blockquote>
         </div>
       </section>

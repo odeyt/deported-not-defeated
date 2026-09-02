@@ -45,7 +45,7 @@ export default function CambodiaStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6 mb-6">
-            "You were not deported because you are worthless. You were deported because of a system that does not always reflect the value of a human life. Your worth was not decided at that airport."
+            &quot;You were not deported because you are worthless. You were deported because of a system that does not always reflect the value of a human life. Your worth was not decided at that airport.&quot;
           </blockquote>
         </div>
       </section>

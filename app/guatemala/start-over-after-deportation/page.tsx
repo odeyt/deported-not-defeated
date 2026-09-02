@@ -45,7 +45,7 @@ export default function GuatemalaStartOverPage() {
       <section className="bg-navy-800 py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <blockquote className="text-xl text-gray-200 italic border-l-4 border-brand-red pl-6">
-            "Guatemala has one of the oldest living civilizations in the Americas. The spirit of its people — your people — has never been broken. Neither will you be."
+            &quot;Guatemala has one of the oldest living civilizations in the Americas. The spirit of its people — your people — has never been broken. Neither will you be.&quot;
           </blockquote>
         </div>
       </section>

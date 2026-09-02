@@ -48,7 +48,7 @@ export default function GuatemalaFindWorkPage() {
               <li>• <strong className="text-white">Encuentra24.com:</strong> Guatemala&apos;s main job classifieds</li>
               <li>• <strong className="text-white">Computrabajo Guatemala:</strong> Professional and trade job listings</li>
               <li>• <strong className="text-white">INTECAP:</strong> Free government vocational training and placement</li>
-              <li>• <strong className="text-white">Facebook:</strong> "Empleos en Guatemala" groups — large and active</li>
+              <li>• <strong className="text-white">Facebook:</strong> &quot;Empleos en Guatemala&quot; groups — large and active</li>
             </ul>
           </div>
 

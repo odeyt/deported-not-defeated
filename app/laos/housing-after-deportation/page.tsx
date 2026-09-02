@@ -38,7 +38,7 @@ export default function HousingAfterDeportationPage() {
           <p>When you first arrive in Laos, head to the <strong>Chao Anouvong area near the Mekong River</strong> in Vientiane. This is the backpacker and budget traveler zone with dozens of guesthouses that accept walk-ins with no reservation.</p>
           <ul>
             <li><strong>Price range:</strong> 50,000–100,000 LAK ($3–7) per night for a basic room</li>
-            <li><strong>What to ask for:</strong> "Do you have a room? One night." — most staff speak basic English</li>
+            <li><strong>What to ask for:</strong> &quot;Do you have a room? One night.&quot; — most staff speak basic English</li>
             <li><strong>What to bring:</strong> Your passport — all guesthouses will ask for it</li>
           </ul>
 
@@ -71,8 +71,8 @@ export default function HousingAfterDeportationPage() {
 
           <h2>How to Find Apartments in Vientiane</h2>
           <ul>
-            <li><strong>Facebook Groups:</strong> Search "Vientiane Housing" or "Laos Expat Housing" — most listings are posted there</li>
-            <li><strong>Walk the streets:</strong> Look for "For Rent" signs — many landlords do not advertise online</li>
+            <li><strong>Facebook Groups:</strong> Search &quot;Vientiane Housing&quot; or &quot;Laos Expat Housing&quot; — most listings are posted there</li>
+            <li><strong>Walk the streets:</strong> Look for &quot;For Rent&quot; signs — many landlords do not advertise online</li>
             <li><strong>Ask your guesthouse owner:</strong> They often know of rooms nearby</li>
             <li><strong>Markets:</strong> Ask vendors at Talat Sao or Talat Khua Din — local word of mouth is powerful</li>
           </ul>
