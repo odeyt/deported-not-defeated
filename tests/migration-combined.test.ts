@@ -14,7 +14,25 @@ import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
 
-const read = (p: string) => fs.readFileSync(path.join(ROOT, "supabase", p), "utf8");
+/**
+ * Line endings are normalized before comparison.
+ *
+ * These tests compare file contents as substrings of one another. Git
+ * stores all three files with LF and converts on checkout, so on a machine
+ * with core.autocrlf=true they arrive as CRLF — but a file written directly
+ * by tooling and never re-checked-out stays LF. Mixing the two makes the
+ * substring checks fail on a byte difference that carries no meaning for
+ * SQL, and reports it as "the combined file has drifted".
+ *
+ * That happened on 2026-09-10 and cost a full misdiagnosis: the repository
+ * was correct and a clean clone passed 11/11, while the local tree failed.
+ * The invariant these tests exist to protect is CONTENT fidelity, so
+ * compare content and let git own the line endings.
+ */
+const normalize = (s: string) => s.replace(/\r\n/g, "\n");
+
+const read = (p: string) =>
+  normalize(fs.readFileSync(path.join(ROOT, "supabase", p), "utf8"));
 
 const combined = read("affiliate_engine_m1_combined.sql");
 const main = read("affiliate_engine_m1.sql");
