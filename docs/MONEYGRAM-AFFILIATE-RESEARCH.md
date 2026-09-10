@@ -178,6 +178,104 @@ Approval obtained: Public research, provider-specific documentation, validation,
 Remaining uncertainties: Public affiliate program existence, network/operator, application URL, commission, cookie, publisher/geographic eligibility, traffic requirements, restrictions, and all affiliate terms.
 ```
 
+---
+
+# ADDENDUM — 2026-09-10: Operator-supplied code RAFV3FFRWZCD identified
+
+The 2026-09-01 review above could not verify any MoneyGram affiliate program.
+On 2026-09-10 the operator supplied a code and asked for MoneyGram to be
+prepared for production use. That code has now been identified, and the answer
+resolves the question the original review left open.
+
+## What the code is
+
+```text
+Code supplied:      RAFV3FFRWZCD
+Mechanism:          MoneyGram "Invite Friends" CUSTOMER referral program
+Affiliate program:  NO — this is not an affiliate or publisher program
+Publisher payout:   NONE. The reward is a discount on the Advocate's own next transfer.
+Tracking URL:       NOT VERIFIED and NOT DERIVABLE from the code.
+Status:             Recorded as operator metadata. Not activated.
+```
+
+Source, read 2026-09-10 (Tier 1 — MoneyGram's own published terms):
+<https://www.moneygram.com/us/en/services/invite-friends-terms-and-conditions>
+
+## Why it cannot be used as a site-wide affiliate link
+
+Four independent blockers, each sufficient on its own. All quoted verbatim from
+the terms page above.
+
+1. **It is a consumer program, not a publisher program.**
+   *"A customer referral program ("Invite Friends") is being offered by
+   MoneyGram Payment Systems, Inc. and its affiliates ("MoneyGram") to existing
+   online users (an "Advocate") of MoneyGram® online products and services."*
+   Eligibility: *"Must be an existing MoneyGram online ("MGO") customer in the
+   United States who has already completed at least one (1) online
+   transaction."* A website cannot be an Advocate.
+
+2. **Each recipient must consent in advance.**
+   *"By sending an invitation you confirm that you have obtained the Referee's
+   prior consent to receive it."* A link published to anonymous visitors cannot
+   satisfy a prior-consent requirement.
+
+3. **The audience is wrong, twice over.**
+   The program covers the Advocate's *"eligible family and friends residing in
+   the same country"*. DeportedNotDefeated readers are largely people outside
+   the United States, who would not qualify as Referees of a US Advocate.
+
+4. **There is no revenue, and the reward is non-transferable.**
+   The Advocate receives a discount on their own next transfer, capped at ten
+   (*"A maximum of ten (10) Invite Friends discounts will be rewarded per
+   Advocate"*). Discounts *"have no cash value"* and *"cannot be purchased,
+   sold, combined or transferred in any way."*
+
+Section 4 lets MoneyGram suspend the Advocate's MGO profile *"for any reason,
+including but not limited to fraudulent representations by you"*. Publishing a
+personal referral code as a public CTA to collect discounts from strangers is a
+realistic trigger for that clause. The exposure is the operator's personal
+MoneyGram account; the return is zero commission.
+
+## Why no tracking URL was constructed
+
+The program page instructs the Advocate to *"Log in or sign up, copy your code,
+and share it with friends and family"*. The shareable link is generated inside
+the logged-in MoneyGram account. Its URL structure is not published anywhere
+public and **cannot be derived from the code**. No URL was guessed, stored,
+tested, or shipped.
+
+## What was done instead
+
+```text
+Provider record:    UPDATED in place (id 16b9b6cc-90fd-48e0-a40f-7f34fad0bee0). No duplicate.
+affiliate_url:      Unchanged — still NULL.
+affiliate_status:   Unchanged — still pending. Not promoted.
+active:             Unchanged — still true (editorial listing, non-monetized).
+Code storage:       account_identifier, prefixed INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:
+                    plus explanatory internal_notes and terms_notes.
+Public exposure:    None. Those three columns are revoked from anon by
+                    affiliate_engine_m1_hardening.sql; confirmed 42501 in production 2026-09-10.
+Migration:          supabase/affiliate_moneygram_referral.sql — written, NOT applied.
+Guard tests:        tests/moneygram-referral.test.ts
+```
+
+## Recommendation
+
+**Do not publish this code on the site.** It is worth keeping in the operator
+record so it is not lost, and so that nobody rediscovers it later and activates
+it blindly — which is exactly what the stored label and the guard tests prevent.
+
+If MoneyGram monetization is genuinely wanted, the route is a real affiliate or
+partnership arrangement. Neither the 2026-09-01 corridor review nor this review
+found public evidence that such a program exists; pursuing it would mean
+MoneyGram business development, not the Invite Friends page.
+
+Separately, the operator can of course keep using RAFV3FFRWZCD personally, by
+sharing it directly with people they know. That is what it is for.
+
+---
+
+
 ## Sources
 
 [1] https://www.moneygram.com/us/en/corridor/mexico — MoneyGram US to Mexico corridor

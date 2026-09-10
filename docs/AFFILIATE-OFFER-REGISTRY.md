@@ -187,9 +187,74 @@ all with no affiliate URL. Whether any of those represents a submitted
 application or simply a seeded default is **not established** — treat them as
 UNVERIFIED until the operator confirms.
 
+**MoneyGram is now resolved** — see "Investigated — No Affiliate Program
+Available" below. Its `pending` value is a legacy seed artefact, not a
+submitted application; no MoneyGram affiliate program was found to apply to.
+
 Add submitted affiliate applications here.
 
 ---
+
+---
+
+# Investigated — No Affiliate Program Available
+
+Programs where a relationship was actively investigated and the answer came
+back negative. Recorded so the same ground is not re-covered, and so an
+operator-held code is not mistaken later for an affiliate credential.
+
+## MoneyGram
+
+Status: **UNVERIFIED as an affiliate program — no affiliate program found.**
+
+Database row: `moneygram` (`16b9b6cc-90fd-48e0-a40f-7f34fad0bee0`),
+`affiliate_status = 'pending'`, `affiliate_url = NULL`, `active = true`,
+`placement_type = 'editorial'`, `canonical_category = 'MONEY_TRANSFER'`.
+Unchanged by this investigation.
+
+Category: Money Transfer
+
+Network: None. No public MoneyGram affiliate program or network campaign was
+found in either the 2026-09-01 corridor review or the 2026-09-10 code review.
+
+Commission / cookie: Not applicable — there is no affiliate program to have
+terms. Do not record either field.
+
+Operator-held code: `RAFV3FFRWZCD`, supplied 2026-09-10.
+
+**This code is NOT an affiliate credential.** Verified 2026-09-10 against
+MoneyGram's own published terms
+(<https://www.moneygram.com/us/en/services/invite-friends-terms-and-conditions>):
+it is an **"Invite Friends" customer referral code**. The reward is a capped
+discount on the operator's own next transfer — not commission. The terms
+require each recipient's prior consent, restrict the program to the Advocate's
+"family and friends residing in the same country", and state that discounts
+"cannot be purchased, sold, combined or transferred in any way".
+
+The shareable link is generated inside the operator's logged-in MoneyGram
+account and its URL structure is not published, so **it cannot be derived from
+the code**. No URL was constructed.
+
+Stored as operator metadata only, in `account_identifier` (prefixed
+`INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:`), `internal_notes`, and `terms_notes`
+— all three revoked from `anon` by `affiliate_engine_m1_hardening.sql`.
+
+Service availability (a separate, positive finding): US corridors to Mexico,
+Guatemala, El Salvador, Cambodia, Laos, and the Philippines are Tier 1 verified
+against MoneyGram's own corridor pages, observed 2026-09-01. MoneyGram remains
+a genuinely useful **non-monetized** editorial listing for this audience,
+particularly for cash pickup.
+
+Last Verified: 2026-09-10 — program terms reviewed; no affiliate program exists.
+
+Next review: only if MoneyGram publishes an affiliate or partner program.
+Re-checking the Invite Friends page will not change this answer.
+
+Do NOT: publish the code as a CTA, construct a URL from it, set
+`affiliate_status = 'approved'`, or record a commission rate. Guarded by
+`tests/moneygram-referral.test.ts`. Full evidence in
+`docs/MONEYGRAM-AFFILIATE-RESEARCH.md`.
+
 
 # Prospective Programs
 
