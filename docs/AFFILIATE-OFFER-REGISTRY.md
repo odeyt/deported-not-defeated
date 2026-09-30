@@ -235,24 +235,38 @@ The shareable link is generated inside the operator's logged-in MoneyGram
 account and its URL structure is not published, so **it cannot be derived from
 the code**. No URL was constructed.
 
-Stored as operator metadata only, in `account_identifier` (prefixed
-`INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:`), `internal_notes`, and `terms_notes`
-— all three revoked from `anon` by `affiliate_engine_m1_hardening.sql`.
+Recorded **here and in the research record only**. It is deliberately NOT
+stored in the database. An earlier draft wrote it to
+`affiliate_partners.account_identifier` — a column documented as *"Publisher /
+account ID with the network"* — and that was removed during review: a consumer
+referral code is not a publisher ID, and a populated "Publisher / Account ID"
+field sitting above the status dropdown in the admin form makes flipping to
+`approved` look like the natural next step. `tests/moneygram-referral.test.ts`
+asserts that no migration persists the code or assigns `account_identifier`
+while touching MoneyGram.
 
-Service availability (a separate, positive finding): US corridors to Mexico,
-Guatemala, El Salvador, Cambodia, Laos, and the Philippines are Tier 1 verified
-against MoneyGram's own corridor pages, observed 2026-09-01. MoneyGram remains
-a genuinely useful **non-monetized** editorial listing for this audience,
-particularly for cash pickup.
+Service availability (a separate, positive finding, tracked separately): US
+corridors to Mexico, Guatemala, El Salvador, Cambodia, Laos, and the
+Philippines are Tier 1 verified against MoneyGram's own corridor pages,
+observed 2026-09-01. Recording that evidence against the availability rows is
+proposed on branch `data/moneygram-corridor-evidence`
+(`supabase/affiliate_moneygram_corridor_evidence.sql`) — **unapplied, no PR**,
+because it would replace a visible "Confirm availability with provider" hedge
+with a plain availability statement and that needs an owner decision.
+
+Either way MoneyGram remains a genuinely useful **non-monetized** editorial
+listing for this audience, particularly for cash pickup.
 
 Last Verified: 2026-09-10 — program terms reviewed; no affiliate program exists.
+Database state re-confirmed 2026-09-30: `affiliate_status = 'pending'`,
+`affiliate_url = NULL`, `account_identifier = NULL`.
 
 Next review: only if MoneyGram publishes an affiliate or partner program.
 Re-checking the Invite Friends page will not change this answer.
 
-Do NOT: publish the code as a CTA, construct a URL from it, set
-`affiliate_status = 'approved'`, or record a commission rate. Guarded by
-`tests/moneygram-referral.test.ts`. Full evidence in
+Do NOT: publish the code as a CTA, construct a URL from it, write it to the
+database, set `affiliate_status = 'approved'`, or record a commission rate.
+Guarded by `tests/moneygram-referral.test.ts`. Full evidence in
 `docs/MONEYGRAM-AFFILIATE-RESEARCH.md`.
 
 

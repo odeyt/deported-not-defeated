@@ -247,23 +247,42 @@ tested, or shipped.
 ## What was done instead
 
 ```text
-Provider record:    UPDATED in place (id 16b9b6cc-90fd-48e0-a40f-7f34fad0bee0). No duplicate.
-affiliate_url:      Unchanged — still NULL.
-affiliate_status:   Unchanged — still pending. Not promoted.
-active:             Unchanged — still true (editorial listing, non-monetized).
-Code storage:       account_identifier, prefixed INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:
-                    plus explanatory internal_notes and terms_notes.
-Public exposure:    None. Those three columns are revoked from anon by
-                    affiliate_engine_m1_hardening.sql; confirmed 42501 in production 2026-09-10.
-Migration:          supabase/affiliate_moneygram_referral.sql — written, NOT applied.
+Provider record:    UNCHANGED. Nothing was written to the database at all.
+affiliate_url:      NULL (verified in production 2026-09-30).
+affiliate_status:   pending. Not promoted.
+active:             true (editorial listing, non-monetized).
+Code storage:       DOCUMENTATION ONLY — this file and docs/AFFILIATE-OFFER-REGISTRY.md.
+                    Deliberately NOT persisted to the database. See below.
+Runtime changes:    None. No file under app/, components/, lib/, or data/ was touched.
 Guard tests:        tests/moneygram-referral.test.ts
 ```
+
+### Why the code is not stored in the database
+
+An earlier draft of this work recorded the code in
+`affiliate_partners.account_identifier`, with explanatory notes in
+`internal_notes` and `terms_notes`, behind a self-labelling
+`INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:` prefix. That draft was **removed**
+during review, for a reason worth keeping written down:
+
+`account_identifier` is documented as *"Publisher / account ID with the
+network"*. A consumer referral code is not that. Prefixing the value made the
+mislabelling visible but did not remove it — and in the admin form, a populated
+**Publisher / Account ID** field sitting immediately above the affiliate-status
+dropdown makes flipping to `approved` look like the obvious next step. That is
+an activation footgun, and the mitigation was weaker than simply not creating it.
+
+The documentation is the right home: it carries the reasoning alongside the
+value, which a database column cannot. `tests/moneygram-referral.test.ts` now
+asserts that **no migration in `supabase/` persists the code or assigns
+`account_identifier` while touching MoneyGram** — the absence is enforced, not
+merely intended.
 
 ## Recommendation
 
 **Do not publish this code on the site.** It is worth keeping in the operator
 record so it is not lost, and so that nobody rediscovers it later and activates
-it blindly — which is exactly what the stored label and the guard tests prevent.
+it blindly — which is what this record and the guard tests together prevent.
 
 If MoneyGram monetization is genuinely wanted, the route is a real affiliate or
 partnership arrangement. Neither the 2026-09-01 corridor review nor this review

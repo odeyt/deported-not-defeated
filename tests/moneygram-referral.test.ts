@@ -25,8 +25,16 @@ import type { AffiliateProvider } from "../lib/affiliate/types.ts";
  *
  *   These tests make that move fail loudly instead of silently shipping.
  *
- * See docs/MONEYGRAM-AFFILIATE-RESEARCH.md and
- * supabase/affiliate_moneygram_referral.sql.
+ * WHERE THE CODE LIVES
+ *   Documentation only — docs/MONEYGRAM-AFFILIATE-RESEARCH.md and
+ *   docs/AFFILIATE-OFFER-REGISTRY.md. It is deliberately NOT persisted to the
+ *   database. An earlier draft wrote it to affiliate_partners.account_identifier,
+ *   a column documented as "Publisher / account ID with the network". Storing a
+ *   consumer referral code there is semantically wrong and creates an
+ *   activation footgun: a populated "Publisher / Account ID" field sitting next
+ *   to a status dropdown makes flipping to `approved` look like the obvious
+ *   next step. That persistence was removed, and the tests below now enforce
+ *   its absence rather than its labelling.
  */
 
 const ROOT = path.join(import.meta.dirname, "..");
@@ -50,15 +58,15 @@ const publicSourceFiles = PUBLIC_SOURCE_DIRS.flatMap((d) => walk(path.join(ROOT,
 // ------------------------------------------------- no fabricated URL anywhere
 
 test("no MoneyGram tracking URL is constructed from the referral code", () => {
-  // The code may live in operator metadata (SQL, docs, this test). It must
-  // never appear inside anything that ships to a browser or builds a link.
+  // The code may live in documentation. It must never appear inside anything
+  // that ships to a browser or builds a link.
   for (const file of publicSourceFiles) {
     const source = fs.readFileSync(file, "utf8");
     assert.equal(
       source.includes(CODE),
       false,
       `${path.relative(ROOT, file)} contains the MoneyGram referral code. ` +
-        `It belongs in operator-only database metadata, never in shipped source.`
+        `It belongs in documentation, never in shipped source.`
     );
   }
 });
@@ -82,84 +90,53 @@ test("no guessed moneygram.com referral URL exists in the repository", () => {
   }
 });
 
-test("the migration records the code but never writes an affiliate URL for it", () => {
-  const migration = fs.readFileSync(
-    path.join(ROOT, "supabase/affiliate_moneygram_referral.sql"),
-    "utf8"
-  );
+// ------------------------------------- the code is never persisted to the DB
 
-  assert.ok(migration.includes(CODE), "the migration should record the operator's code");
+test("no migration writes the referral code into the database", () => {
+  // The activation footgun this closes: a code sitting in a column named
+  // "Publisher / account ID" reads as an affiliate credential to the next
+  // person who opens the admin form.
+  const supabaseDir = path.join(ROOT, "supabase");
 
-  // Strip -- comments so the assertions inspect real SQL, not the explanation.
-  const NEWLINE = String.fromCharCode(10);
-  const sql = migration
-    .split(NEWLINE)
-    .map((line) => {
-      let inString = false;
-      for (let i = 0; i < line.length; i++) {
-        if (line[i] === "'") inString = !inString;
-        else if (!inString && line[i] === "-" && line[i + 1] === "-") return line.slice(0, i);
-      }
-      return line;
-    })
-    .join(NEWLINE);
+  for (const name of fs.readdirSync(supabaseDir)) {
+    if (!name.endsWith(".sql")) continue;
+    const sql = fs.readFileSync(path.join(supabaseDir, name), "utf8");
 
-  assert.equal(
-    /set\s+affiliate_url\s*=/i.test(sql),
-    false,
-    "the migration must not set affiliate_url for MoneyGram"
-  );
-  assert.equal(
-    /affiliate_status\s*=\s*'approved'/i.test(sql),
-    false,
-    "the migration must not promote MoneyGram to approved"
-  );
-  assert.equal(
-    /moneygram\.com[^\s']*RAFV3FFRWZCD/i.test(sql),
-    false,
-    "the migration must not embed the code in a URL"
-  );
-});
-
-test("the recorded code is self-labelling so it cannot be misread as a publisher ID", () => {
-  const migration = fs.readFileSync(
-    path.join(ROOT, "supabase/affiliate_moneygram_referral.sql"),
-    "utf8"
-  );
-
-  assert.ok(
-    migration.includes(`INVITE_FRIENDS_CUSTOMER_REFERRAL_CODE:${CODE}`),
-    "the stored value must carry its own label — a bare code in account_identifier " +
-      "is what a future reader turns into a guessed tracking URL"
-  );
-});
-
-test("the code is stored only in columns anon cannot read", () => {
-  const migration = fs.readFileSync(
-    path.join(ROOT, "supabase/affiliate_moneygram_referral.sql"),
-    "utf8"
-  );
-  const hardening = fs.readFileSync(
-    path.join(ROOT, "supabase/affiliate_engine_m1_hardening.sql"),
-    "utf8"
-  );
-
-  // Columns the migration writes the code into.
-  const targets = ["account_identifier", "internal_notes", "terms_notes"];
-  for (const column of targets) {
-    assert.ok(migration.includes(column), `migration should write ${column}`);
-  }
-
-  // None of them may appear in the anon grant list.
-  const grantBlock = hardening.slice(
-    hardening.indexOf("grant select ("),
-    hardening.indexOf("on affiliate_partners to anon;")
-  );
-  for (const column of targets) {
     assert.equal(
-      new RegExp(`(^|[\\s,(])${column}([\\s,)]|$)`).test(grantBlock),
+      sql.includes(CODE),
       false,
-      `${column} must not be readable by anon — it now holds the operator's referral code`
+      `supabase/${name} persists the MoneyGram referral code. The code is a personal ` +
+        `consumer credential and belongs in documentation only — see this file's header.`
+    );
+  }
+});
+
+test("no migration writes an account_identifier for MoneyGram", () => {
+  const supabaseDir = path.join(ROOT, "supabase");
+
+  for (const name of fs.readdirSync(supabaseDir)) {
+    if (!name.endsWith(".sql")) continue;
+    const sql = fs.readFileSync(path.join(supabaseDir, name), "utf8");
+    if (!/moneygram/i.test(sql)) continue;
+
+    // Comments legitimately discuss the column; only a real write is a failure.
+    const NEWLINE = String.fromCharCode(10);
+    const executable = sql
+      .split(NEWLINE)
+      .map((line) => {
+        let inString = false;
+        for (let i = 0; i < line.length; i++) {
+          if (line[i] === "'") inString = !inString;
+          else if (!inString && line[i] === "-" && line[i + 1] === "-") return line.slice(0, i);
+        }
+        return line;
+      })
+      .join(NEWLINE);
+
+    assert.equal(
+      /account_identifier\s*=/.test(executable),
+      false,
+      `supabase/${name} assigns account_identifier while touching MoneyGram`
     );
   }
 });
@@ -220,32 +197,7 @@ test("marking MoneyGram approved without a URL still does not monetize it", () =
   assert.equal(result.kind, "website");
 });
 
-// ------------------------------------------------------------ evidence hygiene
-
-test("corridor evidence cites MoneyGram's own pages and only the six reviewed", () => {
-  const migration = fs.readFileSync(
-    path.join(ROOT, "supabase/affiliate_moneygram_referral.sql"),
-    "utf8"
-  );
-
-  const reviewed = ["mexico", "guatemala", "el-salvador", "cambodia", "laos", "philippines"];
-  for (const corridor of reviewed) {
-    assert.ok(
-      migration.includes(`https://www.moneygram.com/us/en/corridor/${corridor}`),
-      `missing Tier 1 citation for the ${corridor} corridor`
-    );
-  }
-
-  // Vietnam, Nigeria, and Ghana rows exist but were never reviewed. They must
-  // stay unverified rather than being backfilled with a guessed corridor URL.
-  for (const unreviewed of ["vietnam", "nigeria", "ghana"]) {
-    assert.equal(
-      migration.includes(`/corridor/${unreviewed}`),
-      false,
-      `${unreviewed} was not part of the 2026-09-01 review — it must not be cited`
-    );
-  }
-});
+// ------------------------------------------------------------ the written record
 
 test("the research record states plainly that no affiliate program was verified", () => {
   const research = fs.readFileSync(
@@ -260,5 +212,22 @@ test("the research record states plainly that no affiliate program was verified"
   assert.ok(
     /not an affiliate/i.test(research),
     "the research record must state that this is not an affiliate program"
+  );
+});
+
+test("the registry records MoneyGram as having no affiliate program", () => {
+  const registry = fs.readFileSync(path.join(ROOT, "docs/AFFILIATE-OFFER-REGISTRY.md"), "utf8");
+
+  assert.ok(
+    /No Affiliate Program Available/i.test(registry),
+    "the registry must carry the investigated-and-negative section"
+  );
+  assert.ok(
+    registry.includes(CODE),
+    "the registry must record the operator's code so it is not lost or rediscovered blind"
+  );
+  assert.ok(
+    /NOT an affiliate credential/i.test(registry),
+    "the registry must say plainly what the code is not"
   );
 });
